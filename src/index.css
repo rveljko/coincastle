@@ -1,1 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
 @import 'tailwindcss';
+
+@theme {
+  --color-clickable: #ffffff;
+  --color-brand-100: #ebefff;
+  --color-brand-200: #bfccfd;
+  --color-brand-300: #93a9fb;
+  --color-brand-400: #6583f1;
+  --color-brand-500: #486ae5;
+  --color-brand-600: #264bcf;
+  --color-brand-700: #1031a8;
+  --color-brand-800: #061f7a;
+  --color-brand-900: #000d3d;
+  --color-neutral-100: #cfd0d3;
+  --color-neutral-200: #b7b8bd;
+  --color-neutral-300: #9d9fa4;
+  --color-neutral-400: #85878e;
+  --color-neutral-500: #6d6f78;
+  --color-neutral-600: #545863;
+  --color-neutral-700: #3b3e4a;
+  --color-neutral-800: #232634;
+  --color-neutral-900: #0b0f1e;
+  --color-success-100: #c8e6c9;
+  --color-success-200: #a5d6a7;
+  --color-success-300: #81c784;
+  --color-success-400: #66bb6a;
+  --color-success-500: #4caf50;
+  --color-success-600: #43a047;
+  --color-success-700: #388e3c;
+  --color-success-800: #2e7d32;
+  --color-success-900: #1b5e20;
+  --color-danger-100: #ffcdd2;
+  --color-danger-200: #ef9a9a;
+  --color-danger-300: #e57373;
+  --color-danger-400: #ef5350;
+  --color-danger-500: #f44336;
+  --color-danger-600: #e53935;
+  --color-danger-700: #d32f2f;
+  --color-danger-800: #c62828;
+  --color-danger-900: #b71c1c;
+  --color-warning-100: #fff9c4;
+  --color-warning-200: #fff59d;
+  --color-warning-300: #fff176;
+  --color-warning-400: #ffee58;
+  --color-warning-500: #ffeb3b;
+  --color-warning-600: #fdd835;
+  --color-warning-700: #fbc02d;
+  --color-warning-800: #f9a825;
+  --color-warning-900: #f57f17;
+  --background-starting-color: #101424;
+  --background-ending-color: #0c0f1a;
+  --background-gradient: linear-gradient(
+    var(--background-starting-color),
+    var(--background-ending-color)
+  );
+  --section-background: linear-gradient(#13192f7a, #14192c),
+    radial-gradient(at top, #151a28cc, #151a2833);
+  --modal-background: linear-gradient(transparent, #ffffff00),
+    radial-gradient(at top, #13192fe3, #0b0e18f2);
+  --heading-1-font-size: 2.25rem;
+  --heading-1-line-height: 1.2;
+  --heading-2-font-size: 2rem;
+  --heading-2-line-height: 1.2;
+  --heading-3-font-size: 1.625rem;
+  --heading-4-font-size: 1.375rem;
+  --heading-5-font-size: 1.2rem;
+  --heading-6-font-size: 1rem;
+  --paragraph-font-size: 1rem;
+  --paragraph-line-height: 1.4;
+  --font-primary: 'Instrument Sans', sans-serif;
+}
+
+@layer components {
+  body {
+    background-image: var(--background-gradient);
+    background-attachment: fixed;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: var(--paragraph-line-height);
+    color: var(--color-neutral-400);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-neutral-100);
+    font-weight: 500;
+  }
+
+  h1 {
+    line-height: var(--heading-1-line-height);
+    font-size: var(--heading-1-font-size);
+  }
+
+  h2 {
+    line-height: var(--heading-3-line-height);
+    font-size: var(--heading-2-font-size);
+  }
+
+  h3 {
+    font-size: var(--heading-3-font-size);
+  }
+
+  h4 {
+    font-size: var(--heading-4-font-size);
+  }
+
+  h5 {
+    font-size: var(--heading-5-font-size);
+  }
+
+  h6 {
+    font-size: var(--heading-5-font-size);
+  }
+
+  p {
+    color: var(--color-neutral-400);
+  }
+
+  a {
+    color: var(--color-clickable);
+  }
+}
