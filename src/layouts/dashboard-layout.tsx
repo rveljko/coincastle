@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 export default function DashboardLayout() {
   return (
-    <div>
+    <div className="flex flex-row">
       <Sidebar />
       <main>
         <Outlet />

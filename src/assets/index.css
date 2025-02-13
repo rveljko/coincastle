@@ -48,13 +48,14 @@
   --color-warning-700: #fbc02d;
   --color-warning-800: #f9a825;
   --color-warning-900: #f57f17;
+  --color-section-outline: #e3e3e333;
   --background-starting-color: #101424;
   --background-ending-color: #0c0f1a;
   --background-gradient: linear-gradient(
     var(--background-starting-color),
     var(--background-ending-color)
   );
-  --section-background: linear-gradient(#13192f7a, #14192c),
+  --section-background: linear-gradient(#13192f1a, #151a2e1a),
     radial-gradient(at top, #151a28cc, #151a2833);
   --modal-background: linear-gradient(transparent, #ffffff00),
     radial-gradient(at top, #13192fe3, #0b0e18f2);
@@ -69,16 +70,19 @@
   --paragraph-font-size: 1rem;
   --paragraph-line-height: 1.4;
   --font-primary: 'Instrument Sans', sans-serif;
+  --sidebar-opened-width: 14.375rem;
 }
 
 @layer components {
   body {
+    background-color: var(--background-ending-color);
     background-image: var(--background-gradient);
     background-attachment: fixed;
     font-family: var(--font-primary);
     font-weight: 400;
     line-height: var(--paragraph-line-height);
     color: var(--color-neutral-400);
+    height: 100vh;
   }
 
   h1,
