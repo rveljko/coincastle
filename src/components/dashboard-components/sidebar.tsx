@@ -20,17 +20,17 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`bg-(image:--section-background) top-0 left-0 h-screen p-4 border-r border-r-section-outline backdrop-blur-lg ${
+      className={`border-r-section-outline top-0 left-0 h-screen border-r bg-(image:--section-background) p-4 backdrop-blur-lg ${
         isOpened
-          ? 'fixed md:sticky min-w-(--sidebar-opened-width)'
+          ? 'fixed min-w-(--sidebar-opened-width) md:sticky'
           : 'sticky w-fit'
       }`}
     >
       <div
-        className={`flex flex-col gap-2 h-full ${!isOpened && 'items-center'}`}
+        className={`flex h-full flex-col gap-2 ${!isOpened && 'items-center'}`}
       >
         <header
-          className={`flex justify-between gap-2 items-center ${
+          className={`flex items-center justify-between gap-2 ${
             isOpened ? 'flex-row' : 'flex-col-reverse'
           }`}
         >
@@ -38,7 +38,7 @@ export default function Sidebar() {
             <Logo withText={isOpened} />
           </Link>
           <button
-            className="text-white cursor-pointer"
+            className="cursor-pointer text-white"
             onClick={() => setIsOpened((prev) => !prev)}
           >
             {isOpened ? (
@@ -48,7 +48,7 @@ export default function Sidebar() {
             )}
           </button>
         </header>
-        <nav className="flex flex-col gap-2 h-full justify-between overflow-y-auto">
+        <nav className="flex h-full flex-col justify-between gap-2 overflow-y-auto">
           <NavigationLinksList
             navigationLinks={primaryNavigationLinks}
             showNavigationLinkText={isOpened}

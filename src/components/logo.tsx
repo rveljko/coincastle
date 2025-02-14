@@ -11,7 +11,7 @@ export default function Logo({ withText }: LogoProps) {
         <LogoIcon />
       </span>
       {withText && (
-        <span className="text-xl text-clickable font-bold">CoinCastle</span>
+        <span className="text-clickable text-xl font-bold">CoinCastle</span>
       )}
     </div>
   )
