@@ -54,3 +54,26 @@ export const secondaryNavigationLinks: NavigationLink[] = [
     icon: SettingsIcon,
   },
 ]
+
+export const settingsNavigationLinks: NavigationLink[] = [
+  {
+    id: 1,
+    name: 'Account',
+    path: '',
+  },
+  {
+    id: 2,
+    name: 'Password',
+    path: 'password',
+  },
+  {
+    id: 3,
+    name: 'Preferences',
+    path: 'preferences',
+  },
+  {
+    id: 4,
+    name: 'Integrations',
+    path: 'integrations',
+  },
+]
