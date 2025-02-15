@@ -30,7 +30,8 @@
       "@layouts/*": ["layouts/*"],
       "@routes/*": ["routes/*"],
       "@data/*": ["data/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@services/*": ["services/*"]
     }
   },
   "include": ["src"]

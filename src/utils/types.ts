@@ -4,3 +4,14 @@ export type NavigationLink = {
   path: string
   icon?: () => React.JSX.Element
 }
+
+export type User = {
+  firstName: string
+  lastName: string
+  emailAddress: string
+  phoneNumber: number
+  streetAddress: string
+  city: string
+  state: string
+  zipCode: number
+}

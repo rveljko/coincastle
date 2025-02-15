@@ -18,6 +18,7 @@ export default defineConfig({
       '@routes': path.resolve(__dirname, './src/routes'),
       '@data': path.resolve(__dirname, './src/data'),
       '@utils': path.resolve(__dirname, './src/utils'),
+      '@services': path.resolve(__dirname, './src/services'),
     },
   },
 })
