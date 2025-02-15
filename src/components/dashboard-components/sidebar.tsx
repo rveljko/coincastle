@@ -20,7 +20,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`border-r-section-outline top-0 left-0 h-screen border-r bg-(image:--section-background) p-4 backdrop-blur-lg ${
+      className={`border-r-section-outline top-0 left-0 z-999 h-screen border-r bg-(image:--section-background) p-4 backdrop-blur-lg ${
         isOpened
           ? 'fixed min-w-(--sidebar-opened-width) md:sticky'
           : 'sticky w-fit'
