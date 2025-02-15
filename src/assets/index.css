@@ -55,25 +55,29 @@
     var(--background-starting-color),
     var(--background-ending-color)
   );
-  --section-background: linear-gradient(#13192f1a, #151a2e1a),
+  --section-background:
+    linear-gradient(#13192f1a, #151a2e1a),
     radial-gradient(at top, #151a28cc, #151a2833);
-  --modal-background: linear-gradient(transparent, #ffffff00),
+  --modal-background:
+    linear-gradient(transparent, #ffffff00),
     radial-gradient(at top, #13192fe3, #0b0e18f2);
-  --heading-1-font-size: 2.25rem;
-  --heading-1-line-height: 1.2;
-  --heading-2-font-size: 2rem;
-  --heading-2-line-height: 1.2;
-  --heading-3-font-size: 1.625rem;
-  --heading-4-font-size: 1.375rem;
-  --heading-5-font-size: 1.2rem;
-  --heading-6-font-size: 1rem;
-  --paragraph-font-size: 1rem;
-  --paragraph-line-height: 1.4;
+  --text-heading-1-font-size: 2.25rem;
+  --leading-heading-1-line-height: 1.2;
+  --text-heading-2-font-size: 2rem;
+  --leading-heading-2-line-height: 1.2;
+  --text-heading-3-font-size: 1.625rem;
+  --text-heading-4-font-size: 1.375rem;
+  --text-heading-5-font-size: 1.2rem;
+  --text-heading-6-font-size: 1rem;
+  --text-paragraph-font-size: 1rem;
+  --leading-paragraph-line-height: 1.4;
   --font-primary: 'Instrument Sans', sans-serif;
   --container-width: 73.625rem;
   --settings-container-width: 41.25rem;
   --sidebar-opened-width: 14.375rem;
   --navigation-links-list-width: 12.3125rem;
+  --input-max-width: 18.75rem;
+  --input-height: 2.5rem;
 }
 
 @layer components {
@@ -83,7 +87,7 @@
     background-attachment: fixed;
     font-family: var(--font-primary);
     font-weight: 400;
-    line-height: var(--paragraph-line-height);
+    line-height: var(--leading-paragraph-line-height);
     color: var(--color-neutral-400);
     height: 100vh;
   }
@@ -99,29 +103,29 @@
   }
 
   h1 {
-    line-height: var(--heading-1-line-height);
-    font-size: var(--heading-1-font-size);
+    line-height: var(--leading-heading-1-line-height);
+    font-size: var(--text-heading-1-font-size);
   }
 
   h2 {
-    line-height: var(--heading-3-line-height);
-    font-size: var(--heading-2-font-size);
+    line-height: var(--leading-heading-3-line-height);
+    font-size: var(--text-heading-2-font-size);
   }
 
   h3 {
-    font-size: var(--heading-3-font-size);
+    font-size: var(--text-heading-3-font-size);
   }
 
   h4 {
-    font-size: var(--heading-4-font-size);
+    font-size: var(--text-heading-4-font-size);
   }
 
   h5 {
-    font-size: var(--heading-5-font-size);
+    font-size: var(--text-heading-5-font-size);
   }
 
   h6 {
-    font-size: var(--heading-5-font-size);
+    font-size: var(--text-heading-5-font-size);
   }
 
   p {
