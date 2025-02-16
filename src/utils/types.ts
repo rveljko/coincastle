@@ -15,3 +15,11 @@ export type User = {
   state: string
   zipCode: number
 }
+
+export type Integration = {
+  id: number
+  name: string
+  description: string
+  logoUrl: string
+  isActive: boolean
+}
