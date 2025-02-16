@@ -1,3 +1,4 @@
+import { useIntegrations } from '@services/contexts/integrations-context'
 import { Integration } from '@utils/types'
 import { useState } from 'react'
 import Switch from './ui/switch'
@@ -7,9 +8,10 @@ type IntegrationCardProps = {
 }
 
 export default function IntegrationCard({
-  integration: { name, description, logoUrl, isActive },
+  integration: { id, name, description, logoUrl, isActive },
 }: IntegrationCardProps) {
   const [isIntegrationActive, setIsIntegrationActive] = useState(isActive)
+  const { addIntegrationId } = useIntegrations()
 
   return (
     <article className="rounded-md p-2 shadow-[inset_0_0_0_1px_hsl(from_var(--color-white)_h_s_l_/_20%)]">
@@ -19,7 +21,10 @@ export default function IntegrationCard({
         </div>
         <Switch
           checked={isIntegrationActive}
-          onChange={() => setIsIntegrationActive((prev) => !prev)}
+          onChange={() => {
+            setIsIntegrationActive((prev) => !prev)
+            addIntegrationId(id)
+          }}
         />
       </div>
       <h3 className="text-heading-5-font-size">{name}</h3>

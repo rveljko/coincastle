@@ -1,4 +1,5 @@
 import DashboardRoutes from '@routes/dashboard-routes'
+import IntegrationsContextProvider from '@services/contexts/integrations-context'
 import UserInformationContextProvider from '@services/contexts/user-information-context'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
@@ -9,7 +10,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <UserInformationContextProvider>
-        <DashboardRoutes />
+        <IntegrationsContextProvider>
+          <DashboardRoutes />
+        </IntegrationsContextProvider>
       </UserInformationContextProvider>
     </BrowserRouter>
   </StrictMode>
