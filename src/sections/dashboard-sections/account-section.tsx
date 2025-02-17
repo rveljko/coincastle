@@ -13,22 +13,15 @@ import { useState } from 'react'
 
 export default function AccountSection() {
   const { userInformation, updateUserInformation } = useUserInformation()
-  const { newUserInformation, setNewUserInformation } = useNewUserInformation()
-
+  const { isUserInformationSame, newUserInformation, setNewUserInformation } =
+    useNewUserInformation()
   const [maskedFormFields, setMaskedFormFields] = useState({
     phoneNumber: phoneMask(userInformation.phoneNumber.toString()),
     zipCode: onlyNumbersMask(userInformation.zipCode.toString()),
   })
 
   const isButtonDisabled =
-    (newUserInformation.firstName === userInformation.firstName &&
-      newUserInformation.lastName === userInformation.lastName &&
-      newUserInformation.emailAddress === userInformation.emailAddress &&
-      newUserInformation.streetAddress === userInformation.streetAddress &&
-      newUserInformation.city === userInformation.city &&
-      newUserInformation.state === userInformation.state &&
-      newUserInformation.zipCode === userInformation.zipCode &&
-      newUserInformation.phoneNumber === userInformation.phoneNumber) ||
+    isUserInformationSame ||
     newUserInformation.phoneNumber.toString().length < 10
 
   return (

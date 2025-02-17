@@ -8,16 +8,12 @@ import { useUserInformation } from '@services/contexts/user-information-context'
 import { useState } from 'react'
 
 export default function PasswordSection() {
-  const { userInformation, updateUserInformation } = useUserInformation()
-
-  const { newUserInformation, setNewUserInformation } = useNewUserInformation()
-
+  const { updateUserInformation } = useUserInformation()
+  const { isUserInformationSame, newUserInformation, setNewUserInformation } =
+    useNewUserInformation()
   const [showPassword, setShowPassword] = useState(false)
 
-  const isButtonDisabled =
-    userInformation.password === newUserInformation.password &&
-    userInformation.isTwoStepVerificationEnabled ===
-      newUserInformation.isTwoStepVerificationEnabled
+  const isButtonDisabled = isUserInformationSame
 
   return (
     <section className="w-full">

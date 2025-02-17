@@ -18,5 +18,8 @@ export default function useNewUserInformation() {
     zipCode: userInformation.zipCode,
   })
 
-  return { newUserInformation, setNewUserInformation }
+  const isUserInformationSame =
+    JSON.stringify(userInformation) === JSON.stringify(newUserInformation)
+
+  return { isUserInformationSame, newUserInformation, setNewUserInformation }
 }
