@@ -5,6 +5,8 @@ export const userInformation: User = {
   lastName: 'Williams',
   emailAddress: 'jameswilliams@coincastle.com',
   phoneNumber: 4200691337,
+  isTwoStepVerificationEnabled: true,
+  password: 'ViscoseWelder893',
   streetAddress: '2345 Maple Avenue',
   city: 'Brooklyn',
   state: 'NY',

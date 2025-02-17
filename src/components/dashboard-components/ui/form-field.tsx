@@ -26,18 +26,31 @@ function Label({ children, ...props }: LabelProps) {
 
 type InputProps = React.ComponentPropsWithoutRef<'input'> & {
   optional?: boolean
+  rightIcon?: React.JSX.Element
 }
 
-function Input({ className, optional, ...props }: InputProps) {
+function Input({
+  className,
+  optional,
+  rightIcon: RightIcon,
+  ...props
+}: InputProps) {
   return (
-    <input
-      className={cn(
-        'focus:inset-ring-brand-500 inset-ring-section-outline h-(--input-height) max-w-(--input-max-width) rounded-md bg-neutral-800 p-2 text-base text-neutral-100 inset-ring-1 placeholder:text-neutral-400 focus:outline-0',
-        className
+    <div className="relative w-full max-w-(--input-max-width)">
+      <input
+        className={cn(
+          `focus:inset-ring-brand-500 inset-ring-section-outline h-(--input-height) w-full rounded-md bg-neutral-800 p-2 text-base text-neutral-100 inset-ring-1 placeholder:text-neutral-400 focus:outline-0 ${RightIcon && 'pr-8'}`,
+          className
+        )}
+        required={!optional}
+        minLength={1}
+        {...props}
+      />
+      {RightIcon && (
+        <span className="absolute top-[50%] right-0.25 flex transform-[translateY(-50%)] items-center bg-neutral-800 pr-2">
+          {RightIcon}
+        </span>
       )}
-      required={!optional}
-      minLength={1}
-      {...props}
-    />
+    </div>
   )
 }

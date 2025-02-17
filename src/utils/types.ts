@@ -10,6 +10,8 @@ export type User = {
   lastName: string
   emailAddress: string
   phoneNumber: number
+  isTwoStepVerificationEnabled: boolean
+  password: string
   streetAddress: string
   city: string
   state: string
