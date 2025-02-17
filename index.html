@@ -4,10 +4,69 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CoinCastle | Unlock Your Investment Potential with CoinCastle Today!</title>
+    <title>
+      CoinCastle | Unlock Your Investment Potential with CoinCastle Today!
+    </title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <style>
+        :root {
+          --background-starting-color: #101424;
+          --background-ending-color: #0c0f1a;
+          --background-gradient: linear-gradient(
+            var(--background-starting-color),
+            var(--background-ending-color)
+          );
+          --neutral-100: #cfd0d3;
+        }
+
+        body {
+          background-color: var(--background-ending-color);
+          background-image: var(--background-gradient);
+          background-attachment: fixed;
+        }
+
+        .spinnerWrapper {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .spinner {
+          color: var(--neutral-100);
+          animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      </style>
+      <div class="spinnerWrapper">
+        <svg
+          width="64"
+          height="64"
+          viewBox="0 0 64 64"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="spinner"
+        >
+          <path
+            d="M32 8C27.2532 8 22.6131 9.40758 18.6663 12.0447C14.7195 14.6819 11.6434 18.4302 9.82689 22.8156C8.01039 27.201 7.53511 32.0266 8.46115 36.6822C9.3872 41.3377 11.673 45.6141 15.0294 48.9706C18.3859 52.327 22.6623 54.6128 27.3178 55.5389C31.9734 56.4649 36.799 55.9896 41.1844 54.1731C45.5698 52.3566 49.3181 49.2805 51.9553 45.3337C54.5924 41.3869 56 36.7468 56 32"
+            stroke="currentColor"
+            stroke-width="5.33333"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
