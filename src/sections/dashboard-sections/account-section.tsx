@@ -1,5 +1,6 @@
 import FormField from '@components/dashboard-components/ui/form-field'
 import Button from '@components/ui/button'
+import useNewUserInformation from '@hooks/use-new-user-information'
 import { useUserInformation } from '@services/contexts/user-information-context'
 import {
   lettersAndNumbersMask,
@@ -8,22 +9,11 @@ import {
   phoneMask,
   phoneMaskCleaner,
 } from '@utils/helpers/input-masks'
-import { User } from '@utils/types'
 import { useState } from 'react'
 
 export default function AccountSection() {
   const { userInformation, updateUserInformation } = useUserInformation()
-
-  const [newUserInformation, setNewUserInformation] = useState<User>({
-    firstName: userInformation.firstName,
-    lastName: userInformation.lastName,
-    emailAddress: userInformation.emailAddress,
-    phoneNumber: userInformation.phoneNumber,
-    streetAddress: userInformation.streetAddress,
-    city: userInformation.city,
-    state: userInformation.state,
-    zipCode: userInformation.zipCode,
-  })
+  const { newUserInformation, setNewUserInformation } = useNewUserInformation()
 
   const [maskedFormFields, setMaskedFormFields] = useState({
     phoneNumber: phoneMask(userInformation.phoneNumber.toString()),

@@ -1,27 +1,16 @@
 import FormField from '@components/dashboard-components/ui/form-field'
 import Switch from '@components/dashboard-components/ui/switch'
 import Button from '@components/ui/button'
+import useNewUserInformation from '@hooks/use-new-user-information'
 import EyeIcon from '@icons/eye-icon'
 import EyeOffIcon from '@icons/eye-off-icon'
 import { useUserInformation } from '@services/contexts/user-information-context'
-import { User } from '@utils/types'
 import { useState } from 'react'
 
 export default function PasswordSection() {
   const { userInformation, updateUserInformation } = useUserInformation()
 
-  const [newUserInformation, setNewUserInformation] = useState<User>({
-    firstName: userInformation.firstName,
-    lastName: userInformation.lastName,
-    emailAddress: userInformation.emailAddress,
-    phoneNumber: userInformation.phoneNumber,
-    isTwoStepVerificationEnabled: userInformation.isTwoStepVerificationEnabled,
-    password: userInformation.password,
-    streetAddress: userInformation.streetAddress,
-    city: userInformation.city,
-    state: userInformation.state,
-    zipCode: userInformation.zipCode,
-  })
+  const { newUserInformation, setNewUserInformation } = useNewUserInformation()
 
   const [showPassword, setShowPassword] = useState(false)
 
