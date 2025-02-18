@@ -84,7 +84,7 @@
   --switch-width: 2rem;
 }
 
-@layer components {
+@layer base {
   body {
     background-color: var(--background-ending-color);
     background-image: var(--background-gradient);
