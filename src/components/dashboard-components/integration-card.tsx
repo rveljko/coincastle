@@ -14,9 +14,9 @@ export default function IntegrationCard({
   const { addIntegrationId } = useIntegrations()
 
   return (
-    <article className="rounded-md p-2 shadow-[inset_0_0_0_1px_hsl(from_var(--color-white)_h_s_l_/_20%)]">
+    <article className="rounded-md p-2 shadow-[inset_0_0_0_1px_hsl(from_var(--color-clickable)_h_s_l_/_20%)]">
       <div className="mb-1 flex items-start justify-between">
-        <div className="max-w-max rounded-md bg-neutral-800 p-1.25 shadow-[inset_0_0_0_1px_hsl(from_var(--color-white)_h_s_l_/_20%)]">
+        <div className="max-w-max rounded-md bg-neutral-800 p-1.25 shadow-[inset_0_0_0_1px_hsl(from_var(--color-clickable)_h_s_l_/_20%)]">
           <img className="size-5.5" src={logoUrl} alt={`${name} logo`} />
         </div>
         <Switch

@@ -38,7 +38,7 @@ export default function Sidebar() {
             <Logo withText={isOpened} />
           </Link>
           <button
-            className="cursor-pointer text-white"
+            className="cursor-pointer text-clickable"
             onClick={() => setIsOpened((prev) => !prev)}
           >
             {isOpened ? (
