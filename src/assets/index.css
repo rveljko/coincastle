@@ -127,6 +127,33 @@
     );
 }
 
+[data-theme='dark'] {
+  color-scheme: dark;
+  --clickable: #ffffff;
+  --neutral-100: #cfd0d3;
+  --neutral-200: #b7b8bd;
+  --neutral-300: #9d9fa4;
+  --neutral-400: #85878e;
+  --neutral-500: #6d6f78;
+  --neutral-600: #545863;
+  --neutral-700: #3b3e4a;
+  --neutral-800: #232634;
+  --neutral-900: #0b0f1e;
+  --section-outline: #e3e3e333;
+  --background-starting-color: #101424;
+  --background-ending-color: #0c0f1a;
+  --background-gradient: linear-gradient(
+    var(--background-starting-color),
+    var(--background-ending-color)
+  );
+  --section-background:
+    linear-gradient(#13192f1a, #151a2e1a),
+    radial-gradient(at top, #151a28cc, #151a2833);
+  --modal-background:
+    linear-gradient(transparent, #ffffff00),
+    radial-gradient(at top, #13192fe3, #0b0e18f2);
+}
+
 @theme {
   --color-clickable: var(--clickable);
   --color-brand-100: var(--brand-100);
