@@ -1,54 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
 @import 'tailwindcss';
 
-@theme {
-  --color-clickable: #ffffff;
-  --color-brand-100: #ebefff;
-  --color-brand-200: #bfccfd;
-  --color-brand-300: #93a9fb;
-  --color-brand-400: #6583f1;
-  --color-brand-500: #486ae5;
-  --color-brand-600: #264bcf;
-  --color-brand-700: #1031a8;
-  --color-brand-800: #061f7a;
-  --color-brand-900: #000d3d;
-  --color-neutral-100: #cfd0d3;
-  --color-neutral-200: #b7b8bd;
-  --color-neutral-300: #9d9fa4;
-  --color-neutral-400: #85878e;
-  --color-neutral-500: #6d6f78;
-  --color-neutral-600: #545863;
-  --color-neutral-700: #3b3e4a;
-  --color-neutral-800: #232634;
-  --color-neutral-900: #0b0f1e;
-  --color-success-100: #c8e6c9;
-  --color-success-200: #a5d6a7;
-  --color-success-300: #81c784;
-  --color-success-400: #66bb6a;
-  --color-success-500: #4caf50;
-  --color-success-600: #43a047;
-  --color-success-700: #388e3c;
-  --color-success-800: #2e7d32;
-  --color-success-900: #1b5e20;
-  --color-danger-100: #ffcdd2;
-  --color-danger-200: #ef9a9a;
-  --color-danger-300: #e57373;
-  --color-danger-400: #ef5350;
-  --color-danger-500: #f44336;
-  --color-danger-600: #e53935;
-  --color-danger-700: #d32f2f;
-  --color-danger-800: #c62828;
-  --color-danger-900: #b71c1c;
-  --color-warning-100: #fff9c4;
-  --color-warning-200: #fff59d;
-  --color-warning-300: #fff176;
-  --color-warning-400: #ffee58;
-  --color-warning-500: #ffeb3b;
-  --color-warning-600: #fdd835;
-  --color-warning-700: #fbc02d;
-  --color-warning-800: #f9a825;
-  --color-warning-900: #f57f17;
-  --color-section-outline: #e3e3e333;
+:root {
+  --clickable: #ffffff;
+  --brand-100: #ebefff;
+  --brand-200: #bfccfd;
+  --brand-300: #93a9fb;
+  --brand-400: #6583f1;
+  --brand-500: #486ae5;
+  --brand-600: #264bcf;
+  --brand-700: #1031a8;
+  --brand-800: #061f7a;
+  --brand-900: #000d3d;
+  --neutral-100: #cfd0d3;
+  --neutral-200: #b7b8bd;
+  --neutral-300: #9d9fa4;
+  --neutral-400: #85878e;
+  --neutral-500: #6d6f78;
+  --neutral-600: #545863;
+  --neutral-700: #3b3e4a;
+  --neutral-800: #232634;
+  --neutral-900: #0b0f1e;
+  --success-100: #c8e6c9;
+  --success-200: #a5d6a7;
+  --success-300: #81c784;
+  --success-400: #66bb6a;
+  --success-500: #4caf50;
+  --success-600: #43a047;
+  --success-700: #388e3c;
+  --success-800: #2e7d32;
+  --success-900: #1b5e20;
+  --danger-100: #ffcdd2;
+  --danger-200: #ef9a9a;
+  --danger-300: #e57373;
+  --danger-400: #ef5350;
+  --danger-500: #f44336;
+  --danger-600: #e53935;
+  --danger-700: #d32f2f;
+  --danger-800: #c62828;
+  --danger-900: #b71c1c;
+  --warning-100: #fff9c4;
+  --warning-200: #fff59d;
+  --warning-300: #fff176;
+  --warning-400: #ffee58;
+  --warning-500: #ffeb3b;
+  --warning-600: #fdd835;
+  --warning-700: #fbc02d;
+  --warning-800: #f9a825;
+  --warning-900: #f57f17;
+  --section-outline: #e3e3e333;
   --background-starting-color: #101424;
   --background-ending-color: #0c0f1a;
   --background-gradient: linear-gradient(
@@ -61,6 +61,128 @@
   --modal-background:
     linear-gradient(transparent, #ffffff00),
     radial-gradient(at top, #13192fe3, #0b0e18f2);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --clickable: #000000;
+    --neutral-900: #cfd0d3;
+    --neutral-800: #b7b8bd;
+    --neutral-700: #9d9fa4;
+    --neutral-600: #85878e;
+    --neutral-500: #6d6f78;
+    --neutral-400: #545863;
+    --neutral-300: #3b3e4a;
+    --neutral-200: #232634;
+    --neutral-100: #0b0f1e;
+    --section-outline: #1c1c1c33;
+    --background-starting-color: hsl(224, 14%, 94%);
+    --background-ending-color: hsl(225, 7%, 99%);
+    --background-gradient: linear-gradient(
+      var(--background-starting-color),
+      var(--background-ending-color)
+    );
+    --section-background:
+      linear-gradient(hsl(0, 0%, 91%), hsl(229, 11%, 91%)),
+      radial-gradient(at top, hsl(224, 12%, 92%), hsl(210, 4%, 99%));
+    --modal-background:
+      linear-gradient(transparent, #00000000),
+      radial-gradient(
+        at top,
+        hsla(226, 31%, 87%, 0.99),
+        hsla(222, 28%, 93%, 0.949)
+      );
+  }
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --clickable: #000000;
+  --neutral-900: #cfd0d3;
+  --neutral-800: #b7b8bd;
+  --neutral-700: #9d9fa4;
+  --neutral-600: #85878e;
+  --neutral-500: #6d6f78;
+  --neutral-400: #545863;
+  --neutral-300: #3b3e4a;
+  --neutral-200: #232634;
+  --neutral-100: #0b0f1e;
+  --section-outline: #1c1c1c33;
+  --background-starting-color: hsl(224, 14%, 94%);
+  --background-ending-color: hsl(225, 7%, 99%);
+  --background-gradient: linear-gradient(
+    var(--background-starting-color),
+    var(--background-ending-color)
+  );
+  --section-background:
+    linear-gradient(hsl(0, 0%, 91%), hsl(229, 11%, 91%)),
+    radial-gradient(at top, hsl(224, 12%, 92%), hsl(210, 4%, 99%));
+  --modal-background:
+    linear-gradient(transparent, #00000000),
+    radial-gradient(
+      at top,
+      hsla(226, 31%, 87%, 0.99),
+      hsla(222, 28%, 93%, 0.949)
+    );
+}
+
+@theme {
+  --color-clickable: var(--clickable);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --color-success-100: var(--success-100);
+  --color-success-200: var(--success-200);
+  --color-success-300: var(--success-300);
+  --color-success-400: var(--success-400);
+  --color-success-500: var(--success-500);
+  --color-success-600: var(--success-600);
+  --color-success-700: var(--success-700);
+  --color-success-800: var(--success-800);
+  --color-success-900: var(--success-900);
+  --color-danger-100: var(--danger-100);
+  --color-danger-200: var(--danger-200);
+  --color-danger-300: var(--danger-300);
+  --color-danger-400: var(--danger-400);
+  --color-danger-500: var(--danger-500);
+  --color-danger-600: var(--danger-600);
+  --color-danger-700: var(--danger-700);
+  --color-danger-800: var(--danger-800);
+  --color-danger-900: var(--danger-900);
+  --color-warning-100: var(--warning-100);
+  --color-warning-200: var(--warning-200);
+  --color-warning-300: var(--warning-300);
+  --color-warning-400: var(--warning-400);
+  --color-warning-500: var(--warning-500);
+  --color-warning-600: var(--warning-600);
+  --color-warning-700: var(--warning-700);
+  --color-warning-800: var(--warning-800);
+  --color-warning-900: var(--warning-900);
+  --color-section-outline: var(--section-outline);
+  --background-starting-color: var(--background-starting-color);
+  --background-ending-color: var(--background-ending-color);
+  --background-gradient: linear-gradient(
+    var(--background-starting-color),
+    var(--background-ending-color)
+  );
+  --section-background: var(--section-background);
+  --modal-background: var(--modal-background);
   --text-heading-1-font-size: 2.25rem;
   --leading-heading-1-line-height: 1.2;
   --text-heading-2-font-size: 2rem;
@@ -85,6 +207,10 @@
 }
 
 @layer base {
+  html {
+    color-scheme: dark light;
+  }
+
   body {
     background-color: var(--background-ending-color);
     background-image: var(--background-gradient);
