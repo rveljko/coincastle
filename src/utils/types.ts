@@ -25,3 +25,19 @@ export type Integration = {
   logoUrl: string
   isActive: boolean
 }
+
+export type ThemeLabel = 'system' | 'dark' | 'light'
+
+export type Theme = {
+  id: number
+  name: string
+  label: ThemeLabel
+  imageUrl: string
+}
+
+export type Chart = {
+  id: number
+  name: string
+  label: 'line' | 'bar' | 'candlestick'
+  imageUrl: string
+}

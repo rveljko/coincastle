@@ -1,5 +1,6 @@
 import DashboardRoutes from '@routes/dashboard-routes'
 import IntegrationsContextProvider from '@services/contexts/integrations-context'
+import ThemeContextProvider from '@services/contexts/theme-context'
 import UserInformationContextProvider from '@services/contexts/user-information-context'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
@@ -11,7 +12,9 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <UserInformationContextProvider>
         <IntegrationsContextProvider>
-          <DashboardRoutes />
+          <ThemeContextProvider>
+            <DashboardRoutes />
+          </ThemeContextProvider>
         </IntegrationsContextProvider>
       </UserInformationContextProvider>
     </BrowserRouter>
