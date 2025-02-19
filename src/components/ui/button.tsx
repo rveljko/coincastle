@@ -55,22 +55,38 @@ export default function Button({
   if ('href' in props && props.href !== undefined) {
     return (
       <Link to={props.href} className={buttonClasses} {...props}>
-        {LeftIcon}
+        {LeftIcon && (
+          <span className="group-active:transform-[translateY(calc(var(--spacing)_*_0.25))] group-disabled:transform-[translateY(0)]">
+            {LeftIcon}
+          </span>
+        )}
         <span className="group-active:transform-[translateY(calc(var(--spacing)_*_0.25))] group-disabled:transform-[translateY(0)]">
           {children}
         </span>
-        {RightIcon}
+        {RightIcon && (
+          <span className="group-active:transform-[translateY(calc(var(--spacing)_*_0.25))] group-disabled:transform-[translateY(0)]">
+            {RightIcon}
+          </span>
+        )}
       </Link>
     )
   }
 
   return (
     <button className={buttonClasses} {...props}>
-      {LeftIcon}
+      {LeftIcon && (
+        <span className="group-active:transform-[translateY(calc(var(--spacing)_*_0.25))] group-disabled:transform-[translateY(0)]">
+          {LeftIcon}
+        </span>
+      )}
       <span className="group-active:transform-[translateY(calc(var(--spacing)_*_0.25))] group-disabled:transform-[translateY(0)]">
         {children}
       </span>
-      {RightIcon}
+      {RightIcon && (
+        <span className="group-active:transform-[translateY(calc(var(--spacing)_*_0.25))] group-disabled:transform-[translateY(0)]">
+          {RightIcon}
+        </span>
+      )}
     </button>
   )
 }
