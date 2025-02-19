@@ -2,7 +2,7 @@ import { cn } from '@utils/utils'
 import { cva, VariantProps } from 'class-variance-authority'
 
 const button = cva(
-  'flex cursor-pointer items-center gap-1 leading-0 disabled:cursor-not-allowed disabled:opacity-50',
+  'group flex cursor-pointer items-center gap-1 leading-0 disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       variant: {
@@ -44,7 +44,9 @@ export default function Button({
   return (
     <button className={buttonClasses} {...props}>
       {LeftIcon}
-      <span>{children}</span>
+      <span className="group-active:transform-[translateY(calc(var(--spacing)_*_0.25))] group-disabled:transform-[translateY(0)]">
+        {children}
+      </span>
       {RightIcon}
     </button>
   )
