@@ -11,6 +11,7 @@ export default function FormField({ children, className }: FormFieldProps) {
 
 FormField.Label = Label
 FormField.Input = Input
+FormField.TextArea = TextArea
 
 type LabelProps = React.ComponentPropsWithoutRef<'label'> & {
   children: React.ReactNode
@@ -52,5 +53,22 @@ function Input({
         </span>
       )}
     </div>
+  )
+}
+
+type TextAreaProps = React.ComponentPropsWithoutRef<'textarea'> & {
+  optional?: boolean
+}
+
+function TextArea({ optional, className, ...props }: TextAreaProps) {
+  return (
+    <textarea
+      className={cn(
+        'focus:inset-ring-brand-500 inset-ring-section-outline aspect-2/1 w-full max-w-(--input-max-width) resize-none rounded-md bg-neutral-800 p-2 text-base text-neutral-100 inset-ring-1 placeholder:text-neutral-400 focus:outline-0',
+        className
+      )}
+      required={!optional}
+      {...props}
+    />
   )
 }
