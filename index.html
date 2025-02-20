@@ -12,13 +12,45 @@
     <div id="root">
       <style>
         :root {
+          --neutral-100: #cfd0d3;
           --background-starting-color: #101424;
           --background-ending-color: #0c0f1a;
           --background-gradient: linear-gradient(
             var(--background-starting-color),
             var(--background-ending-color)
           );
+        }
+
+        @media (prefers-color-scheme: light) {
+          :root {
+            --neutral-100: #0b0f1e;
+            --background-starting-color: #eeeff2;
+            --background-ending-color: #fcfcfd;
+            --background-gradient: linear-gradient(
+              var(--background-starting-color),
+              var(--background-ending-color)
+            );
+          }
+        }
+
+        [data-theme='light'] {
+          --neutral-100: #0b0f1e;
+          --background-starting-color: #eeeff2;
+          --background-ending-color: #fcfcfd;
+          --background-gradient: linear-gradient(
+            var(--background-starting-color),
+            var(--background-ending-color)
+          );
+        }
+
+        [data-theme='dark'] {
           --neutral-100: #cfd0d3;
+          --background-starting-color: #101424;
+          --background-ending-color: #0c0f1a;
+          --background-gradient: linear-gradient(
+            var(--background-starting-color),
+            var(--background-ending-color)
+          );
         }
 
         body {
@@ -48,6 +80,10 @@
           }
         }
       </style>
+      <script>
+        const theme = JSON.parse(localStorage.getItem('theme')) || 'system'
+        document.documentElement.setAttribute('data-theme', theme)
+      </script>
       <div class="spinnerWrapper">
         <svg
           width="64"
