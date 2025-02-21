@@ -41,3 +41,9 @@ export type Chart = {
   label: 'line' | 'bar' | 'candlestick'
   imageUrl: string
 }
+
+export type Question = {
+  id: number
+  summary: string
+  details: string
+}

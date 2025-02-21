@@ -2,6 +2,7 @@
 @import 'tailwindcss';
 
 :root {
+  interpolate-size: allow-keywords;
   --clickable: #ffffff;
   --brand-100: #ebefff;
   --brand-200: #bfccfd;
@@ -232,6 +233,7 @@
   --button-medium-height: 2.125rem;
   --button-small-height: 1.875rem;
   --switch-width: 2rem;
+  --accordion-summary-height: 2.5rem;
 }
 
 @layer base {
