@@ -234,11 +234,26 @@
   --button-small-height: 1.875rem;
   --switch-width: 2rem;
   --accordion-summary-height: 2.5rem;
+  --scrollbar-size: 0.375rem;
 }
 
 @layer base {
   html {
     color-scheme: dark light;
+  }
+
+  ::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-neutral-100);
+    border-radius: var(--scrollbar-size);
+    cursor: auto;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
   }
 
   body {
