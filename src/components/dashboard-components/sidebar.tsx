@@ -22,7 +22,7 @@ export default function Sidebar() {
     <aside
       className={`border-r-section-outline top-0 left-0 z-999 h-screen border-r bg-(image:--section-background) p-4 backdrop-blur-lg ${
         isOpened
-          ? 'fixed min-w-(--sidebar-opened-width) md:sticky'
+          ? 'fixed w-full min-w-(--sidebar-opened-width) md:sticky md:w-fit'
           : 'sticky w-fit'
       }`}
     >
@@ -38,7 +38,7 @@ export default function Sidebar() {
             <Logo withText={isOpened} />
           </Link>
           <button
-            className="cursor-pointer text-clickable"
+            className="text-clickable cursor-pointer"
             onClick={() => setIsOpened((prev) => !prev)}
           >
             {isOpened ? (
