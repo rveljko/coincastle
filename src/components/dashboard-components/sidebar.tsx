@@ -34,7 +34,12 @@ export default function Sidebar() {
             isOpened ? 'flex-row' : 'flex-col-reverse'
           }`}
         >
-          <Link to="/dashboard">
+          <Link
+            to="/dashboard"
+            onClick={() =>
+              !isBigScreen && isOpened && setIsOpened((prev) => !prev)
+            }
+          >
             <Logo withText={isOpened} />
           </Link>
           <button
@@ -52,10 +57,16 @@ export default function Sidebar() {
           <NavigationLinksList
             navigationLinks={primaryNavigationLinks}
             showNavigationLinkText={isOpened}
+            onClick={() =>
+              !isBigScreen && isOpened && setIsOpened((prev) => !prev)
+            }
           />
           <NavigationLinksList
             navigationLinks={secondaryNavigationLinks}
             showNavigationLinkText={isOpened}
+            onClick={() =>
+              !isBigScreen && isOpened && setIsOpened((prev) => !prev)
+            }
           />
         </nav>
       </div>

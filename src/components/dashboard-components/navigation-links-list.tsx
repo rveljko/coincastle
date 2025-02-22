@@ -1,7 +1,7 @@
 import { NavigationLink as NavigationLinkType } from '@utils/types'
 import NavigationLink from './navigation-link'
 
-type NavigationLinksListProps = {
+type NavigationLinksListProps = React.ComponentPropsWithoutRef<'ul'> & {
   navigationLinks: NavigationLinkType[]
   showNavigationLinkText?: boolean
 }
@@ -9,9 +9,10 @@ type NavigationLinksListProps = {
 export default function NavigationLinksList({
   navigationLinks,
   showNavigationLinkText = true,
+  ...props
 }: NavigationLinksListProps) {
   return (
-    <ul className="space-y-2">
+    <ul className="space-y-2" {...props}>
       {navigationLinks.map(({ id, path, icon: Icon, name }) => (
         <li key={id}>
           <NavigationLink
