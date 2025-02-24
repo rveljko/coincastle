@@ -1,4 +1,8 @@
-export default function TrendingDownIcon() {
+type TrendingDownIconProps = {
+  className?: string
+}
+
+export default function TrendingDownIcon({ className }: TrendingDownIconProps) {
   return (
     <svg
       width="22"
@@ -6,6 +10,7 @@ export default function TrendingDownIcon() {
       viewBox="0 0 22 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <path
         d="M2.75 6.41669L8.25 11.9167L11.9167 8.25002L19.25 15.5834"

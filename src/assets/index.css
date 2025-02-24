@@ -246,7 +246,12 @@
     width: var(--scrollbar-size);
   }
 
-  ::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar:horizontal {
+    height: var(--scrollbar-size);
+  }
+
+  ::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-thumb:horizontal {
     background-color: var(--color-neutral-100);
     border-radius: var(--scrollbar-size);
     cursor: auto;
