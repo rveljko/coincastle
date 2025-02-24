@@ -4,13 +4,14 @@ import {
   compactCurrencyFormatter,
   currencyFormatter,
 } from '@utils/helpers/currency-formatter'
+import CryptoMarketplaceTableSkeleton from './crypto-marketplace-table-skeleton'
 import PercentageChangeIndicator from './ui/percentage-change-indicator'
 import Table from './ui/table'
 
 export default function CryptoMarketplaceTable() {
   const { data, isPending, error } = useGetCryptoCurrencies()
 
-  if (isPending) return <div>loading</div>
+  if (isPending) return <CryptoMarketplaceTableSkeleton />
 
   if (error) return <div>error: {error.message}</div>
 
