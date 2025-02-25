@@ -59,3 +59,34 @@ export type CoinOverviewHttpResponse = {
   price_change_percentage_24h: number
   circulating_supply: number
 }
+
+export type CoinInformationHttpResponse = {
+  name: string
+  symbol: string
+  description: {
+    en: string
+  }
+  image: {
+    small: string
+  }
+  market_cap_rank: number
+  market_data: {
+    market_cap: {
+      usd: number
+    }
+    current_price: {
+      usd: number
+    }
+    total_volume: {
+      usd: number
+    }
+    total_supply: number
+    ath: {
+      usd: number
+    }
+    price_change_percentage_24h: number
+    price_change_percentage_7d: number
+    price_change_percentage_30d: number
+    price_change_percentage_1y: number
+  }
+}
