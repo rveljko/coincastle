@@ -1,6 +1,7 @@
 import DashboardLayout from '@layouts/dashboard-layout'
 import SettingsLayout from '@layouts/settings-layout'
 import AccountPage from '@pages/dashboard-pages/account-page'
+import CoinPage from '@pages/dashboard-pages/coin-page'
 import CryptoCurrenciesPage from '@pages/dashboard-pages/crypto-currencies-page'
 import GuidesPage from '@pages/dashboard-pages/guides-page'
 import HelpCenterPage from '@pages/dashboard-pages/help-center-page'
@@ -18,6 +19,7 @@ export default function DashboardRoutes() {
       <Route path="/dashboard" element={<DashboardLayout />}>
         <Route index element={<WalletPage />} />
         <Route path="crypto-currencies" element={<CryptoCurrenciesPage />} />
+        <Route path="coin/:coinId" element={<CoinPage />} />
         <Route path="nfts" element={<NftsPage />} />
         <Route path="stocks" element={<StocksPage />} />
         <Route path="guides" element={<GuidesPage />} />
