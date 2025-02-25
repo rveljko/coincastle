@@ -1,4 +1,4 @@
-import Table from './ui/table'
+import Table from "@components/dashboard-components/ui/table";
 
 export default function CryptoMarketplaceTableSkeleton() {
   return (

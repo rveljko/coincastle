@@ -1,6 +1,6 @@
+import IntegrationCard from '@components/dashboard-components/integration-card'
 import { Integration } from '@utils/types'
 import { cn } from '@utils/utils'
-import IntegrationCard from './integration-card'
 
 type IntegrationCardsListProps = {
   integrations: Integration[]

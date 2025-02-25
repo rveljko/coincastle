@@ -1,7 +1,7 @@
+import Switch from '@components/dashboard-components/ui/switch'
 import { useIntegrations } from '@services/contexts/integrations-context'
 import { Integration } from '@utils/types'
 import { useState } from 'react'
-import Switch from './ui/switch'
 
 type IntegrationCardProps = {
   integration: Integration

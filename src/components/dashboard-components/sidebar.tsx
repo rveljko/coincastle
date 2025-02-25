@@ -1,3 +1,4 @@
+import NavigationLinksList from '@components/dashboard-components/navigation-links-list'
 import Logo from '@components/logo'
 import {
   primaryNavigationLinks,
@@ -8,7 +9,6 @@ import LayoutSidebarLeftExpandIcon from '@icons/layout-sidebar-left-expand-icon'
 import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { Link } from 'react-router-dom'
-import NavigationLinksList from './navigation-links-list'
 
 export default function Sidebar() {
   const isBigScreen = useMediaQuery({ minWidth: 768 })

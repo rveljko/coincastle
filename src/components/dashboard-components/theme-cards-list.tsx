@@ -1,6 +1,6 @@
+import ThemeCard from '@components/dashboard-components/theme-card'
 import { Theme } from '@utils/types'
 import { cn } from '@utils/utils'
-import ThemeCard from './theme-card'
 
 type ThemeCardsListProps = {
   themes: Theme[]

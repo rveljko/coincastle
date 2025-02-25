@@ -1,5 +1,5 @@
 import CryptoMarketplaceTable from '@components/dashboard-components/crypto-marketplace-table'
-import Section from './section'
+import Section from '@sections/dashboard-sections/section'
 
 export default function CryptoMarketplaceSection() {
   return (

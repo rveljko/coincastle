@@ -1,5 +1,5 @@
+import NavigationLink from '@components/dashboard-components/navigation-link'
 import { NavigationLink as NavigationLinkType } from '@utils/types'
-import NavigationLink from './navigation-link'
 
 type NavigationLinksListProps = React.ComponentPropsWithoutRef<'ul'> & {
   navigationLinks: NavigationLinkType[]
