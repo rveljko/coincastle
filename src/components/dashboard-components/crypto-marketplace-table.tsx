@@ -2,7 +2,7 @@ import CryptoMarketplaceTableSkeleton from '@components/dashboard-components/cry
 import PercentageChangeIndicator from '@components/dashboard-components/ui/percentage-change-indicator'
 import Table from '@components/dashboard-components/ui/table'
 import { cryptoMarketplaceTableHeaders } from '@data/table-headers'
-import useGetCryptoCurrencies from '@hooks/queries/useGetCryptoCurrencies'
+import useGetCryptoCurrencies from '@hooks/queries/use-get-crypto-currencies'
 import {
   compactCurrencyFormatter,
   currencyFormatter,
