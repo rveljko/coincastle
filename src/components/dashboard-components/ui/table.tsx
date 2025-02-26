@@ -47,7 +47,7 @@ function HeaderCell({ children, className, ...props }: HeaderCellProps) {
   return (
     <th
       className={cn(
-        'px-2 text-left font-normal text-neutral-400 last:text-right',
+        'px-2 text-left font-normal whitespace-nowrap text-neutral-400 last:text-right',
         className
       )}
       {...props}
