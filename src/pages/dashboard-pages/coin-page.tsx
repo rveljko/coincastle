@@ -1,4 +1,5 @@
 import CoinInformationSection from '@sections/coin-information-section'
+import PopularCoinsSection from '@sections/dashboard-sections/popular-coins-section'
 import { useParams } from 'react-router-dom'
 
 export default function CoinPage() {
@@ -6,5 +7,10 @@ export default function CoinPage() {
 
   if (!coinId) return
 
-  return <CoinInformationSection coinId={coinId} />
+  return (
+    <>
+      <CoinInformationSection coinId={coinId} className="mb-4" />
+      <PopularCoinsSection />
+    </>
+  )
 }

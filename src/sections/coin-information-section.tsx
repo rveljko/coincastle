@@ -10,9 +10,13 @@ import {
 
 type CoinInformationProps = {
   coinId: string
+  className?: string
 }
 
-export default function CoinInformation({ coinId }: CoinInformationProps) {
+export default function CoinInformation({
+  coinId,
+  className,
+}: CoinInformationProps) {
   const { data, isPending, error } = useGetCoinInformation(coinId)
 
   if (isPending) return <div>loading</div>
@@ -23,7 +27,7 @@ export default function CoinInformation({ coinId }: CoinInformationProps) {
     data
 
   return (
-    <Section>
+    <Section className={className}>
       <title>{`${TITLE_PREFIX}${name}`}</title>
       <header>
         <div className="mb-2 flex items-center gap-2">

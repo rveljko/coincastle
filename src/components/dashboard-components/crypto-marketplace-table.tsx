@@ -8,10 +8,17 @@ import {
   currencyFormatter,
 } from '@utils/helpers/currency-formatter'
 
-export default function CryptoMarketplaceTable() {
-  const { data, isPending, error } = useGetCryptoCurrencies()
+type CryptoMarketplaceTableProps = {
+  numberOfCoins: number
+}
 
-  if (isPending) return <CryptoMarketplaceTableSkeleton />
+export default function CryptoMarketplaceTable({
+  numberOfCoins,
+}: CryptoMarketplaceTableProps) {
+  const { data, isPending, error } = useGetCryptoCurrencies(numberOfCoins)
+
+  if (isPending)
+    return <CryptoMarketplaceTableSkeleton numberOfCoins={numberOfCoins} />
 
   if (error) return <div>error: {error.message}</div>
 

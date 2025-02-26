@@ -5,10 +5,12 @@ import {
 
 const CRYPTO_BASE_URL = 'https://api.coingecko.com/api/v3'
 
-export async function getCryptoCurrencies(): Promise<
-  CoinOverviewHttpResponse[]
-> {
-  const res = await fetch(`${CRYPTO_BASE_URL}/coins/markets?vs_currency=usd`)
+export async function getCryptoCurrencies(
+  numberOfCoins: number
+): Promise<CoinOverviewHttpResponse[]> {
+  const res = await fetch(
+    `${CRYPTO_BASE_URL}/coins/markets?vs_currency=usd&per_page=${numberOfCoins}`
+  )
   return res.json()
 }
 
