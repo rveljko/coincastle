@@ -1,12 +1,12 @@
 import Table from '@components/dashboard-components/ui/table'
 
-type CryptoMarketplaceTableSkeletonProps = {
+type CryptoCoinsTableSkeletonProps = {
   numberOfCoins: number
 }
 
-export default function CryptoMarketplaceTableSkeleton({
+export default function CryptoCoinsTableSkeleton({
   numberOfCoins,
-}: CryptoMarketplaceTableSkeletonProps) {
+}: CryptoCoinsTableSkeletonProps) {
   return (
     <Table>
       <Table.Header>

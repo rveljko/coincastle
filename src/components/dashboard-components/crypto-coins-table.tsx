@@ -1,4 +1,4 @@
-import CryptoMarketplaceTableSkeleton from '@components/dashboard-components/crypto-marketplace-table-skeleton'
+import CryptoCoinsTableSkeleton from '@components/dashboard-components/crypto-coins-table-skeleton'
 import PercentageChangeIndicator from '@components/dashboard-components/ui/percentage-change-indicator'
 import Table from '@components/dashboard-components/ui/table'
 import { cryptoMarketplaceTableHeaders } from '@data/table-headers'
@@ -8,17 +8,17 @@ import {
   currencyFormatter,
 } from '@utils/helpers/currency-formatter'
 
-type CryptoMarketplaceTableProps = {
+type CryptoCoinsTableProps = {
   numberOfCoins: number
 }
 
-export default function CryptoMarketplaceTable({
+export default function CryptoCoinsTable({
   numberOfCoins,
-}: CryptoMarketplaceTableProps) {
+}: CryptoCoinsTableProps) {
   const { data, isPending, error } = useGetCryptoCurrencies(numberOfCoins)
 
   if (isPending)
-    return <CryptoMarketplaceTableSkeleton numberOfCoins={numberOfCoins} />
+    return <CryptoCoinsTableSkeleton numberOfCoins={numberOfCoins} />
 
   if (error) return <div>error: {error.message}</div>
 
