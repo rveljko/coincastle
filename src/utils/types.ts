@@ -90,3 +90,7 @@ export type CoinInformationHttpResponse = {
     price_change_percentage_1y: number
   }
 }
+
+export type CoinChartInformationHttpResponse = {
+  prices: number[][]
+}

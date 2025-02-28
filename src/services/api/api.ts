@@ -1,4 +1,5 @@
 import {
+  CoinChartInformationHttpResponse,
   CoinInformationHttpResponse,
   CoinOverviewHttpResponse,
 } from '@utils/types'
@@ -18,5 +19,14 @@ export async function getCoinInformation(
   id: string
 ): Promise<CoinInformationHttpResponse> {
   const res = await fetch(`${CRYPTO_BASE_URL}/coins/${id}`)
+  return res.json()
+}
+
+export async function getCoinChartInformation(
+  id: string
+): Promise<CoinChartInformationHttpResponse> {
+  const res = await fetch(
+    `${CRYPTO_BASE_URL}/coins/${id}/market_chart?vs_currency=usd&days=1`
+  )
   return res.json()
 }
