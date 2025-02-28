@@ -94,3 +94,5 @@ export type CoinInformationHttpResponse = {
 export type CoinChartInformationHttpResponse = {
   prices: number[][]
 }
+
+export type CoinChartInformationPeriod = '1' | '7' | '30' | '90' | '180' | '365'
