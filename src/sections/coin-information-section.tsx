@@ -1,3 +1,5 @@
+import ChartSkeleton from '@components/dashboard-components/chart-skeleton'
+import CoinInformationSectionSkeleton from '@components/dashboard-components/coin-information-section-skeleton'
 import Chart from '@components/dashboard-components/ui/chart'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import PercentageChangeIndicator from '@components/dashboard-components/ui/percentage-change-indicator'
@@ -36,7 +38,7 @@ export default function CoinInformation({
 
   const { data, isPending, error } = useGetCoinInformation(coinId)
 
-  if (isPending) return <div>loading</div>
+  if (isPending) return <CoinInformationSectionSkeleton className={className} />
 
   if (error) return <div>error: {error.message}</div>
 
@@ -202,7 +204,7 @@ type CoinChartProps = {
 function CoinChart({ coinId, period }: CoinChartProps) {
   const { data, isPending, error } = useGetCoinChartInformation(coinId, period)
 
-  if (isPending) return <div>loading</div>
+  if (isPending) return <ChartSkeleton />
 
   if (error) return <div>error: {error.message}</div>
 

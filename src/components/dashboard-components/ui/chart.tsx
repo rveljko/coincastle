@@ -48,12 +48,12 @@ export default function Chart({ data }: ChartProps) {
             payload,
             label,
           }: TooltipProps<number, string>) => {
-            if (!active) return
+            if (!active || !payload || !payload.length) return
 
             return (
               <div className="border-section-outline rounded-sm border-1 bg-(image:--modal-background) p-1">
                 <p className="text-neutral-100">
-                  {currencyFormatter(payload?.[0].value!)}
+                  {currencyFormatter(payload[0].value!)}
                 </p>
                 <p>{chartDateFormatter(label)}</p>
               </div>

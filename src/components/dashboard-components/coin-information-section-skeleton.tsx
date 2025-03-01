@@ -1,0 +1,92 @@
+import ChartSkeleton from '@components/dashboard-components/chart-skeleton'
+import Section from '@sections/dashboard-sections/section'
+
+type CoinInformationSectionSkeletonProps = {
+  className?: string
+}
+
+export default function CoinInformationSectionSkeleton({
+  className,
+}: CoinInformationSectionSkeletonProps) {
+  return (
+    <Section className={className}>
+      <div className="flex flex-col gap-2 md:flex-row">
+        <div className="md:flex-4">
+          <div className="mb-2 flex gap-2">
+            <div className="bg-clickable/10 size-8 animate-pulse rounded-full"></div>
+            <div className="bg-clickable/10 h-8 w-full max-w-30 animate-pulse rounded-sm"></div>
+          </div>
+          <div className="mb-4">
+            <div className="bg-clickable/10 mb-1 h-4 w-full animate-pulse rounded-sm"></div>
+            <div className="bg-clickable/10 h-4 w-full animate-pulse rounded-sm"></div>
+          </div>
+          <div className="mb-4">
+            <div className="bg-clickable/10 mb-2 h-7.5 w-full max-w-44 animate-pulse rounded-sm"></div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+          </div>
+          <div>
+            <div className="bg-clickable/10 mb-2 h-7.5 w-full max-w-44 animate-pulse rounded-sm"></div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+            <div className="flex justify-between gap-2">
+              <div className="bg-clickable/10 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 h-4 w-full max-w-30 animate-pulse rounded-sm"></div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col justify-between gap-4 md:flex-6">
+          <div className="flex flex-wrap justify-between gap-2">
+            <div className="flex-5">
+              <div className="bg-clickable/10 mb-1 h-4 w-full max-w-16 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 mb-1 h-11 w-full max-w-40 animate-pulse rounded-sm"></div>
+              <div className="bg-clickable/10 h-4 w-full max-w-14 animate-pulse rounded-sm"></div>
+            </div>
+            <div className="bg-clickable/10 h-8.5 w-full max-w-36 flex-5 animate-pulse rounded-sm"></div>
+          </div>
+          <ChartSkeleton />
+        </div>
+      </div>
+    </Section>
+  )
+}
