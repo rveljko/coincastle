@@ -212,15 +212,19 @@
   --section-background: var(--section-background);
   --modal-background: var(--modal-background);
   --text-heading-1-font-size: 2.25rem;
-  --leading-heading-1-line-height: 1.2;
+  --leading-heading-1-line-height: 1.1667em;
   --text-heading-2-font-size: 2rem;
-  --leading-heading-2-line-height: 1.2;
+  --leading-heading-2-line-height: 1.5em;
   --text-heading-3-font-size: 1.625rem;
+  --leading-heading-3-line-height: 1.2308em;
   --text-heading-4-font-size: 1.375rem;
+  --leading-heading-4-line-height: 1.1818em;
   --text-heading-5-font-size: 1.2rem;
+  --leading-heading-5-line-height: 1.1458em;
   --text-heading-6-font-size: 1rem;
+  --leading-heading-2-line-height: 1.25em;
   --text-paragraph-font-size: 1rem;
-  --leading-paragraph-line-height: 1.4;
+  --leading-paragraph-line-height: 1.25em;
   --font-primary: 'Instrument Sans', sans-serif;
   --container-width: 73.625rem;
   --settings-container-width: 41.25rem;
@@ -288,24 +292,28 @@
   }
 
   h2 {
-    line-height: var(--leading-heading-3-line-height);
+    line-height: var(--leading-heading-2-line-height);
     font-size: var(--text-heading-2-font-size);
   }
 
   h3 {
+    line-height: var(--leading-heading-3-line-height);
     font-size: var(--text-heading-3-font-size);
   }
 
   h4 {
+    line-height: var(--leading-heading-4-line-height);
     font-size: var(--text-heading-4-font-size);
   }
 
   h5 {
+    line-height: var(--leading-heading-5-line-height);
     font-size: var(--text-heading-5-font-size);
   }
 
   h6 {
-    font-size: var(--text-heading-5-font-size);
+    line-height: var(--leading-heading-6-line-height);
+    font-size: var(--text-heading-6-font-size);
   }
 
   p {
