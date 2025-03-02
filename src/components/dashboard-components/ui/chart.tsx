@@ -20,7 +20,7 @@ export default function Chart({ data }: ChartProps) {
   }))
 
   return (
-    <ResponsiveContainer height="max-content" aspect={2 / 1}>
+    <ResponsiveContainer height="max-content" aspect={2.3 / 1}>
       <AreaChart data={formattedData}>
         <defs>
           <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
