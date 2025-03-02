@@ -24,7 +24,9 @@ export default function PasswordSection() {
           updateUserInformation(newUserInformation)
         }}
       >
-        <h2 className="text-heading-4-font-size mb-2">Security</h2>
+        <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+          Security
+        </h2>
         <FormField className="mb-4">
           <FormField.Label htmlFor="password">Password</FormField.Label>
           <FormField.Input
@@ -55,7 +57,9 @@ export default function PasswordSection() {
         </FormField>
         <div className="mb-4 flex flex-wrap items-start justify-between gap-2">
           <div>
-            <h2 className="text-heading-4-font-size">2 Step Verification</h2>
+            <h2 className="text-heading-4-font-size leading-heading-4-line-height">
+              2 Step Verification
+            </h2>
             <p className="max-w-52">
               Adds an extra security step to your login process
             </p>

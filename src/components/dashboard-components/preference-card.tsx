@@ -18,7 +18,9 @@ export default function PreferenceCard({
           <img className="rounded-xs" src={imageUrl} alt="" />
         </div>
       </div>
-      <h3 className="text-heading-6-font-size">{name}</h3>
+      <h3 className="text-heading-6-font-size leading-heading-6-line-height">
+        {name}
+      </h3>
     </article>
   )
 }

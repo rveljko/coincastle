@@ -8,7 +8,9 @@ type FaqSectionProps = {
 export default function FaqSection({ className }: FaqSectionProps) {
   return (
     <section className={className}>
-      <h2 className="text-heading-4-font-size mb-2">FAQ</h2>
+      <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+        FAQ
+      </h2>
       <Accordion defaultActive="item-1">
         {faq.map(({ id, summary, details }) => (
           <Accordion.Item value={`item-${id}`} key={id}>

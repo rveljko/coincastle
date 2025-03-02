@@ -54,13 +54,17 @@ export default function CoinInformation({
             <div className="mb-2 flex items-center gap-2">
               <img className="size-8 rounded-full" src={image.small} alt="" />
               <div className="flex items-center gap-1">
-                <h3 className="text-heading-4-font-size">{name}</h3>
+                <h3 className="text-heading-4-font-size leading-heading-4-line-height">
+                  {name}
+                </h3>
                 <span className="text-neutral-400 uppercase">{symbol}</span>
               </div>
             </div>
             <p className="mb-4 line-clamp-2 text-ellipsis">{description.en}</p>
           </header>
-          <h3 className="text-heading-4-font-size mb-2">Market Statistics</h3>
+          <h3 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+            Market Statistics
+          </h3>
           <InformationList className="mb-4">
             <InformationList.Item>
               <InformationList.Label>Popularity</InformationList.Label>
@@ -91,7 +95,9 @@ export default function CoinInformation({
               </InformationList.Value>
             </InformationList.Item>
           </InformationList>
-          <h3 className="text-heading-4-font-size mb-2">Market Performance</h3>
+          <h3 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+            Market Performance
+          </h3>
           <InformationList>
             <InformationList.Item>
               <InformationList.Label>Price Change 1D</InformationList.Label>

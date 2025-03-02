@@ -10,7 +10,9 @@ export default function PreferencesSection() {
 
   return (
     <section className="w-full">
-      <h2 className="text-heading-4-font-size mb-2">Themes</h2>
+      <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+        Themes
+      </h2>
       <ThemeCardsList className="mb-4" themes={themes} />
       <Button
         variant="primary"

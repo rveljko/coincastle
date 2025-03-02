@@ -20,7 +20,9 @@ export default function ContactUsSection({ className }: ContactUsSectionProps) {
 
   return (
     <section className={className}>
-      <h2 className="text-heading-4-font-size mb-2">Contact Us</h2>
+      <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+        Contact Us
+      </h2>
       <div className="flex flex-wrap gap-2">
         <form
           className="w-full max-w-(--input-max-width)"
