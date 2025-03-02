@@ -41,6 +41,7 @@ export default function Chart({ data }: ChartProps) {
           domain={['dataMin', 'dataMax']}
           type="number"
           interval="preserveStartEnd"
+          className='transform-[translateY(var(--spacing))]'
         />
         <Tooltip
           content={({
