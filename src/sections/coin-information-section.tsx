@@ -1,6 +1,7 @@
 import ChartSkeleton from '@components/dashboard-components/chart-skeleton'
 import CoinInformationSectionSkeleton from '@components/dashboard-components/coin-information-section-skeleton'
 import Chart from '@components/dashboard-components/ui/chart'
+import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import PercentageChangeIndicator from '@components/dashboard-components/ui/percentage-change-indicator'
 import Switcher from '@components/dashboard-components/ui/switcher'
@@ -40,7 +41,12 @@ export default function CoinInformation({
 
   if (isPending) return <CoinInformationSectionSkeleton className={className} />
 
-  if (error) return <div>error: {error.message}</div>
+  if (error)
+    return (
+      <Section className={className}>
+        <ErrorMessage />
+      </Section>
+    )
 
   const { image, name, description, market_cap_rank, symbol, market_data } =
     data
@@ -212,7 +218,7 @@ function CoinChart({ coinId, period }: CoinChartProps) {
 
   if (isPending) return <ChartSkeleton />
 
-  if (error) return <div>error: {error.message}</div>
+  if (error) return <ErrorMessage />
 
   return <Chart data={data.prices} />
 }
