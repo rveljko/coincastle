@@ -1,3 +1,4 @@
+import NftCollectionsTableSkeleton from '@components/dashboard-components/nft-collections-table-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import PercentageChangeIndicator from '@components/dashboard-components/ui/percentage-change-indicator'
 import Table from '@components/dashboard-components/ui/table'
@@ -11,7 +12,7 @@ import {
 export default function NftCollectionsTable() {
   const { data, isPending, error } = useGetNftCollections()
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <NftCollectionsTableSkeleton numberOfCoins={100}/>
 
   if (error) return <ErrorMessage />
 
