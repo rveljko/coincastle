@@ -6,6 +6,7 @@ import CryptoCurrenciesPage from '@pages/dashboard-pages/crypto-currencies-page'
 import GuidesPage from '@pages/dashboard-pages/guides-page'
 import HelpCenterPage from '@pages/dashboard-pages/help-center-page'
 import IntegrationsPage from '@pages/dashboard-pages/integrations-page'
+import NftCollectionPage from '@pages/dashboard-pages/nft-collection-page'
 import NftsPage from '@pages/dashboard-pages/nfts-page'
 import PasswordPage from '@pages/dashboard-pages/password-page'
 import PreferencesPage from '@pages/dashboard-pages/preferences-page'
@@ -21,6 +22,10 @@ export default function DashboardRoutes() {
         <Route path="crypto-currencies" element={<CryptoCurrenciesPage />} />
         <Route path="coin/:coinId" element={<CoinPage />} />
         <Route path="nfts" element={<NftsPage />} />
+        <Route
+          path="collection/:contractAddress"
+          element={<NftCollectionPage />}
+        />
         <Route path="stocks" element={<StocksPage />} />
         <Route path="guides" element={<GuidesPage />} />
         <Route path="help-center" element={<HelpCenterPage />} />

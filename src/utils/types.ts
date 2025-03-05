@@ -108,3 +108,15 @@ export type NftCollectionsOverviewHttpResponse = {
     items_total: number
   }[]
 }
+
+export type NftCollectionInformationHttpResponse = {
+  data: {
+    name: string
+    description: string
+    logo_url: string
+    owner: string
+    floor_price: number
+    items_total: number
+    owners_total: number
+  }
+}

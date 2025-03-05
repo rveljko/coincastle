@@ -8,9 +8,11 @@ import {
   ethereumPriceFormatter,
 } from '@utils/helpers/currency-formatter'
 import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function NftCollectionsTable() {
   const { data, isPending, error } = useGetNftCollections()
+  const navigate = useNavigate()
 
   if (isPending) return <NftCollectionsTableSkeleton numberOfCoins={100} />
 
@@ -36,17 +38,32 @@ export default function NftCollectionsTable() {
             owners_total,
             items_total,
           }) => (
-            <Table.BodyRow key={contract_address}>
+            <Table.BodyRow
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey) {
+                  window.open(
+                    `/dashboard/collection/${contract_address}`,
+                    '_blank'
+                  )
+                } else {
+                  navigate(`/dashboard/collection/${contract_address}`)
+                }
+              }}
+              className="cursor-pointer"
+              key={contract_address}
+            >
               <Table.BodyCell>
-                <div className="flex w-max flex-row gap-1">
-                  <img
-                    className="size-5.5 rounded-full"
-                    src={logo_url}
-                    title={name}
-                    alt={name}
-                  />
-                  {name}
-                </div>
+                <Link to={`/dashboard/collection/${contract_address}`}>
+                  <div className="flex w-max flex-row gap-1">
+                    <img
+                      className="size-5.5 rounded-full"
+                      src={logo_url}
+                      title={name}
+                      alt={name}
+                    />
+                    {name}
+                  </div>
+                </Link>
               </Table.BodyCell>
               <Table.BodyCell>
                 {ethereumPriceFormatter(floor_price)}

@@ -3,6 +3,7 @@ import {
   CoinChartInformationPeriod,
   CoinInformationHttpResponse,
   CoinOverviewHttpResponse,
+  NftCollectionInformationHttpResponse,
   NftCollectionsOverviewHttpResponse,
 } from '@utils/types'
 
@@ -37,6 +38,20 @@ export async function getCoinChartInformation(
 export async function getNftCollections(): Promise<NftCollectionsOverviewHttpResponse> {
   const res = await fetch(
     'https://restapi.nftscan.com/api/v2/collections/rankings?sort_field=volume_total&sort_direction=desc',
+    {
+      headers: {
+        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
+      },
+    }
+  )
+  return res.json()
+}
+
+export async function getNftCollectionInformation(
+  contractAddress: string
+): Promise<NftCollectionInformationHttpResponse> {
+  const res = await fetch(
+    `https://restapi.nftscan.com/api/v2/collections/${contractAddress}?show_attribute=true`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
