@@ -3,7 +3,7 @@ import {
   CoinChartInformationPeriod,
   CoinInformationHttpResponse,
   CoinOverviewHttpResponse,
-  NftCollectionOverviewHttpResponse,
+  NftCollectionsOverviewHttpResponse,
 } from '@utils/types'
 
 const CRYPTO_BASE_URL = 'https://api.coingecko.com/api/v3'
@@ -34,14 +34,12 @@ export async function getCoinChartInformation(
   return res.json()
 }
 
-export async function getNftCollections(): Promise<
-  NftCollectionOverviewHttpResponse[]
-> {
+export async function getNftCollections(): Promise<NftCollectionsOverviewHttpResponse> {
   const res = await fetch(
-    'https://deep-index.moralis.io/api/v2.2/market-data/nfts/top-collections',
+    'https://restapi.nftscan.com/api/v2/collections/rankings?sort_field=volume_total&sort_direction=desc',
     {
       headers: {
-        'X-API-Key': import.meta.env.VITE_MORALIS_API_KEY,
+        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
       },
     }
   )

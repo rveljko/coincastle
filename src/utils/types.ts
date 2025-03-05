@@ -97,13 +97,14 @@ export type CoinChartInformationHttpResponse = {
 
 export type CoinChartInformationPeriod = '1' | '7' | '30' | '90' | '180' | '365'
 
-export type NftCollectionOverviewHttpResponse = {
-  rank: number
-  collection_address: string
-  collection_title: string
-  collection_image: string
-  floor_price: string
-  floor_price_24hr_percent_change: string
-  market_cap_usd: string
-  volume_usd: string
+export type NftCollectionsOverviewHttpResponse = {
+  data: {
+    contract_address: string
+    name: string
+    logo_url: string
+    floor_price: number
+    volume_total: number
+    owners_total: number
+    items_total: number
+  }[]
 }
