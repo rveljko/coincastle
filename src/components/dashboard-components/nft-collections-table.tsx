@@ -1,18 +1,18 @@
 import NftCollectionsTableSkeleton from '@components/dashboard-components/nft-collections-table-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
-import PercentageChangeIndicator from '@components/dashboard-components/ui/percentage-change-indicator'
 import Table from '@components/dashboard-components/ui/table'
 import { nftCollectionsTableHeaders } from '@data/table-headers'
 import useGetNftCollections from '@hooks/queries/use-get-nft-collections'
 import {
-  compactCurrencyFormatter,
+  ethereumCompactFormatter,
   ethereumPriceFormatter,
 } from '@utils/helpers/currency-formatter'
+import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
 
 export default function NftCollectionsTable() {
   const { data, isPending, error } = useGetNftCollections()
 
-  if (isPending) return <NftCollectionsTableSkeleton numberOfCoins={100}/>
+  if (isPending) return <NftCollectionsTableSkeleton numberOfCoins={100} />
 
   if (error) return <ErrorMessage />
 
@@ -26,42 +26,39 @@ export default function NftCollectionsTable() {
         </Table.HeaderRow>
       </Table.Header>
       <Table.Body>
-        {data.map(
+        {data.data.map(
           ({
-            rank,
-            collection_image,
-            collection_title,
+            contract_address,
+            name,
+            logo_url,
             floor_price,
-            floor_price_24hr_percent_change,
-            market_cap_usd,
-            volume_usd,
+            volume_total,
+            owners_total,
+            items_total,
           }) => (
-            <Table.BodyRow key={collection_title}>
-              <Table.BodyCell>{rank}</Table.BodyCell>
+            <Table.BodyRow key={contract_address}>
               <Table.BodyCell>
                 <div className="flex w-max flex-row gap-1">
                   <img
                     className="size-5.5 rounded-full"
-                    src={collection_image}
-                    title={collection_title}
-                    alt={collection_title}
+                    src={logo_url}
+                    title={name}
+                    alt={name}
                   />
-                  {collection_title}
+                  {name}
                 </div>
               </Table.BodyCell>
               <Table.BodyCell>
-                {ethereumPriceFormatter(parseFloat(floor_price))}
+                {ethereumPriceFormatter(floor_price)}
               </Table.BodyCell>
               <Table.BodyCell>
-                <PercentageChangeIndicator
-                  percentage={parseFloat(floor_price_24hr_percent_change)}
-                />
+                {ethereumCompactFormatter(volume_total)}
               </Table.BodyCell>
               <Table.BodyCell>
-                {compactCurrencyFormatter(parseInt(market_cap_usd))}
+                {numbersWithCommasFormatter(owners_total)}
               </Table.BodyCell>
               <Table.BodyCell>
-                {compactCurrencyFormatter(parseInt(volume_usd))}
+                {numbersWithCommasFormatter(items_total)}
               </Table.BodyCell>
             </Table.BodyRow>
           )

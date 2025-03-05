@@ -9,10 +9,9 @@ export const cryptoMarketplaceTableHeaders: string[] = [
 ]
 
 export const nftCollectionsTableHeaders: string[] = [
-  '#',
   'Collection Name',
   'Floor Price',
-  '24h Change',
-  'Marketcap',
   'Volume',
+  'Owners',
+  'Items',
 ]
