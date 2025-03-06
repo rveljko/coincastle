@@ -16,15 +16,15 @@ import {
 import { CoinChartInformationPeriod } from '@utils/types'
 import { useSearchParams } from 'react-router-dom'
 
-type CoinInformationProps = {
+type CoinInformationSection = {
   coinId: string
   className?: string
 }
 
-export default function CoinInformation({
+export default function CoinInformationSection({
   coinId,
   className,
-}: CoinInformationProps) {
+}: CoinInformationSection) {
   const [searchParams, setSearchParams] = useSearchParams()
   const period = (searchParams.get('period') ||
     '1') as CoinChartInformationPeriod
