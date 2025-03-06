@@ -1,4 +1,4 @@
-import CoinInformationSection from '@sections/coin-information-section'
+import CoinInformationSection from '@sections/dashboard-sections/coin-information-section'
 import PopularCoinsSection from '@sections/dashboard-sections/popular-coins-section'
 import { useParams } from 'react-router-dom'
 
