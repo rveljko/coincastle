@@ -14,7 +14,6 @@ import {
   currencyFormatter,
 } from '@utils/helpers/currency-formatter'
 import { CoinChartInformationPeriod } from '@utils/types'
-import { cn } from '@utils/utils'
 import { useSearchParams } from 'react-router-dom'
 
 type CoinInformationProps = {
@@ -52,10 +51,10 @@ export default function CoinInformation({
     data
 
   return (
-    <Section className={cn('p-0', className)}>
+    <Section className={className}>
       <title>{`${TITLE_PREFIX}${name}`}</title>
-      <div className="divide-section-outline flex flex-col divide-y-1 divide-solid md:flex-row md:divide-x-1 md:divide-y-0">
-        <div className="p-4 md:flex-4">
+      <div className="flex flex-col gap-4 md:flex-row">
+        <div className="md:flex-4">
           <header>
             <div className="mb-2 flex items-center gap-2">
               <img className="size-8 rounded-full" src={image.small} alt="" />
@@ -139,7 +138,7 @@ export default function CoinInformation({
             </InformationList.Item>
           </InformationList>
         </div>
-        <div className="flex flex-col justify-between gap-4 p-4 md:flex-6">
+        <div className="flex flex-col justify-between gap-4 md:flex-6">
           <div className="flex flex-wrap items-start justify-between gap-2">
             <header>
               <p className="mb-1">Price</p>
