@@ -111,6 +111,7 @@ export type NftCollectionsOverviewHttpResponse = {
 
 export type NftCollectionInformationHttpResponse = {
   data: {
+    contract_address: string
     name: string
     description: string
     logo_url: string
@@ -119,4 +120,17 @@ export type NftCollectionInformationHttpResponse = {
     items_total: number
     owners_total: number
   }
+}
+
+export type NftCollectionNftsHttpResponse = {
+  data: {
+    content: NftOverview[]
+  }
+}
+
+export type NftOverview = {
+  contract_name: string
+  token_id: string
+  image_uri: string
+  nftscan_uri: string
 }

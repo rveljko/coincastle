@@ -1,6 +1,8 @@
+import NftCardsList from '@components/dashboard-components/nft-cards-list'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import useGetNftCollectionInformation from '@hooks/queries/use-get-nft-collection-information'
+import useGetNftCollectionNfts from '@hooks/queries/use-get-nft-collection-nfts'
 import Section from '@sections/dashboard-sections/section'
 import { TITLE_PREFIX } from '@utils/constants'
 import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
@@ -28,6 +30,7 @@ export default function NftCollectionSection({
     )
 
   const {
+    contract_address,
     description,
     floor_price,
     items_total,
@@ -40,7 +43,7 @@ export default function NftCollectionSection({
   return (
     <Section>
       <title>{`${TITLE_PREFIX}${name}`}</title>
-      <div className="w-full lg:max-w-[50%]">
+      <div className="mb-4 w-full lg:max-w-[50%]">
         <header>
           <div className="mb-2 flex flex-wrap gap-2">
             <img
@@ -87,6 +90,21 @@ export default function NftCollectionSection({
           </InformationList.Item>
         </InformationList>
       </div>
+      <NftCollectionNfts contractAddress={contract_address} />
     </Section>
   )
+}
+
+type NftCollectionNftsProps = {
+  contractAddress: string
+}
+
+function NftCollectionNfts({ contractAddress }: NftCollectionNftsProps) {
+  const { data, isPending, error } = useGetNftCollectionNfts(contractAddress)
+
+  if (isPending) return <div>loading...</div>
+
+  if (error) return <ErrorMessage />
+
+  return <NftCardsList nftCards={data.data.content} />
 }
