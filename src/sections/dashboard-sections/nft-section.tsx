@@ -2,6 +2,9 @@ import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import useGetNftCollectionInformation from '@hooks/queries/use-get-nft-collection-information'
 import useGetSingleNft from '@hooks/queries/use-get-single-nft'
+import NftSectionSkeleton, {
+  NftCollectionInformationSkeleton,
+} from '@sections/dashboard-sections/nft-section-skeleton'
 import Section from '@sections/dashboard-sections/section'
 import { TITLE_PREFIX } from '@utils/constants'
 import { longDateFormatter } from '@utils/helpers/date-formatter'
@@ -19,7 +22,7 @@ export default function NftSection({
 }: NftSectionProps) {
   const { data, isPending, error } = useGetSingleNft(contractAddress, tokenId)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <NftSectionSkeleton />
 
   if (error) return <ErrorMessage />
 
@@ -118,7 +121,7 @@ function NftCollectionInformation({
   const { data, isPending, error } =
     useGetNftCollectionInformation(contractAddress)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <NftCollectionInformationSkeleton />
 
   if (error) return <ErrorMessage />
 
