@@ -14,7 +14,7 @@ export default function NftCardsList({
   return (
     <ul
       className={cn(
-        'grid grid-cols-[repeat(auto-fit,_minmax(min(calc(var(--spacing)_*_52.5),_100%),_1fr))] gap-4',
+        'grid grid-cols-[repeat(auto-fit,_minmax(min(calc(var(--spacing)_*_70.25),_100%),_1fr))] gap-4.5',
         className
       )}
       {...props}
