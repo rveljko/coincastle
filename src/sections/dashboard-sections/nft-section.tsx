@@ -41,7 +41,9 @@ export default function NftSection({
             contractAddress={contractAddress}
             tokenId={tokenId}
           />
-          <h3 className="mb-2">Details</h3>
+          <h3 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+            Details
+          </h3>
           <InformationList className="mb-4">
             <InformationList.Item>
               <InformationList.Label>Minted Date</InformationList.Label>
@@ -70,7 +72,9 @@ export default function NftSection({
           </InformationList>
           {attributes.length ? (
             <>
-              <h3 className="mb-2">Attributes</h3>
+              <h3 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+                Attributes
+              </h3>
               <InformationList>
                 {attributes.map(
                   ({ attribute_name, attribute_value, percentage }, index) => (
