@@ -129,8 +129,25 @@ export type NftCollectionNftsHttpResponse = {
 }
 
 export type NftOverview = {
+  contract_address: string
   contract_name: string
   token_id: string
   image_uri: string
   nftscan_uri: string
+}
+
+export type NftHttpResponse = {
+  data: {
+    minter: string
+    mint_timestamp: number
+    owner: string
+    own_timestamp: number
+    image_uri: string
+    nftscan_uri: string
+    attributes: {
+      attribute_name: string
+      attribute_value: string
+      percentage: string
+    }[]
+  }
 }

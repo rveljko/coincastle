@@ -6,6 +6,7 @@ import {
   NftCollectionInformationHttpResponse,
   NftCollectionNftsHttpResponse,
   NftCollectionsOverviewHttpResponse,
+  NftHttpResponse,
 } from '@utils/types'
 
 const CRYPTO_BASE_URL = 'https://api.coingecko.com/api/v3'
@@ -67,6 +68,21 @@ export async function getNftCollectionNfts(
 ): Promise<NftCollectionNftsHttpResponse> {
   const res = await fetch(
     `https://restapi.nftscan.com/api/v2/assets/${contractAddress}`,
+    {
+      headers: {
+        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
+      },
+    }
+  )
+  return res.json()
+}
+
+export async function getSingleNft(
+  contractAddress: string,
+  tokenId: string
+): Promise<NftHttpResponse> {
+  const res = await fetch(
+    `https://restapi.nftscan.com/api/v2/assets/${contractAddress}/${tokenId}?show_attribute=true`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,

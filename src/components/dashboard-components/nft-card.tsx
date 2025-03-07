@@ -6,7 +6,7 @@ type NftCardProps = {
 }
 
 export default function NftCard({
-  nft: { nftscan_uri, image_uri, contract_name, token_id },
+  nft: { nftscan_uri, image_uri, contract_name, token_id, contract_address },
 }: NftCardProps) {
   return (
     <article className="border-section-outline group relative h-full overflow-hidden rounded-xl border-1">
@@ -19,7 +19,7 @@ export default function NftCard({
         />
       </div>
       <div className="p-2">
-        <Link to="">
+        <Link to={`/dashboard/collection/${contract_address}/${token_id}`}>
           <span className="absolute inset-0"></span>
           <h3 className="text-paragraph-font-size leading-paragraph-line-height break-all">
             {contract_name}
