@@ -84,7 +84,10 @@ type BodyCellProps = React.ComponentPropsWithoutRef<'td'> & {
 function BodyCell({ children, className, ...props }: BodyCellProps) {
   return (
     <td
-      className={cn('text-clickable p-2 last:text-right', className)}
+      className={cn(
+        'text-clickable p-2 whitespace-nowrap last:text-right',
+        className
+      )}
       {...props}
     >
       {children}
