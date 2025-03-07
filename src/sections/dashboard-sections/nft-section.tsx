@@ -14,11 +14,13 @@ import { Link } from 'react-router-dom'
 type NftSectionProps = {
   contractAddress: string
   tokenId: string
+  className?: string
 }
 
 export default function NftSection({
   contractAddress,
   tokenId,
+  className,
 }: NftSectionProps) {
   const { data, isPending, error } = useGetSingleNft(contractAddress, tokenId)
 
@@ -37,7 +39,7 @@ export default function NftSection({
   } = data.data
 
   return (
-    <Section>
+    <Section className={className}>
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="md:flex-1">
           <NftCollectionInformation
