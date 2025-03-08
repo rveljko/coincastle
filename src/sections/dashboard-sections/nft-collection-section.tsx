@@ -3,9 +3,13 @@ import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import useGetNftCollectionInformation from '@hooks/queries/use-get-nft-collection-information'
 import useGetNftCollectionNfts from '@hooks/queries/use-get-nft-collection-nfts'
+import useGetNftCollectionStatistics from '@hooks/queries/use-get-nft-collection-statistics'
 import Section from '@sections/dashboard-sections/section'
 import { TITLE_PREFIX } from '@utils/constants'
-import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
+import {
+  ethereumCompactFormatter,
+  ethereumPriceFormatter,
+} from '@utils/helpers/currency-formatter'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
 import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
 import { Link } from 'react-router-dom'
@@ -29,16 +33,7 @@ export default function NftCollectionSection({
       </Section>
     )
 
-  const {
-    contract_address,
-    description,
-    floor_price,
-    items_total,
-    logo_url,
-    name,
-    owner,
-    owners_total,
-  } = data.data
+  const { contract_address, description, logo_url, name, owner } = data.data
 
   return (
     <Section>
@@ -69,29 +64,56 @@ export default function NftCollectionSection({
             {description}
           </p>
         </header>
-        <InformationList>
-          <InformationList.Item>
-            <InformationList.Label>Floor Price</InformationList.Label>
-            <InformationList.Value>
-              {ethereumPriceFormatter(floor_price)}
-            </InformationList.Value>
-          </InformationList.Item>
-          <InformationList.Item>
-            <InformationList.Label>Owners</InformationList.Label>
-            <InformationList.Value>
-              {numbersWithCommasFormatter(owners_total)}
-            </InformationList.Value>
-          </InformationList.Item>
-          <InformationList.Item>
-            <InformationList.Label>Items</InformationList.Label>
-            <InformationList.Value>
-              {numbersWithCommasFormatter(items_total)}
-            </InformationList.Value>
-          </InformationList.Item>
-        </InformationList>
+        <NftCollectionStatistics contractAddress={contractAddress} />
       </div>
       <NftCollectionNfts contractAddress={contract_address} />
     </Section>
+  )
+}
+
+type NftCollectionStatisticsProps = {
+  contractAddress: string
+}
+
+function NftCollectionStatistics({
+  contractAddress,
+}: NftCollectionStatisticsProps) {
+  const { data, isPending, error } =
+    useGetNftCollectionStatistics(contractAddress)
+
+  if (isPending) return <div>loading...</div>
+
+  if (error) return <ErrorMessage />
+
+  const { floor_price, items_total, owners_total, total_volume } = data.data
+
+  return (
+    <InformationList>
+      <InformationList.Item>
+        <InformationList.Label>Floor Price</InformationList.Label>
+        <InformationList.Value>
+          {ethereumPriceFormatter(floor_price)}
+        </InformationList.Value>
+      </InformationList.Item>
+      <InformationList.Item>
+        <InformationList.Label>Volume</InformationList.Label>
+        <InformationList.Value>
+          {ethereumCompactFormatter(total_volume)}
+        </InformationList.Value>
+      </InformationList.Item>
+      <InformationList.Item>
+        <InformationList.Label>Owners</InformationList.Label>
+        <InformationList.Value>
+          {numbersWithCommasFormatter(owners_total)}
+        </InformationList.Value>
+      </InformationList.Item>
+      <InformationList.Item>
+        <InformationList.Label>Items</InformationList.Label>
+        <InformationList.Value>
+          {numbersWithCommasFormatter(items_total)}
+        </InformationList.Value>
+      </InformationList.Item>
+    </InformationList>
   )
 }
 

@@ -116,9 +116,15 @@ export type NftCollectionInformationHttpResponse = {
     description: string
     logo_url: string
     owner: string
+  }
+}
+
+export type NftCollectionStatisticsHttpResponse = {
+  data: {
     floor_price: number
-    items_total: number
+    total_volume: number
     owners_total: number
+    items_total: number
   }
 }
 

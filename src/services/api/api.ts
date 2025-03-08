@@ -6,6 +6,7 @@ import {
   NftCollectionInformationHttpResponse,
   NftCollectionNftsHttpResponse,
   NftCollectionsOverviewHttpResponse,
+  NftCollectionStatisticsHttpResponse,
   NftHttpResponse,
 } from '@utils/types'
 
@@ -54,6 +55,20 @@ export async function getNftCollectionInformation(
 ): Promise<NftCollectionInformationHttpResponse> {
   const res = await fetch(
     `https://restapi.nftscan.com/api/v2/collections/${contractAddress}?show_attribute=true`,
+    {
+      headers: {
+        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
+      },
+    }
+  )
+  return res.json()
+}
+
+export async function getNftCollectionStatistics(
+  contractAddress: string
+): Promise<NftCollectionStatisticsHttpResponse> {
+  const res = await fetch(
+    `https://restapi.nftscan.com/api/v2/statistics/collection/${contractAddress}?show_hourly_statistics=false`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
