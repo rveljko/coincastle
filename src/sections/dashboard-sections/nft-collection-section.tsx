@@ -88,32 +88,37 @@ function NftCollectionStatistics({
   const { floor_price, items_total, owners_total, total_volume } = data.data
 
   return (
-    <InformationList>
-      <InformationList.Item>
-        <InformationList.Label>Floor Price</InformationList.Label>
-        <InformationList.Value>
-          {ethereumPriceFormatter(floor_price)}
-        </InformationList.Value>
-      </InformationList.Item>
-      <InformationList.Item>
-        <InformationList.Label>Volume</InformationList.Label>
-        <InformationList.Value>
-          {ethereumCompactFormatter(total_volume)}
-        </InformationList.Value>
-      </InformationList.Item>
-      <InformationList.Item>
-        <InformationList.Label>Owners</InformationList.Label>
-        <InformationList.Value>
-          {numbersWithCommasFormatter(owners_total)}
-        </InformationList.Value>
-      </InformationList.Item>
-      <InformationList.Item>
-        <InformationList.Label>Items</InformationList.Label>
-        <InformationList.Value>
-          {numbersWithCommasFormatter(items_total)}
-        </InformationList.Value>
-      </InformationList.Item>
-    </InformationList>
+    <>
+      <h3 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+        Collection Statistics
+      </h3>
+      <InformationList>
+        <InformationList.Item>
+          <InformationList.Label>Floor Price</InformationList.Label>
+          <InformationList.Value>
+            {ethereumPriceFormatter(floor_price)}
+          </InformationList.Value>
+        </InformationList.Item>
+        <InformationList.Item>
+          <InformationList.Label>Volume</InformationList.Label>
+          <InformationList.Value>
+            {ethereumCompactFormatter(total_volume)}
+          </InformationList.Value>
+        </InformationList.Item>
+        <InformationList.Item>
+          <InformationList.Label>Owners</InformationList.Label>
+          <InformationList.Value>
+            {numbersWithCommasFormatter(owners_total)}
+          </InformationList.Value>
+        </InformationList.Item>
+        <InformationList.Item>
+          <InformationList.Label>Items</InformationList.Label>
+          <InformationList.Value>
+            {numbersWithCommasFormatter(items_total)}
+          </InformationList.Value>
+        </InformationList.Item>
+      </InformationList>
+    </>
   )
 }
 
