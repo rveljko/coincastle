@@ -1,4 +1,8 @@
 import NftCardsList from '@components/dashboard-components/nft-cards-list'
+import NftCollectionSectionSkeleton, {
+  NftCollectionNftsSkeleton,
+  NftCollectionStatisticsSkeleton,
+} from '@components/dashboard-components/nft-collection-section-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import useGetNftCollectionInformation from '@hooks/queries/use-get-nft-collection-information'
@@ -24,7 +28,7 @@ export default function NftCollectionSection({
   const { data, isPending, error } =
     useGetNftCollectionInformation(contractAddress)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <NftCollectionSectionSkeleton />
 
   if (error)
     return (
@@ -81,7 +85,7 @@ function NftCollectionStatistics({
   const { data, isPending, error } =
     useGetNftCollectionStatistics(contractAddress)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <NftCollectionStatisticsSkeleton />
 
   if (error) return <ErrorMessage />
 
@@ -129,7 +133,7 @@ type NftCollectionNftsProps = {
 function NftCollectionNfts({ contractAddress }: NftCollectionNftsProps) {
   const { data, isPending, error } = useGetNftCollectionNfts(contractAddress)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <NftCollectionNftsSkeleton />
 
   if (error) return <ErrorMessage />
 
