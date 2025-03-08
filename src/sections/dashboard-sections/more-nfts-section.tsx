@@ -1,4 +1,5 @@
 import NftCardsList from '@components/dashboard-components/nft-cards-list'
+import NftCardsListSkeleton from '@components/dashboard-components/nft-cards-list-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import useGetNftCollectionNfts from '@hooks/queries/use-get-nft-collection-nfts'
 import Section from '@sections/dashboard-sections/section'
@@ -27,7 +28,7 @@ type NftsProps = {
 function Nfts({ contractAddress }: NftsProps) {
   const { data, isPending, error } = useGetNftCollectionNfts(contractAddress)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <NftCardsListSkeleton />
 
   if (error) return <ErrorMessage />
 
