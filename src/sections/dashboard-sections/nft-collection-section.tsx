@@ -55,7 +55,7 @@ export default function NftCollectionSection({
               <h1 className="mb-1 break-all">{name}</h1>
               <p>
                 Created by{' '}
-                <Link to="/" title={owner}>
+                <Link to={`/dashboard/wallet/${owner}`} title={owner}>
                   {ethereumAddressFormatter(owner)}
                 </Link>
               </p>

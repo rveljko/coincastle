@@ -157,3 +157,9 @@ export type NftHttpResponse = {
     }[]
   }
 }
+
+export type WalletNfts = {
+  data: {
+    content: NftOverview[]
+  }
+}

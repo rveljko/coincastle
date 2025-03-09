@@ -8,6 +8,7 @@ import HelpCenterPage from '@pages/dashboard-pages/help-center-page'
 import IntegrationsPage from '@pages/dashboard-pages/integrations-page'
 import NftCollectionPage from '@pages/dashboard-pages/nft-collection-page'
 import NftPage from '@pages/dashboard-pages/nft-page'
+import NftWalletPage from '@pages/dashboard-pages/nft-wallet-page'
 import NftsPage from '@pages/dashboard-pages/nfts-page'
 import PasswordPage from '@pages/dashboard-pages/password-page'
 import PreferencesPage from '@pages/dashboard-pages/preferences-page'
@@ -31,6 +32,7 @@ export default function DashboardRoutes() {
           path="collection/:contractAddress/:tokenId"
           element={<NftPage />}
         />
+        <Route path="wallet/:walletAddress" element={<NftWalletPage />} />
         <Route path="stocks" element={<StocksPage />} />
         <Route path="guides" element={<GuidesPage />} />
         <Route path="help-center" element={<HelpCenterPage />} />

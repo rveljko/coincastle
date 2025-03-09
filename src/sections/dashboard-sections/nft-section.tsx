@@ -28,6 +28,8 @@ export default function NftSection({
 
   if (error) return <ErrorMessage />
 
+  console.log(data)
+
   const {
     mint_timestamp,
     minter,
@@ -59,7 +61,9 @@ export default function NftSection({
             <InformationList.Item>
               <InformationList.Label>Minted By</InformationList.Label>
               <InformationList.Value>
-                {ethereumAddressFormatter(minter)}
+                <Link to={`/dashboard/wallet/${minter}`}>
+                  {ethereumAddressFormatter(minter)}
+                </Link>
               </InformationList.Value>
             </InformationList.Item>
             <InformationList.Item>
@@ -71,7 +75,9 @@ export default function NftSection({
             <InformationList.Item>
               <InformationList.Label>Owned By</InformationList.Label>
               <InformationList.Value>
-                {ethereumAddressFormatter(owner)}
+                <Link to={`/dashboard/wallet/${owner}`}>
+                  {ethereumAddressFormatter(owner)}
+                </Link>
               </InformationList.Value>
             </InformationList.Item>
           </InformationList>
