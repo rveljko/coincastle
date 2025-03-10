@@ -110,10 +110,11 @@ export async function getSingleNft(
 }
 
 export async function getWalletNfts(
-  walletAddress: string
+  walletAddress: string,
+  pageParam: string
 ): Promise<WalletNfts> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/account/own/${walletAddress}?erc_type=erc721&show_attribute=false`,
+    `https://restapi.nftscan.com/api/v2/account/own/${walletAddress}?erc_type=erc721&show_attribute=false&cursor=${pageParam}`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,

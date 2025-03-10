@@ -4,6 +4,8 @@ import useGetWalletNfts from '@hooks/queries/use-get-wallet-nfts'
 import WalletIcon from '@icons/wallet-icon'
 import Section from '@sections/dashboard-sections/section'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
+import { useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 type NftWalletSectionProps = {
   walletAddress: string
@@ -12,7 +14,13 @@ type NftWalletSectionProps = {
 export default function NftWalletSection({
   walletAddress,
 }: NftWalletSectionProps) {
-  const { data, isPending, error } = useGetWalletNfts(walletAddress)
+  const { data, isPending, error, fetchNextPage, isFetchingNextPage } =
+    useGetWalletNfts(walletAddress)
+  const { ref, inView } = useInView()
+
+  useEffect(() => {
+    if (inView) fetchNextPage()
+  }, [inView, fetchNextPage])
 
   if (isPending) return <div>loading...</div>
 
@@ -26,7 +34,11 @@ export default function NftWalletSection({
         </div>
         <h1>{ethereumAddressFormatter(walletAddress)}</h1>
       </header>
-      <NftCardsList nftCards={data.data.content} />
+      <NftCardsList
+        nftCards={data.pages.map((page) => page.data.content).flat()}
+        isLoadingSkeletons={isFetchingNextPage}
+      />
+      <div ref={ref}></div>
     </Section>
   )
 }
