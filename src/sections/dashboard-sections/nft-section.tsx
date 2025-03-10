@@ -28,8 +28,6 @@ export default function NftSection({
 
   if (error) return <ErrorMessage />
 
-  console.log(data)
-
   const {
     mint_timestamp,
     minter,
