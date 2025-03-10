@@ -133,7 +133,7 @@ type NftCollectionNftsProps = {
 }
 
 function NftCollectionNfts({ contractAddress }: NftCollectionNftsProps) {
-  const { data, isPending, error, fetchNextPage } =
+  const { data, isPending, error, fetchNextPage, isFetchingNextPage } =
     useGetNftCollectionNfts(contractAddress)
   const { ref, inView } = useInView()
 
@@ -149,6 +149,7 @@ function NftCollectionNfts({ contractAddress }: NftCollectionNftsProps) {
     <>
       <NftCardsList
         nftCards={data.pages.map((page) => page.data.content).flat()}
+        isLoadingSkeletons={isFetchingNextPage}
       />
       <div ref={ref}></div>
     </>

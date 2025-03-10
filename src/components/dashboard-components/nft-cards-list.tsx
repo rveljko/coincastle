@@ -1,13 +1,16 @@
 import NftCard from '@components/dashboard-components/nft-card'
+import NftCardSkeleton from '@components/dashboard-components/nft-card-skeleton'
 import { NftOverview } from '@utils/types'
 import { cn } from '@utils/utils'
 
 type NftCardsListProps = React.ComponentPropsWithoutRef<'ul'> & {
   nftCards: NftOverview[]
+  isLoadingSkeletons?: boolean
 }
 
 export default function NftCardsList({
   nftCards,
+  isLoadingSkeletons,
   className,
   ...props
 }: NftCardsListProps) {
@@ -24,6 +27,12 @@ export default function NftCardsList({
           <NftCard nft={nftCard} />
         </li>
       ))}
+      {isLoadingSkeletons &&
+        Array.from({ length: 20 }, (_, index) => index).map((index) => (
+          <li key={index}>
+            <NftCardSkeleton />
+          </li>
+        ))}
     </ul>
   )
 }
