@@ -32,5 +32,9 @@ function Nfts({ contractAddress }: NftsProps) {
 
   if (error) return <ErrorMessage />
 
-  return <NftCardsList nftCards={data.data.content} />
+  return (
+    <NftCardsList
+      nftCards={data.pages.map((page) => page.data.content).flat()}
+    />
+  )
 }
