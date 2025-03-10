@@ -131,6 +131,7 @@ export type NftCollectionStatisticsHttpResponse = {
 export type NftCollectionNftsHttpResponse = {
   data: {
     content: NftOverview[]
+    next: string
   }
 }
 

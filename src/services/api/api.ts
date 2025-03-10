@@ -80,10 +80,11 @@ export async function getNftCollectionStatistics(
 }
 
 export async function getNftCollectionNfts(
-  contractAddress: string
+  contractAddress: string,
+  pageParam: string
 ): Promise<NftCollectionNftsHttpResponse> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/assets/${contractAddress}`,
+    `https://restapi.nftscan.com/api/v2/assets/${contractAddress}?cursor=${pageParam}`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,

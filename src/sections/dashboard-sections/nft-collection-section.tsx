@@ -16,6 +16,8 @@ import {
 } from '@utils/helpers/currency-formatter'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
 import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
+import { useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
 import { Link } from 'react-router-dom'
 
 type NftCollectionSectionProps = {
@@ -131,11 +133,24 @@ type NftCollectionNftsProps = {
 }
 
 function NftCollectionNfts({ contractAddress }: NftCollectionNftsProps) {
-  const { data, isPending, error } = useGetNftCollectionNfts(contractAddress)
+  const { data, isPending, error, fetchNextPage } =
+    useGetNftCollectionNfts(contractAddress)
+  const { ref, inView } = useInView()
+
+  useEffect(() => {
+    if (inView) fetchNextPage()
+  }, [inView, fetchNextPage])
 
   if (isPending) return <NftCollectionNftsSkeleton />
 
   if (error) return <ErrorMessage />
 
-  return <NftCardsList nftCards={data.data.content} />
+  return (
+    <>
+      <NftCardsList
+        nftCards={data.pages.map((page) => page.data.content).flat()}
+      />
+      <div ref={ref}></div>
+    </>
+  )
 }
