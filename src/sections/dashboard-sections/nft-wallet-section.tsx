@@ -1,4 +1,7 @@
 import NftCardsList from '@components/dashboard-components/nft-cards-list'
+import NftWalletSectionSkeleton, {
+  NftWalletStatisticsSkeleton,
+} from '@components/dashboard-components/nft-wallet-section-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import useGetNftWalletStatistics from '@hooks/queries/use-get-nft-wallet-statistics'
@@ -29,7 +32,7 @@ export default function NftWalletSection({
     if (inView) fetchNextPage()
   }, [inView, fetchNextPage])
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <NftWalletSectionSkeleton />
 
   if (error) return <ErrorMessage />
 
@@ -62,7 +65,7 @@ type NftWalletStatisticsProps = {
 function NftWalletStatistics({ walletAddress }: NftWalletStatisticsProps) {
   const { data, isPending, error } = useGetNftWalletStatistics(walletAddress)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <NftWalletStatisticsSkeleton />
 
   if (error) return <ErrorMessage />
 
