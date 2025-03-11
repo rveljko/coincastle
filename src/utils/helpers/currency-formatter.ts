@@ -1,3 +1,8 @@
+import {
+  numbersWithCommasAndDecimalsFormatter,
+  numbersWithCommasFormatter,
+} from '@utils/helpers/numbers-formatter'
+
 export function currencyFormatter(value: number) {
   return value.toLocaleString('en-US', {
     style: 'currency',
@@ -18,9 +23,10 @@ export function ethereumPriceFormatter(value: number) {
 
   if (value < 0.01) return '< 0.01 ETH'
 
-  if (value.toFixed(2).endsWith('00')) return `${value.toFixed(0)} ETH`
+  if (numbersWithCommasAndDecimalsFormatter(value).endsWith('00'))
+    return `${numbersWithCommasFormatter(value)} ETH`
 
-  return `${value.toFixed(2)} ETH`
+  return `${numbersWithCommasAndDecimalsFormatter(value)} ETH`
 }
 
 export function ethereumCompactFormatter(value: number) {
