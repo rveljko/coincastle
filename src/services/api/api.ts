@@ -8,6 +8,7 @@ import {
   NftCollectionsOverviewHttpResponse,
   NftCollectionStatisticsHttpResponse,
   NftHttpResponse,
+  NftWalletStatistics,
   WalletNfts,
 } from '@utils/types'
 
@@ -115,6 +116,20 @@ export async function getWalletNfts(
 ): Promise<WalletNfts> {
   const res = await fetch(
     `https://restapi.nftscan.com/api/v2/account/own/${walletAddress}?erc_type=erc721&show_attribute=false&cursor=${pageParam}`,
+    {
+      headers: {
+        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
+      },
+    }
+  )
+  return res.json()
+}
+
+export async function getNftWalletStatistics(
+  walletAddress: string
+): Promise<NftWalletStatistics> {
+  const res = await fetch(
+    `https://restapi.nftscan.com/api/v2/statistics/overview/${walletAddress}`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,

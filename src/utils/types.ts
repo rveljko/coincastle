@@ -165,3 +165,17 @@ export type WalletNfts = {
     next: string
   }
 }
+
+export type NftWalletStatistics = {
+  data: {
+    holding_value: number
+    holding_value_usdt: number
+    sold_value: number
+    sold_value_usdt: number
+    gas_value: number
+    gas_value_usdt: number
+    holding_count: number
+    mint_count: number
+    collection_count: number
+  }
+}
