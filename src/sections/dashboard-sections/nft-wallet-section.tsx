@@ -38,8 +38,8 @@ export default function NftWalletSection({
 
   return (
     <Section>
-      <div className="mb-4 w-full lg:max-w-[50%]">
-        <header className="mb-4 flex flex-wrap gap-2">
+      <div className="mb-4">
+        <header className="mb-4 flex w-full flex-wrap gap-2 lg:max-w-[50%]">
           <div className="flex size-32 items-center justify-center rounded-full bg-neutral-700">
             <WalletIcon className="text-clickable size-16" />
           </div>
@@ -65,9 +65,14 @@ type NftWalletStatisticsProps = {
 function NftWalletStatistics({ walletAddress }: NftWalletStatisticsProps) {
   const { data, isPending, error } = useGetNftWalletStatistics(walletAddress)
 
-  if (isPending) return <NftWalletStatisticsSkeleton />
+  if (isPending)
+    return (
+      <div className="w-full lg:max-w-[50%]">
+        <NftWalletStatisticsSkeleton />
+      </div>
+    )
 
-  if (error) return <ErrorMessage />
+  if (error || !data.data) return <ErrorMessage />
 
   const {
     holding_value,
@@ -82,7 +87,7 @@ function NftWalletStatistics({ walletAddress }: NftWalletStatisticsProps) {
   } = data.data
 
   return (
-    <>
+    <div className="w-full lg:max-w-[50%]">
       <h3 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
         Wallet Statistics
       </h3>
@@ -127,6 +132,6 @@ function NftWalletStatistics({ walletAddress }: NftWalletStatisticsProps) {
           </InformationList.Value>
         </InformationList.Item>
       </InformationList>
-    </>
+    </div>
   )
 }
