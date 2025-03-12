@@ -34,7 +34,12 @@ export default function NftWalletSection({
 
   if (isPending) return <NftWalletSectionSkeleton />
 
-  if (error) return <ErrorMessage />
+  if (error)
+    return (
+      <Section>
+        <ErrorMessage />
+      </Section>
+    )
 
   return (
     <Section>
