@@ -1,3 +1,4 @@
+import ScrollToTop from '@components/scroll-to-top'
 import DashboardRoutes from '@routes/dashboard-routes'
 import IntegrationsContextProvider from '@services/contexts/integrations-context'
 import ThemeContextProvider from '@services/contexts/theme-context'
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <ScrollToTop />
         <UserInformationContextProvider>
           <IntegrationsContextProvider>
             <ThemeContextProvider>
