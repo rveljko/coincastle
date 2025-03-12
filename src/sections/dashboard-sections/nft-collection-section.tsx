@@ -15,6 +15,7 @@ import {
   ethereumPriceFormatter,
 } from '@utils/helpers/currency-formatter'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
+import { ethereumAddressValidator } from '@utils/helpers/ethereum-address-validator'
 import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
@@ -57,9 +58,13 @@ export default function NftCollectionSection({
               <h1 className="mb-1 break-all">{name}</h1>
               <p>
                 Created by{' '}
-                <Link to={`/dashboard/wallet/${owner}`} title={owner}>
-                  {ethereumAddressFormatter(owner)}
-                </Link>
+                {ethereumAddressValidator(owner) ? (
+                  <Link to={`/dashboard/wallet/${owner}`} title={owner}>
+                    {ethereumAddressFormatter(owner)}
+                  </Link>
+                ) : (
+                  <span>unknown</span>
+                )}
               </p>
             </div>
           </div>
