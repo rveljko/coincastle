@@ -26,7 +26,12 @@ export default function NftSection({
 
   if (isPending) return <NftSectionSkeleton />
 
-  if (error) return <ErrorMessage />
+  if (error)
+    return (
+      <Section>
+        <ErrorMessage />
+      </Section>
+    )
 
   const {
     mint_timestamp,
