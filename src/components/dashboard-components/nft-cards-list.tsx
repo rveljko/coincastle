@@ -15,24 +15,28 @@ export default function NftCardsList({
   ...props
 }: NftCardsListProps) {
   return (
-    <ul
-      className={cn(
-        'grid grid-cols-[repeat(auto-fit,_minmax(min(calc(var(--spacing)_*_70.25),_100%),_1fr))] gap-4.5',
-        className
-      )}
-      {...props}
-    >
-      {nftCards.map((nftCard) => (
-        <li key={nftCard.token_id}>
-          <NftCard nft={nftCard} />
-        </li>
-      ))}
-      {isLoadingSkeletons &&
-        Array.from({ length: 20 }, (_, index) => index).map((index) => (
-          <li key={index}>
-            <NftCardSkeleton />
-          </li>
-        ))}
-    </ul>
+    <>
+      {nftCards.length ? (
+        <ul
+          className={cn(
+            'grid grid-cols-[repeat(auto-fit,_minmax(min(calc(var(--spacing)_*_70.25),_100%),_1fr))] gap-4.5',
+            className
+          )}
+          {...props}
+        >
+          {nftCards.map((nftCard) => (
+            <li key={nftCard.token_id}>
+              <NftCard nft={nftCard} />
+            </li>
+          ))}
+          {isLoadingSkeletons &&
+            Array.from({ length: 20 }, (_, index) => index).map((index) => (
+              <li key={index}>
+                <NftCardSkeleton />
+              </li>
+            ))}
+        </ul>
+      ) : null}
+    </>
   )
 }
