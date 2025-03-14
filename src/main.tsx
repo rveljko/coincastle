@@ -9,7 +9,13 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './assets/index.css'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, 
+    },
+  },
+})
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
