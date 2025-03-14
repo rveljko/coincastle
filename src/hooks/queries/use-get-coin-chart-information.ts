@@ -9,5 +9,6 @@ export default function useGetCoinChartInformation(
   return useQuery({
     queryFn: () => getCoinChartInformation(coinId, period),
     queryKey: ['coin-chart-information', coinId, period],
+    refetchOnWindowFocus: true,
   })
 }
