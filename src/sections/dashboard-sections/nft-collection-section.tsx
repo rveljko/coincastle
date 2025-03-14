@@ -3,11 +3,14 @@ import NftCollectionSectionSkeleton, {
   NftCollectionNftsSkeleton,
   NftCollectionStatisticsSkeleton,
 } from '@components/dashboard-components/nft-collection-section-skeleton'
+import Dropdown from '@components/dashboard-components/ui/dropdown'
+import DropdownButton from '@components/dashboard-components/ui/dropdown-button'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import useGetNftCollectionInformation from '@hooks/queries/use-get-nft-collection-information'
 import useGetNftCollectionNfts from '@hooks/queries/use-get-nft-collection-nfts'
 import useGetNftCollectionStatistics from '@hooks/queries/use-get-nft-collection-statistics'
+import ArrowsDownUpIcon from '@icons/arrows-down-up-icon'
 import Section from '@sections/dashboard-sections/section'
 import { TITLE_PREFIX } from '@utils/constants'
 import {
@@ -17,9 +20,13 @@ import {
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
 import { ethereumAddressValidator } from '@utils/helpers/ethereum-address-validator'
 import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
+import {
+  NftCollectionNftsSortDirection,
+  NftCollectionNftsSortField,
+} from '@utils/types'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 type NftCollectionSectionProps = {
   contractAddress: string
@@ -138,8 +145,37 @@ type NftCollectionNftsProps = {
 }
 
 function NftCollectionNfts({ contractAddress }: NftCollectionNftsProps) {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const sortField = (searchParams.get('sort-field') ||
+    '') as NftCollectionNftsSortField
+  const sortDirection = (searchParams.get('sort-direction') ||
+    '') as NftCollectionNftsSortDirection
+
+  function setSortField(sortField: NftCollectionNftsSortField) {
+    setSearchParams((prevParams) => {
+      if (prevParams.has('sort-field', sortField)) {
+        prevParams.delete('sort-field', sortField)
+        return prevParams
+      }
+      prevParams.set('sort-field', sortField)
+      return prevParams
+    })
+  }
+
+  function setSortDirection(sortDirection: NftCollectionNftsSortDirection) {
+    setSearchParams((prevParams) => {
+      if (prevParams.has('sort-direction', sortDirection)) {
+        prevParams.delete('sort-direction', sortDirection)
+        return prevParams
+      }
+
+      prevParams.set('sort-direction', sortDirection)
+      return prevParams
+    })
+  }
+
   const { data, isPending, error, fetchNextPage, isFetchingNextPage } =
-    useGetNftCollectionNfts(contractAddress)
+    useGetNftCollectionNfts(contractAddress, sortField, sortDirection)
   const { ref, inView } = useInView()
 
   useEffect(() => {
@@ -152,6 +188,61 @@ function NftCollectionNfts({ contractAddress }: NftCollectionNftsProps) {
 
   return (
     <>
+      <div className="mb-2">
+        <DropdownButton
+          label="Sort"
+          variant="secondary"
+          size="large"
+          leftIcon={<ArrowsDownUpIcon />}
+          className="ml-auto"
+          dropdownClassName="right-0"
+        >
+          <Dropdown.List>
+            <Dropdown.Item value="item-1">
+              <Dropdown.Summary valueForItem="item-1">Sort By</Dropdown.Summary>
+              <Dropdown.Details className="space-y-0.5">
+                <Dropdown.Button
+                  isActive={sortField === 'latest_trade_price'}
+                  onClick={() => setSortField('latest_trade_price')}
+                >
+                  Latest Trade Price
+                </Dropdown.Button>
+                <Dropdown.Button
+                  isActive={sortField === 'latest_trade_time'}
+                  onClick={() => setSortField('latest_trade_time')}
+                >
+                  Latest Trade Time
+                </Dropdown.Button>
+                <Dropdown.Button
+                  isActive={sortField === 'rarity_rank'}
+                  onClick={() => setSortField('rarity_rank')}
+                >
+                  Rarity Rank
+                </Dropdown.Button>
+              </Dropdown.Details>
+            </Dropdown.Item>
+            <Dropdown.Item value="item-2">
+              <Dropdown.Summary valueForItem="item-2">
+                Sort Direction
+              </Dropdown.Summary>
+              <Dropdown.Details className="space-y-0.5">
+                <Dropdown.Button
+                  isActive={sortDirection === 'asc'}
+                  onClick={() => setSortDirection('asc')}
+                >
+                  Ascending
+                </Dropdown.Button>
+                <Dropdown.Button
+                  isActive={sortDirection === 'desc'}
+                  onClick={() => setSortDirection('desc')}
+                >
+                  Descending
+                </Dropdown.Button>
+              </Dropdown.Details>
+            </Dropdown.Item>
+          </Dropdown.List>
+        </DropdownButton>
+      </div>
       <NftCardsList
         nftCards={data.pages.map((page) => page.data.content).flat()}
         isLoadingSkeletons={isFetchingNextPage}

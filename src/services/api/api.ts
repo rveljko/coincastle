@@ -5,6 +5,8 @@ import {
   CoinOverviewHttpResponse,
   NftCollectionInformationHttpResponse,
   NftCollectionNftsHttpResponse,
+  NftCollectionNftsSortDirection,
+  NftCollectionNftsSortField,
   NftCollectionsOverviewHttpResponse,
   NftCollectionStatisticsHttpResponse,
   NftHttpResponse,
@@ -82,10 +84,12 @@ export async function getNftCollectionStatistics(
 
 export async function getNftCollectionNfts(
   contractAddress: string,
-  pageParam: string
+  pageParam: string,
+  sortField: NftCollectionNftsSortField,
+  sortDirection: NftCollectionNftsSortDirection
 ): Promise<NftCollectionNftsHttpResponse> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/assets/${contractAddress}?cursor=${pageParam}`,
+    `https://restapi.nftscan.com/api/v2/assets/${contractAddress}?cursor=${pageParam}&sort_field=${sortField}&sort_direction=${sortDirection}`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,

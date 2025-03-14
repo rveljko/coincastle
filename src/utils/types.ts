@@ -179,3 +179,11 @@ export type NftWalletStatistics = {
     collection_count: number
   }
 }
+
+export type NftCollectionNftsSortField =
+  | 'latest_trade_price'
+  | 'latest_trade_time'
+  | 'rarity_rank'
+  | ''
+
+export type NftCollectionNftsSortDirection = 'asc' | 'desc' | ''
