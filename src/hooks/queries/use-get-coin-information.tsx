@@ -5,5 +5,6 @@ export default function useGetCoinInformation(coinId: string) {
   return useQuery({
     queryFn: () => getCoinInformation(coinId),
     queryKey: ['coin', coinId],
+    refetchOnWindowFocus: true,
   })
 }
