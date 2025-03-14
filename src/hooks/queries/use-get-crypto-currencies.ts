@@ -5,5 +5,6 @@ export default function useGetCryptoCurrencies(numberOfCoins: number) {
   return useQuery({
     queryFn: () => getCryptoCurrencies(numberOfCoins),
     queryKey: ['crypto-currencies', numberOfCoins],
+    refetchOnWindowFocus: true,
   })
 }
