@@ -26,7 +26,11 @@ type NftsProps = {
 }
 
 function Nfts({ contractAddress }: NftsProps) {
-  const { data, isPending, error } = useGetNftCollectionNfts(contractAddress)
+  const { data, isPending, error } = useGetNftCollectionNfts(
+    contractAddress,
+    '',
+    ''
+  )
 
   if (isPending) return <NftCardsListSkeleton />
 
