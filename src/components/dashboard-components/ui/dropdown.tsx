@@ -172,7 +172,7 @@ type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
 function Button({ children, isActive, icon: Icon, ...props }: ButtonProps) {
   return (
     <button
-      className={`gap text-clickable flex w-full cursor-pointer items-center rounded-sm px-1 py-0.5 ${isActive ? 'bg-neutral-800 bg-[linear-gradient(hsl(from_var(--color-black)_h_s_l_/_5%),_hsl(from_var(--color-black)_h_s_l_/_5%)),linear-gradient(hsl(from_var(--color-clickable)_h_s_l_/_10%),_transparent)] shadow-[inset_0_0_0_calc(var(--spacing)_*_0.25)_var(--color-neutral-800),_inset_0_calc(var(--spacing)_*_0.5)_calc(var(--spacing)_*_0.5)_0_hsl(from_var(--color-black)_h_s_l_/_40%)]' : ''}`}
+      className={`text-clickable flex w-full cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 text-left ${isActive ? 'bg-neutral-800 bg-[linear-gradient(hsl(from_var(--color-black)_h_s_l_/_5%),_hsl(from_var(--color-black)_h_s_l_/_5%)),linear-gradient(hsl(from_var(--color-clickable)_h_s_l_/_10%),_transparent)] shadow-[inset_0_0_0_calc(var(--spacing)_*_0.25)_var(--color-neutral-800),_inset_0_calc(var(--spacing)_*_0.5)_calc(var(--spacing)_*_0.5)_0_hsl(from_var(--color-black)_h_s_l_/_40%)]' : ''}`}
       {...props}
     >
       {Icon && <span>{Icon}</span>}

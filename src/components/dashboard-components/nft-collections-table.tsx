@@ -8,10 +8,24 @@ import {
   ethereumPriceFormatter,
 } from '@utils/helpers/currency-formatter'
 import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
-import { Link } from 'react-router-dom'
+import {
+  NftCollectionsSortDirection,
+  NftCollectionsSortField,
+} from '@utils/types'
+import { Link, useSearchParams } from 'react-router-dom'
 
 export default function NftCollectionsTable() {
-  const { data, isPending, error } = useGetNftCollections()
+  const [searchParams] = useSearchParams()
+
+  const sortField = (searchParams.get('sort-field') ||
+    'volume_total') as NftCollectionsSortField
+  const sortDirection = (searchParams.get('sort-direction') ||
+    'desc') as NftCollectionsSortDirection
+
+  const { data, isPending, error } = useGetNftCollections(
+    sortField,
+    sortDirection
+  )
 
   if (isPending) return <NftCollectionsTableSkeleton numberOfCoins={100} />
 

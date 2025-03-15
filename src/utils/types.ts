@@ -180,6 +180,20 @@ export type NftWalletStatistics = {
   }
 }
 
+export type NftCollectionsSortField =
+  | 'volume_total'
+  | 'sales_total'
+  | 'average_price'
+  | 'floor_price'
+  | 'volume_1d'
+  | 'volume_7d'
+  | 'volume_change_1d'
+  | 'volume_change_7d'
+  | 'average_price_change_1d'
+  | 'average_price_change_7d'
+
+export type NftCollectionsSortDirection = 'asc' | 'desc'
+
 export type NftCollectionNftsSortField =
   | 'latest_trade_price'
   | 'latest_trade_time'

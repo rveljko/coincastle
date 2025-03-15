@@ -8,6 +8,8 @@ import {
   NftCollectionNftsSortDirection,
   NftCollectionNftsSortField,
   NftCollectionsOverviewHttpResponse,
+  NftCollectionsSortDirection,
+  NftCollectionsSortField,
   NftCollectionStatisticsHttpResponse,
   NftHttpResponse,
   NftWalletStatistics,
@@ -42,9 +44,12 @@ export async function getCoinChartInformation(
   return res.json()
 }
 
-export async function getNftCollections(): Promise<NftCollectionsOverviewHttpResponse> {
+export async function getNftCollections(
+  sortField: NftCollectionsSortField,
+  sortDirection: NftCollectionsSortDirection
+): Promise<NftCollectionsOverviewHttpResponse> {
   const res = await fetch(
-    'https://restapi.nftscan.com/api/v2/collections/rankings?sort_field=volume_total&sort_direction=desc',
+    `https://restapi.nftscan.com/api/v2/collections/rankings?sort_field=${sortField}&sort_direction=${sortDirection}`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
