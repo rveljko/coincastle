@@ -1,3 +1,4 @@
+import PhotoOffIcon from '@icons/photo-off-icon'
 import { NftOverview } from '@utils/types'
 import { Link } from 'react-router-dom'
 
@@ -10,14 +11,25 @@ export default function NftCard({
 }: NftCardProps) {
   return (
     <article className="border-section-outline group relative h-full overflow-hidden rounded-xl border-1">
-      <div className="aspect-1/1 w-full overflow-hidden rounded-b-xl bg-neutral-700">
-        <img
-          className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
-          src={nftscan_uri || image_uri}
-          alt={`${contract_name} #${token_id}`}
-          title={`${contract_name} #${token_id}`}
-        />
-      </div>
+      {nftscan_uri || image_uri ? (
+        <div className="aspect-1/1 w-full overflow-hidden rounded-b-xl bg-neutral-700">
+          <img
+            className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
+            src={nftscan_uri || image_uri}
+            alt={`${contract_name} #${token_id}`}
+            title={`${contract_name} #${token_id}`}
+          />
+        </div>
+      ) : (
+        <div className="aspect-1/1">
+          <div className="flex h-full flex-col items-center justify-center gap-2">
+            <PhotoOffIcon className="size-12 text-neutral-400" />
+            <span className="text-center text-neutral-400">
+              Content not available yet
+            </span>
+          </div>
+        </div>
+      )}
       <div className="p-2">
         <Link to={`/dashboard/collection/${contract_address}/${token_id}`}>
           <span className="absolute inset-0"></span>
