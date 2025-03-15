@@ -141,6 +141,8 @@ export type NftOverview = {
   token_id: string
   image_uri: string
   nftscan_uri: string
+  latest_trade_price: number
+  mint_price: number
 }
 
 export type NftHttpResponse = {
