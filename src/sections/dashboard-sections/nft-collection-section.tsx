@@ -194,8 +194,6 @@ function NftCollectionNfts({ contractAddress }: NftCollectionNftsProps) {
           variant="secondary"
           size="large"
           leftIcon={<ArrowsDownUpIcon />}
-          className="ml-auto"
-          dropdownClassName="right-0"
         >
           <Dropdown.List>
             <Dropdown.Item value="item-1">
