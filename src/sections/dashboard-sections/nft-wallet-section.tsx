@@ -1,6 +1,7 @@
 import NftCardsList from '@components/dashboard-components/nft-cards-list'
-import NftCardsListSkeleton from '@components/dashboard-components/nft-cards-list-skeleton'
-import NftWalletSectionSkeleton from '@components/dashboard-components/nft-wallet-section-skeleton'
+import NftWalletSectionSkeleton, {
+  NftWalletNftsSkeleton,
+} from '@components/dashboard-components/nft-wallet-section-skeleton'
 import Dropdown from '@components/dashboard-components/ui/dropdown'
 import DropdownButton from '@components/dashboard-components/ui/dropdown-button'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
@@ -216,7 +217,7 @@ function NftWalletNfts({ walletAddress }: NftWalletNftsProps) {
     if (inView) fetchNextPage()
   }, [inView, fetchNextPage])
 
-  if (isPending) return <NftCardsListSkeleton />
+  if (isPending) return <NftWalletNftsSkeleton />
 
   if (error) return <ErrorMessage />
 
