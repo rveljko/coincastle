@@ -20,6 +20,7 @@ export default function NftCollectionSectionSkeleton() {
         </div>
         <NftCollectionStatisticsSkeleton />
       </div>
+      <div className="bg-clickable/10 mb-2 h-9.5 w-20 animate-pulse rounded-sm"></div>
       <NftCollectionNftsSkeleton />
     </Section>
   )
@@ -52,10 +53,5 @@ export function NftCollectionStatisticsSkeleton() {
 }
 
 export function NftCollectionNftsSkeleton() {
-  return (
-    <>
-      <div className="bg-clickable/10 mb-2 h-9.5 w-20 animate-pulse rounded-sm"></div>
-      <NftCardsListSkeleton />
-    </>
-  )
+  return <NftCardsListSkeleton />
 }
