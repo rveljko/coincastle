@@ -7,6 +7,7 @@ import NftSectionSkeleton, {
 } from '@sections/dashboard-sections/nft-section-skeleton'
 import Section from '@sections/dashboard-sections/section'
 import { TITLE_PREFIX } from '@utils/constants'
+import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
 import { longDateFormatter } from '@utils/helpers/date-formatter'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
 import { Link } from 'react-router-dom'
@@ -38,6 +39,8 @@ export default function NftSection({
     minter,
     own_timestamp,
     owner,
+    latest_trade_price,
+    mint_price,
     attributes,
     image_uri,
     nftscan_uri,
@@ -69,6 +72,14 @@ export default function NftSection({
                 </Link>
               </InformationList.Value>
             </InformationList.Item>
+            {mint_price >= 0 ? (
+              <InformationList.Item>
+                <InformationList.Label>Mint Price</InformationList.Label>
+                <InformationList.Value>
+                  {ethereumPriceFormatter(mint_price)}
+                </InformationList.Value>
+              </InformationList.Item>
+            ) : null}
             <InformationList.Item>
               <InformationList.Label>Оwned Since</InformationList.Label>
               <InformationList.Value>
@@ -83,6 +94,14 @@ export default function NftSection({
                 </Link>
               </InformationList.Value>
             </InformationList.Item>
+            {latest_trade_price && (
+              <InformationList.Item>
+                <InformationList.Label>Latest Sale Price</InformationList.Label>
+                <InformationList.Value>
+                  {ethereumPriceFormatter(latest_trade_price)}
+                </InformationList.Value>
+              </InformationList.Item>
+            )}
           </InformationList>
           {attributes.length ? (
             <>

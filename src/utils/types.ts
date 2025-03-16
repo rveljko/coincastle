@@ -153,6 +153,8 @@ export type NftHttpResponse = {
     own_timestamp: number
     image_uri: string
     nftscan_uri: string
+    latest_trade_price: number
+    mint_price: number
     attributes: {
       attribute_name: string
       attribute_value: string
