@@ -1,7 +1,6 @@
 import NftCardsList from '@components/dashboard-components/nft-cards-list'
-import NftWalletSectionSkeleton, {
-  NftWalletStatisticsSkeleton,
-} from '@components/dashboard-components/nft-wallet-section-skeleton'
+import NftCardsListSkeleton from '@components/dashboard-components/nft-cards-list-skeleton'
+import NftWalletSectionSkeleton from '@components/dashboard-components/nft-wallet-section-skeleton'
 import Dropdown from '@components/dashboard-components/ui/dropdown'
 import DropdownButton from '@components/dashboard-components/ui/dropdown-button'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
@@ -61,27 +60,33 @@ export default function NftWalletSection({
     })
   }
 
-  const { data, isPending, error, fetchNextPage, isFetchingNextPage } =
-    useGetWalletNfts(walletAddress, sortField, sortDirection)
-  const { ref, inView } = useInView()
-
-  useEffect(() => {
-    if (inView) fetchNextPage()
-  }, [inView, fetchNextPage])
+  const { data, isPending, error } = useGetNftWalletStatistics(walletAddress)
 
   if (isPending) return <NftWalletSectionSkeleton />
 
-  if (error)
+  if (error || !data.data)
     return (
       <Section>
         <ErrorMessage />
       </Section>
     )
 
+  const {
+    holding_value,
+    holding_value_usdt,
+    sold_value,
+    sold_value_usdt,
+    gas_value,
+    gas_value_usdt,
+    holding_count,
+    mint_count,
+    collection_count,
+  } = data.data
+
   return (
     <Section>
-      <div className="mb-4">
-        <header className="mb-4 flex w-full flex-wrap gap-2 lg:max-w-[50%]">
+      <div className="mb-4 w-full lg:max-w-[50%]">
+        <header className="mb-4 flex w-full flex-wrap gap-2">
           <div className="flex size-32 items-center justify-center rounded-full bg-neutral-700">
             <WalletIcon className="text-clickable size-16" />
           </div>
@@ -89,7 +94,50 @@ export default function NftWalletSection({
             {ethereumAddressFormatter(walletAddress)}
           </h1>
         </header>
-        <NftWalletStatistics walletAddress={walletAddress} />
+        <h3 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+          Wallet Statistics
+        </h3>
+        <InformationList>
+          <InformationList.Item>
+            <InformationList.Label>Holding Value</InformationList.Label>
+            <InformationList.Value>
+              {ethereumPriceFormatter(holding_value)} (
+              {currencyFormatter(holding_value_usdt)})
+            </InformationList.Value>
+          </InformationList.Item>
+          <InformationList.Item>
+            <InformationList.Label>Sold Value</InformationList.Label>
+            <InformationList.Value>
+              {ethereumPriceFormatter(sold_value)} (
+              {currencyFormatter(sold_value_usdt)})
+            </InformationList.Value>
+          </InformationList.Item>
+          <InformationList.Item>
+            <InformationList.Label>Gas Fees</InformationList.Label>
+            <InformationList.Value>
+              {ethereumPriceFormatter(gas_value)} (
+              {currencyFormatter(gas_value_usdt)})
+            </InformationList.Value>
+          </InformationList.Item>
+          <InformationList.Item>
+            <InformationList.Label>NFTs Held</InformationList.Label>
+            <InformationList.Value>
+              {numbersWithCommasFormatter(holding_count)}
+            </InformationList.Value>
+          </InformationList.Item>
+          <InformationList.Item>
+            <InformationList.Label>Minted NFTs</InformationList.Label>
+            <InformationList.Value>
+              {numbersWithCommasFormatter(mint_count)}
+            </InformationList.Value>
+          </InformationList.Item>
+          <InformationList.Item>
+            <InformationList.Label>Collections Held</InformationList.Label>
+            <InformationList.Value>
+              {numbersWithCommasFormatter(collection_count)}
+            </InformationList.Value>
+          </InformationList.Item>
+        </InformationList>
       </div>
       <div className="mb-2">
         <DropdownButton
@@ -144,89 +192,41 @@ export default function NftWalletSection({
           </Dropdown.List>
         </DropdownButton>
       </div>
+      <NftWalletNfts walletAddress={walletAddress} />
+    </Section>
+  )
+}
+
+type NftWalletNftsProps = {
+  walletAddress: string
+}
+
+function NftWalletNfts({ walletAddress }: NftWalletNftsProps) {
+  const [searchParams] = useSearchParams()
+  const sortField = (searchParams.get('sort-field') ||
+    '') as NftWalletNftsSortField
+  const sortDirection = (searchParams.get('sort-direction') ||
+    '') as NftWalletNftsSortDirection
+
+  const { data, isPending, error, fetchNextPage, isFetchingNextPage } =
+    useGetWalletNfts(walletAddress, sortField, sortDirection)
+  const { ref, inView } = useInView()
+
+  useEffect(() => {
+    if (inView) fetchNextPage()
+  }, [inView, fetchNextPage])
+
+  if (isPending) return <NftCardsListSkeleton />
+
+  if (error) return <ErrorMessage />
+
+  return (
+    <>
       <NftCardsList
         nftCards={data.pages.map((page) => page.data.content).flat()}
         isLoadingSkeletons={isFetchingNextPage}
       />
       <div ref={ref}></div>
-    </Section>
-  )
-}
-
-type NftWalletStatisticsProps = {
-  walletAddress: string
-}
-
-function NftWalletStatistics({ walletAddress }: NftWalletStatisticsProps) {
-  const { data, isPending, error } = useGetNftWalletStatistics(walletAddress)
-
-  if (isPending)
-    return (
-      <div className="w-full lg:max-w-[50%]">
-        <NftWalletStatisticsSkeleton />
-      </div>
-    )
-
-  if (error || !data.data) return <ErrorMessage />
-
-  const {
-    holding_value,
-    holding_value_usdt,
-    sold_value,
-    sold_value_usdt,
-    gas_value,
-    gas_value_usdt,
-    holding_count,
-    mint_count,
-    collection_count,
-  } = data.data
-
-  return (
-    <div className="w-full lg:max-w-[50%]">
-      <h3 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
-        Wallet Statistics
-      </h3>
-      <InformationList>
-        <InformationList.Item>
-          <InformationList.Label>Holding Value</InformationList.Label>
-          <InformationList.Value>
-            {ethereumPriceFormatter(holding_value)} (
-            {currencyFormatter(holding_value_usdt)})
-          </InformationList.Value>
-        </InformationList.Item>
-        <InformationList.Item>
-          <InformationList.Label>Sold Value</InformationList.Label>
-          <InformationList.Value>
-            {ethereumPriceFormatter(sold_value)} (
-            {currencyFormatter(sold_value_usdt)})
-          </InformationList.Value>
-        </InformationList.Item>
-        <InformationList.Item>
-          <InformationList.Label>Gas Fees</InformationList.Label>
-          <InformationList.Value>
-            {ethereumPriceFormatter(gas_value)} (
-            {currencyFormatter(gas_value_usdt)})
-          </InformationList.Value>
-        </InformationList.Item>
-        <InformationList.Item>
-          <InformationList.Label>NFTs Held</InformationList.Label>
-          <InformationList.Value>
-            {numbersWithCommasFormatter(holding_count)}
-          </InformationList.Value>
-        </InformationList.Item>
-        <InformationList.Item>
-          <InformationList.Label>Minted NFTs</InformationList.Label>
-          <InformationList.Value>
-            {numbersWithCommasFormatter(mint_count)}
-          </InformationList.Value>
-        </InformationList.Item>
-        <InformationList.Item>
-          <InformationList.Label>Collections Held</InformationList.Label>
-          <InformationList.Value>
-            {numbersWithCommasFormatter(collection_count)}
-          </InformationList.Value>
-        </InformationList.Item>
-      </InformationList>
-    </div>
+    </>
   )
 }
