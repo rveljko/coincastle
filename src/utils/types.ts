@@ -203,3 +203,11 @@ export type NftCollectionNftsSortField =
   | ''
 
 export type NftCollectionNftsSortDirection = 'asc' | 'desc' | ''
+
+export type NftWalletNftsSortField =
+  | 'mint_time'
+  | 'own_time'
+  | 'latest_trade_price'
+  | ''
+
+export type NftWalletNftsSortDirection = 'asc' | 'desc' | ''
