@@ -29,7 +29,7 @@ export default function NftCard({
       )}
       {...props}
     >
-      {nftscan_uri || image_uri.startsWith('http') ? (
+      {nftscan_uri || image_uri?.startsWith('http') ? (
         <div className="aspect-1/1 w-full overflow-hidden rounded-b-xl bg-neutral-700">
           <img
             className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
