@@ -102,6 +102,7 @@ export type NftCollectionsOverviewHttpResponse = {
     contract_address: string
     name: string
     logo_url: string
+    opensea_verified: boolean
     floor_price: number
     volume_total: number
     owners_total: number

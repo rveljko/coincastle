@@ -1,6 +1,7 @@
 import NftCollectionsTableSkeleton from '@components/dashboard-components/nft-collections-table-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Table from '@components/dashboard-components/ui/table'
+import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
 import { nftCollectionsTableHeaders } from '@data/table-headers'
 import useGetNftCollections from '@hooks/queries/use-get-nft-collections'
 import {
@@ -46,6 +47,7 @@ export default function NftCollectionsTable() {
             contract_address,
             name,
             logo_url,
+            opensea_verified,
             floor_price,
             volume_total,
             owners_total,
@@ -55,14 +57,16 @@ export default function NftCollectionsTable() {
               <Table.BodyCell>
                 <Link to={`/dashboard/collection/${contract_address}`}>
                   <span className="absolute inset-0"></span>
-                  <div className="flex w-max flex-row gap-1">
+                  <div className="flex w-max items-center gap-1">
                     <img
                       className="size-5.5 rounded-full"
                       src={logo_url}
                       title={name}
                       alt={name}
                     />
-                    {name}
+                    <div className="flex items-center gap-0.5">
+                      {name} {opensea_verified && <VerifiedBadge isSmall />}
+                    </div>
                   </div>
                 </Link>
               </Table.BodyCell>
