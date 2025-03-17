@@ -1,6 +1,7 @@
-import NftCardsList from '@components/dashboard-components/nft-cards-list'
+import NftCardsCarousel from '@components/dashboard-components/nft-cards-carousel'
 import NftCardsListSkeleton from '@components/dashboard-components/nft-cards-list-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
+import Button from '@components/ui/button'
 import useGetNftCollectionNfts from '@hooks/queries/use-get-nft-collection-nfts'
 import Section from '@sections/dashboard-sections/section'
 
@@ -37,8 +38,19 @@ function Nfts({ contractAddress }: NftsProps) {
   if (error) return <ErrorMessage />
 
   return (
-    <NftCardsList
-      nftCards={data.pages.map((page) => page.data.content).flat()}
-    />
+    <>
+      <NftCardsCarousel
+        nftCards={data.pages.map((page) => page.data.content).flat()}
+        className="mb-1"
+      />
+      <Button
+        href={`/dashboard/collection/${contractAddress}`}
+        variant="link"
+        size="large"
+        className="mx-auto"
+      >
+        View Collection
+      </Button>
+    </>
   )
 }

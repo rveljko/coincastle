@@ -1,9 +1,10 @@
 import PhotoOffIcon from '@icons/photo-off-icon'
 import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
 import { NftOverview } from '@utils/types'
+import { cn } from '@utils/utils'
 import { Link } from 'react-router-dom'
 
-type NftCardProps = {
+type NftCardProps = React.ComponentPropsWithoutRef<'article'> & {
   nft: NftOverview
 }
 
@@ -17,9 +18,17 @@ export default function NftCard({
     latest_trade_price,
     mint_price,
   },
+  className,
+  ...props
 }: NftCardProps) {
   return (
-    <article className="border-section-outline group relative h-full overflow-hidden rounded-xl border-1">
+    <article
+      className={cn(
+        'border-section-outline group relative h-full overflow-hidden rounded-xl border-1',
+        className
+      )}
+      {...props}
+    >
       {nftscan_uri || image_uri.startsWith('http') ? (
         <div className="aspect-1/1 w-full overflow-hidden rounded-b-xl bg-neutral-700">
           <img
