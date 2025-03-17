@@ -1,5 +1,6 @@
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
+import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
 import useGetNftCollectionInformation from '@hooks/queries/use-get-nft-collection-information'
 import useGetSingleNft from '@hooks/queries/use-get-single-nft'
 import NftSectionSkeleton, {
@@ -155,7 +156,7 @@ function NftCollectionInformation({
 
   if (error) return <ErrorMessage />
 
-  const { logo_url, name, description } = data.data
+  const { logo_url, name, opensea_verified, description } = data.data
 
   return (
     <header className="relative mb-4">
@@ -173,7 +174,9 @@ function NftCollectionInformation({
             className="mb-0.5"
           >
             <span className="absolute top-0 left-0 size-16 rounded-md"></span>
-            {name}
+            <div className="flex flex-wrap items-center gap-0.5">
+              {name} {opensea_verified && <VerifiedBadge isSmall />}
+            </div>
           </Link>
           <h1 className="break-all">#{tokenId}</h1>
         </div>
