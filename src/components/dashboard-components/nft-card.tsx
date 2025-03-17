@@ -20,7 +20,7 @@ export default function NftCard({
 }: NftCardProps) {
   return (
     <article className="border-section-outline group relative h-full overflow-hidden rounded-xl border-1">
-      {nftscan_uri || image_uri ? (
+      {nftscan_uri || image_uri.startsWith('http') ? (
         <div className="aspect-1/1 w-full overflow-hidden rounded-b-xl bg-neutral-700">
           <img
             className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
