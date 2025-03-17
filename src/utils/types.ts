@@ -114,6 +114,7 @@ export type NftCollectionInformationHttpResponse = {
   data: {
     contract_address: string
     name: string
+    opensea_verified: boolean
     description: string
     logo_url: string
     owner: string

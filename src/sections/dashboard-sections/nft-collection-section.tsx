@@ -7,6 +7,7 @@ import Dropdown from '@components/dashboard-components/ui/dropdown'
 import DropdownButton from '@components/dashboard-components/ui/dropdown-button'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
+import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
 import useGetNftCollectionInformation from '@hooks/queries/use-get-nft-collection-information'
 import useGetNftCollectionNfts from '@hooks/queries/use-get-nft-collection-nfts'
 import useGetNftCollectionStatistics from '@hooks/queries/use-get-nft-collection-statistics'
@@ -76,7 +77,14 @@ export default function NftCollectionSection({
       </Section>
     )
 
-  const { contract_address, description, logo_url, name, owner } = data.data
+  const {
+    contract_address,
+    description,
+    logo_url,
+    name,
+    opensea_verified,
+    owner,
+  } = data.data
 
   return (
     <Section>
@@ -91,7 +99,10 @@ export default function NftCollectionSection({
               title={name}
             />
             <div>
-              <h1 className="mb-1 break-all">{name}</h1>
+              <h1 className="mb-1 flex items-center gap-1 break-all">
+                {name}
+                {opensea_verified && <VerifiedBadge />}
+              </h1>
               <p>
                 Created by{' '}
                 {ethereumAddressValidator(owner) ? (
