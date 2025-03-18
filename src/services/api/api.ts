@@ -24,7 +24,12 @@ export async function getCryptoCurrencies(
   numberOfCoins: number
 ): Promise<CoinOverviewHttpResponse[]> {
   const res = await fetch(
-    `${CRYPTO_BASE_URL}/coins/markets?vs_currency=usd&per_page=${numberOfCoins}`
+    `${CRYPTO_BASE_URL}/coins/markets?vs_currency=usd&per_page=${numberOfCoins}`,
+    {
+      headers: {
+        'X-Cg-Demo-API-Key': import.meta.env.VITE_COINGECKO_API_KEY,
+      },
+    }
   )
   return res.json()
 }
@@ -32,7 +37,11 @@ export async function getCryptoCurrencies(
 export async function getCoinInformation(
   id: string
 ): Promise<CoinInformationHttpResponse> {
-  const res = await fetch(`${CRYPTO_BASE_URL}/coins/${id}`)
+  const res = await fetch(`${CRYPTO_BASE_URL}/coins/${id}`, {
+    headers: {
+      'X-Cg-Demo-API-Key': import.meta.env.VITE_COINGECKO_API_KEY,
+    },
+  })
   return res.json()
 }
 
@@ -41,7 +50,12 @@ export async function getCoinChartInformation(
   period: CoinChartInformationPeriod
 ): Promise<CoinChartInformationHttpResponse> {
   const res = await fetch(
-    `${CRYPTO_BASE_URL}/coins/${id}/market_chart?vs_currency=usd&days=${period}`
+    `${CRYPTO_BASE_URL}/coins/${id}/market_chart?vs_currency=usd&days=${period}`,
+    {
+      headers: {
+        'X-Cg-Demo-API-Key': import.meta.env.VITE_COINGECKO_API_KEY,
+      },
+    }
   )
   return res.json()
 }
