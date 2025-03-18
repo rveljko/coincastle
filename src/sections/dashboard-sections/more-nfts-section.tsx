@@ -1,5 +1,5 @@
+import { MoreNftsNftsSkeleton } from '@components/dashboard-components/more-nfts-section-skeleton'
 import NftCardsCarousel from '@components/dashboard-components/nft-cards-carousel'
-import NftCardsListSkeleton from '@components/dashboard-components/nft-cards-list-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Button from '@components/ui/button'
 import useGetNftCollectionNfts from '@hooks/queries/use-get-nft-collection-nfts'
@@ -34,7 +34,7 @@ function MoreNftsNfts({ contractAddress }: MoreNftsNftsProps) {
     10
   )
 
-  if (isPending) return <NftCardsListSkeleton />
+  if (isPending) return <MoreNftsNftsSkeleton />
 
   if (error) return <ErrorMessage />
 
