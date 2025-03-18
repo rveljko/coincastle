@@ -30,7 +30,7 @@ export default function NftSection({
 
   if (error)
     return (
-      <Section>
+      <Section className={className}>
         <ErrorMessage />
       </Section>
     )
