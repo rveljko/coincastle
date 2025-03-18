@@ -8,7 +8,8 @@ import {
 export default function useGetNftCollectionNfts(
   contractAddress: string,
   sortField: NftCollectionNftsSortField,
-  sortDirection: NftCollectionNftsSortDirection
+  sortDirection: NftCollectionNftsSortDirection,
+  limit: number
 ) {
   return useInfiniteQuery({
     queryFn: ({ pageParam }) =>
@@ -16,13 +17,15 @@ export default function useGetNftCollectionNfts(
         contractAddress,
         pageParam,
         sortField,
-        sortDirection
+        sortDirection,
+        limit
       ),
     queryKey: [
       'nft-collection-nfts',
       contractAddress,
       sortField,
       sortDirection,
+      limit,
     ],
     initialPageParam: '',
     getNextPageParam: (lastPage) => lastPage.data.next,

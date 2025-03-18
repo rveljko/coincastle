@@ -93,10 +93,11 @@ export async function getNftCollectionNfts(
   contractAddress: string,
   pageParam: string,
   sortField: NftCollectionNftsSortField,
-  sortDirection: NftCollectionNftsSortDirection
+  sortDirection: NftCollectionNftsSortDirection,
+  limit: number
 ): Promise<NftCollectionNftsHttpResponse> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/assets/${contractAddress}?cursor=${pageParam}&sort_field=${sortField}&sort_direction=${sortDirection}`,
+    `https://restapi.nftscan.com/api/v2/assets/${contractAddress}?cursor=${pageParam}&sort_field=${sortField}&sort_direction=${sortDirection}&limit=${limit}`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,

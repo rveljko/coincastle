@@ -30,7 +30,8 @@ function Nfts({ contractAddress }: NftsProps) {
   const { data, isPending, error } = useGetNftCollectionNfts(
     contractAddress,
     '',
-    ''
+    '',
+    10
   )
 
   if (isPending) return <NftCardsListSkeleton />
