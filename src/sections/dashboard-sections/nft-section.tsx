@@ -26,7 +26,7 @@ export default function NftSection({
 }: NftSectionProps) {
   const { data, isPending, error } = useGetSingleNft(contractAddress, tokenId)
 
-  if (isPending) return <NftSectionSkeleton />
+  if (isPending) return <NftSectionSkeleton className={className} />
 
   if (error)
     return (

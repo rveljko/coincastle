@@ -1,8 +1,14 @@
 import Section from '@sections/dashboard-sections/section'
 
-export default function NftSectionSkeleton() {
+type NftSectionSkeletonProps = {
+  className?: string
+}
+
+export default function NftSectionSkeleton({
+  className,
+}: NftSectionSkeletonProps) {
   return (
-    <Section>
+    <Section className={className}>
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="md:flex-1">
           <NftCollectionInformationSkeleton />
