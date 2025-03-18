@@ -1,4 +1,4 @@
-import PhotoOffIcon from '@icons/photo-off-icon'
+import NoNftImagePlaceholder from '@components/dashboard-components/no-nft-image-placeholder'
 import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
 import { NftOverview } from '@utils/types'
 import { cn } from '@utils/utils'
@@ -40,12 +40,7 @@ export default function NftCard({
         </div>
       ) : (
         <div className="aspect-1/1">
-          <div className="flex h-full flex-col items-center justify-center gap-2">
-            <PhotoOffIcon className="size-12 text-neutral-400" />
-            <span className="text-center text-neutral-400">
-              Content not available yet
-            </span>
-          </div>
+          <NoNftImagePlaceholder />
         </div>
       )}
       <div className="p-2">

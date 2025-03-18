@@ -1,3 +1,4 @@
+import NoNftImagePlaceholder from '@components/dashboard-components/no-nft-image-placeholder'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
@@ -127,13 +128,19 @@ export default function NftSection({
           ) : null}
         </div>
         <div className="md:flex-1">
-          <div className="group aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
-            <img
-              className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
-              src={nftscan_uri || image_uri}
-              alt=""
-            />
-          </div>
+          {nftscan_uri || image_uri?.startsWith('http') ? (
+            <div className="group aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
+              <img
+                className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
+                src={nftscan_uri || image_uri}
+                alt=""
+              />
+            </div>
+          ) : (
+            <div className="aspect-1/1">
+              <NoNftImagePlaceholder />
+            </div>
+          )}
         </div>
       </div>
     </Section>
