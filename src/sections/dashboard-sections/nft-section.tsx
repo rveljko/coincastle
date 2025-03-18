@@ -58,7 +58,7 @@ export default function NftSection({
           <h3 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
             Details
           </h3>
-          <InformationList className="mb-4">
+          <InformationList className={attributes.length ? 'mb-4' : ''}>
             <InformationList.Item>
               <InformationList.Label>Minted Date</InformationList.Label>
               <InformationList.Value>
