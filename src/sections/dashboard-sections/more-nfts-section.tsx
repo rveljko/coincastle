@@ -17,16 +17,16 @@ export default function MoreNftsSection({
       <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-4">
         More From This Collection
       </h2>
-      <Nfts contractAddress={contractAddress} />
+      <MoreNftsNfts contractAddress={contractAddress} />
     </Section>
   )
 }
 
-type NftsProps = {
+type MoreNftsNftsProps = {
   contractAddress: string
 }
 
-function Nfts({ contractAddress }: NftsProps) {
+function MoreNftsNfts({ contractAddress }: MoreNftsNftsProps) {
   const { data, isPending, error } = useGetNftCollectionNfts(
     contractAddress,
     '',
