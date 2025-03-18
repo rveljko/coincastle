@@ -245,7 +245,7 @@ function NftCollectionNfts({ contractAddress }: NftCollectionNftsProps) {
     '') as NftCollectionNftsSortDirection
 
   const { data, isPending, error, fetchNextPage, isFetchingNextPage } =
-    useGetNftCollectionNfts(contractAddress, sortField, sortDirection)
+    useGetNftCollectionNfts(contractAddress, sortField, sortDirection, 20)
   const { ref, inView } = useInView()
 
   useEffect(() => {
