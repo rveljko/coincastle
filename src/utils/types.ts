@@ -244,3 +244,8 @@ export type StockInformationHttpResponse = {
   open: number
   previousClose: number
 }
+
+export type StockChartInformationHttpResponse = {
+  date: string
+  price: number
+}

@@ -14,3 +14,7 @@ export function longDateFormatter(timestamp: number) {
     year: 'numeric',
   })
 }
+
+export function iso8601DateFormatter(date: Date) {
+  return date.toLocaleDateString('en-CA')
+}
