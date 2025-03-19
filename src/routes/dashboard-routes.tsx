@@ -12,6 +12,7 @@ import NftWalletPage from '@pages/dashboard-pages/nft-wallet-page'
 import NftsPage from '@pages/dashboard-pages/nfts-page'
 import PasswordPage from '@pages/dashboard-pages/password-page'
 import PreferencesPage from '@pages/dashboard-pages/preferences-page'
+import StockPage from '@pages/dashboard-pages/stock-page'
 import StocksPage from '@pages/dashboard-pages/stocks-page'
 import WalletPage from '@pages/dashboard-pages/wallet-page'
 import { Route, Routes } from 'react-router-dom'
@@ -34,6 +35,7 @@ export default function DashboardRoutes() {
         />
         <Route path="wallet/:walletAddress" element={<NftWalletPage />} />
         <Route path="stocks" element={<StocksPage />} />
+        <Route path="stock/:stockSymbol" element={<StockPage />} />
         <Route path="guides" element={<GuidesPage />} />
         <Route path="help-center" element={<HelpCenterPage />} />
         <Route path="settings" element={<SettingsLayout />}>

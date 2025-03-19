@@ -10,6 +10,7 @@ import {
 } from '@utils/helpers/currency-formatter'
 import { dividendYieldCalculator } from '@utils/helpers/dividend-yield-calculator'
 import { percentageFormatter } from '@utils/helpers/percentage-formatters'
+import { Link } from 'react-router-dom'
 
 export default function StocksTable() {
   const { data, isPending, error } = useGetStocks()
@@ -38,15 +39,21 @@ export default function StocksTable() {
             volume,
             lastAnnualDividend,
           }) => (
-            <Table.BodyRow key={`${exchangeShortName}${symbol}`}>
+            <Table.BodyRow
+              key={`${exchangeShortName}${symbol}`}
+              className="relative"
+            >
               <Table.BodyCell>
-                <div className="flex w-max items-center gap-1">
-                  <FirstLetterImageGenerator word={companyName} />
-                  <div className="flex items-center gap-0.5">
-                    {companyName}
-                    <span className="text-neutral-400">{symbol}</span>
+                <Link to={`/dashboard/stock/${symbol}`}>
+                  <span className="absolute inset-0"></span>
+                  <div className="flex w-max items-center gap-1">
+                    <FirstLetterImageGenerator word={companyName} isSmall />
+                    <div className="flex items-center gap-0.5">
+                      {companyName}
+                      <span className="text-neutral-400">{symbol}</span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </Table.BodyCell>
               <Table.BodyCell>{currencyFormatter(price)}</Table.BodyCell>
               <Table.BodyCell>
