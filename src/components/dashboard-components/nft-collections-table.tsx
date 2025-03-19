@@ -28,7 +28,8 @@ export default function NftCollectionsTable() {
     sortDirection
   )
 
-  if (isPending) return <NftCollectionsTableSkeleton numberOfCoins={100} />
+  if (isPending)
+    return <NftCollectionsTableSkeleton numberOfNftCollections={100} />
 
   if (error) return <ErrorMessage />
 
