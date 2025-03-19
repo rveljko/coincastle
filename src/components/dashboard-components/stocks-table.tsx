@@ -1,3 +1,4 @@
+import StocksTableSkeleton from '@components/dashboard-components/stocks-table-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import FirstLetterImageGenerator from '@components/dashboard-components/ui/first-letter-image-generator'
 import Table from '@components/dashboard-components/ui/table'
@@ -13,7 +14,7 @@ import { percentageFormatter } from '@utils/helpers/percentage-formatters'
 export default function StocksTable() {
   const { data, isPending, error } = useGetStocks()
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <StocksTableSkeleton numberOfStocks={100} />
 
   if (error) return <ErrorMessage />
 
