@@ -215,3 +215,13 @@ export type NftWalletNftsSortField =
   | ''
 
 export type NftWalletNftsSortDirection = 'asc' | 'desc' | ''
+
+export type StockOverviewHttpResponse = {
+  symbol: string
+  companyName: string
+  marketCap: number
+  price: number
+  volume: number
+  lastAnnualDividend: number
+  exchangeShortName: string
+}
