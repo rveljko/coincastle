@@ -65,7 +65,7 @@ export default function StockInformationSection({
           </h3>
           <InformationList className="mb-4">
             <InformationList.Item>
-              <InformationList.Label>Current Price</InformationList.Label>
+              <InformationList.Label>Price</InformationList.Label>
               <InformationList.Value>
                 {currencyFormatter(price)}
               </InformationList.Value>
