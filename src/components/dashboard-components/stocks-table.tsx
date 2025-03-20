@@ -12,10 +12,14 @@ import { dividendYieldCalculator } from '@utils/helpers/dividend-yield-calculato
 import { percentageFormatter } from '@utils/helpers/percentage-formatters'
 import { Link } from 'react-router-dom'
 
-export default function StocksTable() {
-  const { data, isPending, error } = useGetStocks()
+type StocksTableProps = {
+  numberOfStocks: number
+}
 
-  if (isPending) return <StocksTableSkeleton numberOfStocks={100} />
+export default function StocksTable({ numberOfStocks }: StocksTableProps) {
+  const { data, isPending, error } = useGetStocks(numberOfStocks)
+
+  if (isPending) return <StocksTableSkeleton numberOfStocks={numberOfStocks} />
 
   if (error) return <ErrorMessage />
 

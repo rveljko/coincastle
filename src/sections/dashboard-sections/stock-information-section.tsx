@@ -17,14 +17,17 @@ import {
 
 type StockInformationSectionProps = {
   stockSymbol: string
+  className?: string
 }
 
 export default function StockInformationSection({
   stockSymbol,
+  className,
 }: StockInformationSectionProps) {
   const { data, isPending, error } = useGetStockInformation(stockSymbol)
 
-  if (isPending) return <StockInformationSectionSkeleton />
+  if (isPending)
+    return <StockInformationSectionSkeleton className={className} />
 
   if (error) return <ErrorMessage />
 
@@ -48,7 +51,7 @@ export default function StockInformationSection({
   } = data[0]
 
   return (
-    <Section>
+    <Section className={className}>
       <title>{`${TITLE_PREFIX}${name} ${symbol}`}</title>
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="md:flex-4">

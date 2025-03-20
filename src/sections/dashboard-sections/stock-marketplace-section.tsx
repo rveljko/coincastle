@@ -5,7 +5,7 @@ export default function StockMarketplaceSection() {
   return (
     <Section>
       <h1 className="mb-4">Stock Marketplace</h1>
-      <StocksTable />
+      <StocksTable numberOfStocks={100} />
     </Section>
   )
 }

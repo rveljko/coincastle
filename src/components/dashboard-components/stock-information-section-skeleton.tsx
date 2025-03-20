@@ -1,9 +1,15 @@
 import ChartSkeleton from '@components/dashboard-components/chart-skeleton'
 import Section from '@sections/dashboard-sections/section'
 
-export default function StockInformationSectionSkeleton() {
+type StockInformationSectionSkeletonProps = {
+  className?: string
+}
+
+export default function StockInformationSectionSkeleton({
+  className,
+}: StockInformationSectionSkeletonProps) {
   return (
-    <Section>
+    <Section className={className}>
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="md:flex-4">
           <div className="mb-4 flex gap-2">
