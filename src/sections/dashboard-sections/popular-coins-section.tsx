@@ -4,7 +4,7 @@ import Section from '@sections/dashboard-sections/section'
 export default function PopularCoinsSection() {
   return (
     <Section>
-      <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-4">
+      <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
         Popular Coins
       </h2>
       <CryptoCoinsTable numberOfCoins={5} />
