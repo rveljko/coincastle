@@ -14,9 +14,13 @@ import { Link } from 'react-router-dom'
 
 type StocksTableProps = {
   numberOfStocks: number
+  className?: string
 }
 
-export default function StocksTable({ numberOfStocks }: StocksTableProps) {
+export default function StocksTable({
+  numberOfStocks,
+  className,
+}: StocksTableProps) {
   const { data, isPending, error } = useGetStocks(numberOfStocks)
 
   if (isPending) return <StocksTableSkeleton numberOfStocks={numberOfStocks} />
@@ -24,7 +28,7 @@ export default function StocksTable({ numberOfStocks }: StocksTableProps) {
   if (error) return <ErrorMessage />
 
   return (
-    <Table>
+    <Table className={className}>
       <Table.Header>
         <Table.HeaderRow>
           {stockMarketplaceTableHeaders.map((header) => (
