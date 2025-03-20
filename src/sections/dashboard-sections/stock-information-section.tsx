@@ -1,3 +1,6 @@
+import StockInformationSectionSkeleton, {
+  StockInformationChartSkeleton,
+} from '@components/dashboard-components/stock-information-section-skeleton'
 import StockChart from '@components/dashboard-components/stocks-chart'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import FirstLetterImageGenerator from '@components/dashboard-components/ui/first-letter-image-generator'
@@ -21,7 +24,7 @@ export default function StockInformationSection({
 }: StockInformationSectionProps) {
   const { data, isPending, error } = useGetStockInformation(stockSymbol)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <StockInformationSectionSkeleton />
 
   if (error) return <ErrorMessage />
 
@@ -168,7 +171,7 @@ type StockInformationChartProps = {
 function StockInformationChart({ stockSymbol }: StockInformationChartProps) {
   const { data, isPending, error } = useGetStockChartInformation(stockSymbol)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <StockInformationChartSkeleton />
 
   if (error) return <ErrorMessage />
 
