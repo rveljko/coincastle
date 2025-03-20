@@ -6,6 +6,7 @@ import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import FirstLetterImageGenerator from '@components/dashboard-components/ui/first-letter-image-generator'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import PercentageChangeIndicator from '@components/dashboard-components/ui/percentage-change-indicator'
+import Switcher from '@components/dashboard-components/ui/switcher'
 import useGetStockChartInformation from '@hooks/queries/use-get-stock-chart-information'
 import useGetStockInformation from '@hooks/queries/use-get-stock-information'
 import Section from '@sections/dashboard-sections/section'
@@ -14,6 +15,8 @@ import {
   compactCurrencyFormatter,
   currencyFormatter,
 } from '@utils/helpers/currency-formatter'
+import { StockChartInformationPeriod } from '@utils/types'
+import { useSearchParams } from 'react-router-dom'
 
 type StockInformationSectionProps = {
   stockSymbol: string
@@ -24,6 +27,17 @@ export default function StockInformationSection({
   stockSymbol,
   className,
 }: StockInformationSectionProps) {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const period = (searchParams.get('period') ||
+    '1') as StockChartInformationPeriod
+
+  function setStockPricePeriod(days: StockChartInformationPeriod) {
+    setSearchParams((prevParams) => {
+      prevParams.set('period', days)
+      return prevParams
+    })
+  }
+
   const { data, isPending, error } = useGetStockInformation(stockSymbol)
 
   if (isPending)
@@ -160,12 +174,64 @@ export default function StockInformationSection({
           </InformationList>
         </div>
         <div className="flex flex-col justify-between gap-4 md:flex-6">
-          <header>
-            <p className="mb-1">Price</p>
-            <h1 className="mb-0.5">{currencyFormatter(price)}</h1>
-            <PercentageChangeIndicator percentage={changePercentage} />
-          </header>
-          <StockInformationChart stockSymbol={stockSymbol} />
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            <header>
+              <p className="mb-1">Price</p>
+              <h1 className="mb-0.5">{currencyFormatter(price)}</h1>
+              <PercentageChangeIndicator percentage={changePercentage} />
+            </header>
+            <Switcher>
+              <Switcher.Item
+                id="1d"
+                name="time-filter"
+                onClick={() => setStockPricePeriod('1')}
+                isActive={period === '1'}
+              >
+                1D
+              </Switcher.Item>
+              <Switcher.Item
+                id="1w"
+                name="time-filter"
+                onClick={() => setStockPricePeriod('7')}
+                isActive={period === '7'}
+              >
+                1W
+              </Switcher.Item>
+              <Switcher.Item
+                id="1m"
+                name="time-filter"
+                onClick={() => setStockPricePeriod('30')}
+                isActive={period === '30'}
+              >
+                1M
+              </Switcher.Item>
+              <Switcher.Item
+                id="3m"
+                name="time-filter"
+                onClick={() => setStockPricePeriod('90')}
+                isActive={period === '90'}
+              >
+                3M
+              </Switcher.Item>
+              <Switcher.Item
+                id="6m"
+                name="time-filter"
+                onClick={() => setStockPricePeriod('180')}
+                isActive={period === '180'}
+              >
+                6M
+              </Switcher.Item>
+              <Switcher.Item
+                id="1Y"
+                name="time-filter"
+                onClick={() => setStockPricePeriod('365')}
+                isActive={period === '365'}
+              >
+                1Y
+              </Switcher.Item>
+            </Switcher>
+          </div>
+          <StockInformationChart stockSymbol={stockSymbol} period={period} />
         </div>
       </div>
     </Section>
@@ -174,10 +240,17 @@ export default function StockInformationSection({
 
 type StockInformationChartProps = {
   stockSymbol: string
+  period: StockChartInformationPeriod
 }
 
-function StockInformationChart({ stockSymbol }: StockInformationChartProps) {
-  const { data, isPending, error } = useGetStockChartInformation(stockSymbol)
+function StockInformationChart({
+  stockSymbol,
+  period,
+}: StockInformationChartProps) {
+  const { data, isPending, error } = useGetStockChartInformation(
+    stockSymbol,
+    period
+  )
 
   if (isPending) return <StockInformationChartSkeleton />
 
