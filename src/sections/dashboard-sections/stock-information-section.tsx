@@ -29,7 +29,12 @@ export default function StockInformationSection({
   if (isPending)
     return <StockInformationSectionSkeleton className={className} />
 
-  if (error) return <ErrorMessage />
+  if (error)
+    return (
+      <Section className={className}>
+        <ErrorMessage />
+      </Section>
+    )
 
   const {
     name,
