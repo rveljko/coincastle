@@ -14,7 +14,7 @@ export default function MoreNftsSection({
 }: MoreNftsSectionProps) {
   return (
     <Section>
-      <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-4">
+      <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
         More From This Collection
       </h2>
       <MoreNftsNfts contractAddress={contractAddress} />
