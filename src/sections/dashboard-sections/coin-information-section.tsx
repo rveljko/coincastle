@@ -1,5 +1,6 @@
-import ChartSkeleton from '@components/dashboard-components/chart-skeleton'
-import CoinInformationSectionSkeleton from '@components/dashboard-components/coin-information-section-skeleton'
+import CoinInformationSectionSkeleton, {
+  CoinInformationChartSkeleton,
+} from '@components/dashboard-components/coin-information-section-skeleton'
 import Chart from '@components/dashboard-components/ui/chart'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
@@ -215,7 +216,7 @@ type CoinChartProps = {
 function CoinChart({ coinId, period }: CoinChartProps) {
   const { data, isPending, error } = useGetCoinChartInformation(coinId, period)
 
-  if (isPending) return <ChartSkeleton />
+  if (isPending) return <CoinInformationChartSkeleton />
 
   if (error) return <ErrorMessage />
 

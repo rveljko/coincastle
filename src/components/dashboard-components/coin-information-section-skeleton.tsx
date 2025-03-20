@@ -76,9 +76,13 @@ export default function CoinInformationSectionSkeleton({
             </div>
             <div className="bg-clickable/10 h-8 w-full max-w-36 flex-5 animate-pulse rounded-sm"></div>
           </div>
-          <ChartSkeleton />
+          <CoinInformationChartSkeleton />
         </div>
       </div>
     </Section>
   )
+}
+
+export function CoinInformationChartSkeleton() {
+  return <ChartSkeleton />
 }
