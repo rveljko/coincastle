@@ -11,10 +11,12 @@ import { Link } from 'react-router-dom'
 
 type CryptoCoinsTableProps = {
   numberOfCoins: number
+  className?: string
 }
 
 export default function CryptoCoinsTable({
   numberOfCoins,
+  className,
 }: CryptoCoinsTableProps) {
   const { data, isPending, error } = useGetCryptoCurrencies(numberOfCoins)
 
@@ -24,7 +26,7 @@ export default function CryptoCoinsTable({
   if (error) return <div>error: {error.message}</div>
 
   return (
-    <Table>
+    <Table className={className}>
       <Table.Header>
         <Table.HeaderRow>
           {cryptoMarketplaceTableHeaders.map((header) => (
