@@ -31,6 +31,12 @@ export async function getCryptoCurrencies(
       },
     }
   )
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch all cryptocurrencies. Please check your connection and try again.'
+    )
+
   return res.json()
 }
 
@@ -42,6 +48,12 @@ export async function getCoinInformation(
       'X-Cg-Demo-API-Key': import.meta.env.VITE_COINGECKO_API_KEY,
     },
   })
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch coin information. Ensure the coin symbol or ID is correct and try again.'
+    )
+
   return res.json()
 }
 
@@ -57,6 +69,12 @@ export async function getCoinChartInformation(
       },
     }
   )
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch coin chart information. Check the coin symbol or ID and time period, then try again.'
+    )
+
   return res.json()
 }
 
