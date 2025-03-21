@@ -13,7 +13,7 @@ type ChartProps = {
   data: number[][]
 }
 
-export default function Chart({ data }: ChartProps) {
+export default function CryptoCoinChart({ data }: ChartProps) {
   const formattedData = data.map(([timestamp, price]) => ({
     timestamp,
     price,

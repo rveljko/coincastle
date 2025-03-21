@@ -1,7 +1,7 @@
-import Chart from '@components/dashboard-components/chart'
 import CoinInformationSectionSkeleton, {
   CoinInformationChartSkeleton,
 } from '@components/dashboard-components/coin-information-section-skeleton'
+import CryptoCoinChart from '@components/dashboard-components/crypto-coin-chart'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import PercentageChangeIndicator from '@components/dashboard-components/ui/percentage-change-indicator'
@@ -220,5 +220,5 @@ function CoinInformationChart({ coinId, period }: CoinInformationChartProps) {
 
   if (error) return <ErrorMessage />
 
-  return <Chart data={data.prices} />
+  return <CryptoCoinChart data={data.prices} />
 }
