@@ -201,19 +201,19 @@ export default function CoinInformationSection({
               </Switcher.Item>
             </Switcher>
           </div>
-          <CoinChart coinId={coinId} period={period} />
+          <CoinInformationChart coinId={coinId} period={period} />
         </div>
       </div>
     </Section>
   )
 }
 
-type CoinChartProps = {
+type CoinInformationChartProps = {
   coinId: string
   period: CoinChartInformationPeriod
 }
 
-function CoinChart({ coinId, period }: CoinChartProps) {
+function CoinInformationChart({ coinId, period }: CoinInformationChartProps) {
   const { data, isPending, error } = useGetCoinChartInformation(coinId, period)
 
   if (isPending) return <CoinInformationChartSkeleton />
