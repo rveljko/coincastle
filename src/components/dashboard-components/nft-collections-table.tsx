@@ -64,6 +64,7 @@ export default function NftCollectionsTable() {
                       src={logo_url}
                       title={name}
                       alt={name}
+                      loading="lazy"
                     />
                     <div className="flex items-center gap-0.5">
                       {name} {opensea_verified && <VerifiedBadge isSmall />}
