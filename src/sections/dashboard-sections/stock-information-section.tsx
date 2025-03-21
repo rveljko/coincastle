@@ -254,7 +254,7 @@ function StockInformationChart({
 
   if (isPending) return <StockInformationChartSkeleton />
 
-  if (error) return <ErrorMessage />
+  if (error || data.length <= 1) return <ErrorMessage />
 
   return <StockChart data={data} />
 }
