@@ -1,7 +1,7 @@
+import Chart from '@components/dashboard-components/chart'
 import CoinInformationSectionSkeleton, {
   CoinInformationChartSkeleton,
 } from '@components/dashboard-components/coin-information-section-skeleton'
-import Chart from '@components/dashboard-components/ui/chart'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import PercentageChangeIndicator from '@components/dashboard-components/ui/percentage-change-indicator'
