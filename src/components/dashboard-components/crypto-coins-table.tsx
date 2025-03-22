@@ -1,4 +1,5 @@
 import CryptoCoinsTableSkeleton from '@components/dashboard-components/crypto-coins-table-skeleton'
+import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import PercentageChangeIndicator from '@components/dashboard-components/ui/percentage-change-indicator'
 import Table from '@components/dashboard-components/ui/table'
 import { cryptoMarketplaceTableHeaders } from '@data/table-headers'
@@ -23,7 +24,7 @@ export default function CryptoCoinsTable({
   if (isPending)
     return <CryptoCoinsTableSkeleton numberOfCoins={numberOfCoins} />
 
-  if (error) return <div>error: {error.message}</div>
+  if (error) return <ErrorMessage />
 
   return (
     <Table className={className}>
