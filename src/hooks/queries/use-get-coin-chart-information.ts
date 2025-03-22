@@ -1,4 +1,4 @@
-import { getCoinChartInformation } from '@services/api/api'
+import { getCoinChartInformation } from '@services/api/crypto'
 import { useQuery } from '@tanstack/react-query'
 import { CoinChartInformationPeriod } from '@utils/types'
 

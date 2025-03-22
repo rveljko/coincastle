@@ -1,4 +1,4 @@
-import { getCryptoCurrencies } from '@services/api/api'
+import { getCryptoCurrencies } from '@services/api/crypto'
 import { useQuery } from '@tanstack/react-query'
 
 export default function useGetCryptoCurrencies(numberOfCoins: number) {

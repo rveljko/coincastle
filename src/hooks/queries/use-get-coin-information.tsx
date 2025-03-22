@@ -1,4 +1,4 @@
-import { getCoinInformation } from '@services/api/api'
+import { getCoinInformation } from '@services/api/crypto'
 import { useQuery } from '@tanstack/react-query'
 
 export default function useGetCoinInformation(coinId: string) {
