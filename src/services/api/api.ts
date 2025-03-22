@@ -90,6 +90,12 @@ export async function getNftCollections(
       },
     }
   )
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch NFT collections. Please check your connection and try again.'
+    )
+
   return res.json()
 }
 
@@ -104,6 +110,12 @@ export async function getNftCollectionInformation(
       },
     }
   )
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch NFT collection information. Ensure the collection ID is correct and try again.'
+    )
+
   return res.json()
 }
 
@@ -118,6 +130,12 @@ export async function getNftCollectionStatistics(
       },
     }
   )
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch NFT collection statistics. Ensure the collection ID is correct and try again.'
+    )
+
   return res.json()
 }
 
@@ -136,6 +154,12 @@ export async function getNftCollectionNfts(
       },
     }
   )
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch NFTs in the collection. Ensure the collection ID is correct and try again.'
+    )
+
   return res.json()
 }
 
@@ -151,6 +175,12 @@ export async function getSingleNft(
       },
     }
   )
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch the NFT. Ensure the NFT ID is correct and try again.'
+    )
+
   return res.json()
 }
 
@@ -168,6 +198,12 @@ export async function getWalletNfts(
       },
     }
   )
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch wallet NFTs. Please check wallet address and try again.'
+    )
+
   return res.json()
 }
 
@@ -182,5 +218,11 @@ export async function getNftWalletStatistics(
       },
     }
   )
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch wallet NFT statistics. Please check wallet address and try again.'
+    )
+
   return res.json()
 }
