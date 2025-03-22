@@ -1,4 +1,4 @@
-import { getSingleNft } from '@services/api/api'
+import { getSingleNft } from '@services/api/nfts'
 import { useQuery } from '@tanstack/react-query'
 
 export default function useGetSingleNft(

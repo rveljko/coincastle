@@ -1,4 +1,4 @@
-import { getWalletNfts } from '@services/api/api'
+import { getWalletNfts } from '@services/api/nfts'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import {
   NftWalletNftsSortDirection,

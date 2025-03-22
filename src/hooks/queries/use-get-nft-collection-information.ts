@@ -1,4 +1,4 @@
-import { getNftCollectionInformation } from '@services/api/api'
+import { getNftCollectionInformation } from '@services/api/nfts'
 import { useQuery } from '@tanstack/react-query'
 
 export default function useGetNftCollectionInformation(

@@ -1,4 +1,4 @@
-import { getNftCollectionStatistics } from '@services/api/api'
+import { getNftCollectionStatistics } from '@services/api/nfts'
 import { useQuery } from '@tanstack/react-query'
 
 export default function useGetNftCollectionStatistics(contractAddress: string) {

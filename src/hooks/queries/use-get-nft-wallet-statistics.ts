@@ -1,4 +1,4 @@
-import { getNftWalletStatistics } from '@services/api/api'
+import { getNftWalletStatistics } from '@services/api/nfts'
 import { useQuery } from '@tanstack/react-query'
 
 export default function useGetNftWalletStatistics(walletAddress: string) {

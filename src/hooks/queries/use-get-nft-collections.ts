@@ -1,4 +1,4 @@
-import { getNftCollections } from '@services/api/api'
+import { getNftCollections } from '@services/api/nfts'
 import { useQuery } from '@tanstack/react-query'
 import {
   NftCollectionsSortDirection,
