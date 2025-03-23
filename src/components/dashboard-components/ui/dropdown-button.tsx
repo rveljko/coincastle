@@ -1,7 +1,7 @@
 import Dropdown from '@components/dashboard-components/ui/dropdown'
 import Button, { ButtonProps } from '@components/ui/button'
 import { cn } from '@utils/utils'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 type DropdownButtonProps = ButtonProps & {
   label: React.ReactNode
@@ -15,17 +15,40 @@ export default function DropdownButton({
   ...props
 }: DropdownButtonProps) {
   const [isDropdownOpened, setIsDropdownOpened] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  function handleOnClick(e: MouseEvent) {
+    if (ref.current && !e.composedPath().includes(ref.current))
+      setIsDropdownOpened(false)
+  }
+
+  function handleOnKeyDown(e: KeyboardEvent) {
+    if (e.code === 'Escape') setIsDropdownOpened(false)
+  }
+
+  useEffect(() => {
+    if (!isDropdownOpened) return
+    document.body.addEventListener('click', handleOnClick)
+    document.body.addEventListener('keydown', handleOnKeyDown)
+
+    return () => {
+      document.body.removeEventListener('click', handleOnClick)
+      document.body.removeEventListener('keydown', handleOnKeyDown)
+    }
+  }, [isDropdownOpened])
 
   return (
     <div className="relative">
-      <Button onClick={() => setIsDropdownOpened((prev) => !prev)} {...props}>
-        {label}
-      </Button>
-      {isDropdownOpened && (
-        <Dropdown className={cn('absolute z-999 mt-2', dropdownClassName)}>
-          {children}
-        </Dropdown>
-      )}
+      <div className="w-max" ref={ref}>
+        <Button onClick={() => setIsDropdownOpened((prev) => !prev)} {...props}>
+          {label}
+        </Button>
+        {isDropdownOpened && (
+          <Dropdown className={cn('absolute z-999 mt-2', dropdownClassName)}>
+            {children}
+          </Dropdown>
+        )}
+      </div>
     </div>
   )
 }
