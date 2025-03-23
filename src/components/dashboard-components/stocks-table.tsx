@@ -10,7 +10,7 @@ import {
 } from '@utils/helpers/currency-formatter'
 import { dividendYieldCalculator } from '@utils/helpers/dividend-yield-calculator'
 import { percentageFormatter } from '@utils/helpers/percentage-formatters'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 type StocksTableProps = {
   numberOfStocks: number
@@ -21,7 +21,25 @@ export default function StocksTable({
   numberOfStocks,
   className,
 }: StocksTableProps) {
-  const { data, isPending, error } = useGetStocks(numberOfStocks)
+  const [searchParams] = useSearchParams()
+
+  const priceFrom = parseFloat(searchParams.get('price-from')!) || ''
+  const priceTo = parseFloat(searchParams.get('price-to')!) || ''
+  const marketCapFrom =
+    parseFloat(searchParams.get('marketcap-from')!) || 1_000_000_000
+  const marketCapTo = parseFloat(searchParams.get('marketcap-to')!) || ''
+  const volumeFrom = parseFloat(searchParams.get('volume-from')!) || 1_000_000
+  const volumeTo = parseFloat(searchParams.get('volume-to')!) || ''
+
+  const { data, isPending, error } = useGetStocks(
+    priceFrom,
+    priceTo,
+    marketCapFrom,
+    marketCapTo,
+    volumeFrom,
+    volumeTo,
+    numberOfStocks
+  )
 
   if (isPending) return <StocksTableSkeleton numberOfStocks={numberOfStocks} />
 

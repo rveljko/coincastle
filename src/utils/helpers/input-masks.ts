@@ -28,3 +28,18 @@ export function phoneMask(value: string) {
 export function phoneMaskCleaner(value: string) {
   return parseInt(value.replace(/[()\s-]/g, ''))
 }
+
+export function currencyMask(value: string) {
+  const numbers = value.replace(/[^0-9.]/g, '')
+
+  if (numbers.length < 1) return numbers
+
+  return `$${numbers
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    .replace(/(\..*?)\..*/g, '$1')
+    .replace(/(\.\d{2})\d*/, '$1')}`
+}
+
+export function currencyMaskCleaner(value: string) {
+  return value.replace(/[$,]/g, '')
+}

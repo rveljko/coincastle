@@ -8,10 +8,16 @@ import {
 } from '@utils/types'
 
 export async function getStocks(
+  priceFrom: number | '',
+  priceTo: number | '',
+  marketCapFrom: number | '',
+  marketCapTo: number | '',
+  volumeFrom: number | '',
+  volumeTo: number | '',
   limit: number
 ): Promise<StockOverviewHttpResponse[]> {
   const res = await fetch(
-    `https://financialmodelingprep.com/stable/company-screener?country=us&marketCapMoreThan=1000000000&volumeMoreThan=1000000&limit=${limit}&apikey=${import.meta.env.VITE_FMP_API_KEY}`
+    `https://financialmodelingprep.com/stable/company-screener?country=us&priceMoreThan=${priceFrom}&priceLowerThan=${priceTo}&marketCapMoreThan=${marketCapFrom}&marketCapLowerThan=${marketCapTo}&volumeMoreThan=${volumeFrom}&volumeLowerThan=${volumeTo}&limit=${limit}&apikey=${import.meta.env.VITE_FMP_API_KEY}`
   )
 
   if (!res.ok)
