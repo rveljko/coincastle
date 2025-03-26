@@ -49,19 +49,21 @@ export default function CryptoCoinsTable({
       </Table.Header>
       <Table.Body>
         {data.map(
-          ({
-            id,
-            name,
-            image,
-            circulating_supply,
-            current_price,
-            market_cap,
-            price_change_percentage_24h,
-            market_cap_rank,
-            total_volume,
-          }) => (
+          (
+            {
+              id,
+              name,
+              image,
+              circulating_supply,
+              current_price,
+              market_cap,
+              price_change_percentage_24h,
+              total_volume,
+            },
+            index
+          ) => (
             <Table.BodyRow key={id} className="relative">
-              <Table.BodyCell>{market_cap_rank || '-'}</Table.BodyCell>
+              <Table.BodyCell>{index + 1}</Table.BodyCell>
               <Table.BodyCell>
                 <Link to={`/dashboard/coin/${id}`}>
                   <span className="absolute inset-0"></span>
