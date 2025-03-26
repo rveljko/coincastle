@@ -1,7 +1,7 @@
 import ChevronDownIcon from '@icons/chevron-down-icon'
 import ChevronRightIcon from '@icons/chevron-right-icon'
 import { cn } from '@utils/utils'
-import React, {
+import {
   ComponentPropsWithoutRef,
   createContext,
   useContext,
