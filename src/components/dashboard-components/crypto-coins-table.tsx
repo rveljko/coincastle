@@ -59,6 +59,7 @@ export default function CryptoCoinsTable({
                       src={image}
                       title={name}
                       alt={name}
+                      loading="lazy"
                     />
                     {name}
                   </div>
