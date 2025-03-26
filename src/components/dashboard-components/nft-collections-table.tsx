@@ -44,17 +44,21 @@ export default function NftCollectionsTable() {
       </Table.Header>
       <Table.Body>
         {data.data.map(
-          ({
-            contract_address,
-            name,
-            logo_url,
-            opensea_verified,
-            floor_price,
-            volume_total,
-            owners_total,
-            items_total,
-          }) => (
+          (
+            {
+              contract_address,
+              name,
+              logo_url,
+              opensea_verified,
+              floor_price,
+              volume_total,
+              owners_total,
+              items_total,
+            },
+            index
+          ) => (
             <Table.BodyRow key={contract_address} className="relative">
+              <Table.BodyCell>{index + 1}</Table.BodyCell>
               <Table.BodyCell>
                 <Link to={`/dashboard/collection/${contract_address}`}>
                   <span className="absolute inset-0"></span>
