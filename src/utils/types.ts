@@ -97,6 +97,10 @@ export type CoinChartInformationHttpResponse = {
 
 export type CoinChartInformationPeriod = '1' | '7' | '30' | '90' | '180' | '365'
 
+export type CoinOverviewSortField = 'market_cap' | 'volume'
+
+export type CoinOverviewSortDirection = 'asc' | 'desc'
+
 export type NftCollectionsOverviewHttpResponse = {
   data: {
     contract_address: string

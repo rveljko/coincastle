@@ -3,15 +3,19 @@ import {
   CoinChartInformationPeriod,
   CoinInformationHttpResponse,
   CoinOverviewHttpResponse,
+  CoinOverviewSortDirection,
+  CoinOverviewSortField,
 } from '@utils/types'
 
 const CRYPTO_BASE_URL = 'https://api.coingecko.com/api/v3'
 
 export async function getCryptoCurrencies(
-  numberOfCoins: number
+  numberOfCoins: number,
+  sortField: CoinOverviewSortField,
+  sortDirection: CoinOverviewSortDirection
 ): Promise<CoinOverviewHttpResponse[]> {
   const res = await fetch(
-    `${CRYPTO_BASE_URL}/coins/markets?vs_currency=usd&per_page=${numberOfCoins}`,
+    `${CRYPTO_BASE_URL}/coins/markets?vs_currency=usd&order=${sortField}_${sortDirection}&per_page=${numberOfCoins}`,
     {
       headers: {
         'X-Cg-Demo-API-Key': import.meta.env.VITE_COINGECKO_API_KEY,

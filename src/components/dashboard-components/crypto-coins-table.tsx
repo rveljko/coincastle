@@ -8,7 +8,8 @@ import {
   compactCurrencyFormatter,
   currencyFormatter,
 } from '@utils/helpers/currency-formatter'
-import { Link } from 'react-router-dom'
+import { CoinOverviewSortDirection, CoinOverviewSortField } from '@utils/types'
+import { Link, useSearchParams } from 'react-router-dom'
 
 type CryptoCoinsTableProps = {
   numberOfCoins: number
@@ -19,7 +20,18 @@ export default function CryptoCoinsTable({
   numberOfCoins,
   className,
 }: CryptoCoinsTableProps) {
-  const { data, isPending, error } = useGetCryptoCurrencies(numberOfCoins)
+  const [searchParams] = useSearchParams()
+
+  const sortField = (searchParams.get('sort-field') ||
+    'market_cap') as CoinOverviewSortField
+  const sortDirection = (searchParams.get('sort-direction') ||
+    'desc') as CoinOverviewSortDirection
+
+  const { data, isPending, error } = useGetCryptoCurrencies(
+    numberOfCoins,
+    sortField,
+    sortDirection
+  )
 
   if (isPending)
     return <CryptoCoinsTableSkeleton numberOfCoins={numberOfCoins} />
@@ -49,7 +61,7 @@ export default function CryptoCoinsTable({
             total_volume,
           }) => (
             <Table.BodyRow key={id} className="relative">
-              <Table.BodyCell>{market_cap_rank}</Table.BodyCell>
+              <Table.BodyCell>{market_cap_rank || '-'}</Table.BodyCell>
               <Table.BodyCell>
                 <Link to={`/dashboard/coin/${id}`}>
                   <span className="absolute inset-0"></span>
@@ -66,7 +78,7 @@ export default function CryptoCoinsTable({
                 </Link>
               </Table.BodyCell>
               <Table.BodyCell>
-                {currencyFormatter(current_price)}
+                {current_price ? currencyFormatter(current_price) : '-'}
               </Table.BodyCell>
               <Table.BodyCell>
                 <PercentageChangeIndicator
@@ -74,13 +86,15 @@ export default function CryptoCoinsTable({
                 />
               </Table.BodyCell>
               <Table.BodyCell>
-                {compactCurrencyFormatter(market_cap)}
+                {market_cap ? compactCurrencyFormatter(market_cap) : '-'}
               </Table.BodyCell>
               <Table.BodyCell>
-                {compactCurrencyFormatter(total_volume)}
+                {total_volume ? compactCurrencyFormatter(total_volume) : '-'}
               </Table.BodyCell>
               <Table.BodyCell>
-                {compactCurrencyFormatter(circulating_supply)}
+                {circulating_supply
+                  ? compactCurrencyFormatter(circulating_supply)
+                  : '-'}
               </Table.BodyCell>
             </Table.BodyRow>
           )
