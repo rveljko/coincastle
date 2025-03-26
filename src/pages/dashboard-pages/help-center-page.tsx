@@ -9,7 +9,7 @@ export default function HelpCenterPage() {
   return (
     <>
       <title>{`${TITLE_PREFIX}Help Center`}</title>
-      <Container className="max-w-(--help-center-container-width) px-0 py-4">
+      <Container className="max-w-(--small-container-width) px-0 py-4">
         <HelpCenterHeader className="mb-4" />
         <ContactUsSection className="mb-4" />
         <GuidesSection className="mb-4" />

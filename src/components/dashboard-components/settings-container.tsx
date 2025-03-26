@@ -12,7 +12,7 @@ export default function SettingsContainer({
 }: SettingsContainerProps) {
   return (
     <Container
-      className={cn('max-w-(--settings-container-width) px-0', className)}
+      className={cn('max-w-(--small-container-width) px-0', className)}
     >
       {children}
     </Container>
