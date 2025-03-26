@@ -56,19 +56,23 @@ export default function StocksTable({
       </Table.Header>
       <Table.Body>
         {data.map(
-          ({
-            exchangeShortName,
-            symbol,
-            companyName,
-            price,
-            marketCap,
-            volume,
-            lastAnnualDividend,
-          }) => (
+          (
+            {
+              exchangeShortName,
+              symbol,
+              companyName,
+              price,
+              marketCap,
+              volume,
+              lastAnnualDividend,
+            },
+            index
+          ) => (
             <Table.BodyRow
               key={`${exchangeShortName}${symbol}`}
               className="relative"
             >
+              <Table.BodyCell>{index + 1}</Table.BodyCell>
               <Table.BodyCell>
                 <Link to={`/dashboard/stock/${symbol}`}>
                   <span className="absolute inset-0"></span>

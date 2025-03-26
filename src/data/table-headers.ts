@@ -17,6 +17,7 @@ export const nftCollectionsTableHeaders: string[] = [
 ]
 
 export const stockMarketplaceTableHeaders: string[] = [
+  '#',
   'Name',
   'Price',
   'Marketcap',
