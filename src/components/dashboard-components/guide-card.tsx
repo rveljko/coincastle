@@ -7,7 +7,7 @@ type GuideCardProps = {
 }
 
 export default function GuideCard({
-  guide: { thumbnail, title, date },
+  guide: { thumbnail, title, date, url },
 }: GuideCardProps) {
   return (
     <article className="relative">
@@ -16,7 +16,7 @@ export default function GuideCard({
       </div>
       <div className="flex flex-wrap items-start justify-between gap-1">
         <h3 className="text-paragraph-font-size leading-paragraph-line-height text-clickable md:max-w-60">
-          <Link to="">
+          <Link to={`/dashboard/guide/${url}`}>
             <span className="absolute inset-0 rounded-lg"></span>
             {title}
           </Link>

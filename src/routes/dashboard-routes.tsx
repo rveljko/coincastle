@@ -3,6 +3,7 @@ import SettingsLayout from '@layouts/settings-layout'
 import AccountPage from '@pages/dashboard-pages/account-page'
 import CoinPage from '@pages/dashboard-pages/coin-page'
 import CryptoCurrenciesPage from '@pages/dashboard-pages/crypto-currencies-page'
+import GuidePage from '@pages/dashboard-pages/guide-page'
 import GuidesPage from '@pages/dashboard-pages/guides-page'
 import HelpCenterPage from '@pages/dashboard-pages/help-center-page'
 import IntegrationsPage from '@pages/dashboard-pages/integrations-page'
@@ -37,6 +38,7 @@ export default function DashboardRoutes() {
         <Route path="stocks" element={<StocksPage />} />
         <Route path="stock/:stockSymbol" element={<StockPage />} />
         <Route path="guides" element={<GuidesPage />} />
+        <Route path="guide/:guide" element={<GuidePage />} />
         <Route path="help-center" element={<HelpCenterPage />} />
         <Route path="settings" element={<SettingsLayout />}>
           <Route index element={<AccountPage />} />
