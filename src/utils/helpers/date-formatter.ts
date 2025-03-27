@@ -18,3 +18,7 @@ export function longDateFormatter(timestamp: number) {
 export function iso8601DateFormatter(date: Date) {
   return date.toLocaleDateString('en-CA')
 }
+
+export function monthYearFormatter(date: Date) {
+  return date.toLocaleDateString('en-US', { month: '2-digit', year: '2-digit' })
+}

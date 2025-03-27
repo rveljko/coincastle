@@ -260,3 +260,12 @@ export type StockChartInformationPeriod =
   | '90'
   | '180'
   | '365'
+
+export type Guide = {
+  id: number
+  thumbnail: string
+  title: string
+  date: Date
+  url: string
+  path: string
+}
