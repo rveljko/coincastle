@@ -36,6 +36,7 @@ export default function NftCard({
             src={nftscan_uri || image_uri}
             alt={`${contract_name} #${token_id}`}
             title={`${contract_name} #${token_id}`}
+            loading="lazy"
           />
         </div>
       ) : (
