@@ -4,6 +4,7 @@ import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Button from '@components/ui/button'
 import useGetNftCollectionNfts from '@hooks/queries/use-get-nft-collection-nfts'
 import Section from '@sections/dashboard-sections/section'
+import isHttpError from '@utils/helpers/is-http-error'
 
 type MoreNftsSectionProps = {
   contractAddress: string
@@ -36,7 +37,7 @@ function MoreNftsNfts({ contractAddress }: MoreNftsNftsProps) {
 
   if (isPending) return <MoreNftsNftsSkeleton />
 
-  if (error) return <ErrorMessage />
+  if (error || isHttpError(data.pages[0].code)) return <ErrorMessage />
 
   return (
     <>
