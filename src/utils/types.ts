@@ -101,6 +101,7 @@ export type CoinOverviewSortField = 'market_cap' | 'volume'
 export type CoinOverviewSortDirection = 'asc' | 'desc'
 
 export type NftCollectionsOverviewHttpResponse = {
+  code: number
   data: {
     contract_address: string
     name: string

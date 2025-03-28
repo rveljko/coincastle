@@ -8,6 +8,7 @@ import {
   ethereumCompactFormatter,
   ethereumPriceFormatter,
 } from '@utils/helpers/currency-formatter'
+import isHttpError from '@utils/helpers/is-http-error'
 import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
 import {
   NftCollectionsSortDirection,
@@ -31,7 +32,7 @@ export default function NftCollectionsTable() {
   if (isPending)
     return <NftCollectionsTableSkeleton numberOfNftCollections={100} />
 
-  if (error) return <ErrorMessage />
+  if (error || isHttpError(data.code)) return <ErrorMessage />
 
   return (
     <Table>
