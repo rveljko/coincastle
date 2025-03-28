@@ -174,6 +174,7 @@ export type NftHttpResponse = {
 }
 
 export type WalletNfts = {
+  code: number
   data: {
     content: NftOverview[]
     next: string
@@ -181,6 +182,7 @@ export type WalletNfts = {
 }
 
 export type NftWalletStatistics = {
+  code: number
   data: {
     holding_value: number
     holding_value_usdt: number

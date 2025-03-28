@@ -16,6 +16,7 @@ import {
   ethereumPriceFormatter,
 } from '@utils/helpers/currency-formatter'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
+import isHttpError from '@utils/helpers/is-http-error'
 import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
 import {
   NftWalletNftsSortDirection,
@@ -65,7 +66,7 @@ export default function NftWalletSection({
 
   if (isPending) return <NftWalletSectionSkeleton />
 
-  if (error || !data.data)
+  if (error || isHttpError(data.code) || !data.data)
     return (
       <Section>
         <ErrorMessage />
@@ -219,7 +220,7 @@ function NftWalletNfts({ walletAddress }: NftWalletNftsProps) {
 
   if (isPending) return <NftWalletNftsSkeleton />
 
-  if (error) return <ErrorMessage />
+  if (error || isHttpError(data.pages[0].code)) return <ErrorMessage />
 
   return (
     <>
