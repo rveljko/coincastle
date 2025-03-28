@@ -155,6 +155,7 @@ export type NftOverview = {
 }
 
 export type NftHttpResponse = {
+  code: number
   data: {
     minter: string
     mint_timestamp: number

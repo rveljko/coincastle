@@ -12,6 +12,7 @@ import { TITLE_PREFIX } from '@utils/constants'
 import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
 import { longDateFormatter } from '@utils/helpers/date-formatter'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
+import isHttpError from '@utils/helpers/is-http-error'
 import { Link } from 'react-router-dom'
 
 type NftSectionProps = {
@@ -29,7 +30,7 @@ export default function NftSection({
 
   if (isPending) return <NftSectionSkeleton className={className} />
 
-  if (error)
+  if (error || isHttpError(data.code))
     return (
       <Section className={className}>
         <ErrorMessage />
@@ -161,7 +162,7 @@ function NftCollectionInformation({
 
   if (isPending) return <NftCollectionInformationSkeleton />
 
-  if (error) return <ErrorMessage />
+  if (error || isHttpError(data.code)) return <ErrorMessage />
 
   const { logo_url, name, opensea_verified, description } = data.data
 
