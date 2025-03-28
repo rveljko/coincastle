@@ -20,6 +20,7 @@ import {
 } from '@utils/helpers/currency-formatter'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
 import { ethereumAddressValidator } from '@utils/helpers/ethereum-address-validator'
+import isHttpError from '@utils/helpers/is-http-error'
 import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
 import {
   NftCollectionNftsSortDirection,
@@ -70,7 +71,7 @@ export default function NftCollectionSection({
 
   if (isPending) return <NftCollectionSectionSkeleton />
 
-  if (error)
+  if (error || isHttpError(data.code))
     return (
       <Section>
         <ErrorMessage />
@@ -194,7 +195,7 @@ function NftCollectionStatistics({
 
   if (isPending) return <NftCollectionStatisticsSkeleton />
 
-  if (error) return <ErrorMessage />
+  if (error || isHttpError(data.code)) return <ErrorMessage />
 
   const { floor_price, items_total, owners_total, total_volume } = data.data
 
@@ -254,7 +255,7 @@ function NftCollectionNfts({ contractAddress }: NftCollectionNftsProps) {
 
   if (isPending) return <NftCollectionNftsSkeleton />
 
-  if (error) return <ErrorMessage />
+  if (error || isHttpError(data.pages[0].code)) return <ErrorMessage />
 
   return (
     <>

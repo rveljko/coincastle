@@ -115,6 +115,7 @@ export type NftCollectionsOverviewHttpResponse = {
 }
 
 export type NftCollectionInformationHttpResponse = {
+  code: number
   data: {
     contract_address: string
     name: string
@@ -126,6 +127,7 @@ export type NftCollectionInformationHttpResponse = {
 }
 
 export type NftCollectionStatisticsHttpResponse = {
+  code: number
   data: {
     floor_price: number
     total_volume: number
@@ -135,6 +137,7 @@ export type NftCollectionStatisticsHttpResponse = {
 }
 
 export type NftCollectionNftsHttpResponse = {
+  code: number
   data: {
     content: NftOverview[]
     next: string
