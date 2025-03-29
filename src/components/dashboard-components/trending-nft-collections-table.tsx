@@ -1,3 +1,4 @@
+import TrendingNftCollectionsTableSkeleton from '@components/dashboard-components/trending-nft-collections-table-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Table from '@components/dashboard-components/ui/table'
 import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
@@ -13,7 +14,8 @@ export default function TrendingNftCollectionsTable() {
     5
   )
 
-  if (isPending) return <div>loading...</div>
+  if (isPending)
+    return <TrendingNftCollectionsTableSkeleton numberOfNftCollections={5} />
 
   if (error) return <ErrorMessage />
 
