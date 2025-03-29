@@ -1,3 +1,4 @@
+import TrendingStocksTableSkeleton from '@components/dashboard-components/trending-stocks-table-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import FirstLetterImageGenerator from '@components/dashboard-components/ui/first-letter-image-generator'
 import Table from '@components/dashboard-components/ui/table'
@@ -17,7 +18,7 @@ export default function TrendingStocksTable() {
     5
   )
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <TrendingStocksTableSkeleton numberOfStocks={5} />
 
   if (error) return <ErrorMessage />
 
