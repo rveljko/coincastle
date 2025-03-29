@@ -11,14 +11,14 @@ export default function TrendingCoinsSection({
 }: TrendingCoinsSectionProps) {
   return (
     <Section className={className}>
-      <div className="flex flex-wrap items-center justify-between gap-2">
+      <header className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
           Trending Coins
         </h2>
         <Button href="/dashboard/crypto-currencies" variant="link" size="small">
           View More
         </Button>
-      </div>
+      </header>
       <TrendingCryptoCoinsTable />
     </Section>
   )
