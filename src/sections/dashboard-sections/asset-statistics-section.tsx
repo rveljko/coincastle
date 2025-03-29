@@ -1,3 +1,4 @@
+import AssetStatisticsSectionSkeleton from '@components/dashboard-components/asset-statistics-section-skeleton'
 import AssetStatisticsPanel from '@components/dashboard-components/ui/asset-statistics-panel'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import useGetCoinInformation from '@hooks/queries/use-get-coin-information'
@@ -13,7 +14,7 @@ export default function AssetStatisticsSection({
 }: AssetStatisticsSectionProps) {
   const { data, isPending, error } = useGetCoinInformation('bitcoin')
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <AssetStatisticsSectionSkeleton />
 
   if (error) return <ErrorMessage />
 
