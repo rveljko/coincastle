@@ -1,3 +1,4 @@
+import TrendingCryptoCoinsTableSkeleton from '@components/dashboard-components/trending-crypto-coins-table-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Table from '@components/dashboard-components/ui/table'
 import { trendingCryptoCoinsTableHeaders } from '@data/table-headers'
@@ -12,7 +13,7 @@ export default function TrendingCryptoCoinsTable() {
     'desc'
   )
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <TrendingCryptoCoinsTableSkeleton numberOfCoins={5} />
 
   if (error) return <ErrorMessage />
 
