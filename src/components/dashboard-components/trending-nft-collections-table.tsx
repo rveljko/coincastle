@@ -1,45 +1,27 @@
-import NftCollectionsTableSkeleton from '@components/dashboard-components/nft-collections-table-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Table from '@components/dashboard-components/ui/table'
 import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
-import { nftCollectionsTableHeaders } from '@data/table-headers'
+import { trendingNftCollectionsTableHeaders } from '@data/table-headers'
 import useGetNftCollections from '@hooks/queries/use-get-nft-collections'
-import {
-  ethereumCompactFormatter,
-  ethereumPriceFormatter,
-} from '@utils/helpers/currency-formatter'
-import isHttpError from '@utils/helpers/is-http-error'
-import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
-import {
-  NftCollectionsSortDirection,
-  NftCollectionsSortField,
-} from '@utils/types'
-import { Link, useSearchParams } from 'react-router-dom'
+import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
+import { Link } from 'react-router-dom'
 
-export default function NftCollectionsTable() {
-  const [searchParams] = useSearchParams()
-
-  const sortField = (searchParams.get('sort-field') ||
-    'volume_total') as NftCollectionsSortField
-  const sortDirection = (searchParams.get('sort-direction') ||
-    'desc') as NftCollectionsSortDirection
-
+export default function TrendingNftCollectionsTable() {
   const { data, isPending, error } = useGetNftCollections(
-    sortField,
-    sortDirection,
-    100
+    'volume_total',
+    'desc',
+    5
   )
 
-  if (isPending)
-    return <NftCollectionsTableSkeleton numberOfNftCollections={100} />
+  if (isPending) return <div>loading...</div>
 
-  if (error || isHttpError(data.code)) return <ErrorMessage />
+  if (error) return <ErrorMessage />
 
   return (
     <Table>
       <Table.Header>
         <Table.HeaderRow>
-          {nftCollectionsTableHeaders.map((header) => (
+          {trendingNftCollectionsTableHeaders.map((header) => (
             <Table.HeaderCell key={header}>{header}</Table.HeaderCell>
           ))}
         </Table.HeaderRow>
@@ -47,16 +29,7 @@ export default function NftCollectionsTable() {
       <Table.Body>
         {data.data.map(
           (
-            {
-              contract_address,
-              name,
-              logo_url,
-              opensea_verified,
-              floor_price,
-              volume_total,
-              owners_total,
-              items_total,
-            },
+            { contract_address, name, logo_url, opensea_verified, floor_price },
             index
           ) => (
             <Table.BodyRow key={contract_address} className="relative">
@@ -80,15 +53,6 @@ export default function NftCollectionsTable() {
               </Table.BodyCell>
               <Table.BodyCell>
                 {ethereumPriceFormatter(floor_price)}
-              </Table.BodyCell>
-              <Table.BodyCell>
-                {ethereumCompactFormatter(volume_total)}
-              </Table.BodyCell>
-              <Table.BodyCell>
-                {numbersWithCommasFormatter(owners_total)}
-              </Table.BodyCell>
-              <Table.BodyCell>
-                {numbersWithCommasFormatter(items_total)}
               </Table.BodyCell>
             </Table.BodyRow>
           )

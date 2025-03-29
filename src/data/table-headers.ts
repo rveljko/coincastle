@@ -19,6 +19,12 @@ export const nftCollectionsTableHeaders: string[] = [
   'Items',
 ]
 
+export const trendingNftCollectionsTableHeaders: string[] = [
+  '#',
+  'Collection Name',
+  'Floor Price',
+]
+
 export const stockMarketplaceTableHeaders: string[] = [
   '#',
   'Name',

@@ -7,10 +7,11 @@ import {
 
 export default function useGetNftCollections(
   sortField: NftCollectionsSortField,
-  sortDirection: NftCollectionsSortDirection
+  sortDirection: NftCollectionsSortDirection,
+  limit: number
 ) {
   return useQuery({
-    queryFn: () => getNftCollections(sortField, sortDirection),
-    queryKey: ['nft-collections', sortField, sortDirection],
+    queryFn: () => getNftCollections(sortField, sortDirection, limit),
+    queryKey: ['nft-collections', sortField, sortDirection, limit],
   })
 }

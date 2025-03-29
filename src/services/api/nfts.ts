@@ -16,10 +16,11 @@ import {
 
 export async function getNftCollections(
   sortField: NftCollectionsSortField,
-  sortDirection: NftCollectionsSortDirection
+  sortDirection: NftCollectionsSortDirection,
+  limit: number
 ): Promise<NftCollectionsOverviewHttpResponse> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/collections/rankings?sort_field=${sortField}&sort_direction=${sortDirection}`,
+    `https://restapi.nftscan.com/api/v2/collections/rankings?sort_field=${sortField}&sort_direction=${sortDirection}&limit=${limit}`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
