@@ -8,6 +8,8 @@ export const cryptoMarketplaceTableHeaders: string[] = [
   'Supply',
 ]
 
+export const trendingCryptoCoinsTableHeaders: string[] = ['#', 'Name', 'Price']
+
 export const nftCollectionsTableHeaders: string[] = [
   '#',
   'Collection Name',

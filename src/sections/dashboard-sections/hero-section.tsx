@@ -11,7 +11,11 @@ import { currencyFormatter } from '@utils/helpers/currency-formatter'
 import { CoinChartInformationPeriod } from '@utils/types'
 import { useSearchParams } from 'react-router-dom'
 
-export default function HeroSection() {
+type HeroSectionProps = {
+  className?: string
+}
+
+export default function HeroSection({ className }: HeroSectionProps) {
   const [searchParams, setSearchParams] = useSearchParams()
   const period = (searchParams.get('period') ||
     '1') as CoinChartInformationPeriod
@@ -24,7 +28,7 @@ export default function HeroSection() {
   }
 
   return (
-    <Section>
+    <Section className={className}>
       <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <HeroAssetInformation coinId="bitcoin" />
         <div className="flex flex-wrap gap-2">
