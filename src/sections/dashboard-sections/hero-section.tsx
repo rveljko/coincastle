@@ -1,4 +1,8 @@
 import CryptoCoinChart from '@components/dashboard-components/crypto-coin-chart'
+import {
+  HeroAssetInformationSkeleton,
+  HeroChartSkeleton,
+} from '@components/dashboard-components/hero-section-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Switcher from '@components/dashboard-components/ui/switcher'
 import Button from '@components/ui/button'
@@ -102,7 +106,7 @@ type HeroAssetInformationProps = {
 function HeroAssetInformation({ coinId }: HeroAssetInformationProps) {
   const { data, isPending, error } = useGetCoinInformation(coinId)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <HeroAssetInformationSkeleton />
 
   if (error) return <ErrorMessage />
 
@@ -142,7 +146,7 @@ type HeroChartProps = {
 function HeroChart({ coinId, period }: HeroChartProps) {
   const { data, isPending, error } = useGetCoinChartInformation(coinId, period)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <HeroChartSkeleton />
 
   if (error) return <ErrorMessage />
 

@@ -1,4 +1,5 @@
 import ChartSkeleton from '@components/dashboard-components/chart-skeleton'
+import SwitcherSkeleton from '@components/dashboard-components/switcher-skeleton'
 import Section from '@sections/dashboard-sections/section'
 
 type CoinInformationSectionSkeletonProps = {
@@ -74,7 +75,7 @@ export default function CoinInformationSectionSkeleton({
               <div className="bg-clickable/10 mb-0.5 h-10.5 w-full max-w-40 animate-pulse rounded-sm"></div>
               <div className="bg-clickable/10 h-5 w-full max-w-14 animate-pulse rounded-sm"></div>
             </div>
-            <div className="bg-clickable/10 h-8 w-full max-w-36 flex-5 animate-pulse rounded-sm"></div>
+            <SwitcherSkeleton className="flex-5" />
           </div>
           <CoinInformationChartSkeleton />
         </div>
