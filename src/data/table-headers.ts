@@ -34,3 +34,5 @@ export const stockMarketplaceTableHeaders: string[] = [
   'Dividend Yield',
   'Exchange',
 ]
+
+export const trendingStocksTableHeaders: string[] = ['#', 'Name', 'Price']

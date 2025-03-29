@@ -2,6 +2,7 @@ import AssetStatisticsSection from '@sections/dashboard-sections/asset-statistic
 import HeroSection from '@sections/dashboard-sections/hero-section'
 import TrendingCoinsSection from '@sections/dashboard-sections/trending-coins-section'
 import TrendingNftsSection from '@sections/dashboard-sections/trending-nfts-section'
+import TrendingStocksSection from '@sections/dashboard-sections/trending-stocks-section'
 import { TITLE_PREFIX } from '@utils/constants'
 
 export default function WalletPage() {
@@ -13,6 +14,7 @@ export default function WalletPage() {
       <div className="flex flex-col justify-between gap-4 lg:flex-row">
         <TrendingCoinsSection className="flex-grow" />
         <TrendingNftsSection className="flex-grow" />
+        <TrendingStocksSection className="flex-grow" />
       </div>
     </>
   )
