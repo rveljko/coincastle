@@ -5,6 +5,7 @@ import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
 import { trendingNftCollectionsTableHeaders } from '@data/table-headers'
 import useGetNftCollections from '@hooks/queries/use-get-nft-collections'
 import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
+import isHttpError from '@utils/helpers/is-http-error'
 import { Link } from 'react-router-dom'
 
 export default function TrendingNftCollectionsTable() {
@@ -17,7 +18,7 @@ export default function TrendingNftCollectionsTable() {
   if (isPending)
     return <TrendingNftCollectionsTableSkeleton numberOfNftCollections={5} />
 
-  if (error) return <ErrorMessage />
+  if (error || isHttpError(data.code)) return <ErrorMessage />
 
   return (
     <Table>
