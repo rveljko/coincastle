@@ -10,7 +10,6 @@ export default function NftPage() {
   return (
     <>
       <NftSection
-        className="mb-4"
         contractAddress={contractAddress}
         tokenId={tokenId}
       />
