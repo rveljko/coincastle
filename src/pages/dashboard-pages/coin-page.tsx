@@ -9,7 +9,7 @@ export default function CoinPage() {
 
   return (
     <>
-      <CoinInformationSection coinId={coinId} className="mb-4" />
+      <CoinInformationSection coinId={coinId} />
       <PopularCoinsSection />
     </>
   )

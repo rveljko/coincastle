@@ -19,12 +19,10 @@ import { useSearchParams } from 'react-router-dom'
 
 type CoinInformationSection = {
   coinId: string
-  className?: string
 }
 
 export default function CoinInformationSection({
   coinId,
-  className,
 }: CoinInformationSection) {
   const [searchParams, setSearchParams] = useSearchParams()
   const period = (searchParams.get('period') ||
@@ -39,11 +37,11 @@ export default function CoinInformationSection({
 
   const { data, isPending, error } = useGetCoinInformation(coinId)
 
-  if (isPending) return <CoinInformationSectionSkeleton className={className} />
+  if (isPending) return <CoinInformationSectionSkeleton />
 
   if (error)
     return (
-      <Section className={className}>
+      <Section>
         <ErrorMessage />
       </Section>
     )
@@ -52,7 +50,7 @@ export default function CoinInformationSection({
     data
 
   return (
-    <Section className={className}>
+    <Section>
       <title>{`${TITLE_PREFIX}${name}`}</title>
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="md:flex-4">
