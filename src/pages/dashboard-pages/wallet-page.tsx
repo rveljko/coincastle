@@ -10,9 +10,9 @@ export default function WalletPage() {
   return (
     <>
       <title>{`${TITLE_PREFIX}Wallet`}</title>
-      <div className="mb-4 flex flex-col gap-4 lg:flex-row">
-        <div className="lg:flex-7">
-          <AssetStatisticsSection className="mb-4" />
+      <div className="flex flex-col gap-4 lg:flex-row">
+        <div className="flex flex-col gap-4 lg:flex-7">
+          <AssetStatisticsSection />
           <HeroSection />
         </div>
         <RewardsSection className="lg:flex-3" />
