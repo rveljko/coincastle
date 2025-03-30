@@ -36,3 +36,5 @@ export const stockMarketplaceTableHeaders: string[] = [
 ]
 
 export const trendingStocksTableHeaders: string[] = ['#', 'Name', 'Price']
+
+export const balanceTableHeaders: string[] = ['Name', 'Owning', 'Price']

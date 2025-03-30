@@ -1,4 +1,5 @@
 import AssetStatisticsSection from '@sections/dashboard-sections/asset-statistics-section'
+import BalanceSection from '@sections/dashboard-sections/balance-section'
 import HeroSection from '@sections/dashboard-sections/hero-section'
 import RewardsSection from '@sections/dashboard-sections/rewards-section'
 import TrendingCoinsSection from '@sections/dashboard-sections/trending-coins-section'
@@ -15,7 +16,10 @@ export default function WalletPage() {
           <AssetStatisticsSection />
           <HeroSection />
         </div>
-        <RewardsSection className="lg:flex-3" />
+        <div className="flex flex-col gap-4 lg:flex-3">
+          <BalanceSection />
+          <RewardsSection />
+        </div>
       </div>
       <div className="flex flex-col justify-between gap-4 lg:flex-row">
         <TrendingCoinsSection className="flex-grow" />
