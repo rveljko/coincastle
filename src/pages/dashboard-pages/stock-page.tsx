@@ -9,7 +9,7 @@ export default function StockPage() {
 
   return (
     <>
-      <StockInformationSection stockSymbol={stockSymbol} className="mb-4" />
+      <StockInformationSection stockSymbol={stockSymbol} />
       <PopularStocksSection />
     </>
   )

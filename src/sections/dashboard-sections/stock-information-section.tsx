@@ -20,12 +20,10 @@ import { useSearchParams } from 'react-router-dom'
 
 type StockInformationSectionProps = {
   stockSymbol: string
-  className?: string
 }
 
 export default function StockInformationSection({
   stockSymbol,
-  className,
 }: StockInformationSectionProps) {
   const [searchParams, setSearchParams] = useSearchParams()
   const period = (searchParams.get('period') ||
@@ -40,12 +38,11 @@ export default function StockInformationSection({
 
   const { data, isPending, error } = useGetStockInformation(stockSymbol)
 
-  if (isPending)
-    return <StockInformationSectionSkeleton className={className} />
+  if (isPending) return <StockInformationSectionSkeleton />
 
   if (error)
     return (
-      <Section className={className}>
+      <Section>
         <ErrorMessage />
       </Section>
     )
@@ -70,7 +67,7 @@ export default function StockInformationSection({
   } = data[0]
 
   return (
-    <Section className={className}>
+    <Section>
       <title>{`${TITLE_PREFIX}${name} ${symbol}`}</title>
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="md:flex-4">
