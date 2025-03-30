@@ -150,5 +150,9 @@ function HeroChart({ coinId, period }: HeroChartProps) {
 
   if (error) return <ErrorMessage />
 
-  return <CryptoCoinChart data={data.prices} withPrices />
+  return (
+    <div className="aspect-[2.5/1]">
+      <CryptoCoinChart data={data.prices} withPrices />
+    </div>
+  )
 }
