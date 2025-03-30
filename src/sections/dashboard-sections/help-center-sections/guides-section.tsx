@@ -1,13 +1,9 @@
 import Button from '@components/ui/button'
 import ArrowNarrowRightIcon from '@icons/arrow-narrow-right-icon'
 
-type GuideSectionProps = {
-  className?: string
-}
-
-export default function GuidesSection({ className }: GuideSectionProps) {
+export default function GuidesSection() {
   return (
-    <section className={className}>
+    <section>
       <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
         Guides
       </h2>

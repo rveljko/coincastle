@@ -6,11 +6,7 @@ import MailIcon from '@icons/mail-icon'
 import SendIcon from '@icons/send-icon'
 import { useState } from 'react'
 
-type ContactUsSectionProps = {
-  className?: string
-}
-
-export default function ContactUsSection({ className }: ContactUsSectionProps) {
+export default function ContactUsSection() {
   const initialFormFields = {
     subject: '',
     message: '',
@@ -19,7 +15,7 @@ export default function ContactUsSection({ className }: ContactUsSectionProps) {
   const isButtonDisabled = !formFields.subject || !formFields.message
 
   return (
-    <section className={className}>
+    <section>
       <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
         Contact Us
       </h2>

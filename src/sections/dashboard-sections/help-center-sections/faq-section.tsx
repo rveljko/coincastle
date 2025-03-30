@@ -1,13 +1,9 @@
 import Accordion from '@components/dashboard-components/ui/accordion'
 import { faq } from '@data/faq'
 
-type FaqSectionProps = {
-  className?: string
-}
-
-export default function FaqSection({ className }: FaqSectionProps) {
+export default function FaqSection() {
   return (
-    <section className={className}>
+    <section>
       <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
         FAQ
       </h2>

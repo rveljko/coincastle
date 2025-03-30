@@ -1,10 +1,6 @@
-type HelpCenterHeaderProps = {
-  className?: string
-}
-
-export default function HelpCenterHeader({ className }: HelpCenterHeaderProps) {
+export default function HelpCenterHeader() {
   return (
-    <header className={className}>
+    <header>
       <h1 className="mb-2">Help Center</h1>
       <p>Feel lost? You are at right place</p>
     </header>
