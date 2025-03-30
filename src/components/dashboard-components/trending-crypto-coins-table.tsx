@@ -27,7 +27,7 @@ export default function TrendingCryptoCoinsTable() {
         </Table.HeaderRow>
       </Table.Header>
       <Table.Body>
-        {data.map(({ id, name, image, current_price }, index) => (
+        {data.map(({ id, name, symbol, image, current_price }, index) => (
           <Table.BodyRow key={id} className="relative">
             <Table.BodyCell>{index + 1}</Table.BodyCell>
             <Table.BodyCell>
@@ -41,7 +41,12 @@ export default function TrendingCryptoCoinsTable() {
                     alt={name}
                     loading="lazy"
                   />
-                  {name}
+                  <div className="flex items-center gap-0.5">
+                    {name}
+                    <span className="text-neutral-400">
+                      {symbol.toLocaleUpperCase()}
+                    </span>
+                  </div>
                 </div>
               </Link>
             </Table.BodyCell>
