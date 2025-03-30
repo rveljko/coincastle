@@ -1,3 +1,4 @@
+import BalanceSectionSkeleton from '@components/dashboard-components/balance-section-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Table from '@components/dashboard-components/ui/table'
 import { balanceTableHeaders } from '@data/table-headers'
@@ -15,7 +16,8 @@ export default function BalanceSection() {
     'desc'
   )
 
-  if (isPending) return <div>loading</div>
+  if (isPending)
+    return <BalanceSectionSkeleton coinAmounts={COIN_AMOUNTS.length} />
 
   if (error)
     return (
