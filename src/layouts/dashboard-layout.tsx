@@ -7,7 +7,7 @@ export default function DashboardLayout() {
     <div className="flex flex-row">
       <Sidebar />
       <main className="w-full py-4">
-        <Container>
+        <Container className="flex flex-col gap-4">
           <Outlet />
         </Container>
       </main>
