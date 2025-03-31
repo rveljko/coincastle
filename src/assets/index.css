@@ -252,6 +252,10 @@
     color-scheme: dark light;
   }
 
+  html:has([role='dialog']) {
+    overflow: hidden;
+  }
+
   ::-webkit-scrollbar {
     width: var(--scrollbar-size);
   }
