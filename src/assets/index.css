@@ -62,6 +62,7 @@
   --modal-background:
     linear-gradient(transparent, #ffffff00),
     radial-gradient(at top, #13192fe3, #0b0e18f2);
+  --modal-backdrop-background: #00000033;
 }
 
 @media (prefers-color-scheme: light) {
@@ -211,6 +212,7 @@
   );
   --section-background: var(--section-background);
   --modal-background: var(--modal-background);
+  --modal-backdrop-background: var(--modal-backdrop-background);
   --text-heading-1-font-size: 2.25rem;
   --leading-heading-1-line-height: 1.1667em;
   --text-heading-2-font-size: 2rem;
@@ -234,6 +236,7 @@
   --input-height: 2.5rem;
   --dropdown-max-width: 17.5rem;
   --dropdown-summary-height: 1.625rem;
+  --dialog-width: 22rem;
   --button-large-height: 2.375rem;
   --button-medium-height: 2rem;
   --button-small-height: 1.875rem;
