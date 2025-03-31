@@ -1,3 +1,4 @@
+import GuideSectionSkeleton from '@components/dashboard-components/guide-section-skeleton'
 import MarkdownContentLoader from '@components/dashboard-components/markdown-content-loader'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Button from '@components/ui/button'
@@ -12,7 +13,7 @@ type GuideSectionProps = {
 export default function GuideSection({ guide }: GuideSectionProps) {
   const { data, isPending, error } = useGetGuide(guide)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <GuideSectionSkeleton />
 
   if (error) return <ErrorMessage />
 
