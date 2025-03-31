@@ -8,6 +8,7 @@ type ThemeContextProviderProps = {
 type ThemeContextType = {
   theme: ThemeLabel
   newTheme: ThemeLabel
+  isLightTheme: boolean
   setTheme: React.Dispatch<React.SetStateAction<ThemeLabel>>
   setNewTheme: React.Dispatch<React.SetStateAction<ThemeLabel>>
 }
@@ -25,13 +26,20 @@ export default function ThemeContextProvider({
   const [theme, setTheme] = useState(getInitialTheme)
   const [newTheme, setNewTheme] = useState<ThemeLabel>(theme)
 
+  const isLightTheme =
+    theme === 'light' ||
+    (theme === 'system' &&
+      window.matchMedia('(prefers-color-scheme: light)').matches)
+
   useEffect(() => {
     localStorage.setItem('theme', JSON.stringify(theme))
     document.documentElement.setAttribute('data-theme', theme)
   }, [theme])
 
   return (
-    <ThemeContext.Provider value={{ theme, newTheme, setTheme, setNewTheme }}>
+    <ThemeContext.Provider
+      value={{ theme, newTheme, isLightTheme, setTheme, setNewTheme }}
+    >
       {children}
     </ThemeContext.Provider>
   )

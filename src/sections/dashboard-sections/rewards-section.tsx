@@ -1,5 +1,5 @@
+import RewardModalButton from '@components/dashboard-components/reward-modal-button'
 import TasksList from '@components/dashboard-components/ui/tasks-list'
-import Button from '@components/ui/button'
 import { tasks } from '@data/tasks'
 import Section from '@sections/dashboard-sections/section'
 
@@ -18,9 +18,9 @@ export default function RewardsSection({ className }: RewardsSectionProps) {
           <TasksList.Item key={task}>{task}</TasksList.Item>
         ))}
       </TasksList>
-      <Button variant="secondary" size="large" className="w-full">
+      <RewardModalButton variant="secondary" size="large" className="w-full">
         Redeem Now
-      </Button>
+      </RewardModalButton>
     </Section>
   )
 }
