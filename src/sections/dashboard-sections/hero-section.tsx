@@ -152,7 +152,7 @@ function HeroChart({ coinId, period }: HeroChartProps) {
 
   return (
     <div className="aspect-[2.5/1]">
-      <CryptoCoinChart data={data.prices} withPrices />
+      <CryptoCoinChart data={data.prices} />
     </div>
   )
 }

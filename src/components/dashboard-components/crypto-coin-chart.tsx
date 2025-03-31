@@ -1,25 +1,19 @@
-import {
-  compactCurrencyFormatter,
-  currencyFormatter,
-} from '@utils/helpers/currency-formatter'
+import { currencyFormatter } from '@utils/helpers/currency-formatter'
 import { chartDateFormatter } from '@utils/helpers/date-formatter'
 import {
   Area,
   AreaChart,
-  CartesianGrid,
   ResponsiveContainer,
   Tooltip,
   TooltipProps,
   XAxis,
-  YAxis,
 } from 'recharts'
 
 type ChartProps = {
   data: number[][]
-  withPrices?: boolean
 }
 
-export default function CryptoCoinChart({ data, withPrices }: ChartProps) {
+export default function CryptoCoinChart({ data }: ChartProps) {
   const formattedData = data.map(([timestamp, price]) => ({
     timestamp,
     price,
@@ -49,24 +43,6 @@ export default function CryptoCoinChart({ data, withPrices }: ChartProps) {
           interval="preserveStartEnd"
           className="transform-[translateY(var(--spacing))]"
         />
-        {withPrices && (
-          <YAxis
-            dataKey="price"
-            tickFormatter={(price: number) => compactCurrencyFormatter(price)}
-            tick={{ fill: 'var(--color-neutral-400)' }}
-            axisLine={false}
-            tickLine={false}
-            interval="preserveStartEnd"
-            className="transform-[translateX(calc(var(--spacing)*-1))]"
-          />
-        )}
-        {withPrices && (
-          <CartesianGrid
-            vertical={false}
-            stroke="var(--color-neutral-700)"
-            strokeDasharray={4}
-          />
-        )}
         <Tooltip
           content={({
             active,
