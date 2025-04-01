@@ -9,6 +9,7 @@ import {
   phoneMask,
   phoneMaskCleaner,
 } from '@utils/helpers/input-masks'
+import displayToast from '@utils/toast'
 import { useState } from 'react'
 
 export default function AccountSection() {
@@ -31,6 +32,7 @@ export default function AccountSection() {
           e.preventDefault()
 
           updateUserInformation(newUserInformation)
+          displayToast('Updated Successfully!')
         }}
       >
         <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
