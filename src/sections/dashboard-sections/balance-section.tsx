@@ -7,7 +7,7 @@ import Section from '@sections/dashboard-sections/section'
 import { currencyFormatter } from '@utils/helpers/currency-formatter'
 import { Link } from 'react-router-dom'
 
-const COIN_AMOUNTS: number[] = [91, 67, 23, 45]
+const COIN_AMOUNTS: number[] = [91, 67, 23, 45, 3]
 
 export default function BalanceSection() {
   const { data, isPending, error } = useGetCryptoCurrencies(
