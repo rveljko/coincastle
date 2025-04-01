@@ -1,6 +1,7 @@
 import IntegrationCardsList from '@components/dashboard-components/integration-cards-list'
 import Button from '@components/ui/button'
 import { useIntegrations } from '@services/contexts/integrations-context'
+import displayToast from '@utils/toast'
 
 export default function IntegrationsSection() {
   const {
@@ -31,6 +32,7 @@ export default function IntegrationsSection() {
             updateIntegrationStatus(id)
           })
           removeIntegrationIds()
+          displayToast('Updated Successfully!')
         }}
       >
         Save Changes
