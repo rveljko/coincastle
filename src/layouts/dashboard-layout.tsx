@@ -1,6 +1,7 @@
 import Container from '@components/container'
 import Sidebar from '@components/dashboard-components/sidebar'
 import { Outlet } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 export default function DashboardLayout() {
   return (
@@ -11,6 +12,7 @@ export default function DashboardLayout() {
           <Outlet />
         </Container>
       </main>
+      <ToastContainer />
     </div>
   )
 }
