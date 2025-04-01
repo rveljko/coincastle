@@ -2,6 +2,7 @@ import ThemeCardsList from '@components/dashboard-components/theme-cards-list'
 import Button from '@components/ui/button'
 import { themes } from '@data/themes'
 import { useTheme } from '@services/contexts/theme-context'
+import displayToast from '@utils/toast'
 
 export default function PreferencesSection() {
   const { theme, newTheme, setTheme } = useTheme()
@@ -19,7 +20,10 @@ export default function PreferencesSection() {
         size="large"
         disabled={isButtonDisabled}
         className="ml-auto"
-        onClick={() => setTheme(newTheme)}
+        onClick={() => {
+          setTheme(newTheme)
+          displayToast('Updated Successfully!')
+        }}
       >
         Save Changes
       </Button>
