@@ -5,6 +5,7 @@ import useNewUserInformation from '@hooks/use-new-user-information'
 import EyeIcon from '@icons/eye-icon'
 import EyeOffIcon from '@icons/eye-off-icon'
 import { useUserInformation } from '@services/contexts/user-information-context'
+import displayToast from '@utils/toast'
 import { useState } from 'react'
 
 export default function PasswordSection() {
@@ -22,6 +23,7 @@ export default function PasswordSection() {
           e.preventDefault()
 
           updateUserInformation(newUserInformation)
+          displayToast('Updated Successfully!')
         }}
       >
         <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
