@@ -1,6 +1,6 @@
 import ChevronDownIcon from '@icons/chevron-down-icon'
 import ChevronRightIcon from '@icons/chevron-right-icon'
-import React, { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 type AccordionContextProviderProps = {
   children: React.ReactNode
