@@ -8,10 +8,10 @@ import {
   NftCollectionsSortField,
   NftCollectionStatisticsHttpResponse,
   NftHttpResponse,
+  NftWalletNfts,
   NftWalletNftsSortDirection,
   NftWalletNftsSortField,
   NftWalletStatistics,
-  WalletNfts,
 } from '@utils/types'
 
 export async function getNftCollections(
@@ -121,12 +121,12 @@ export async function getSingleNft(
   return res.json()
 }
 
-export async function getWalletNfts(
+export async function getNftWalletNfts(
   walletAddress: string,
   sortField: NftWalletNftsSortField,
   sortDirection: NftWalletNftsSortDirection,
   pageParam: string
-): Promise<WalletNfts> {
+): Promise<NftWalletNfts> {
   const res = await fetch(
     `https://restapi.nftscan.com/api/v2/account/own/${walletAddress}?erc_type=erc721&show_attribute=false&sort_field=${sortField}&sort_direction=${sortDirection}&cursor=${pageParam}`,
     {

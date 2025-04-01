@@ -6,8 +6,8 @@ import Dropdown from '@components/dashboard-components/ui/dropdown'
 import DropdownButton from '@components/dashboard-components/ui/dropdown-button'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
+import useGetNftWalletNfts from '@hooks/queries/use-get-nft-wallet-nfts'
 import useGetNftWalletStatistics from '@hooks/queries/use-get-nft-wallet-statistics'
-import useGetWalletNfts from '@hooks/queries/use-get-wallet-nfts'
 import ArrowsDownUpIcon from '@icons/arrows-down-up-icon'
 import WalletIcon from '@icons/wallet-icon'
 import Section from '@sections/dashboard-sections/section'
@@ -211,7 +211,7 @@ function NftWalletNfts({ walletAddress }: NftWalletNftsProps) {
     '') as NftWalletNftsSortDirection
 
   const { data, isPending, error, fetchNextPage, isFetchingNextPage } =
-    useGetWalletNfts(walletAddress, sortField, sortDirection)
+    useGetNftWalletNfts(walletAddress, sortField, sortDirection)
   const { ref, inView } = useInView()
 
   useEffect(() => {

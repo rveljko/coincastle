@@ -1,19 +1,19 @@
-import { getWalletNfts } from '@services/api/nfts'
+import { getNftWalletNfts } from '@services/api/nfts'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import {
   NftWalletNftsSortDirection,
   NftWalletNftsSortField,
 } from '@utils/types'
 
-export default function useGetWalletNfts(
+export default function useGetNftWalletNfts(
   walletAddress: string,
   sortField: NftWalletNftsSortField,
   sortDirection: NftWalletNftsSortDirection
 ) {
   return useInfiniteQuery({
     queryFn: ({ pageParam }) =>
-      getWalletNfts(walletAddress, sortField, sortDirection, pageParam),
-    queryKey: ['wallet-nfts', walletAddress, sortField, sortDirection],
+      getNftWalletNfts(walletAddress, sortField, sortDirection, pageParam),
+    queryKey: ['nft-wallet-nfts', walletAddress, sortField, sortDirection],
     initialPageParam: '',
     getNextPageParam: (lastPage) => lastPage.data.next,
   })

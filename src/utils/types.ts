@@ -174,7 +174,7 @@ export type NftHttpResponse = {
   }
 }
 
-export type WalletNfts = {
+export type NftWalletNfts = {
   code: number
   data: {
     content: NftOverview[]
