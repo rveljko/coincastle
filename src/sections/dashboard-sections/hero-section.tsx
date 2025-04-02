@@ -11,6 +11,7 @@ import Button from '@components/ui/button'
 import useGetCoinChartInformation from '@hooks/queries/use-get-coin-chart-information'
 import useGetCoinInformation from '@hooks/queries/use-get-coin-information'
 import useGetCryptoCurrencies from '@hooks/queries/use-get-crypto-currencies'
+import useSelectedCoin from '@hooks/use-selected-coin'
 import CoinIcon from '@icons/coin-icon'
 import ListIcon from '@icons/list-icon'
 import Section from '@sections/dashboard-sections/section'
@@ -35,9 +36,7 @@ export default function HeroSection({ className }: HeroSectionProps) {
 }
 
 function HeroAssetInformation() {
-  const [searchParams] = useSearchParams()
-  const coinId = searchParams.get('coin') || 'bitcoin'
-
+  const { coinId } = useSelectedCoin()
   const { data, isPending, error } = useGetCoinInformation(coinId)
 
   if (isPending) return <HeroAssetInformationSkeleton />
@@ -76,18 +75,11 @@ function HeroButtons() {
   const [searchParams, setSearchParams] = useSearchParams()
   const period = (searchParams.get('period') ||
     '1') as CoinChartInformationPeriod
-  const coinId = searchParams.get('coin') || 'bitcoin'
+  const { coinId, setCoin } = useSelectedCoin()
 
   function setCoinPricePeriod(days: CoinChartInformationPeriod) {
     setSearchParams((prevParams) => {
       prevParams.set('period', days)
-      return prevParams
-    })
-  }
-
-  function setCoin(coinId: string) {
-    setSearchParams((prevParams) => {
-      prevParams.set('coin', coinId)
       return prevParams
     })
   }
@@ -187,7 +179,7 @@ function HeroButtons() {
 
 function HeroChart() {
   const [searchParams] = useSearchParams()
-  const coinId = searchParams.get('coin') || 'bitcoin'
+  const { coinId } = useSelectedCoin()
   const period = (searchParams.get('period') ||
     '1') as CoinChartInformationPeriod
 

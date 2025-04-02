@@ -2,9 +2,9 @@ import AssetStatisticsSectionSkeleton from '@components/dashboard-components/ass
 import AssetStatisticsPanel from '@components/dashboard-components/ui/asset-statistics-panel'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import useGetCoinInformation from '@hooks/queries/use-get-coin-information'
+import useSelectedCoin from '@hooks/use-selected-coin'
 import Section from '@sections/dashboard-sections/section'
 import { currencyFormatter } from '@utils/helpers/currency-formatter'
-import { useSearchParams } from 'react-router-dom'
 
 type AssetStatisticsSectionProps = {
   className?: string
@@ -13,9 +13,7 @@ type AssetStatisticsSectionProps = {
 export default function AssetStatisticsSection({
   className,
 }: AssetStatisticsSectionProps) {
-  const [searchParams] = useSearchParams()
-  const coinId = searchParams.get('coin') || 'bitcoin'
-
+  const { coinId } = useSelectedCoin()
   const { data, isPending, error } = useGetCoinInformation(coinId)
 
   if (isPending) return <AssetStatisticsSectionSkeleton />
