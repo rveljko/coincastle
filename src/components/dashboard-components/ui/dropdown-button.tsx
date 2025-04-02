@@ -1,6 +1,5 @@
 import Dropdown from '@components/dashboard-components/ui/dropdown'
 import Button, { ButtonProps } from '@components/ui/button'
-import { cn } from '@utils/utils'
 import { useEffect, useRef, useState } from 'react'
 
 type DropdownButtonProps = ButtonProps & {
@@ -44,9 +43,9 @@ export default function DropdownButton({
           {label}
         </Button>
         {isDropdownOpened && (
-          <Dropdown className={cn('absolute z-999 mt-2', dropdownClassName)}>
-            {children}
-          </Dropdown>
+          <div className="absolute z-999 mt-2">
+            <Dropdown>{children}</Dropdown>
+          </div>
         )}
       </div>
     </div>

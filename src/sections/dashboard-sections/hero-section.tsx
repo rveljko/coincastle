@@ -3,11 +3,14 @@ import {
   HeroAssetInformationSkeleton,
   HeroChartSkeleton,
 } from '@components/dashboard-components/hero-section-skeleton'
+import Dropdown from '@components/dashboard-components/ui/dropdown'
+import DropdownButton from '@components/dashboard-components/ui/dropdown-button'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Switcher from '@components/dashboard-components/ui/switcher'
 import Button from '@components/ui/button'
 import useGetCoinChartInformation from '@hooks/queries/use-get-coin-chart-information'
 import useGetCoinInformation from '@hooks/queries/use-get-coin-information'
+import useGetCryptoCurrencies from '@hooks/queries/use-get-crypto-currencies'
 import CoinIcon from '@icons/coin-icon'
 import ListIcon from '@icons/list-icon'
 import Section from '@sections/dashboard-sections/section'
@@ -20,90 +23,21 @@ type HeroSectionProps = {
 }
 
 export default function HeroSection({ className }: HeroSectionProps) {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const period = (searchParams.get('period') ||
-    '1') as CoinChartInformationPeriod
-
-  function setCoinPricePeriod(days: CoinChartInformationPeriod) {
-    setSearchParams((prevParams) => {
-      prevParams.set('period', days)
-      return prevParams
-    })
-  }
-
   return (
     <Section className={className}>
       <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <HeroAssetInformation coinId="bitcoin" />
-        <div className="flex flex-wrap gap-2">
-          <Button variant="secondary" size="medium" leftIcon={<CoinIcon />}>
-            Coin
-          </Button>
-          <Button variant="secondary" size="medium" leftIcon={<ListIcon />}>
-            Category
-          </Button>
-          <Switcher>
-            <Switcher.Item
-              id="1d"
-              name="time-filter"
-              onClick={() => setCoinPricePeriod('1')}
-              isActive={period === '1'}
-            >
-              1D
-            </Switcher.Item>
-            <Switcher.Item
-              id="1w"
-              name="time-filter"
-              onClick={() => setCoinPricePeriod('7')}
-              isActive={period === '7'}
-            >
-              1W
-            </Switcher.Item>
-            <Switcher.Item
-              id="1m"
-              name="time-filter"
-              onClick={() => setCoinPricePeriod('30')}
-              isActive={period === '30'}
-            >
-              1M
-            </Switcher.Item>
-            <Switcher.Item
-              id="3m"
-              name="time-filter"
-              onClick={() => setCoinPricePeriod('90')}
-              isActive={period === '90'}
-            >
-              3M
-            </Switcher.Item>
-            <Switcher.Item
-              id="6m"
-              name="time-filter"
-              onClick={() => setCoinPricePeriod('180')}
-              isActive={period === '180'}
-            >
-              6M
-            </Switcher.Item>
-            <Switcher.Item
-              id="1Y"
-              name="time-filter"
-              onClick={() => setCoinPricePeriod('365')}
-              isActive={period === '365'}
-            >
-              1Y
-            </Switcher.Item>
-          </Switcher>
-        </div>
+        <HeroAssetInformation />
+        <HeroButtons />
       </header>
-      <HeroChart coinId="bitcoin" period={period} />
+      <HeroChart />
     </Section>
   )
 }
 
-type HeroAssetInformationProps = {
-  coinId: string
-}
+function HeroAssetInformation() {
+  const [searchParams] = useSearchParams()
+  const coinId = searchParams.get('coin') || 'bitcoin'
 
-function HeroAssetInformation({ coinId }: HeroAssetInformationProps) {
   const { data, isPending, error } = useGetCoinInformation(coinId)
 
   if (isPending) return <HeroAssetInformationSkeleton />
@@ -138,12 +72,121 @@ function HeroAssetInformation({ coinId }: HeroAssetInformationProps) {
   )
 }
 
-type HeroChartProps = {
-  coinId: string
-  period: CoinChartInformationPeriod
+function HeroButtons() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const period = (searchParams.get('period') ||
+    '1') as CoinChartInformationPeriod
+  const coinId = searchParams.get('coin') || 'bitcoin'
+
+  function setCoinPricePeriod(days: CoinChartInformationPeriod) {
+    setSearchParams((prevParams) => {
+      prevParams.set('period', days)
+      return prevParams
+    })
+  }
+
+  function setCoin(coinId: string) {
+    setSearchParams((prevParams) => {
+      prevParams.set('coin', coinId)
+      return prevParams
+    })
+  }
+
+  const { data, isPending, error } = useGetCryptoCurrencies(
+    5,
+    'market_cap',
+    'desc'
+  )
+
+  if (isPending) return <div>loading</div>
+
+  if (error) return <ErrorMessage />
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      <DropdownButton
+        label="Coin"
+        variant="secondary"
+        size="medium"
+        leftIcon={<CoinIcon />}
+      >
+        {data.map(({ id, image, name }) => (
+          <Dropdown.Button onClick={() => setCoin(id)} isActive={coinId === id}>
+            <div className="size-4">
+              <img
+                className="rounded-full"
+                src={image}
+                alt={name}
+                title={name}
+              />
+            </div>
+            {name}
+          </Dropdown.Button>
+        ))}
+      </DropdownButton>
+      <Button variant="secondary" size="medium" leftIcon={<ListIcon />}>
+        Category
+      </Button>
+      <Switcher>
+        <Switcher.Item
+          id="1d"
+          name="time-filter"
+          onClick={() => setCoinPricePeriod('1')}
+          isActive={period === '1'}
+        >
+          1D
+        </Switcher.Item>
+        <Switcher.Item
+          id="1w"
+          name="time-filter"
+          onClick={() => setCoinPricePeriod('7')}
+          isActive={period === '7'}
+        >
+          1W
+        </Switcher.Item>
+        <Switcher.Item
+          id="1m"
+          name="time-filter"
+          onClick={() => setCoinPricePeriod('30')}
+          isActive={period === '30'}
+        >
+          1M
+        </Switcher.Item>
+        <Switcher.Item
+          id="3m"
+          name="time-filter"
+          onClick={() => setCoinPricePeriod('90')}
+          isActive={period === '90'}
+        >
+          3M
+        </Switcher.Item>
+        <Switcher.Item
+          id="6m"
+          name="time-filter"
+          onClick={() => setCoinPricePeriod('180')}
+          isActive={period === '180'}
+        >
+          6M
+        </Switcher.Item>
+        <Switcher.Item
+          id="1Y"
+          name="time-filter"
+          onClick={() => setCoinPricePeriod('365')}
+          isActive={period === '365'}
+        >
+          1Y
+        </Switcher.Item>
+      </Switcher>
+    </div>
+  )
 }
 
-function HeroChart({ coinId, period }: HeroChartProps) {
+function HeroChart() {
+  const [searchParams] = useSearchParams()
+  const coinId = searchParams.get('coin') || 'bitcoin'
+  const period = (searchParams.get('period') ||
+    '1') as CoinChartInformationPeriod
+
   const { data, isPending, error } = useGetCoinChartInformation(coinId, period)
 
   if (isPending) return <HeroChartSkeleton />
