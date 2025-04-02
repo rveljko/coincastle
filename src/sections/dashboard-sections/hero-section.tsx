@@ -13,6 +13,7 @@ import useGetCoinChartInformation from '@hooks/queries/use-get-coin-chart-inform
 import useGetCoinInformation from '@hooks/queries/use-get-coin-information'
 import useGetCryptoCurrencies from '@hooks/queries/use-get-crypto-currencies'
 import useGetStockChartInformation from '@hooks/queries/use-get-stock-chart-information'
+import useGetStockInformation from '@hooks/queries/use-get-stock-information'
 import useGetStocks from '@hooks/queries/use-get-stocks'
 import useChartTimeFiltering from '@hooks/use-chart-time-filtering'
 import useSelectedCategory from '@hooks/use-selected-category'
@@ -42,36 +43,64 @@ export default function HeroSection({ className }: HeroSectionProps) {
 
 function HeroAssetInformation() {
   const { coinId } = useSelectedCoin()
-  const { data, isPending, error } = useGetCoinInformation(coinId)
+  const { stockSymbol: selectedStockSymbol } = useSelectedStock()
+  const { category } = useSelectedCategory()
+  const {
+    data: coinData,
+    isPending: coinIsPending,
+    error: coinError,
+  } = useGetCoinInformation(coinId)
+  const {
+    data: stockData,
+    isPending: stockIsPending,
+    error: stockError,
+  } = useGetStockInformation(selectedStockSymbol)
 
-  if (isPending) return <HeroAssetInformationSkeleton />
+  if (coinIsPending || stockIsPending) return <HeroAssetInformationSkeleton />
 
-  if (error) return <ErrorMessage />
+  if (coinError || stockError) return <ErrorMessage />
 
   const {
-    image,
-    name,
-    symbol,
-    market_data: { current_price },
-  } = data
+    image: coinImage,
+    name: coinName,
+    symbol: coinSymbol,
+    market_data: { current_price: coinCurrentPrice },
+  } = coinData
+
+  const {
+    name: stockName,
+    symbol: stockSymbol,
+    price: stockPrice,
+  } = stockData[0]
 
   return (
     <div>
       <div className="mb-2 flex items-center gap-2">
-        <img
-          className="size-8 rounded-full"
-          src={image.small}
-          alt={name}
-          title={name}
-        />
+        {category === 'crypto-currencies' ? (
+          <img
+            className="size-8 rounded-full"
+            src={coinImage.small}
+            alt={coinName}
+            title={coinName}
+          />
+        ) : (
+          <FirstLetterImageGenerator word={stockName} />
+        )}
+
         <div className="flex items-center gap-1">
           <h3 className="text-heading-4-font-size leading-heading-4-line-height">
-            {name}
+            {category === 'crypto-currencies' ? coinName : stockName}
           </h3>
-          <span className="text-neutral-400 uppercase">{symbol}</span>
+          <span className="text-neutral-400 uppercase">
+            {category === 'crypto-currencies' ? coinSymbol : stockSymbol}
+          </span>
         </div>
       </div>
-      <h1>{currencyFormatter(current_price.usd)}</h1>
+      <h1>
+        {currencyFormatter(
+          category === 'crypto-currencies' ? coinCurrentPrice.usd : stockPrice
+        )}
+      </h1>
     </div>
   )
 }
