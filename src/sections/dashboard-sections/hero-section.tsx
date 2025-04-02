@@ -1,6 +1,7 @@
 import CryptoCoinChart from '@components/dashboard-components/crypto-coin-chart'
 import {
   HeroAssetInformationSkeleton,
+  HeroButtonsSkeleton,
   HeroChartSkeleton,
 } from '@components/dashboard-components/hero-section-skeleton'
 import StockChart from '@components/dashboard-components/stocks-chart'
@@ -123,7 +124,8 @@ function HeroButtons() {
     error: stocksError,
   } = useGetStocks('', '', 1_000_000_000, '', 1_000_000, '', 5)
 
-  if (cryptoCurrenciesIsPending || stocksIsPending) return <div>loading</div>
+  if (cryptoCurrenciesIsPending || stocksIsPending)
+    return <HeroButtonsSkeleton />
 
   if (cryptoCurrenciesError || stocksError) return <ErrorMessage />
 

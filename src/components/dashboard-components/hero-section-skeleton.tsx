@@ -7,11 +7,7 @@ export default function HeroSectionSkeleton() {
     <Section>
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <HeroAssetInformationSkeleton />
-        <div className="flex flex-wrap gap-2">
-          <div className="bg-clickable/10 h-8 w-20 animate-pulse rounded-sm"></div>
-          <div className="bg-clickable/10 h-8 w-20 animate-pulse rounded-sm"></div>
-          <SwitcherSkeleton className="w-36 max-w-[unset]" />
-        </div>
+        <HeroButtonsSkeleton />
       </div>
       <HeroChartSkeleton />
     </Section>
@@ -26,6 +22,16 @@ export function HeroAssetInformationSkeleton() {
         <div className="bg-clickable/10 h-8 w-30 animate-pulse rounded-sm"></div>
       </div>
       <div className="bg-clickable/10 h-10.5 w-50 animate-pulse rounded-sm"></div>
+    </div>
+  )
+}
+
+export function HeroButtonsSkeleton() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <div className="bg-clickable/10 h-8 w-20 animate-pulse rounded-sm"></div>
+      <div className="bg-clickable/10 h-8 w-20 animate-pulse rounded-sm"></div>
+      <SwitcherSkeleton className="w-36 max-w-[unset]" />
     </div>
   )
 }
