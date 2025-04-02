@@ -9,14 +9,13 @@ import PercentageChangeIndicator from '@components/dashboard-components/ui/perce
 import Switcher from '@components/dashboard-components/ui/switcher'
 import useGetStockChartInformation from '@hooks/queries/use-get-stock-chart-information'
 import useGetStockInformation from '@hooks/queries/use-get-stock-information'
+import useChartTimeFiltering from '@hooks/use-chart-time-filtering'
 import Section from '@sections/dashboard-sections/section'
 import { TITLE_PREFIX } from '@utils/constants'
 import {
   compactCurrencyFormatter,
   currencyFormatter,
 } from '@utils/helpers/currency-formatter'
-import { StockChartInformationPeriod } from '@utils/types'
-import { useSearchParams } from 'react-router-dom'
 
 type StockInformationSectionProps = {
   stockSymbol: string
@@ -25,16 +24,7 @@ type StockInformationSectionProps = {
 export default function StockInformationSection({
   stockSymbol,
 }: StockInformationSectionProps) {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const period = (searchParams.get('period') ||
-    '1') as StockChartInformationPeriod
-
-  function setStockPricePeriod(days: StockChartInformationPeriod) {
-    setSearchParams((prevParams) => {
-      prevParams.set('period', days)
-      return prevParams
-    })
-  }
+  const { stockPricePeriod, setStockPricePeriod } = useChartTimeFiltering()
 
   const { data, isPending, error } = useGetStockInformation(stockSymbol)
 
@@ -182,7 +172,7 @@ export default function StockInformationSection({
                 id="1d"
                 name="time-filter"
                 onClick={() => setStockPricePeriod('1')}
-                isActive={period === '1'}
+                isActive={stockPricePeriod === '1'}
               >
                 1D
               </Switcher.Item>
@@ -190,7 +180,7 @@ export default function StockInformationSection({
                 id="1w"
                 name="time-filter"
                 onClick={() => setStockPricePeriod('7')}
-                isActive={period === '7'}
+                isActive={stockPricePeriod === '7'}
               >
                 1W
               </Switcher.Item>
@@ -198,7 +188,7 @@ export default function StockInformationSection({
                 id="1m"
                 name="time-filter"
                 onClick={() => setStockPricePeriod('30')}
-                isActive={period === '30'}
+                isActive={stockPricePeriod === '30'}
               >
                 1M
               </Switcher.Item>
@@ -206,7 +196,7 @@ export default function StockInformationSection({
                 id="3m"
                 name="time-filter"
                 onClick={() => setStockPricePeriod('90')}
-                isActive={period === '90'}
+                isActive={stockPricePeriod === '90'}
               >
                 3M
               </Switcher.Item>
@@ -214,7 +204,7 @@ export default function StockInformationSection({
                 id="6m"
                 name="time-filter"
                 onClick={() => setStockPricePeriod('180')}
-                isActive={period === '180'}
+                isActive={stockPricePeriod === '180'}
               >
                 6M
               </Switcher.Item>
@@ -222,13 +212,13 @@ export default function StockInformationSection({
                 id="1Y"
                 name="time-filter"
                 onClick={() => setStockPricePeriod('365')}
-                isActive={period === '365'}
+                isActive={stockPricePeriod === '365'}
               >
                 1Y
               </Switcher.Item>
             </Switcher>
           </div>
-          <StockInformationChart stockSymbol={stockSymbol} period={period} />
+          <StockInformationChart stockSymbol={stockSymbol} />
         </div>
       </div>
     </Section>
@@ -237,16 +227,13 @@ export default function StockInformationSection({
 
 type StockInformationChartProps = {
   stockSymbol: string
-  period: StockChartInformationPeriod
 }
 
-function StockInformationChart({
-  stockSymbol,
-  period,
-}: StockInformationChartProps) {
+function StockInformationChart({ stockSymbol }: StockInformationChartProps) {
+  const { stockPricePeriod } = useChartTimeFiltering()
   const { data, isPending, error } = useGetStockChartInformation(
     stockSymbol,
-    period
+    stockPricePeriod
   )
 
   if (isPending) return <StockInformationChartSkeleton />

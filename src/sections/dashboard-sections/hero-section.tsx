@@ -11,13 +11,12 @@ import Button from '@components/ui/button'
 import useGetCoinChartInformation from '@hooks/queries/use-get-coin-chart-information'
 import useGetCoinInformation from '@hooks/queries/use-get-coin-information'
 import useGetCryptoCurrencies from '@hooks/queries/use-get-crypto-currencies'
+import useChartTimeFiltering from '@hooks/use-chart-time-filtering'
 import useSelectedCoin from '@hooks/use-selected-coin'
 import CoinIcon from '@icons/coin-icon'
 import ListIcon from '@icons/list-icon'
 import Section from '@sections/dashboard-sections/section'
 import { currencyFormatter } from '@utils/helpers/currency-formatter'
-import { CoinChartInformationPeriod } from '@utils/types'
-import { useSearchParams } from 'react-router-dom'
 
 type HeroSectionProps = {
   className?: string
@@ -72,17 +71,8 @@ function HeroAssetInformation() {
 }
 
 function HeroButtons() {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const period = (searchParams.get('period') ||
-    '1') as CoinChartInformationPeriod
   const { coinId, setCoin } = useSelectedCoin()
-
-  function setCoinPricePeriod(days: CoinChartInformationPeriod) {
-    setSearchParams((prevParams) => {
-      prevParams.set('period', days)
-      return prevParams
-    })
-  }
+  const { coinPricePeriod, setCoinPricePeriod } = useChartTimeFiltering()
 
   const { data, isPending, error } = useGetCryptoCurrencies(
     5,
@@ -128,7 +118,7 @@ function HeroButtons() {
           id="1d"
           name="time-filter"
           onClick={() => setCoinPricePeriod('1')}
-          isActive={period === '1'}
+          isActive={coinPricePeriod === '1'}
         >
           1D
         </Switcher.Item>
@@ -136,7 +126,7 @@ function HeroButtons() {
           id="1w"
           name="time-filter"
           onClick={() => setCoinPricePeriod('7')}
-          isActive={period === '7'}
+          isActive={coinPricePeriod === '7'}
         >
           1W
         </Switcher.Item>
@@ -144,7 +134,7 @@ function HeroButtons() {
           id="1m"
           name="time-filter"
           onClick={() => setCoinPricePeriod('30')}
-          isActive={period === '30'}
+          isActive={coinPricePeriod === '30'}
         >
           1M
         </Switcher.Item>
@@ -152,7 +142,7 @@ function HeroButtons() {
           id="3m"
           name="time-filter"
           onClick={() => setCoinPricePeriod('90')}
-          isActive={period === '90'}
+          isActive={coinPricePeriod === '90'}
         >
           3M
         </Switcher.Item>
@@ -160,7 +150,7 @@ function HeroButtons() {
           id="6m"
           name="time-filter"
           onClick={() => setCoinPricePeriod('180')}
-          isActive={period === '180'}
+          isActive={coinPricePeriod === '180'}
         >
           6M
         </Switcher.Item>
@@ -168,7 +158,7 @@ function HeroButtons() {
           id="1Y"
           name="time-filter"
           onClick={() => setCoinPricePeriod('365')}
-          isActive={period === '365'}
+          isActive={coinPricePeriod === '365'}
         >
           1Y
         </Switcher.Item>
@@ -178,12 +168,13 @@ function HeroButtons() {
 }
 
 function HeroChart() {
-  const [searchParams] = useSearchParams()
   const { coinId } = useSelectedCoin()
-  const period = (searchParams.get('period') ||
-    '1') as CoinChartInformationPeriod
+  const { coinPricePeriod } = useChartTimeFiltering()
 
-  const { data, isPending, error } = useGetCoinChartInformation(coinId, period)
+  const { data, isPending, error } = useGetCoinChartInformation(
+    coinId,
+    coinPricePeriod
+  )
 
   if (isPending) return <HeroChartSkeleton />
 

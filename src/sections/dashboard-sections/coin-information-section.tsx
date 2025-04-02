@@ -8,14 +8,13 @@ import PercentageChangeIndicator from '@components/dashboard-components/ui/perce
 import Switcher from '@components/dashboard-components/ui/switcher'
 import useGetCoinChartInformation from '@hooks/queries/use-get-coin-chart-information'
 import useGetCoinInformation from '@hooks/queries/use-get-coin-information'
+import useChartTimeFiltering from '@hooks/use-chart-time-filtering'
 import Section from '@sections/dashboard-sections/section'
 import { TITLE_PREFIX } from '@utils/constants'
 import {
   compactCurrencyFormatter,
   currencyFormatter,
 } from '@utils/helpers/currency-formatter'
-import { CoinChartInformationPeriod } from '@utils/types'
-import { useSearchParams } from 'react-router-dom'
 
 type CoinInformationSection = {
   coinId: string
@@ -24,16 +23,7 @@ type CoinInformationSection = {
 export default function CoinInformationSection({
   coinId,
 }: CoinInformationSection) {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const period = (searchParams.get('period') ||
-    '1') as CoinChartInformationPeriod
-
-  function setCoinPricePeriod(days: CoinChartInformationPeriod) {
-    setSearchParams((prevParams) => {
-      prevParams.set('period', days)
-      return prevParams
-    })
-  }
+  const { coinPricePeriod, setCoinPricePeriod } = useChartTimeFiltering()
 
   const { data, isPending, error } = useGetCoinInformation(coinId)
 
@@ -153,7 +143,7 @@ export default function CoinInformationSection({
                 id="1d"
                 name="time-filter"
                 onClick={() => setCoinPricePeriod('1')}
-                isActive={period === '1'}
+                isActive={coinPricePeriod === '1'}
               >
                 1D
               </Switcher.Item>
@@ -161,7 +151,7 @@ export default function CoinInformationSection({
                 id="1w"
                 name="time-filter"
                 onClick={() => setCoinPricePeriod('7')}
-                isActive={period === '7'}
+                isActive={coinPricePeriod === '7'}
               >
                 1W
               </Switcher.Item>
@@ -169,7 +159,7 @@ export default function CoinInformationSection({
                 id="1m"
                 name="time-filter"
                 onClick={() => setCoinPricePeriod('30')}
-                isActive={period === '30'}
+                isActive={coinPricePeriod === '30'}
               >
                 1M
               </Switcher.Item>
@@ -177,7 +167,7 @@ export default function CoinInformationSection({
                 id="3m"
                 name="time-filter"
                 onClick={() => setCoinPricePeriod('90')}
-                isActive={period === '90'}
+                isActive={coinPricePeriod === '90'}
               >
                 3M
               </Switcher.Item>
@@ -185,7 +175,7 @@ export default function CoinInformationSection({
                 id="6m"
                 name="time-filter"
                 onClick={() => setCoinPricePeriod('180')}
-                isActive={period === '180'}
+                isActive={coinPricePeriod === '180'}
               >
                 6M
               </Switcher.Item>
@@ -193,13 +183,13 @@ export default function CoinInformationSection({
                 id="1Y"
                 name="time-filter"
                 onClick={() => setCoinPricePeriod('365')}
-                isActive={period === '365'}
+                isActive={coinPricePeriod === '365'}
               >
                 1Y
               </Switcher.Item>
             </Switcher>
           </div>
-          <CoinInformationChart coinId={coinId} period={period} />
+          <CoinInformationChart coinId={coinId} />
         </div>
       </div>
     </Section>
@@ -208,11 +198,14 @@ export default function CoinInformationSection({
 
 type CoinInformationChartProps = {
   coinId: string
-  period: CoinChartInformationPeriod
 }
 
-function CoinInformationChart({ coinId, period }: CoinInformationChartProps) {
-  const { data, isPending, error } = useGetCoinChartInformation(coinId, period)
+function CoinInformationChart({ coinId }: CoinInformationChartProps) {
+  const { coinPricePeriod } = useChartTimeFiltering()
+  const { data, isPending, error } = useGetCoinChartInformation(
+    coinId,
+    coinPricePeriod
+  )
 
   if (isPending) return <CoinInformationChartSkeleton />
 
