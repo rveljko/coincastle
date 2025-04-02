@@ -1,5 +1,6 @@
 import Dropdown from '@components/dashboard-components/ui/dropdown'
 import Button, { ButtonProps } from '@components/ui/button'
+import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 
 type DropdownButtonProps = ButtonProps & {
@@ -42,11 +43,20 @@ export default function DropdownButton({
         <Button onClick={() => setIsDropdownOpened((prev) => !prev)} {...props}>
           {label}
         </Button>
-        {isDropdownOpened && (
-          <div className="absolute z-999 mt-2">
-            <Dropdown>{children}</Dropdown>
-          </div>
-        )}
+        <AnimatePresence>
+          {isDropdownOpened && (
+            <div className="absolute z-999 mt-2">
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                className="origin-top-left"
+              >
+                <Dropdown>{children}</Dropdown>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   )
