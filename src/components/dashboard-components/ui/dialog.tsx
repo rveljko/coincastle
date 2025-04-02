@@ -1,3 +1,4 @@
+import { motion } from 'motion/react'
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import ReactFocusLock from 'react-focus-lock'
@@ -25,16 +26,23 @@ export default function Dialog({ children, closeModal }: DialogProps) {
       className="fixed inset-0 z-[999] flex items-center justify-center bg-(--modal-backdrop-background) p-4"
       onClick={closeModal}
     >
-      <ReactFocusLock className="flex h-full overflow-y-auto">
-        <div className="m-auto overflow-y-auto">
-          <div
-            className="max-w-(--dialog-width)"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {children}
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0 }}
+        className="origin-top-center"
+      >
+        <ReactFocusLock className="flex h-full overflow-y-auto">
+          <div className="m-auto overflow-y-auto">
+            <div
+              className="max-w-(--dialog-width)"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {children}
+            </div>
           </div>
-        </div>
-      </ReactFocusLock>
+        </ReactFocusLock>
+      </motion.div>
     </div>,
     document.getElementById('root')!
   )

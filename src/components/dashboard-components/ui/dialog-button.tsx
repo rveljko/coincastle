@@ -1,5 +1,6 @@
 import Dialog from '@components/dashboard-components/ui/dialog'
 import Button, { ButtonProps } from '@components/ui/button'
+import { AnimatePresence } from 'motion/react'
 
 type DialogButtonProps = ButtonProps & {
   label: React.ReactNode
@@ -19,7 +20,9 @@ export default function DialogButton({
       <Button onClick={toggleModal} {...props}>
         {label}
       </Button>
-      {isOpened && <Dialog closeModal={toggleModal}>{children}</Dialog>}
+      <AnimatePresence>
+        {isOpened && <Dialog closeModal={toggleModal}>{children}</Dialog>}
+      </AnimatePresence>
     </div>
   )
 }
