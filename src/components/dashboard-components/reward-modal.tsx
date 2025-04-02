@@ -2,6 +2,7 @@ import FormField from '@components/dashboard-components/ui/form-field'
 import Button from '@components/ui/button'
 import { useTheme } from '@services/contexts/theme-context'
 import { IMAGE_PATH } from '@utils/constants'
+import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 
 type RewardModalProps = {
@@ -27,15 +28,23 @@ export default function RewardModal({ closeModal }: RewardModalProps) {
         You've completed all tasks! Redeem your reward below and explore more
         opportunities on our platform
       </p>
-      {showRewardMessage && (
-        <FormField.TextArea
-          className="mb-4 field-sizing-content aspect-[unset] max-w-[unset]"
-          readOnly
-          value="Congratulations on discovering this hidden gem! While there's no gift for you, I truly appreciate your curiosity and playful spirit in exploring my project :)
+      <AnimatePresence>
+        {showRewardMessage && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+          >
+            <FormField.TextArea
+              className="mb-4 field-sizing-content aspect-[unset] max-w-[unset]"
+              readOnly
+              value="Congratulations on discovering this hidden gem! While there's no gift for you, I truly appreciate your curiosity and playful spirit in exploring my project :)
           
 🎉 2/3 IYKYK"
-        />
-      )}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="flex gap-2">
         <Button
           variant="secondary"
