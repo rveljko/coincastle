@@ -3,6 +3,7 @@ import {
   HeroAssetInformationSkeleton,
   HeroChartSkeleton,
 } from '@components/dashboard-components/hero-section-skeleton'
+import StockChart from '@components/dashboard-components/stocks-chart'
 import Dropdown from '@components/dashboard-components/ui/dropdown'
 import DropdownButton from '@components/dashboard-components/ui/dropdown-button'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
@@ -11,6 +12,7 @@ import Switcher from '@components/dashboard-components/ui/switcher'
 import useGetCoinChartInformation from '@hooks/queries/use-get-coin-chart-information'
 import useGetCoinInformation from '@hooks/queries/use-get-coin-information'
 import useGetCryptoCurrencies from '@hooks/queries/use-get-crypto-currencies'
+import useGetStockChartInformation from '@hooks/queries/use-get-stock-chart-information'
 import useGetStocks from '@hooks/queries/use-get-stocks'
 import useChartTimeFiltering from '@hooks/use-chart-time-filtering'
 import useSelectedCategory from '@hooks/use-selected-category'
@@ -218,20 +220,37 @@ function HeroButtons() {
 
 function HeroChart() {
   const { coinId } = useSelectedCoin()
-  const { coinPricePeriod } = useChartTimeFiltering()
+  const { stockSymbol } = useSelectedStock()
+  const { category } = useSelectedCategory()
+  const { coinPricePeriod, stockPricePeriod } = useChartTimeFiltering()
 
-  const { data, isPending, error } = useGetCoinChartInformation(
-    coinId,
-    coinPricePeriod
+  const {
+    data: coinChartData,
+    isPending: coinChartIsPending,
+    error: coinChartError,
+  } = useGetCoinChartInformation(coinId, coinPricePeriod)
+  const {
+    data: stockChartData,
+    isPending: stockChartIsPending,
+    error: stockChartError,
+  } = useGetStockChartInformation(stockSymbol, stockPricePeriod)
+
+  if (coinChartIsPending || stockChartIsPending) return <HeroChartSkeleton />
+
+  if (
+    coinChartError ||
+    stockChartError ||
+    (category === 'stocks' && stockChartData.length <= 1)
   )
-
-  if (isPending) return <HeroChartSkeleton />
-
-  if (error) return <ErrorMessage />
+    return <ErrorMessage />
 
   return (
     <div className="aspect-[2.5/1]">
-      <CryptoCoinChart data={data.prices} />
+      {category === 'crypto-currencies' ? (
+        <CryptoCoinChart data={coinChartData.prices} />
+      ) : (
+        <StockChart data={stockChartData} />
+      )}
     </div>
   )
 }
