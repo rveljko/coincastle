@@ -111,7 +111,11 @@ function HeroButtons() {
         leftIcon={<CoinIcon />}
       >
         {data.map(({ id, image, name }) => (
-          <Dropdown.Button onClick={() => setCoin(id)} isActive={coinId === id}>
+          <Dropdown.Button
+            key={id}
+            onClick={() => setCoin(id)}
+            isActive={coinId === id}
+          >
             <div className="size-4">
               <img
                 className="rounded-full"
