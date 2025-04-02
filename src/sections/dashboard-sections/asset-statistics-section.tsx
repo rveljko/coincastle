@@ -1,4 +1,4 @@
-import { HeroAssetInformationSkeleton } from '@components/dashboard-components/hero-section-skeleton'
+import AssetStatisticsSectionSkeleton from '@components/dashboard-components/asset-statistics-section-skeleton'
 import AssetStatisticsPanel from '@components/dashboard-components/ui/asset-statistics-panel'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import useGetCoinInformation from '@hooks/queries/use-get-coin-information'
@@ -30,7 +30,7 @@ export default function AssetStatisticsSection({
     error: stockError,
   } = useGetStockInformation(selectedStockSymbol)
 
-  if (coinIsPending || stockIsPending) return <HeroAssetInformationSkeleton />
+  if (coinIsPending || stockIsPending) return <AssetStatisticsSectionSkeleton />
 
   if (coinError || stockError) return <ErrorMessage />
 
