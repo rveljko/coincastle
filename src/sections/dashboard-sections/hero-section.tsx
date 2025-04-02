@@ -6,13 +6,17 @@ import {
 import Dropdown from '@components/dashboard-components/ui/dropdown'
 import DropdownButton from '@components/dashboard-components/ui/dropdown-button'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
+import FirstLetterImageGenerator from '@components/dashboard-components/ui/first-letter-image-generator'
 import Switcher from '@components/dashboard-components/ui/switcher'
-import Button from '@components/ui/button'
 import useGetCoinChartInformation from '@hooks/queries/use-get-coin-chart-information'
 import useGetCoinInformation from '@hooks/queries/use-get-coin-information'
 import useGetCryptoCurrencies from '@hooks/queries/use-get-crypto-currencies'
+import useGetStocks from '@hooks/queries/use-get-stocks'
 import useChartTimeFiltering from '@hooks/use-chart-time-filtering'
+import useSelectedCategory from '@hooks/use-selected-category'
 import useSelectedCoin from '@hooks/use-selected-coin'
+import useSelectedStock from '@hooks/use-selected-stock'
+import ChartLineIcon from '@icons/chart-line-icon'
 import CoinIcon from '@icons/coin-icon'
 import ListIcon from '@icons/list-icon'
 import Section from '@sections/dashboard-sections/section'
@@ -72,47 +76,92 @@ function HeroAssetInformation() {
 
 function HeroButtons() {
   const { coinId, setCoin } = useSelectedCoin()
+  const { stockSymbol, setStock } = useSelectedStock()
+  const { category, setCategory } = useSelectedCategory()
   const { coinPricePeriod, setCoinPricePeriod } = useChartTimeFiltering()
 
-  const { data, isPending, error } = useGetCryptoCurrencies(
-    5,
-    'market_cap',
-    'desc'
-  )
+  const {
+    data: cryptoCurrencies,
+    isPending: cryptoCurrenciesIsPending,
+    error: cryptoCurrenciesError,
+  } = useGetCryptoCurrencies(5, 'market_cap', 'desc')
 
-  if (isPending) return <div>loading</div>
+  const {
+    data: stocks,
+    isPending: stocksIsPending,
+    error: stocksError,
+  } = useGetStocks('', '', 1_000_000_000, '', 1_000_000, '', 5)
 
-  if (error) return <ErrorMessage />
+  if (cryptoCurrenciesIsPending || stocksIsPending) return <div>loading</div>
+
+  if (cryptoCurrenciesError || stocksError) return <ErrorMessage />
 
   return (
     <div className="flex flex-wrap gap-2">
       <DropdownButton
-        label="Coin"
+        label={category === 'crypto-currencies' ? 'Coin' : 'Stock'}
         variant="secondary"
         size="medium"
-        leftIcon={<CoinIcon />}
+        leftIcon={
+          category === 'crypto-currencies' ? <CoinIcon /> : <ChartLineIcon />
+        }
       >
-        {data.map(({ id, image, name }) => (
-          <Dropdown.Button
-            key={id}
-            onClick={() => setCoin(id)}
-            isActive={coinId === id}
-          >
-            <div className="size-4">
-              <img
-                className="rounded-full"
-                src={image}
-                alt={name}
-                title={name}
-              />
-            </div>
-            {name}
-          </Dropdown.Button>
-        ))}
+        {category === 'crypto-currencies' ? (
+          <>
+            {cryptoCurrencies.map(({ id, image, name }) => (
+              <Dropdown.Button
+                key={id}
+                onClick={() => setCoin(id)}
+                isActive={coinId === id}
+              >
+                <div className="size-4">
+                  <img
+                    className="rounded-full"
+                    src={image}
+                    alt={name}
+                    title={name}
+                  />
+                </div>
+                {name}
+              </Dropdown.Button>
+            ))}
+          </>
+        ) : (
+          <>
+            {stocks.map(({ companyName, symbol }) => (
+              <Dropdown.Button
+                key={symbol}
+                onClick={() => setStock(symbol)}
+                isActive={stockSymbol === symbol}
+              >
+                <FirstLetterImageGenerator word={companyName} isSmall />
+                {companyName}
+              </Dropdown.Button>
+            ))}
+          </>
+        )}
       </DropdownButton>
-      <Button variant="secondary" size="medium" leftIcon={<ListIcon />}>
-        Category
-      </Button>
+      <DropdownButton
+        label="Category"
+        variant="secondary"
+        size="medium"
+        leftIcon={<ListIcon />}
+      >
+        <Dropdown.Button
+          onClick={() => setCategory('crypto-currencies')}
+          isActive={category === 'crypto-currencies'}
+        >
+          <CoinIcon />
+          Crypto Currencies
+        </Dropdown.Button>
+        <Dropdown.Button
+          onClick={() => setCategory('stocks')}
+          isActive={category === 'stocks'}
+        >
+          <ChartLineIcon />
+          Stocks
+        </Dropdown.Button>
+      </DropdownButton>
       <Switcher>
         <Switcher.Item
           id="1d"

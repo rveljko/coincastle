@@ -277,3 +277,5 @@ export type Guide = {
   url: string
   path: string
 }
+
+export type Category = 'crypto-currencies' | 'stocks'
