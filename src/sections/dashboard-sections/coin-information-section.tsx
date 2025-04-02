@@ -23,7 +23,7 @@ type CoinInformationSection = {
 export default function CoinInformationSection({
   coinId,
 }: CoinInformationSection) {
-  const { coinPricePeriod, setCoinPricePeriod } = useChartTimeFiltering()
+  const { period, setPeriod } = useChartTimeFiltering()
 
   const { data, isPending, error } = useGetCoinInformation(coinId)
 
@@ -142,48 +142,48 @@ export default function CoinInformationSection({
               <Switcher.Item
                 id="1d"
                 name="time-filter"
-                onClick={() => setCoinPricePeriod('1')}
-                isActive={coinPricePeriod === '1'}
+                onClick={() => setPeriod('1')}
+                isActive={period === '1'}
               >
                 1D
               </Switcher.Item>
               <Switcher.Item
                 id="1w"
                 name="time-filter"
-                onClick={() => setCoinPricePeriod('7')}
-                isActive={coinPricePeriod === '7'}
+                onClick={() => setPeriod('7')}
+                isActive={period === '7'}
               >
                 1W
               </Switcher.Item>
               <Switcher.Item
                 id="1m"
                 name="time-filter"
-                onClick={() => setCoinPricePeriod('30')}
-                isActive={coinPricePeriod === '30'}
+                onClick={() => setPeriod('30')}
+                isActive={period === '30'}
               >
                 1M
               </Switcher.Item>
               <Switcher.Item
                 id="3m"
                 name="time-filter"
-                onClick={() => setCoinPricePeriod('90')}
-                isActive={coinPricePeriod === '90'}
+                onClick={() => setPeriod('90')}
+                isActive={period === '90'}
               >
                 3M
               </Switcher.Item>
               <Switcher.Item
                 id="6m"
                 name="time-filter"
-                onClick={() => setCoinPricePeriod('180')}
-                isActive={coinPricePeriod === '180'}
+                onClick={() => setPeriod('180')}
+                isActive={period === '180'}
               >
                 6M
               </Switcher.Item>
               <Switcher.Item
                 id="1Y"
                 name="time-filter"
-                onClick={() => setCoinPricePeriod('365')}
-                isActive={coinPricePeriod === '365'}
+                onClick={() => setPeriod('365')}
+                isActive={period === '365'}
               >
                 1Y
               </Switcher.Item>
@@ -201,11 +201,8 @@ type CoinInformationChartProps = {
 }
 
 function CoinInformationChart({ coinId }: CoinInformationChartProps) {
-  const { coinPricePeriod } = useChartTimeFiltering()
-  const { data, isPending, error } = useGetCoinChartInformation(
-    coinId,
-    coinPricePeriod
-  )
+  const { period } = useChartTimeFiltering()
+  const { data, isPending, error } = useGetCoinChartInformation(coinId, period)
 
   if (isPending) return <CoinInformationChartSkeleton />
 

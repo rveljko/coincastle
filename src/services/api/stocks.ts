@@ -1,8 +1,8 @@
 import { iso8601DateFormatter } from '@utils/helpers/date-formatter'
 import { generateDateInPast } from '@utils/helpers/date-generator'
 import {
+  ChartInformationPeriod,
   StockChartInformationHttpResponse,
-  StockChartInformationPeriod,
   StockInformationHttpResponse,
   StockOverviewHttpResponse,
 } from '@utils/types'
@@ -45,7 +45,7 @@ export async function getStockInformation(
 
 export async function getStockChartInformation(
   symbol: string,
-  period: StockChartInformationPeriod
+  period: ChartInformationPeriod
 ): Promise<StockChartInformationHttpResponse[]> {
   const res = await fetch(
     `https://financialmodelingprep.com/stable/historical-price-eod/light?symbol=${symbol}&from=${iso8601DateFormatter(generateDateInPast(parseInt(period)))}&to=${iso8601DateFormatter(new Date())}&apikey=${import.meta.env.VITE_FMP_API_KEY}`

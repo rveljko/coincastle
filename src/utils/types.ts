@@ -95,7 +95,7 @@ export type CoinChartInformationHttpResponse = {
   prices: number[][]
 }
 
-export type CoinChartInformationPeriod = '1' | '7' | '30' | '90' | '180' | '365'
+export type ChartInformationPeriod = '1' | '7' | '30' | '90' | '180' | '365'
 
 export type CoinOverviewSortField = 'market_cap' | 'volume'
 
@@ -260,14 +260,6 @@ export type StockChartInformationHttpResponse = {
   date: string
   price: number
 }
-
-export type StockChartInformationPeriod =
-  | '1'
-  | '7'
-  | '30'
-  | '90'
-  | '180'
-  | '365'
 
 export type Guide = {
   id: number

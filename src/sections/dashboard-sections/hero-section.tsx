@@ -110,7 +110,7 @@ function HeroButtons() {
   const { coinId, setCoin } = useSelectedCoin()
   const { stockSymbol, setStock } = useSelectedStock()
   const { category, setCategory } = useSelectedCategory()
-  const { coinPricePeriod, setCoinPricePeriod } = useChartTimeFiltering()
+  const { period, setPeriod } = useChartTimeFiltering()
 
   const {
     data: cryptoCurrencies,
@@ -199,48 +199,48 @@ function HeroButtons() {
         <Switcher.Item
           id="1d"
           name="time-filter"
-          onClick={() => setCoinPricePeriod('1')}
-          isActive={coinPricePeriod === '1'}
+          onClick={() => setPeriod('1')}
+          isActive={period === '1'}
         >
           1D
         </Switcher.Item>
         <Switcher.Item
           id="1w"
           name="time-filter"
-          onClick={() => setCoinPricePeriod('7')}
-          isActive={coinPricePeriod === '7'}
+          onClick={() => setPeriod('7')}
+          isActive={period === '7'}
         >
           1W
         </Switcher.Item>
         <Switcher.Item
           id="1m"
           name="time-filter"
-          onClick={() => setCoinPricePeriod('30')}
-          isActive={coinPricePeriod === '30'}
+          onClick={() => setPeriod('30')}
+          isActive={period === '30'}
         >
           1M
         </Switcher.Item>
         <Switcher.Item
           id="3m"
           name="time-filter"
-          onClick={() => setCoinPricePeriod('90')}
-          isActive={coinPricePeriod === '90'}
+          onClick={() => setPeriod('90')}
+          isActive={period === '90'}
         >
           3M
         </Switcher.Item>
         <Switcher.Item
           id="6m"
           name="time-filter"
-          onClick={() => setCoinPricePeriod('180')}
-          isActive={coinPricePeriod === '180'}
+          onClick={() => setPeriod('180')}
+          isActive={period === '180'}
         >
           6M
         </Switcher.Item>
         <Switcher.Item
           id="1Y"
           name="time-filter"
-          onClick={() => setCoinPricePeriod('365')}
-          isActive={coinPricePeriod === '365'}
+          onClick={() => setPeriod('365')}
+          isActive={period === '365'}
         >
           1Y
         </Switcher.Item>
@@ -253,18 +253,18 @@ function HeroChart() {
   const { coinId } = useSelectedCoin()
   const { stockSymbol } = useSelectedStock()
   const { category } = useSelectedCategory()
-  const { coinPricePeriod, stockPricePeriod } = useChartTimeFiltering()
+  const { period } = useChartTimeFiltering()
 
   const {
     data: coinChartData,
     isPending: coinChartIsPending,
     error: coinChartError,
-  } = useGetCoinChartInformation(coinId, coinPricePeriod)
+  } = useGetCoinChartInformation(coinId, period)
   const {
     data: stockChartData,
     isPending: stockChartIsPending,
     error: stockChartError,
-  } = useGetStockChartInformation(stockSymbol, stockPricePeriod)
+  } = useGetStockChartInformation(stockSymbol, period)
 
   if (coinChartIsPending || stockChartIsPending) return <HeroChartSkeleton />
 

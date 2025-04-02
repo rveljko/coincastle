@@ -1,10 +1,10 @@
 import { getCoinChartInformation } from '@services/api/crypto'
 import { useQuery } from '@tanstack/react-query'
-import { CoinChartInformationPeriod } from '@utils/types'
+import { ChartInformationPeriod } from '@utils/types'
 
 export default function useGetCoinChartInformation(
   coinId: string,
-  period: CoinChartInformationPeriod
+  period: ChartInformationPeriod
 ) {
   return useQuery({
     queryFn: () => getCoinChartInformation(coinId, period),

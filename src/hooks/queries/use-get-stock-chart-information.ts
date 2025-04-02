@@ -1,10 +1,10 @@
 import { getStockChartInformation } from '@services/api/stocks'
 import { useQuery } from '@tanstack/react-query'
-import { StockChartInformationPeriod } from '@utils/types'
+import { ChartInformationPeriod } from '@utils/types'
 
 export default function useGetStockChartInformation(
   stockSymbol: string,
-  period: StockChartInformationPeriod
+  period: ChartInformationPeriod
 ) {
   return useQuery({
     queryFn: () => getStockChartInformation(stockSymbol, period),

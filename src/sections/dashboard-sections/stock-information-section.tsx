@@ -24,7 +24,7 @@ type StockInformationSectionProps = {
 export default function StockInformationSection({
   stockSymbol,
 }: StockInformationSectionProps) {
-  const { stockPricePeriod, setStockPricePeriod } = useChartTimeFiltering()
+  const { period, setPeriod } = useChartTimeFiltering()
 
   const { data, isPending, error } = useGetStockInformation(stockSymbol)
 
@@ -171,48 +171,48 @@ export default function StockInformationSection({
               <Switcher.Item
                 id="1d"
                 name="time-filter"
-                onClick={() => setStockPricePeriod('1')}
-                isActive={stockPricePeriod === '1'}
+                onClick={() => setPeriod('1')}
+                isActive={period === '1'}
               >
                 1D
               </Switcher.Item>
               <Switcher.Item
                 id="1w"
                 name="time-filter"
-                onClick={() => setStockPricePeriod('7')}
-                isActive={stockPricePeriod === '7'}
+                onClick={() => setPeriod('7')}
+                isActive={period === '7'}
               >
                 1W
               </Switcher.Item>
               <Switcher.Item
                 id="1m"
                 name="time-filter"
-                onClick={() => setStockPricePeriod('30')}
-                isActive={stockPricePeriod === '30'}
+                onClick={() => setPeriod('30')}
+                isActive={period === '30'}
               >
                 1M
               </Switcher.Item>
               <Switcher.Item
                 id="3m"
                 name="time-filter"
-                onClick={() => setStockPricePeriod('90')}
-                isActive={stockPricePeriod === '90'}
+                onClick={() => setPeriod('90')}
+                isActive={period === '90'}
               >
                 3M
               </Switcher.Item>
               <Switcher.Item
                 id="6m"
                 name="time-filter"
-                onClick={() => setStockPricePeriod('180')}
-                isActive={stockPricePeriod === '180'}
+                onClick={() => setPeriod('180')}
+                isActive={period === '180'}
               >
                 6M
               </Switcher.Item>
               <Switcher.Item
                 id="1Y"
                 name="time-filter"
-                onClick={() => setStockPricePeriod('365')}
-                isActive={stockPricePeriod === '365'}
+                onClick={() => setPeriod('365')}
+                isActive={period === '365'}
               >
                 1Y
               </Switcher.Item>
@@ -230,10 +230,10 @@ type StockInformationChartProps = {
 }
 
 function StockInformationChart({ stockSymbol }: StockInformationChartProps) {
-  const { stockPricePeriod } = useChartTimeFiltering()
+  const { period } = useChartTimeFiltering()
   const { data, isPending, error } = useGetStockChartInformation(
     stockSymbol,
-    stockPricePeriod
+    period
   )
 
   if (isPending) return <StockInformationChartSkeleton />

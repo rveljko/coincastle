@@ -1,25 +1,11 @@
-import {
-  CoinChartInformationPeriod,
-  StockChartInformationPeriod,
-} from '@utils/types'
+import { ChartInformationPeriod } from '@utils/types'
 import { useSearchParams } from 'react-router-dom'
 
 export default function useChartTimeFiltering() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const coinPricePeriod = (searchParams.get('period') ||
-    '1') as CoinChartInformationPeriod
+  const period = (searchParams.get('period') || '1') as ChartInformationPeriod
 
-  const stockPricePeriod = (searchParams.get('period') ||
-    '1') as StockChartInformationPeriod
-
-  function setCoinPricePeriod(days: CoinChartInformationPeriod) {
-    setSearchParams((prevParams) => {
-      prevParams.set('period', days)
-      return prevParams
-    })
-  }
-
-  function setStockPricePeriod(days: StockChartInformationPeriod) {
+  function setPeriod(days: ChartInformationPeriod) {
     setSearchParams((prevParams) => {
       prevParams.set('period', days)
       return prevParams
@@ -27,9 +13,7 @@ export default function useChartTimeFiltering() {
   }
 
   return {
-    coinPricePeriod,
-    stockPricePeriod,
-    setCoinPricePeriod,
-    setStockPricePeriod,
+    period,
+    setPeriod,
   }
 }
