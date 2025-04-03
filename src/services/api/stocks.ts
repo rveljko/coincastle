@@ -7,6 +7,8 @@ import {
   StockOverviewHttpResponse,
 } from '@utils/types'
 
+const STOCKS_BASE_URL = 'https://financialmodelingprep.com/stable'
+
 export async function getStocks(
   priceFrom: number | '',
   priceTo: number | '',
@@ -17,7 +19,7 @@ export async function getStocks(
   limit: number
 ): Promise<StockOverviewHttpResponse[]> {
   const res = await fetch(
-    `https://financialmodelingprep.com/stable/company-screener?country=us&priceMoreThan=${priceFrom}&priceLowerThan=${priceTo}&marketCapMoreThan=${marketCapFrom}&marketCapLowerThan=${marketCapTo}&volumeMoreThan=${volumeFrom}&volumeLowerThan=${volumeTo}&limit=${limit}&apikey=${import.meta.env.VITE_FMP_API_KEY}`
+    `${STOCKS_BASE_URL}/company-screener?country=us&priceMoreThan=${priceFrom}&priceLowerThan=${priceTo}&marketCapMoreThan=${marketCapFrom}&marketCapLowerThan=${marketCapTo}&volumeMoreThan=${volumeFrom}&volumeLowerThan=${volumeTo}&limit=${limit}&apikey=${import.meta.env.VITE_FMP_API_KEY}`
   )
 
   if (!res.ok)
@@ -32,7 +34,7 @@ export async function getStockInformation(
   symbol: string
 ): Promise<StockInformationHttpResponse[]> {
   const res = await fetch(
-    `https://financialmodelingprep.com/stable/quote?symbol=${symbol}&apikey=${import.meta.env.VITE_FMP_API_KEY}`
+    `${STOCKS_BASE_URL}/quote?symbol=${symbol}&apikey=${import.meta.env.VITE_FMP_API_KEY}`
   )
 
   if (!res.ok)
@@ -48,7 +50,7 @@ export async function getStockChartInformation(
   period: ChartInformationPeriod
 ): Promise<StockChartInformationHttpResponse[]> {
   const res = await fetch(
-    `https://financialmodelingprep.com/stable/historical-price-eod/light?symbol=${symbol}&from=${iso8601DateFormatter(generateDateInPast(parseInt(period)))}&to=${iso8601DateFormatter(new Date())}&apikey=${import.meta.env.VITE_FMP_API_KEY}`
+    `${STOCKS_BASE_URL}/historical-price-eod/light?symbol=${symbol}&from=${iso8601DateFormatter(generateDateInPast(parseInt(period)))}&to=${iso8601DateFormatter(new Date())}&apikey=${import.meta.env.VITE_FMP_API_KEY}`
   )
 
   if (!res.ok)
