@@ -57,8 +57,7 @@
     var(--background-ending-color)
   );
   --section-background:
-    linear-gradient(#13192f1a, #151a2e1a),
-    radial-gradient(at top, #151a28cc, #151a2833);
+    linear-gradient(#13192f1a, #151a2e1a), linear-gradient(#151a28cc, #151a2833);
   --modal-background:
     linear-gradient(transparent, #ffffff00),
     radial-gradient(at top, #13192fe3, #0b0e18f2);
@@ -149,8 +148,7 @@
     var(--background-ending-color)
   );
   --section-background:
-    linear-gradient(#13192f1a, #151a2e1a),
-    radial-gradient(at top, #151a28cc, #151a2833);
+    linear-gradient(#13192f1a, #151a2e1a), linear-gradient(#151a28cc, #151a2833);
   --modal-background:
     linear-gradient(transparent, #ffffff00),
     radial-gradient(at top, #13192fe3, #0b0e18f2);
