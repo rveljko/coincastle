@@ -16,8 +16,8 @@ export const primaryNavigationLinks: NavigationLink[] = [
   },
   {
     id: 2,
-    name: 'Crypto Currencies',
-    path: 'crypto-currencies',
+    name: 'Crypto',
+    path: 'crypto',
     icon: CoinIcon,
   },
   {
