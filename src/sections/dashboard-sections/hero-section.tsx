@@ -79,7 +79,7 @@ function HeroAssetInformation() {
   return (
     <div>
       <div className="mb-2 flex items-center gap-2">
-        {category === 'crypto-currencies' ? (
+        {category === 'crypto' ? (
           <img
             className="size-8 rounded-full"
             src={coinImage.small}
@@ -92,16 +92,16 @@ function HeroAssetInformation() {
 
         <div className="flex items-center gap-1">
           <h3 className="text-heading-4-font-size leading-heading-4-line-height">
-            {category === 'crypto-currencies' ? coinName : stockName}
+            {category === 'crypto' ? coinName : stockName}
           </h3>
           <span className="text-neutral-400 uppercase">
-            {category === 'crypto-currencies' ? coinSymbol : stockSymbol}
+            {category === 'crypto' ? coinSymbol : stockSymbol}
           </span>
         </div>
       </div>
       <h1>
         {currencyFormatter(
-          category === 'crypto-currencies' ? coinCurrentPrice.usd : stockPrice
+          category === 'crypto' ? coinCurrentPrice.usd : stockPrice
         )}
       </h1>
     </div>
@@ -134,14 +134,12 @@ function HeroButtons() {
   return (
     <div className="flex flex-wrap gap-2">
       <DropdownButton
-        label={category === 'crypto-currencies' ? 'Coin' : 'Stock'}
+        label={category === 'crypto' ? 'Coin' : 'Stock'}
         variant="secondary"
         size="medium"
-        leftIcon={
-          category === 'crypto-currencies' ? <CoinIcon /> : <ChartLineIcon />
-        }
+        leftIcon={category === 'crypto' ? <CoinIcon /> : <ChartLineIcon />}
       >
-        {category === 'crypto-currencies' ? (
+        {category === 'crypto' ? (
           <>
             {cryptoCurrencies.map(({ id, image, name }) => (
               <Dropdown.Button
@@ -183,8 +181,8 @@ function HeroButtons() {
         leftIcon={<ListIcon />}
       >
         <Dropdown.Button
-          onClick={() => setCategory('crypto-currencies')}
-          isActive={category === 'crypto-currencies'}
+          onClick={() => setCategory('crypto')}
+          isActive={category === 'crypto'}
         >
           <CoinIcon />
           Crypto Currencies
@@ -279,7 +277,7 @@ function HeroChart() {
 
   return (
     <div className="aspect-[2.5/1]">
-      {category === 'crypto-currencies' ? (
+      {category === 'crypto' ? (
         <CryptoCoinChart data={coinChartData.prices} />
       ) : (
         <StockChart data={stockChartData} />

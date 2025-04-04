@@ -270,4 +270,4 @@ export type Guide = {
   path: string
 }
 
-export type Category = 'crypto-currencies' | 'stocks'
+export type Category = 'crypto' | 'stocks'

@@ -3,8 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 
 export default function useSelectedCategory() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const category = (searchParams.get('category') ||
-    'crypto-currencies') as Category
+  const category = (searchParams.get('category') || 'crypto') as Category
 
   function setCategory(category: Category) {
     setSearchParams((prevParams) => {

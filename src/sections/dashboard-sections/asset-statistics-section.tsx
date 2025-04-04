@@ -56,10 +56,10 @@ export default function AssetStatisticsSection({
         <AssetStatisticsPanel
           label="Price"
           value={currencyFormatter(
-            category === 'crypto-currencies' ? coinCurrentPrice.usd : stockPrice
+            category === 'crypto' ? coinCurrentPrice.usd : stockPrice
           )}
           percentageChange={
-            category === 'crypto-currencies'
+            category === 'crypto'
               ? coinPriceChangePercentage24h
               : stockChangePercentage
           }
@@ -67,15 +67,13 @@ export default function AssetStatisticsSection({
         <AssetStatisticsPanel
           label="Marketcap"
           value={currencyFormatter(
-            category === 'crypto-currencies'
-              ? coinMarketCap.usd
-              : stockMarketCap
+            category === 'crypto' ? coinMarketCap.usd : stockMarketCap
           )}
         />
         <AssetStatisticsPanel
           label="Volume"
           value={currencyFormatter(
-            category === 'crypto-currencies' ? coinTotalVolume.usd : stockVolume
+            category === 'crypto' ? coinTotalVolume.usd : stockVolume
           )}
         />
       </div>
