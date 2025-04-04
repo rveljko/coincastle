@@ -15,7 +15,7 @@ export default function TrendingCoinsSection({
         <h2 className="text-heading-4-font-size leading-heading-4-line-height">
           Trending Coins
         </h2>
-        <Button href="/dashboard/crypto-currencies" variant="link" size="small">
+        <Button href="/dashboard/crypto" variant="link" size="small">
           View More
         </Button>
       </header>

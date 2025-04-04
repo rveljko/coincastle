@@ -10,7 +10,7 @@ export default function PopularCoinsSection() {
       </h2>
       <CryptoCoinsTable numberOfCoins={5} className="mb-1" />
       <Button
-        href="/dashboard/crypto-currencies"
+        href="/dashboard/crypto"
         variant="link"
         size="large"
         className="mx-auto"
