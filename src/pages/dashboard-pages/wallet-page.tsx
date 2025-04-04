@@ -14,7 +14,7 @@ export default function WalletPage() {
       <div className="flex flex-col gap-4 lg:flex-row">
         <div className="flex flex-col gap-4 lg:flex-7">
           <AssetStatisticsSection />
-          <HeroSection />
+          <HeroSection className="h-full" />
         </div>
         <div className="flex flex-col gap-4 lg:flex-3">
           <BalanceSection />

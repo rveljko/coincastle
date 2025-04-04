@@ -33,11 +33,13 @@ type HeroSectionProps = {
 export default function HeroSection({ className }: HeroSectionProps) {
   return (
     <Section className={className}>
-      <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <HeroAssetInformation />
-        <HeroButtons />
-      </header>
-      <HeroChart />
+      <div className="flex h-full flex-col justify-between gap-8">
+        <header className="flex flex-wrap items-end justify-between gap-4">
+          <HeroAssetInformation />
+          <HeroButtons />
+        </header>
+        <HeroChart />
+      </div>
     </Section>
   )
 }
