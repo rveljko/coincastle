@@ -30,7 +30,7 @@ export default function Dialog({ children, closeModal }: DialogProps) {
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
-        className="origin-top-center"
+        className="origin-top-center h-full"
       >
         <ReactFocusLock className="flex h-full overflow-y-auto">
           <div className="m-auto overflow-y-auto">
