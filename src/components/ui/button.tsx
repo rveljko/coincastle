@@ -12,7 +12,7 @@ const button = cva(
         secondary:
           'text-clickable rounded-sm bg-neutral-800 bg-[linear-gradient(hsl(from_var(--color-white)_h_s_l_/_20%),_transparent)] shadow-[inset_0_0_0_calc(var(--spacing)_*_0.25)_var(--color-neutral-800),_inset_0_0_0_calc(var(--spacing)_*_0.5)_hsl(from_var(--color-white)_h_s_l_/_20%)] hover:bg-[linear-gradient(hsl(from_var(--color-black)_h_s_l_/_5%),hsl(from_var(--color-black)_h_s_l_/_5%)),linear-gradient(hsl(from_var(--color-white)_h_s_l_/_20%),_transparent)] disabled:bg-[linear-gradient(hsl(from_var(--color-white)_h_s_l_/_20%),_transparent)]',
         tertiary:
-          'text-clickable rounded-sm bg-[linear-gradient(hsl(from_var(--color-white)_h_s_l_/_20%),_transparent)] shadow-[inset_0_0_0_calc(var(--spacing)_*_0.25)_hsl(from_var(--color-white)_h_s_l_/_20%)] hover:bg-[linear-gradient(hsl(from_var(--color-black)_h_s_l_/_5%),hsl(from_var(--color-black)_h_s_l_/_5%)),linear-gradient(hsl(from_var(--color-white)_h_s_l_/_20%),_transparent)] disabled:bg-[linear-gradient(hsl(from_var(--color-white)_h_s_l_/_20%),_transparent)]',
+          'text-clickable rounded-sm bg-[linear-gradient(hsl(from_var(--color-clickable)_h_s_l_/_20%),_transparent)] shadow-[inset_0_0_0_calc(var(--spacing)_*_0.25)_hsl(from_var(--color-clickable)_h_s_l_/_20%)] hover:bg-[linear-gradient(hsl(from_var(--color-black)_h_s_l_/_5%),hsl(from_var(--color-black)_h_s_l_/_5%)),linear-gradient(hsl(from_var(--color-clickable)_h_s_l_/_20%),_transparent)] disabled:bg-[linear-gradient(hsl(from_var(--color-clickable)_h_s_l_/_20%),_transparent)]',
         link: 'text-clickable hover:text-brand-500',
       },
       size: {
