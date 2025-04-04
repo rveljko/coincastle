@@ -185,7 +185,7 @@ function HeroButtons() {
           isActive={category === 'crypto'}
         >
           <CoinIcon />
-          Crypto Currencies
+          Crypto
         </Dropdown.Button>
         <Dropdown.Button
           onClick={() => setCategory('stocks')}
