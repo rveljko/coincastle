@@ -23,7 +23,7 @@ export default function DashboardRoutes() {
     <Routes>
       <Route path="/dashboard" element={<DashboardLayout />}>
         <Route index element={<WalletPage />} />
-        <Route path="crypto-currencies" element={<CryptoCurrenciesPage />} />
+        <Route path="crypto" element={<CryptoCurrenciesPage />} />
         <Route path="coin/:coinId" element={<CoinPage />} />
         <Route path="nfts" element={<NftsPage />} />
         <Route
