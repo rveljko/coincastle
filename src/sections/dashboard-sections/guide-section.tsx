@@ -4,7 +4,6 @@ import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Button from '@components/ui/button'
 import useGetGuide from '@hooks/queries/use-get-guide'
 import ArrowNarrowLeftIcon from '@icons/arrow-narrow-left-icon'
-import Section from '@sections/dashboard-sections/section'
 
 type GuideSectionProps = {
   guide: string
@@ -18,7 +17,7 @@ export default function GuideSection({ guide }: GuideSectionProps) {
   if (error) return <ErrorMessage />
 
   return (
-    <Section>
+    <section>
       <Button
         variant="link"
         leftIcon={<ArrowNarrowLeftIcon />}
@@ -28,6 +27,6 @@ export default function GuideSection({ guide }: GuideSectionProps) {
         Back to Guides
       </Button>
       <MarkdownContentLoader content={data} />
-    </Section>
+    </section>
   )
 }
