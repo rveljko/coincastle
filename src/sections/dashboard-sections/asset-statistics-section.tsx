@@ -1,6 +1,6 @@
+import AssetStatisticsSectionError from '@components/dashboard-components/asset-statistics-section-error'
 import AssetStatisticsSectionSkeleton from '@components/dashboard-components/asset-statistics-section-skeleton'
 import AssetStatisticsPanel from '@components/dashboard-components/ui/asset-statistics-panel'
-import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import useGetCoinInformation from '@hooks/queries/use-get-coin-information'
 import useGetStockInformation from '@hooks/queries/use-get-stock-information'
 import useSelectedCategory from '@hooks/use-selected-category'
@@ -32,7 +32,7 @@ export default function AssetStatisticsSection({
 
   if (coinIsPending || stockIsPending) return <AssetStatisticsSectionSkeleton />
 
-  if (coinError || stockError) return <ErrorMessage />
+  if (coinError || stockError) return <AssetStatisticsSectionError />
 
   const {
     market_data: {
