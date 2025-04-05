@@ -18,7 +18,7 @@ export default function AssetStatisticsSection({
 }: AssetStatisticsSectionProps) {
   const { coinId } = useSelectedCoin()
   const { stockSymbol: selectedStockSymbol } = useSelectedStock()
-  const { category } = useSelectedCategory()
+  const { isCategoryCrypto } = useSelectedCategory()
   const {
     data: coinData,
     isPending: coinIsPending,
@@ -56,10 +56,10 @@ export default function AssetStatisticsSection({
         <AssetStatisticsPanel
           label="Price"
           value={currencyFormatter(
-            category === 'crypto' ? coinCurrentPrice.usd : stockPrice
+            isCategoryCrypto ? coinCurrentPrice.usd : stockPrice
           )}
           percentageChange={
-            category === 'crypto'
+            isCategoryCrypto
               ? coinPriceChangePercentage24h
               : stockChangePercentage
           }
@@ -67,13 +67,13 @@ export default function AssetStatisticsSection({
         <AssetStatisticsPanel
           label="Marketcap"
           value={currencyFormatter(
-            category === 'crypto' ? coinMarketCap.usd : stockMarketCap
+            isCategoryCrypto ? coinMarketCap.usd : stockMarketCap
           )}
         />
         <AssetStatisticsPanel
           label="Volume"
           value={currencyFormatter(
-            category === 'crypto' ? coinTotalVolume.usd : stockVolume
+            isCategoryCrypto ? coinTotalVolume.usd : stockVolume
           )}
         />
       </div>

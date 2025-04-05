@@ -51,7 +51,7 @@ export default function HeroSection({ className }: HeroSectionProps) {
 function HeroAssetInformation() {
   const { coinId } = useSelectedCoin()
   const { stockSymbol: selectedStockSymbol } = useSelectedStock()
-  const { category } = useSelectedCategory()
+  const { isCategoryCrypto } = useSelectedCategory()
   const {
     data: coinData,
     isPending: coinIsPending,
@@ -83,7 +83,7 @@ function HeroAssetInformation() {
   return (
     <div>
       <div className="mb-2 flex items-center gap-2">
-        {category === 'crypto' ? (
+        {isCategoryCrypto ? (
           <img
             className="size-8 rounded-full"
             src={coinImage.small}
@@ -95,16 +95,16 @@ function HeroAssetInformation() {
         )}
         <div className="flex items-center gap-1">
           <h3 className="text-heading-4-font-size leading-heading-4-line-height">
-            {category === 'crypto' ? coinName : stockName}
+            {isCategoryCrypto ? coinName : stockName}
           </h3>
           <span className="text-neutral-400 uppercase">
-            {category === 'crypto' ? coinSymbol : stockSymbol}
+            {isCategoryCrypto ? coinSymbol : stockSymbol}
           </span>
         </div>
       </div>
       <h1>
         {currencyFormatter(
-          category === 'crypto' ? coinCurrentPrice.usd : stockPrice
+          isCategoryCrypto ? coinCurrentPrice.usd : stockPrice
         )}
       </h1>
     </div>
@@ -114,7 +114,7 @@ function HeroAssetInformation() {
 function HeroButtons() {
   const { coinId, setCoin } = useSelectedCoin()
   const { stockSymbol, setStock } = useSelectedStock()
-  const { category, setCategory } = useSelectedCategory()
+  const { category, isCategoryCrypto, setCategory } = useSelectedCategory()
   const { period, setPeriod } = useChartTimeFiltering()
 
   const {
@@ -137,12 +137,12 @@ function HeroButtons() {
   return (
     <div className="flex flex-wrap gap-2">
       <DropdownButton
-        label={category === 'crypto' ? 'Coin' : 'Stock'}
+        label={isCategoryCrypto ? 'Coin' : 'Stock'}
         variant="secondary"
         size="medium"
-        leftIcon={category === 'crypto' ? <CoinIcon /> : <ChartLineIcon />}
+        leftIcon={isCategoryCrypto ? <CoinIcon /> : <ChartLineIcon />}
       >
-        {category === 'crypto' ? (
+        {isCategoryCrypto ? (
           <>
             {cryptoCurrencies.map(({ id, image, name }) => (
               <Dropdown.Button
@@ -185,7 +185,7 @@ function HeroButtons() {
       >
         <Dropdown.Button
           onClick={() => setCategory('crypto')}
-          isActive={category === 'crypto'}
+          isActive={isCategoryCrypto}
         >
           <CoinIcon />
           Crypto
@@ -255,7 +255,7 @@ function HeroButtons() {
 function HeroChart() {
   const { coinId } = useSelectedCoin()
   const { stockSymbol } = useSelectedStock()
-  const { category } = useSelectedCategory()
+  const { category, isCategoryCrypto } = useSelectedCategory()
   const { period } = useChartTimeFiltering()
 
   const {
@@ -280,7 +280,7 @@ function HeroChart() {
 
   return (
     <div className="aspect-[2.5/1]">
-      {category === 'crypto' ? (
+      {isCategoryCrypto ? (
         <CryptoCoinChart data={coinChartData.prices} />
       ) : (
         <StockChart data={stockChartData} />

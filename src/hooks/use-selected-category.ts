@@ -12,5 +12,7 @@ export default function useSelectedCategory() {
     })
   }
 
-  return { category, setCategory }
+  const isCategoryCrypto = category === 'crypto'
+
+  return { category, isCategoryCrypto, setCategory }
 }
