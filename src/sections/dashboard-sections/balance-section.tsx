@@ -1,5 +1,5 @@
+import BalanceSectionError from '@components/dashboard-components/balance-section-error'
 import BalanceSectionSkeleton from '@components/dashboard-components/balance-section-skeleton'
-import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Table from '@components/dashboard-components/ui/table'
 import { balanceTableHeaders } from '@data/table-headers'
 import useGetCryptoCurrencies from '@hooks/queries/use-get-crypto-currencies'
@@ -19,12 +19,7 @@ export default function BalanceSection() {
   if (isPending)
     return <BalanceSectionSkeleton coinAmounts={COIN_AMOUNTS.length} />
 
-  if (error)
-    return (
-      <Section>
-        <ErrorMessage />
-      </Section>
-    )
+  if (error) return <BalanceSectionError />
 
   return (
     <Section>
