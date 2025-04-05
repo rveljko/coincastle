@@ -1,3 +1,4 @@
+import NotEnoughChartEataError from '@components/dashboard-components/not-enough-chart-data-error'
 import StockInformationSectionSkeleton, {
   StockInformationChartSkeleton,
 } from '@components/dashboard-components/stock-information-section-skeleton'
@@ -238,7 +239,9 @@ function StockInformationChart({ stockSymbol }: StockInformationChartProps) {
 
   if (isPending) return <StockInformationChartSkeleton />
 
-  if (error || data.length <= 1) return <ErrorMessage />
+  if (error) return <ErrorMessage />
+
+  if (data.length <= 1) return <NotEnoughChartEataError />
 
   return <StockChart data={data} />
 }
