@@ -14,5 +14,7 @@ export default function useSelectedCategory() {
 
   const isCategoryCrypto = category === 'crypto'
 
-  return { category, isCategoryCrypto, setCategory }
+  const isCategoryStocks = category === 'stocks'
+
+  return { category, isCategoryCrypto, isCategoryStocks, setCategory }
 }

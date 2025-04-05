@@ -114,7 +114,7 @@ function HeroAssetInformation() {
 function HeroButtons() {
   const { coinId, setCoin } = useSelectedCoin()
   const { stockSymbol, setStock } = useSelectedStock()
-  const { category, isCategoryCrypto, setCategory } = useSelectedCategory()
+  const { isCategoryCrypto, isCategoryStocks, setCategory } = useSelectedCategory()
   const { period, setPeriod } = useChartTimeFiltering()
 
   const {
@@ -192,7 +192,7 @@ function HeroButtons() {
         </Dropdown.Button>
         <Dropdown.Button
           onClick={() => setCategory('stocks')}
-          isActive={category === 'stocks'}
+          isActive={isCategoryStocks}
         >
           <ChartLineIcon />
           Stocks
@@ -255,7 +255,7 @@ function HeroButtons() {
 function HeroChart() {
   const { coinId } = useSelectedCoin()
   const { stockSymbol } = useSelectedStock()
-  const { category, isCategoryCrypto } = useSelectedCategory()
+  const { isCategoryCrypto, isCategoryStocks } = useSelectedCategory()
   const { period } = useChartTimeFiltering()
 
   const {
@@ -274,7 +274,7 @@ function HeroChart() {
   if (
     coinChartError ||
     stockChartError ||
-    (category === 'stocks' && stockChartData.length <= 1)
+    (isCategoryStocks && stockChartData.length <= 1)
   )
     return <HeroChartError />
 
