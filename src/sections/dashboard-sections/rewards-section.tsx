@@ -10,17 +10,21 @@ type RewardsSectionProps = {
 export default function RewardsSection({ className }: RewardsSectionProps) {
   return (
     <Section className={className}>
-      <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
-        Rewards
-      </h2>
-      <TasksList className="mb-2">
-        {tasks.map((task) => (
-          <TasksList.Item key={task}>{task}</TasksList.Item>
-        ))}
-      </TasksList>
-      <RewardModalButton variant="secondary" size="large" className="w-full">
-        Redeem Now
-      </RewardModalButton>
+      <div className="flex h-full flex-col justify-between gap-2">
+        <div>
+          <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+            Rewards
+          </h2>
+          <TasksList>
+            {tasks.map((task) => (
+              <TasksList.Item key={task}>{task}</TasksList.Item>
+            ))}
+          </TasksList>
+        </div>
+        <RewardModalButton variant="secondary" size="large" className="w-full">
+          Redeem Now
+        </RewardModalButton>
+      </div>
     </Section>
   )
 }
