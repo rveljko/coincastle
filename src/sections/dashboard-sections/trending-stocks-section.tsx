@@ -11,15 +11,17 @@ export default function TrendingStocksSection({
 }: TrendingStocksSectionProps) {
   return (
     <Section className={className}>
-      <header className="mb-2 flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-heading-4-font-size leading-heading-4-line-height">
-          Trending Stocks
-        </h2>
-        <Button href="/dashboard/stocks" variant="link" size="small">
-          View More
-        </Button>
-      </header>
-      <TrendingStocksTable />
+      <div className="flex h-full flex-col justify-between gap-2">
+        <header className="flex flex-wrap items-center justify-between gap-2">
+          <h2 className="text-heading-4-font-size leading-heading-4-line-height">
+            Trending Stocks
+          </h2>
+          <Button href="/dashboard/stocks" variant="link" size="small">
+            View More
+          </Button>
+        </header>
+        <TrendingStocksTable />
+      </div>
     </Section>
   )
 }
