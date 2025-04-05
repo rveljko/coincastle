@@ -147,7 +147,7 @@ function HeroButtons() {
                 onClick={() => setCoin(id)}
                 isActive={coinId === id}
               >
-                <div className="size-4">
+                <div className="size-5.5">
                   <img
                     className="rounded-full"
                     src={image}
