@@ -9,6 +9,7 @@ import {
   HeroButtonsSkeleton,
   HeroChartSkeleton,
 } from '@components/dashboard-components/hero-section-skeleton'
+import NotEnoughChartEataError from '@components/dashboard-components/not-enough-chart-data-error'
 import StockChart from '@components/dashboard-components/stocks-chart'
 import Dropdown from '@components/dashboard-components/ui/dropdown'
 import DropdownButton from '@components/dashboard-components/ui/dropdown-button'
@@ -114,7 +115,8 @@ function HeroAssetInformation() {
 function HeroButtons() {
   const { coinId, setCoin } = useSelectedCoin()
   const { stockSymbol, setStock } = useSelectedStock()
-  const { isCategoryCrypto, isCategoryStocks, setCategory } = useSelectedCategory()
+  const { isCategoryCrypto, isCategoryStocks, setCategory } =
+    useSelectedCategory()
   const { period, setPeriod } = useChartTimeFiltering()
 
   const {
@@ -271,12 +273,10 @@ function HeroChart() {
 
   if (coinChartIsPending || stockChartIsPending) return <HeroChartSkeleton />
 
-  if (
-    coinChartError ||
-    stockChartError ||
-    (isCategoryStocks && stockChartData.length <= 1)
-  )
-    return <HeroChartError />
+  if (coinChartError || stockChartError) return <HeroChartError />
+
+  if (isCategoryStocks && stockChartData.length <= 1)
+    return <NotEnoughChartEataError />
 
   return (
     <div className="aspect-[2.5/1]">
