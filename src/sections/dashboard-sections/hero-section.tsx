@@ -1,5 +1,10 @@
 import CryptoCoinChart from '@components/dashboard-components/crypto-coin-chart'
 import {
+  HeroAssetInformationError,
+  HeroButtonsError,
+  HeroChartError,
+} from '@components/dashboard-components/hero-section-error'
+import {
   HeroAssetInformationSkeleton,
   HeroButtonsSkeleton,
   HeroChartSkeleton,
@@ -7,7 +12,6 @@ import {
 import StockChart from '@components/dashboard-components/stocks-chart'
 import Dropdown from '@components/dashboard-components/ui/dropdown'
 import DropdownButton from '@components/dashboard-components/ui/dropdown-button'
-import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import FirstLetterImageGenerator from '@components/dashboard-components/ui/first-letter-image-generator'
 import Switcher from '@components/dashboard-components/ui/switcher'
 import useGetCoinChartInformation from '@hooks/queries/use-get-coin-chart-information'
@@ -61,7 +65,7 @@ function HeroAssetInformation() {
 
   if (coinIsPending || stockIsPending) return <HeroAssetInformationSkeleton />
 
-  if (coinError || stockError) return <ErrorMessage />
+  if (coinError || stockError) return <HeroAssetInformationError />
 
   const {
     image: coinImage,
@@ -89,7 +93,6 @@ function HeroAssetInformation() {
         ) : (
           <FirstLetterImageGenerator word={stockName} />
         )}
-
         <div className="flex items-center gap-1">
           <h3 className="text-heading-4-font-size leading-heading-4-line-height">
             {category === 'crypto' ? coinName : stockName}
@@ -129,7 +132,7 @@ function HeroButtons() {
   if (cryptoCurrenciesIsPending || stocksIsPending)
     return <HeroButtonsSkeleton />
 
-  if (cryptoCurrenciesError || stocksError) return <ErrorMessage />
+  if (cryptoCurrenciesError || stocksError) return <HeroButtonsError />
 
   return (
     <div className="flex flex-wrap gap-2">
@@ -273,7 +276,7 @@ function HeroChart() {
     stockChartError ||
     (category === 'stocks' && stockChartData.length <= 1)
   )
-    return <ErrorMessage />
+    return <HeroChartError />
 
   return (
     <div className="aspect-[2.5/1]">
