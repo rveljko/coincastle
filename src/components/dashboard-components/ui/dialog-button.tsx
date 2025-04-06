@@ -18,7 +18,7 @@ export default function DialogButton({
   ...props
 }: DialogButtonProps) {
   return (
-    <div>
+    <>
       <Button onClick={toggleModal} {...props}>
         {label}
       </Button>
@@ -29,6 +29,6 @@ export default function DialogButton({
           </Dialog>
         )}
       </AnimatePresence>
-    </div>
+    </>
   )
 }
