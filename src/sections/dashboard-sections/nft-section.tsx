@@ -130,25 +130,9 @@ export default function NftSection({
         </div>
         <div className="md:flex-1">
           {content_type === 'text/html' ? (
-            <div className="aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
-              <iframe src={content_uri} className="size-full" />
-            </div>
+            <NftHtmlContent content_uri={content_uri} />
           ) : (
-            <>
-              {nftscan_uri || image_uri?.startsWith('http') ? (
-                <div className="group aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
-                  <img
-                    className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
-                    src={nftscan_uri || image_uri}
-                    alt=""
-                  />
-                </div>
-              ) : (
-                <div className="aspect-1/1">
-                  <NoNftImagePlaceholder />
-                </div>
-              )}
-            </>
+            <NftImage nftscan_uri={nftscan_uri} image_uri={image_uri} />
           )}
         </div>
       </div>
@@ -204,5 +188,41 @@ function NftCollectionInformation({
         {description}
       </p>
     </header>
+  )
+}
+
+type NftHtmlContentProps = {
+  content_uri: string
+}
+
+function NftHtmlContent({ content_uri }: NftHtmlContentProps) {
+  return (
+    <div className="aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
+      <iframe src={content_uri} className="size-full" />
+    </div>
+  )
+}
+
+type NftImageProps = {
+  nftscan_uri: string
+  image_uri: string
+}
+
+function NftImage({ image_uri, nftscan_uri }: NftImageProps) {
+  if (!nftscan_uri && !image_uri?.startsWith('http'))
+    return (
+      <div className="aspect-1/1">
+        <NoNftImagePlaceholder />
+      </div>
+    )
+
+  return (
+    <div className="group aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
+      <img
+        className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
+        src={nftscan_uri || image_uri}
+        alt=""
+      />
+    </div>
   )
 }
