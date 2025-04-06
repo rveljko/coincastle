@@ -6,6 +6,7 @@ type DialogButtonProps = ButtonProps & {
   label: React.ReactNode
   isOpened: boolean
   toggleModal: () => void
+  dialogClassName?: string
 }
 
 export default function DialogButton({
@@ -13,6 +14,7 @@ export default function DialogButton({
   isOpened,
   toggleModal,
   children,
+  dialogClassName,
   ...props
 }: DialogButtonProps) {
   return (
@@ -21,7 +23,11 @@ export default function DialogButton({
         {label}
       </Button>
       <AnimatePresence>
-        {isOpened && <Dialog closeModal={toggleModal}>{children}</Dialog>}
+        {isOpened && (
+          <Dialog closeModal={toggleModal} className={dialogClassName}>
+            {children}
+          </Dialog>
+        )}
       </AnimatePresence>
     </div>
   )

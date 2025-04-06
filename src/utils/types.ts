@@ -95,6 +95,15 @@ export type CoinChartInformationHttpResponse = {
   prices: number[][]
 }
 
+export type CryptoCurrenciesSearchHttpResponse = {
+  coins: {
+    id: string
+    name: string
+    symbol: string
+    thumb: string
+  }[]
+}
+
 export type ChartInformationPeriod = '1' | '7' | '30' | '90' | '180' | '365'
 
 export type CoinOverviewSortField = 'market_cap' | 'volume'
@@ -259,6 +268,12 @@ export type StockInformationHttpResponse = {
 export type StockChartInformationHttpResponse = {
   date: string
   price: number
+}
+
+export type StockSearchHttpResponse = {
+  symbol: string
+  name: string
+  exchange: string
 }
 
 export type Guide = {

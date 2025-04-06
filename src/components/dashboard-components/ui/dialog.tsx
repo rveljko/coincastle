@@ -1,3 +1,4 @@
+import { cn } from '@utils/utils'
 import { motion } from 'motion/react'
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
@@ -5,9 +6,14 @@ import ReactFocusLock from 'react-focus-lock'
 
 type DialogProps = {
   children: React.ReactNode
+  className?: string
   closeModal: () => void
 }
-export default function Dialog({ children, closeModal }: DialogProps) {
+export default function Dialog({
+  children,
+  className,
+  closeModal,
+}: DialogProps) {
   function handleOnKeyDown(e: KeyboardEvent) {
     if (e.code === 'Escape') closeModal()
   }
@@ -30,12 +36,12 @@ export default function Dialog({ children, closeModal }: DialogProps) {
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
-        className="origin-top-center h-full"
+        className="origin-top-center h-full w-full"
       >
         <ReactFocusLock className="flex h-full overflow-y-auto">
-          <div className="m-auto overflow-y-auto">
+          <div className="m-auto overflow-x-hidden overflow-y-auto">
             <div
-              className="max-w-(--dialog-width)"
+              className={cn('max-w-(--dialog-width)', className)}
               onClick={(e) => e.stopPropagation()}
             >
               {children}

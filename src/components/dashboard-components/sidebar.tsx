@@ -1,4 +1,5 @@
 import NavigationLinksList from '@components/dashboard-components/navigation-links-list'
+import SearchModalButton from '@components/dashboard-components/search-modal-button'
 import Logo from '@components/logo'
 import {
   primaryNavigationLinks,
@@ -6,6 +7,7 @@ import {
 } from '@data/navigation-links'
 import LayoutSidebarLeftCollapseIcon from '@icons/layout-sidebar-left-collapse-icon'
 import LayoutSidebarLeftExpandIcon from '@icons/layout-sidebar-left-expand-icon'
+import SearchIcon from '@icons/search-icon'
 import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { Link } from 'react-router-dom'
@@ -53,6 +55,14 @@ export default function Sidebar() {
             )}
           </button>
         </header>
+        <SearchModalButton
+          variant="secondary"
+          size="small"
+          leftIcon={<SearchIcon />}
+          className={`w-full justify-start ${isOpened ? 'gap-1' : 'gap-0 p-1'}`}
+        >
+          {isOpened && 'Search'}
+        </SearchModalButton>
         <nav className="flex h-full flex-col justify-between gap-2 overflow-y-auto">
           <NavigationLinksList
             navigationLinks={primaryNavigationLinks}

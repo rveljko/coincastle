@@ -5,6 +5,7 @@ import {
   CoinOverviewHttpResponse,
   CoinOverviewSortDirection,
   CoinOverviewSortField,
+  CryptoCurrenciesSearchHttpResponse,
 } from '@utils/types'
 
 const CRYPTO_BASE_URL = 'https://api.coingecko.com/api/v3'
@@ -64,6 +65,23 @@ export async function getCoinChartInformation(
   if (!res.ok)
     throw new Error(
       'Failed to fetch coin chart information. Check the coin symbol or ID and time period, then try again.'
+    )
+
+  return res.json()
+}
+
+export async function getCryptoCurrenciesBySearch(
+  search: string
+): Promise<CryptoCurrenciesSearchHttpResponse> {
+  const res = await fetch(`${CRYPTO_BASE_URL}/search?query=${search}`, {
+    headers: {
+      'X-Cg-Demo-API-Key': import.meta.env.VITE_COINGECKO_API_KEY,
+    },
+  })
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch cryptocurrencies by search. Please check your connection and try again.'
     )
 
   return res.json()

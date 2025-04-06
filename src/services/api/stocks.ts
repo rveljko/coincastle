@@ -5,6 +5,7 @@ import {
   StockChartInformationHttpResponse,
   StockInformationHttpResponse,
   StockOverviewHttpResponse,
+  StockSearchHttpResponse,
 } from '@utils/types'
 
 const STOCKS_BASE_URL = 'https://financialmodelingprep.com/stable'
@@ -56,6 +57,21 @@ export async function getStockChartInformation(
   if (!res.ok)
     throw new Error(
       'Failed to fetch stock chart information. Check the stock symbol and time period, then try again.'
+    )
+
+  return res.json()
+}
+
+export async function getStocksBySearch(
+  symbol: string
+): Promise<StockSearchHttpResponse[]> {
+  const res = await fetch(
+    `${STOCKS_BASE_URL}/search-symbol?query=${symbol}&limit=3&apikey=${import.meta.env.VITE_FMP_API_KEY}`
+  )
+
+  if (!res.ok)
+    throw new Error(
+      'Failed to fetch stocks by search. Please check your query and connection, then try again.'
     )
 
   return res.json()
