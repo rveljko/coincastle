@@ -36,8 +36,24 @@ export default function CoinInformationSection({
       </Section>
     )
 
-  const { image, name, description, market_cap_rank, symbol, market_data } =
-    data
+  const {
+    image,
+    name,
+    description,
+    market_cap_rank,
+    symbol,
+    market_data: {
+      market_cap,
+      total_volume,
+      total_supply,
+      ath,
+      price_change_percentage_24h,
+      price_change_percentage_7d,
+      price_change_percentage_30d,
+      price_change_percentage_1y,
+      current_price,
+    },
+  } = data
 
   return (
     <Section>
@@ -67,25 +83,27 @@ export default function CoinInformationSection({
             <InformationList.Item>
               <InformationList.Label>Market Cap</InformationList.Label>
               <InformationList.Value>
-                {compactCurrencyFormatter(market_data.market_cap.usd)}
+                {market_cap ? compactCurrencyFormatter(market_cap.usd) : '-'}
               </InformationList.Value>
             </InformationList.Item>
             <InformationList.Item>
               <InformationList.Label>Volume</InformationList.Label>
               <InformationList.Value>
-                {compactCurrencyFormatter(market_data.total_volume.usd)}
+                {total_volume
+                  ? compactCurrencyFormatter(total_volume.usd)
+                  : '-'}
               </InformationList.Value>
             </InformationList.Item>
             <InformationList.Item>
               <InformationList.Label>Supply</InformationList.Label>
               <InformationList.Value>
-                {compactCurrencyFormatter(market_data.total_supply)}
+                {total_supply ? compactCurrencyFormatter(total_supply) : '-'}
               </InformationList.Value>
             </InformationList.Item>
             <InformationList.Item>
               <InformationList.Label>All Time High</InformationList.Label>
               <InformationList.Value>
-                {currencyFormatter(market_data.ath.usd)}
+                {ath ? currencyFormatter(ath.usd) : '-'}
               </InformationList.Value>
             </InformationList.Item>
           </InformationList>
@@ -97,7 +115,7 @@ export default function CoinInformationSection({
               <InformationList.Label>Price Change 1D</InformationList.Label>
               <InformationList.Value>
                 <PercentageChangeIndicator
-                  percentage={market_data.price_change_percentage_24h}
+                  percentage={price_change_percentage_24h}
                 />
               </InformationList.Value>
             </InformationList.Item>
@@ -105,7 +123,7 @@ export default function CoinInformationSection({
               <InformationList.Label>Price Change 1W</InformationList.Label>
               <InformationList.Value>
                 <PercentageChangeIndicator
-                  percentage={market_data.price_change_percentage_7d}
+                  percentage={price_change_percentage_7d}
                 />
               </InformationList.Value>
             </InformationList.Item>
@@ -113,7 +131,7 @@ export default function CoinInformationSection({
               <InformationList.Label>Price Change 1M</InformationList.Label>
               <InformationList.Value>
                 <PercentageChangeIndicator
-                  percentage={market_data.price_change_percentage_30d}
+                  percentage={price_change_percentage_30d}
                 />
               </InformationList.Value>
             </InformationList.Item>
@@ -121,7 +139,7 @@ export default function CoinInformationSection({
               <InformationList.Label>Price Change 1Y</InformationList.Label>
               <InformationList.Value>
                 <PercentageChangeIndicator
-                  percentage={market_data.price_change_percentage_1y}
+                  percentage={price_change_percentage_1y}
                 />
               </InformationList.Value>
             </InformationList.Item>
@@ -131,11 +149,9 @@ export default function CoinInformationSection({
           <div className="flex flex-wrap items-start justify-between gap-2">
             <header>
               <p className="mb-1">Price</p>
-              <h1 className="mb-0.5">
-                {currencyFormatter(market_data.current_price.usd)}
-              </h1>
+              <h1 className="mb-0.5">{currencyFormatter(current_price.usd)}</h1>
               <PercentageChangeIndicator
-                percentage={market_data.price_change_percentage_24h}
+                percentage={price_change_percentage_24h}
               />
             </header>
             <Switcher>
