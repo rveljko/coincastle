@@ -4,6 +4,7 @@ import BrandLinkedinIcon from '@icons/brand-linkedin-icon'
 import BrandXIcon from '@icons/brand-x-icon'
 import MailIcon from '@icons/mail-icon'
 import SendIcon from '@icons/send-icon'
+import displayToast from '@utils/toast'
 import { useState } from 'react'
 
 export default function ContactUsSection() {
@@ -25,6 +26,7 @@ export default function ContactUsSection() {
           onSubmit={(e) => {
             e.preventDefault()
 
+            displayToast('Message Sent Successfully!')
             setFormFields(initialFormFields)
           }}
         >
