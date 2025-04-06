@@ -43,6 +43,8 @@ export default function NftSection({
     latest_trade_price,
     mint_price,
     attributes,
+    content_type,
+    content_uri,
     image_uri,
     nftscan_uri,
   } = data.data
@@ -127,18 +129,26 @@ export default function NftSection({
           ) : null}
         </div>
         <div className="md:flex-1">
-          {nftscan_uri || image_uri?.startsWith('http') ? (
-            <div className="group aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
-              <img
-                className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
-                src={nftscan_uri || image_uri}
-                alt=""
-              />
+          {content_type === 'text/html' ? (
+            <div className="aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
+              <iframe src={content_uri} className="size-full" />
             </div>
           ) : (
-            <div className="aspect-1/1">
-              <NoNftImagePlaceholder />
-            </div>
+            <>
+              {nftscan_uri || image_uri?.startsWith('http') ? (
+                <div className="group aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
+                  <img
+                    className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
+                    src={nftscan_uri || image_uri}
+                    alt=""
+                  />
+                </div>
+              ) : (
+                <div className="aspect-1/1">
+                  <NoNftImagePlaceholder />
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
