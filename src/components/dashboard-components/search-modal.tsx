@@ -1,3 +1,7 @@
+import {
+  CryptoResultsSkeleton,
+  StockResultsSkeleton,
+} from '@components/dashboard-components/search-modal-skeleton'
 import FirstLetterImageGenerator from '@components/dashboard-components/ui/first-letter-image-generator'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import useGetCryptoCurrenciesBySearch from '@hooks/queries/use-get-crypto-currencies-by-search'
@@ -66,7 +70,7 @@ type CryptoResultsProps = {
 function CryptoResults({ search, closeModal }: CryptoResultsProps) {
   const { data, isPending, error } = useGetCryptoCurrenciesBySearch(search)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <CryptoResultsSkeleton />
 
   if (error) return null
 
@@ -112,7 +116,7 @@ type StockResultsProps = {
 function StockResults({ search, closeModal }: StockResultsProps) {
   const { data, isPending, error } = useGetStocksBySearch(search)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <StockResultsSkeleton />
 
   if (error) return null
 
