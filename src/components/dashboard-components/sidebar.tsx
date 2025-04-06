@@ -8,6 +8,8 @@ import {
 import LayoutSidebarLeftCollapseIcon from '@icons/layout-sidebar-left-collapse-icon'
 import LayoutSidebarLeftExpandIcon from '@icons/layout-sidebar-left-expand-icon'
 import SearchIcon from '@icons/search-icon'
+import UserCircleIcon from '@icons/user-circle-icon'
+import { useUserInformation } from '@services/contexts/user-information-context'
 import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { Link } from 'react-router-dom'
@@ -15,6 +17,9 @@ import { Link } from 'react-router-dom'
 export default function Sidebar() {
   const isBigScreen = useMediaQuery({ minWidth: 768 })
   const [isOpened, setIsOpened] = useState(isBigScreen)
+  const {
+    userInformation: { firstName, lastName },
+  } = useUserInformation()
 
   useEffect(() => {
     setIsOpened(isBigScreen)
@@ -71,13 +76,21 @@ export default function Sidebar() {
               !isBigScreen && isOpened && setIsOpened((prev) => !prev)
             }
           />
-          <NavigationLinksList
-            navigationLinks={secondaryNavigationLinks}
-            showNavigationLinkText={isOpened}
-            onClick={() =>
-              !isBigScreen && isOpened && setIsOpened((prev) => !prev)
-            }
-          />
+          <div className="space-y-1">
+            <NavigationLinksList
+              navigationLinks={secondaryNavigationLinks}
+              showNavigationLinkText={isOpened}
+              onClick={() =>
+                !isBigScreen && isOpened && setIsOpened((prev) => !prev)
+              }
+            />
+            <div className="items-cener flex gap-1 p-0.5">
+              <span>
+                <UserCircleIcon />
+              </span>
+              {isOpened && `${firstName} ${lastName}`}
+            </div>
+          </div>
         </nav>
       </div>
     </aside>
