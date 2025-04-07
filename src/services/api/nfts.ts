@@ -14,13 +14,15 @@ import {
   NftWalletStatistics,
 } from '@utils/types'
 
+const NFT_BASE_URL = 'https://restapi.nftscan.com/api/v2'
+
 export async function getNftCollections(
   sortField: NftCollectionsSortField,
   sortDirection: NftCollectionsSortDirection,
   limit: number
 ): Promise<NftCollectionsOverviewHttpResponse> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/collections/rankings?sort_field=${sortField}&sort_direction=${sortDirection}&limit=${limit}`,
+    `${NFT_BASE_URL}/collections/rankings?sort_field=${sortField}&sort_direction=${sortDirection}&limit=${limit}`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
@@ -40,7 +42,7 @@ export async function getNftCollectionInformation(
   contractAddress: string
 ): Promise<NftCollectionInformationHttpResponse> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/collections/${contractAddress}?show_attribute=true`,
+    `${NFT_BASE_URL}/collections/${contractAddress}?show_attribute=true`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
@@ -60,7 +62,7 @@ export async function getNftCollectionStatistics(
   contractAddress: string
 ): Promise<NftCollectionStatisticsHttpResponse> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/statistics/collection/${contractAddress}?show_hourly_statistics=false`,
+    `${NFT_BASE_URL}/statistics/collection/${contractAddress}?show_hourly_statistics=false`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
@@ -84,7 +86,7 @@ export async function getNftCollectionNfts(
   limit: number
 ): Promise<NftCollectionNftsHttpResponse> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/assets/${contractAddress}?cursor=${pageParam}&sort_field=${sortField}&sort_direction=${sortDirection}&limit=${limit}`,
+    `${NFT_BASE_URL}/assets/${contractAddress}?cursor=${pageParam}&sort_field=${sortField}&sort_direction=${sortDirection}&limit=${limit}`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
@@ -105,7 +107,7 @@ export async function getSingleNft(
   tokenId: string
 ): Promise<NftHttpResponse> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/assets/${contractAddress}/${tokenId}?show_attribute=true`,
+    `${NFT_BASE_URL}/assets/${contractAddress}/${tokenId}?show_attribute=true`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
@@ -128,7 +130,7 @@ export async function getNftWalletNfts(
   pageParam: string
 ): Promise<NftWalletNfts> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/account/own/${walletAddress}?erc_type=erc721&show_attribute=false&sort_field=${sortField}&sort_direction=${sortDirection}&cursor=${pageParam}`,
+    `${NFT_BASE_URL}/account/own/${walletAddress}?erc_type=erc721&show_attribute=false&sort_field=${sortField}&sort_direction=${sortDirection}&cursor=${pageParam}`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
@@ -148,7 +150,7 @@ export async function getNftWalletStatistics(
   walletAddress: string
 ): Promise<NftWalletStatistics> {
   const res = await fetch(
-    `https://restapi.nftscan.com/api/v2/statistics/overview/${walletAddress}`,
+    `${NFT_BASE_URL}/statistics/overview/${walletAddress}`,
     {
       headers: {
         'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
