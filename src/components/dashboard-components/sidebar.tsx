@@ -76,7 +76,7 @@ export default function Sidebar() {
               !isBigScreen && isOpened && setIsOpened((prev) => !prev)
             }
           />
-          <div className="space-y-1">
+          <div className="space-y-2">
             <NavigationLinksList
               navigationLinks={secondaryNavigationLinks}
               showNavigationLinkText={isOpened}
