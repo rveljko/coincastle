@@ -77,3 +77,26 @@ export const settingsNavigationLinks: NavigationLink[] = [
     path: 'integrations',
   },
 ]
+
+export const landingPageNavigationLinks: NavigationLink[] = [
+  {
+    id: 1,
+    name: 'Features',
+    path: 'features',
+  },
+  {
+    id: 2,
+    name: 'Customers',
+    path: 'customers',
+  },
+  {
+    id: 3,
+    name: 'Integrations',
+    path: 'integrations',
+  },
+  {
+    id: 4,
+    name: 'Guides',
+    path: 'guides',
+  },
+]

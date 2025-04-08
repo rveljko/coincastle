@@ -202,8 +202,8 @@
   --color-warning-800: var(--warning-800);
   --color-warning-900: var(--warning-900);
   --color-section-outline: var(--section-outline);
-  --background-starting-color: var(--background-starting-color);
-  --background-ending-color: var(--background-ending-color);
+  --color-background-starting-color: var(--background-starting-color);
+  --color-background-ending-color: var(--background-ending-color);
   --background-gradient: linear-gradient(
     var(--background-starting-color),
     var(--background-ending-color)
