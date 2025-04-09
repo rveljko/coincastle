@@ -62,6 +62,13 @@
     linear-gradient(transparent, #ffffff00),
     radial-gradient(at top, #13192fe3, #0b0e18f2);
   --modal-backdrop-background: #00000033;
+  --light-gradient:
+    linear-gradient(hsl(from var(--clickable) h s l / 5%), transparent),
+    radial-gradient(
+      at top,
+      hsl(from var(--brand-500) h s l / 20%),
+      transparent 50%
+    );
 }
 
 @media (prefers-color-scheme: light) {
