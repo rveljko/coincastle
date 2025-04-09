@@ -20,7 +20,7 @@ export async function getStocks(
   limit: number
 ): Promise<StockOverviewHttpResponse[]> {
   const res = await fetch(
-    `${STOCKS_BASE_URL}/company-screener?country=us&priceMoreThan=${priceFrom}&priceLowerThan=${priceTo}&marketCapMoreThan=${marketCapFrom}&marketCapLowerThan=${marketCapTo}&volumeMoreThan=${volumeFrom}&volumeLowerThan=${volumeTo}&limit=${limit}&apikey=${import.meta.env.VITE_FMP_API_KEY}`
+    `https://financialmodelingprep.com/api/v3/stock-screener?country=us&priceMoreThan=${priceFrom}&priceLowerThan=${priceTo}&marketCapMoreThan=${marketCapFrom}&marketCapLowerThan=${marketCapTo}&volumeMoreThan=${volumeFrom}&volumeLowerThan=${volumeTo}&limit=${limit}&apikey=${import.meta.env.VITE_FMP_API_KEY}`
   )
 
   if (!res.ok)
