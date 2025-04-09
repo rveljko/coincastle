@@ -69,6 +69,14 @@
       hsl(from var(--brand-500) h s l / 20%),
       transparent 50%
     );
+  --unclickable-gradient: linear-gradient(transparent, #00000033);
+  --heading-gradient:
+    var(--unclickable-gradient),
+    linear-gradient(var(--neutral-100), var(--neutral-100));
+  --section-gradient: radial-gradient(
+    hsl(from var(--color-brand-500) h s l / 20%),
+    transparent 70%
+  );
 }
 
 @media (prefers-color-scheme: light) {
@@ -101,6 +109,7 @@
         hsla(226, 31%, 87%, 0.99),
         hsla(222, 28%, 93%, 0.949)
       );
+    --unclickable-gradient: linear-gradient(transparent, #ffffff33);
   }
 }
 
@@ -133,6 +142,7 @@
       hsla(226, 31%, 87%, 0.99),
       hsla(222, 28%, 93%, 0.949)
     );
+  --unclickable-gradient: linear-gradient(transparent, #ffffff33);
 }
 
 [data-theme='dark'] {
@@ -159,6 +169,7 @@
   --modal-background:
     linear-gradient(transparent, #ffffff00),
     radial-gradient(at top, #13192fe3, #0b0e18f2);
+  --unclickable-gradient: linear-gradient(transparent, #00000033);
 }
 
 @theme {
