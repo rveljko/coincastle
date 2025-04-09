@@ -89,8 +89,8 @@ export default function NftWalletSection({
     <Section>
       <div className="mb-4 w-full lg:max-w-[50%]">
         <header className="mb-4 flex w-full flex-wrap gap-2">
-          <div className="flex size-32 items-center justify-center rounded-full bg-neutral-700">
-            <WalletIcon className="text-clickable size-16" />
+          <div className="flex size-32 items-center justify-center [&>svg]:size-16 [&>svg]:text-clickable rounded-full bg-neutral-700">
+            <WalletIcon />
           </div>
           <h1 className="break-all">
             {ethereumAddressFormatter(walletAddress)}
