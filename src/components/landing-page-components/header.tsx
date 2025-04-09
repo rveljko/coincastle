@@ -17,7 +17,7 @@ export default function Header() {
 
   return (
     <header
-      className={`bg-background-starting-color/40 border-section-outline overflow-hidden rounded-2xl border p-4 backdrop-blur-lg md:h-auto ${isHamburgerMenuOpened ? 'h-full' : 'h-auto'}`}
+      className={`bg-background-starting-color/40 border-section-outline pointer-events-auto overflow-hidden rounded-2xl border p-4 backdrop-blur-lg md:h-auto ${isHamburgerMenuOpened ? 'h-full' : 'h-auto'}`}
     >
       <div className="flex h-full flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-0">
         <div className="flex items-center justify-between">
