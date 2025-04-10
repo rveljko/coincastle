@@ -1,4 +1,5 @@
 import CheckboxIcon from '@icons/checkbox-icon'
+import { cn } from '@utils/utils'
 
 type TasksListProps = React.ComponentPropsWithoutRef<'ul'> & {
   children: React.ReactNode
@@ -14,9 +15,12 @@ type ItemProps = React.ComponentPropsWithoutRef<'li'> & {
   children: React.ReactNode
 }
 
-function Item({ children, ...props }: ItemProps) {
+function Item({ children, className, ...props }: ItemProps) {
   return (
-    <li className="text-clickable flex items-center gap-1 p-2" {...props}>
+    <li
+      className={cn('text-clickable flex items-center gap-1 p-2', className)}
+      {...props}
+    >
       <CheckboxIcon className="shrink-0" />
       {children}
     </li>
