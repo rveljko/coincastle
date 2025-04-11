@@ -1,8 +1,6 @@
 import Logo from '@components/logo'
 import Button from '@components/ui/button'
 import { landingPageNavigationLinks } from '@data/navigation-links'
-import MenuIcon from '@icons/menu-icon'
-import XIcon from '@icons/x-icon'
 import { useLayoutEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { Link } from 'react-router-dom'
@@ -25,13 +23,18 @@ export default function Header() {
             <Logo withText />
           </Link>
           <button
-            className="text-clickable flex size-7.5 cursor-pointer items-center justify-center md:hidden"
+            className="text-clickable relative size-7.5 cursor-pointer md:hidden"
             onClick={() => setIsHamburgerMenuOpened((prev) => !prev)}
           >
             <span className="sr-only">
               {isHamburgerMenuOpened ? 'Close Menu' : 'Open Menu'}
             </span>
-            {isHamburgerMenuOpened ? <XIcon /> : <MenuIcon />}
+            <span
+              className={`bg-clickable absolute left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full transition duration-200 ease-in-out ${isHamburgerMenuOpened ? '-translate-y-0 rotate-45' : '-translate-y-1'}`}
+            ></span>
+            <span
+              className={`bg-clickable absolute left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full transition duration-200 ease-in-out ${isHamburgerMenuOpened ? 'translate-y-0 -rotate-45' : 'translate-y-1'}`}
+            ></span>
           </button>
         </div>
         <div
