@@ -30,10 +30,10 @@ export default function Header() {
               {isHamburgerMenuOpened ? 'Close Menu' : 'Open Menu'}
             </span>
             <span
-              className={`bg-clickable absolute left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full transition duration-200 ease-in-out ${isHamburgerMenuOpened ? '-translate-y-0 rotate-45' : '-translate-y-1'}`}
+              className={`bg-clickable absolute top-1/2 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full transition duration-200 ease-in-out ${isHamburgerMenuOpened ? '-translate-1/2 rotate-45' : '-translate-y-[calc(50%_+_var(--spacing))]'}`}
             ></span>
             <span
-              className={`bg-clickable absolute left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full transition duration-200 ease-in-out ${isHamburgerMenuOpened ? 'translate-y-0 -rotate-45' : 'translate-y-1'}`}
+              className={`bg-clickable absolute top-1/2 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full transition duration-200 ease-in-out ${isHamburgerMenuOpened ? '-translate-1/2 -rotate-45' : '-translate-y-[calc(50%_-_var(--spacing))]'}`}
             ></span>
           </button>
         </div>
