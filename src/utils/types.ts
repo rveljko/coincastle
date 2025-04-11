@@ -288,3 +288,10 @@ export type Guide = {
 }
 
 export type Category = 'crypto' | 'stocks'
+
+export type Benefit = {
+  id: number
+  title: string
+  icon: () => React.JSX.Element
+  description: string
+}
