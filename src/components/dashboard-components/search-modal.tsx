@@ -1,5 +1,6 @@
 import {
   CryptoResultsSkeleton,
+  NftCollectionResultsSkeleton,
   StockResultsSkeleton,
 } from '@components/dashboard-components/search-modal-skeleton'
 import FirstLetterImageGenerator from '@components/dashboard-components/ui/first-letter-image-generator'
@@ -126,7 +127,7 @@ function NftCollectionResults({
 }: NftCollectionResultsProps) {
   const { data, isPending, error } = useGetNftCollectionsBySearch(search)
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <NftCollectionResultsSkeleton />
 
   if (error || isHttpError(data.code)) return null
 
