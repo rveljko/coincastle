@@ -236,6 +236,16 @@ export type NftWalletNftsSortField =
   | 'latest_trade_price'
   | ''
 
+export type NftCollectionSearchHttpResponse = {
+  code: number
+  data: {
+    contract_address: string
+    name: string
+    logo_url: string
+    opensea_verified: boolean
+  }[]
+}
+
 export type NftWalletNftsSortDirection = 'asc' | 'desc' | ''
 
 export type StockOverviewHttpResponse = {
