@@ -1,8 +1,11 @@
+import { useChart } from '@services/contexts/chart-context'
 import { currencyFormatter } from '@utils/helpers/currency-formatter'
 import { chartDateFormatter } from '@utils/helpers/date-formatter'
 import {
   Area,
   AreaChart,
+  Line,
+  LineChart,
   ResponsiveContainer,
   Tooltip,
   TooltipProps,
@@ -14,10 +17,58 @@ type ChartProps = {
 }
 
 export default function CryptoCoinChart({ data }: ChartProps) {
+  const { chart } = useChart()
+
   const formattedData = data.map(([timestamp, price]) => ({
     timestamp,
     price,
   }))
+
+  if (chart === 'line') {
+    return (
+      <ResponsiveContainer height="max-content" aspect={2.3 / 1}>
+        <LineChart data={formattedData}>
+          <XAxis
+            dataKey="timestamp"
+            dy={8}
+            tick={{ fill: 'var(--color-neutral-400)' }}
+            axisLine={false}
+            tickLine={false}
+            tickFormatter={(timestamp: number) => chartDateFormatter(timestamp)}
+            domain={['dataMin', 'dataMax']}
+            type="number"
+            interval="preserveStartEnd"
+            className="transform-[translateY(var(--spacing))]"
+          />
+          <Tooltip
+            content={({
+              active,
+              payload,
+              label,
+            }: TooltipProps<number, string>) => {
+              if (!active || !payload || !payload.length) return
+
+              return (
+                <div className="border-section-outline rounded-sm border-1 bg-(image:--modal-background) p-1">
+                  <p className="text-neutral-100">
+                    {currencyFormatter(payload[0].value!)}
+                  </p>
+                  <p>{chartDateFormatter(label)}</p>
+                </div>
+              )
+            }}
+          />
+          <Line
+            dataKey="price"
+            type="linear"
+            stroke="var(--color-brand-500)"
+            strokeWidth={4}
+            dot={false}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    )
+  }
 
   return (
     <ResponsiveContainer height="max-content" aspect={2.3 / 1}>
