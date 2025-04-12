@@ -35,10 +35,12 @@ export type Theme = {
   imageUrl: string
 }
 
+export type ChartLabel = 'area' | 'line'
+
 export type Chart = {
   id: number
   name: string
-  label: 'line' | 'bar' | 'candlestick'
+  label: ChartLabel
   imageUrl: string
 }
 

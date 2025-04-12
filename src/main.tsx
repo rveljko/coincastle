@@ -1,6 +1,7 @@
 import ScrollToTop from '@components/scroll-to-top'
 import DashboardRoutes from '@routes/dashboard-routes'
 import LandingPageRoutes from '@routes/landing-page-routes'
+import ChartContextProvider from '@services/contexts/chart-context'
 import IntegrationsContextProvider from '@services/contexts/integrations-context'
 import ThemeContextProvider from '@services/contexts/theme-context'
 import UserInformationContextProvider from '@services/contexts/user-information-context'
@@ -26,8 +27,10 @@ createRoot(document.getElementById('root')!).render(
         <UserInformationContextProvider>
           <IntegrationsContextProvider>
             <ThemeContextProvider>
-              <LandingPageRoutes />
-              <DashboardRoutes />
+              <ChartContextProvider>
+                <LandingPageRoutes />
+                <DashboardRoutes />
+              </ChartContextProvider>
             </ThemeContextProvider>
           </IntegrationsContextProvider>
         </UserInformationContextProvider>
