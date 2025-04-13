@@ -31,7 +31,7 @@ type BodyProps = React.ComponentPropsWithoutRef<'div'> & {
   children: React.ReactNode
 }
 
-function Body({ children, className, ...props }: BodyProps) {
+function Body({ children, ...props }: BodyProps) {
   return <div {...props}>{children}</div>
 }
 
