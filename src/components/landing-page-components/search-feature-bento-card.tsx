@@ -10,7 +10,13 @@ import { Link } from 'react-router-dom'
 
 const links = [...primaryNavigationLinks, ...secondaryNavigationLinks]
 
-export default function SearchFeatureBentoCard() {
+type SearchFeatureBentoCardProps = {
+  className?: string
+}
+
+export default function SearchFeatureBentoCard({
+  className,
+}: SearchFeatureBentoCardProps) {
   const [search, setSearch] = useState('')
 
   const filteredLinks = links.filter(({ name }) =>
@@ -18,7 +24,7 @@ export default function SearchFeatureBentoCard() {
   )
 
   return (
-    <BentoCard>
+    <BentoCard className={className}>
       <BentoCard.Body>
         <div className="relative isolate">
           <div className="border-clickable/30 bg-clickable/5 absolute inset-0 -z-1 rounded-t-lg border border-b-0 mask-linear-from-transparent mask-linear-to-black"></div>

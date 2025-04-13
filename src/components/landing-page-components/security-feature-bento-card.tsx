@@ -1,9 +1,15 @@
 import BentoCard from '@components/landing-page-components/ui/bento-card'
 import ShieldLockIcon from '@icons/shield-lock-icon'
 
-export default function SecurityFeatureBentoCard() {
+type SecurityFeatureBentoCardProps = {
+  className?: string
+}
+
+export default function SecurityFeatureBentoCard({
+  className,
+}: SecurityFeatureBentoCardProps) {
   return (
-    <BentoCard>
+    <BentoCard className={className}>
       <BentoCard.Body>
         <div className="flex items-center justify-center">
           <ShieldLockIcon className="text-clickable size-auto flex-1/4 mask-linear-from-transparent mask-linear-to-black" />

@@ -16,48 +16,44 @@ export default function FeaturesSection() {
           Comprehensive suite of tools designed to simplify your investment
           journey and maximize your returns
         </Section.Paragraph>
-        <div className="flex flex-col gap-5 md:flex-row">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           <motion.div
             variants={animationVariants}
             initial="initial"
             whileInView="whileInView"
             transition={{ delay: 0.3, ease: 'easeOut' }}
             viewport={{ once: true }}
-            className="flex w-full"
+            className="md:row-start-1 md:row-end-3"
           >
-            <SearchFeatureBentoCard />
+            <SearchFeatureBentoCard className="h-full" />
           </motion.div>
-          <div className="flex w-full flex-col gap-5">
-            <motion.div
-              variants={animationVariants}
-              initial="initial"
-              whileInView="whileInView"
-              transition={{ delay: 0.4, ease: 'easeOut' }}
-              viewport={{ once: true }}
-              className="flex h-full w-full"
-            >
-              <SecurityFeatureBentoCard />
-            </motion.div>
-            <motion.div
-              variants={animationVariants}
-              initial="initial"
-              whileInView="whileInView"
-              transition={{ delay: 0.5, ease: 'easeOut' }}
-              viewport={{ once: true }}
-              className="flex h-full w-full"
-            >
-              <OptimizationFeatureBentoCard />
-            </motion.div>
-          </div>
           <motion.div
             variants={animationVariants}
             initial="initial"
             whileInView="whileInView"
-            className="flex w-full"
-            transition={{ delay: 0.6, ease: 'easeOut' }}
+            transition={{ delay: 0.4, ease: 'easeOut' }}
             viewport={{ once: true }}
           >
-            <RewardsFeatureBentoCard />
+            <SecurityFeatureBentoCard className="h-full" />
+          </motion.div>
+          <motion.div
+            variants={animationVariants}
+            initial="initial"
+            whileInView="whileInView"
+            transition={{ delay: 0.5, ease: 'easeOut' }}
+            viewport={{ once: true }}
+          >
+            <OptimizationFeatureBentoCard className="h-full" />
+          </motion.div>
+          <motion.div
+            variants={animationVariants}
+            initial="initial"
+            whileInView="whileInView"
+            transition={{ delay: 0.6, ease: 'easeOut' }}
+            viewport={{ once: true }}
+            className="md:col-start-3 md:row-start-1 md:row-end-3"
+          >
+            <RewardsFeatureBentoCard className="h-full" />
           </motion.div>
         </div>
       </Container>

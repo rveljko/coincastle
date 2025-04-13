@@ -3,9 +3,15 @@ import BentoCard from '@components/landing-page-components/ui/bento-card'
 import Button from '@components/ui/button'
 import { tasks } from '@data/tasks'
 
-export default function RewardsFeatureBentoCard() {
+type RewardsFeatureBentoCardProps = {
+  className?: string
+}
+
+export default function RewardsFeatureBentoCard({
+  className,
+}: RewardsFeatureBentoCardProps) {
   return (
-    <BentoCard>
+    <BentoCard className={className}>
       <BentoCard.Body>
         <div className="relative isolate overflow-hidden rounded-t-lg">
           <div className="border-clickable/30 bg-clickable/5 absolute inset-0 -z-1 rounded-t-lg border border-b-0 mask-linear-from-transparent mask-linear-to-black"></div>

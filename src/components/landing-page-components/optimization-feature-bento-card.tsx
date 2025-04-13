@@ -1,9 +1,15 @@
 import BentoCard from '@components/landing-page-components/ui/bento-card'
 import BoltIcon from '@icons/bolt-icon'
 
-export default function OptimizationFeatureBentoCard() {
+type OptimizationFeatureBentoCardProps = {
+  className?: string
+}
+
+export default function OptimizationFeatureBentoCard({
+  className,
+}: OptimizationFeatureBentoCardProps) {
   return (
-    <BentoCard>
+    <BentoCard className={className}>
       <BentoCard.Body>
         <div className="flex items-center justify-center">
           <BoltIcon className="text-clickable size-auto flex-1/4 mask-linear-from-transparent mask-linear-to-black" />
