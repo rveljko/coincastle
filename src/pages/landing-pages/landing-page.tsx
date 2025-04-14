@@ -3,6 +3,7 @@ import FeaturesSection from '@sections/landing-page-sections/features-section'
 import HeroSection from '@sections/landing-page-sections/hero-section'
 import InvestmentSection from '@sections/landing-page-sections/investment-section'
 import LearnSomethingNewSection from '@sections/landing-page-sections/learn-something-new-section'
+import PreferencesSection from '@sections/landing-page-sections/preferences-section'
 
 export default function LandingPage() {
   return (
@@ -10,6 +11,7 @@ export default function LandingPage() {
       <HeroSection />
       <FeaturesSection />
       <BenefitsSection />
+      <PreferencesSection />
       <LearnSomethingNewSection />
       <InvestmentSection />
     </>
