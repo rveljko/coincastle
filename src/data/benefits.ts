@@ -4,12 +4,18 @@ import BookIcon from '@icons/book-icon'
 import BrandSpeedtestTcon from '@icons/brand-speedtest-icon'
 import ChartBarIcon from '@icons/chart-bar-icon'
 import ChartPieIcon from '@icons/chart-pie-icon'
+import CheckIcon from '@icons/check-icon'
+import ClockIcon from '@icons/clock-icon'
+import CompassIcon from '@icons/compass-icon'
 import DevicesIcon from '@icons/devices-icon'
+import EyeIcon from '@icons/eye-icon'
 import FileIcon from '@icons/file-icon'
+import FilterIcon from '@icons/filter-icon'
 import FingerprintIcon from '@icons/fingerprint-icon'
 import LayoutListIcon from '@icons/layout-list-icon'
 import LinkIcon from '@icons/link-icon'
 import ShareIcon from '@icons/share-icon'
+import UserCircleIcon from '@icons/user-circle-icon'
 import { Benefit } from '@utils/types'
 
 export const marketAwarenessBenefits: Benefit[] = [
@@ -98,5 +104,49 @@ export const investmentBenefits: Benefit[] = [
     description:
       'Rest assured knowing your assets are protected by advanced security protocols',
     icon: FingerprintIcon,
+  },
+]
+
+export const filteringBenefits: Benefit[] = [
+  {
+    id: 1,
+    title: 'Tailored Results',
+    description:
+      'Find exactly what you need by customizing your search parameters',
+    icon: FilterIcon,
+  },
+  {
+    id: 2,
+    title: 'Simplified Navigation',
+    description:
+      'Easily manage your portfolio with organized and relevant asset listings',
+    icon: CompassIcon,
+  },
+  {
+    id: 3,
+    title: 'Focused Insights',
+    description:
+      'Gain clarity on specific investments by filtering out the noise',
+    icon: EyeIcon,
+  },
+  {
+    id: 4,
+    title: 'Time-Saving Efficiency',
+    description: 'Quickly access the information that matters most to you',
+    icon: ClockIcon,
+  },
+  {
+    id: 5,
+    title: 'Enhanced Decision-Making',
+    description:
+      'Make informed choices with data presented in a way that suits your strategy',
+    icon: CheckIcon,
+  },
+  {
+    id: 6,
+    title: 'User-Centric Design',
+    description:
+      'Enjoy a seamless experience with filtering options designed for your convenience',
+    icon: UserCircleIcon,
   },
 ]
