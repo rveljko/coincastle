@@ -12,7 +12,7 @@ export default function BentoCard({
   return (
     <article
       className={cn(
-        'border-section-outline flex w-full flex-col justify-between gap-2 rounded-2xl border bg-(image:--bento-card-background) p-4',
+        'border-section-outline bg-clickable/2 flex w-full flex-col justify-between gap-2 overflow-hidden rounded-2xl border p-4',
         className
       )}
       {...props}

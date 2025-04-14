@@ -77,9 +77,6 @@
     hsl(from var(--color-brand-500) h s l / 20%),
     transparent 70%
   );
-  --bento-card-background:
-    linear-gradient(transparent, hsl(from var(--clickable) h s l / 2%)),
-    radial-gradient(at top, hsl(from var(--clickable) h s l / 4%), transparent);
 }
 
 @media (prefers-color-scheme: light) {
