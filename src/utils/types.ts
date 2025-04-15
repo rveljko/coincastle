@@ -307,3 +307,10 @@ export type Benefit = {
   icon: () => React.JSX.Element
   description: string
 }
+
+export type Customer = {
+  id: number
+  name: string
+  description: string
+  logoUrl: string
+}
