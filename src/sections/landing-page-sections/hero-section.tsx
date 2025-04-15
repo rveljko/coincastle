@@ -1,5 +1,5 @@
 import Container from '@components/container'
-import Button from '@components/ui/button'
+import HeroText from '@components/landing-page-components/hero-text'
 import { useTheme } from '@services/contexts/theme-context'
 import { IMAGE_PATH } from '@utils/constants'
 import { motion } from 'motion/react'
@@ -10,45 +10,10 @@ export default function HeroSection() {
   return (
     <section className="py-16">
       <Container>
-        <motion.h1
-          initial={{
-            opacity: 0,
-            transform: 'translateY(calc(var(--spacing)*-4))',
-          }}
-          animate={{ opacity: 1, transform: 'translateY(0)' }}
-          transition={{ ease: 'easeOut' }}
-          className="mx-auto mb-2 max-w-5xl bg-(image:--heading-gradient) bg-clip-text text-center text-5xl font-semibold text-transparent lg:text-6xl"
-        >
-          Unlock Your Investment Potential with CoinCastle Today!
-        </motion.h1>
-        <motion.p
-          initial={{
-            opacity: 0,
-            transform: 'translateY(calc(var(--spacing)*-4))',
-          }}
-          animate={{ opacity: 1, transform: 'translateY(0)' }}
-          transition={{ delay: 0.1, ease: 'easeOut' }}
-          className="mx-auto mb-4 max-w-115 text-center"
-        >
-          Manage cryptocurrencies, NFTs, and stocks effortlessly with real-time
-          insights and powerful features at your fingertips
-        </motion.p>
-        <motion.div
-          initial={{
-            opacity: 0,
-            transform: 'translateY(calc(var(--spacing)*-4))',
-          }}
-          animate={{ opacity: 1, transform: 'translateY(0)' }}
-          transition={{ delay: 0.2, ease: 'easeOut' }}
-          className="flex flex-wrap items-center justify-center gap-2"
-        >
-          <Button href="/dashboard" variant="primary" size="large">
-            Get Started Now
-          </Button>
-          <Button href="/dashboard" variant="secondary" size="large">
-            See How It Works
-          </Button>
-        </motion.div>
+        <HeroText
+          heading="Unlock Your Investment Potential with CoinCastle Today!"
+          paragraph="Manage cryptocurrencies, NFTs, and stocks effortlessly with real-time insights and powerful features at your fingertips"
+        />
       </Container>
       <motion.div
         initial={{
