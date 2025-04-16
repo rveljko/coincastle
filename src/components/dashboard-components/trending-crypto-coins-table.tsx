@@ -27,9 +27,8 @@ export default function TrendingCryptoCoinsTable() {
         </Table.HeaderRow>
       </Table.Header>
       <Table.Body>
-        {data.map(({ id, name, symbol, image, current_price }, index) => (
+        {data.map(({ id, name, symbol, image, current_price }) => (
           <Table.BodyRow key={id} className="relative">
-            <Table.BodyCell>{index + 1}</Table.BodyCell>
             <Table.BodyCell>
               <Link to={`/dashboard/coin/${id}`}>
                 <span className="absolute inset-0"></span>
