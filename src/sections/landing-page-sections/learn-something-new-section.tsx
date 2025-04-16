@@ -11,7 +11,7 @@ export default function LearnSomethingNewSection() {
   return (
     <Section>
       <Container>
-        <Section.Heading>Empower Yourself with Knowledge</Section.Heading>
+        <Section.Heading>Discover New Investment Skills</Section.Heading>
         <Section.Paragraph>
           Customize your dashboard with themes and charts tailored to your
           preferences for a unique investment experience
