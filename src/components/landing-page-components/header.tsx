@@ -19,7 +19,14 @@ export default function Header() {
     >
       <div className="flex h-full flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-0">
         <div className="flex items-center justify-between">
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={() =>
+              !isBigScreen &&
+              isHamburgerMenuOpened &&
+              setIsHamburgerMenuOpened((prev) => !prev)
+            }
+          >
             <Logo withText />
           </Link>
           <button
@@ -50,6 +57,11 @@ export default function Header() {
                   <Link
                     to={path}
                     className="text-heading-3-font-size leading-heading-3-line-height md:text-paragraph-font-size md:leading-paragraph-line-height block w-full cursor-pointer p-2 font-medium md:p-0.5 md:font-normal"
+                    onClick={() =>
+                      !isBigScreen &&
+                      isHamburgerMenuOpened &&
+                      setIsHamburgerMenuOpened((prev) => !prev)
+                    }
                   >
                     {name}
                   </Link>
