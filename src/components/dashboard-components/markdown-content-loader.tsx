@@ -15,7 +15,7 @@ export default function MarkdownContentLoader({
         h3: ({ node, ...props }) => <h3 className="mb-2" {...props} />,
         p: ({ node, ...props }) => <p className="mb-4" {...props} />,
         ul: ({ node, ...props }) => (
-          <ul className="mt-2 list-disc space-y-1.5 pl-5" {...props} />
+          <ul className="mb-4 list-disc space-y-1.5 pl-5" {...props} />
         ),
         ol: ({ node, ...props }) => (
           <ol className="mb-4 list-decimal space-y-1.5 pl-5" {...props} />

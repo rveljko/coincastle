@@ -3,6 +3,7 @@ import CustomersPage from '@pages/landing-pages/customers-page'
 import FeaturesPage from '@pages/landing-pages/features-page'
 import IntegrationsPage from '@pages/landing-pages/integrations-page'
 import LandingPage from '@pages/landing-pages/landing-page'
+import PrivacyPolicyPage from '@pages/landing-pages/privacy-policy-page'
 import TermsOfServicePage from '@pages/landing-pages/terms-of-service-page'
 import { Route, Routes } from 'react-router-dom'
 
@@ -15,6 +16,7 @@ export default function LandingPageRoutes() {
         <Route path="customers" element={<CustomersPage />} />
         <Route path="integrations" element={<IntegrationsPage />} />
         <Route path="terms-of-service" element={<TermsOfServicePage />} />
+        <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
       </Route>
     </Routes>
   )
