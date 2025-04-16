@@ -20,7 +20,6 @@ export const nftCollectionsTableHeaders: string[] = [
 ]
 
 export const trendingNftCollectionsTableHeaders: string[] = [
-  '#',
   'Collection Name',
   'Floor Price',
 ]
