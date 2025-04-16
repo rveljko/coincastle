@@ -1,12 +1,13 @@
 import Container from '@components/container'
 import MarkdownContentLoader from '@components/dashboard-components/markdown-content-loader'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
+import PrivacyPolicySectionSkeleton from '@components/landing-page-components/privacy-policy-section-skeleton'
 import useGetPrivacyPolicy from '@hooks/queries/use-get-privacy-policy'
 
 export default function PrivacyPolicySection() {
   const { data, isPending, error } = useGetPrivacyPolicy()
 
-  if (isPending) return <div>loading...</div>
+  if (isPending) return <PrivacyPolicySectionSkeleton />
 
   if (error)
     return (
