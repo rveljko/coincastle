@@ -32,29 +32,26 @@ export default function TrendingStocksTable() {
         </Table.HeaderRow>
       </Table.Header>
       <Table.Body>
-        {data.map(
-          ({ exchangeShortName, symbol, companyName, price }, index) => (
-            <Table.BodyRow
-              key={`${exchangeShortName}${symbol}`}
-              className="relative"
-            >
-              <Table.BodyCell>{index + 1}</Table.BodyCell>
-              <Table.BodyCell>
-                <Link to={`/dashboard/stock/${symbol}`}>
-                  <span className="absolute inset-0"></span>
-                  <div className="flex w-max items-center gap-1">
-                    <FirstLetterImageGenerator word={companyName} isSmall />
-                    <div className="flex items-center gap-0.5">
-                      {companyName}
-                      <span className="text-neutral-400">{symbol}</span>
-                    </div>
+        {data.map(({ exchangeShortName, symbol, companyName, price }) => (
+          <Table.BodyRow
+            key={`${exchangeShortName}${symbol}`}
+            className="relative"
+          >
+            <Table.BodyCell>
+              <Link to={`/dashboard/stock/${symbol}`}>
+                <span className="absolute inset-0"></span>
+                <div className="flex w-max items-center gap-1">
+                  <FirstLetterImageGenerator word={companyName} isSmall />
+                  <div className="flex items-center gap-0.5">
+                    {companyName}
+                    <span className="text-neutral-400">{symbol}</span>
                   </div>
-                </Link>
-              </Table.BodyCell>
-              <Table.BodyCell>{currencyFormatter(price)}</Table.BodyCell>
-            </Table.BodyRow>
-          )
-        )}
+                </div>
+              </Link>
+            </Table.BodyCell>
+            <Table.BodyCell>{currencyFormatter(price)}</Table.BodyCell>
+          </Table.BodyRow>
+        ))}
       </Table.Body>
     </Table>
   )
