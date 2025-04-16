@@ -97,6 +97,6 @@ export const landingPageNavigationLinks: NavigationLink[] = [
   {
     id: 4,
     name: 'Guides',
-    path: 'guides',
+    path: '/dashboard/guides',
   },
 ]
