@@ -115,10 +115,10 @@ export default function NftSection({
                 {attributes.map(
                   ({ attribute_name, attribute_value, percentage }, index) => (
                     <InformationList.Item key={index}>
-                      <InformationList.Label>
+                      <InformationList.Label className="capitalize">
                         {attribute_name}
                       </InformationList.Label>
-                      <InformationList.Value>
+                      <InformationList.Value className="capitalize">
                         {attribute_value} {percentage}
                       </InformationList.Value>
                     </InformationList.Item>
