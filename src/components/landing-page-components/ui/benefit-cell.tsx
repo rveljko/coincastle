@@ -13,7 +13,7 @@ export default function BenefitCell({
         <span className="[&>svg]:text-neutral-100">
           <Icon />
         </span>
-        <h3 className="text-heading-4-font-size leading-heading-4-line-height">
+        <h3 className="text-heading-4-font-size leading-heading-4-line-height font-normal">
           {title}
         </h3>
       </div>
