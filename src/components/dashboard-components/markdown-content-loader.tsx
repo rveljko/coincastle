@@ -10,6 +10,7 @@ export default function MarkdownContentLoader({
   return (
     <Markdown
       components={{
+        h1: ({ node, ...props }) => <h1 className="mb-4" {...props} />,
         h2: ({ node, ...props }) => <h2 className="mb-2" {...props} />,
         h3: ({ node, ...props }) => <h3 className="mb-2" {...props} />,
         p: ({ node, ...props }) => <p className="mb-4" {...props} />,
