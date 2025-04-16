@@ -23,6 +23,7 @@ export type Integration = {
   name: string
   description: string
   logoUrl: string
+  logoBigUrl: string
   isActive: boolean
 }
 

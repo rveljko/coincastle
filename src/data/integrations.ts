@@ -7,6 +7,7 @@ export const integrations: Integration[] = [
     name: 'Forward',
     description: 'Web-based SaaS for issue tracking & project management',
     logoUrl: `${IMAGE_PATH}forward-logo.svg`,
+    logoBigUrl: `${IMAGE_PATH}forward-logo-big.svg`,
     isActive: true,
   },
   {
@@ -14,6 +15,7 @@ export const integrations: Integration[] = [
     name: 'Reply',
     description: 'Web-based SaaS for online personal banking',
     logoUrl: `${IMAGE_PATH}reply-logo.svg`,
+    logoBigUrl: `${IMAGE_PATH}reply-logo-big.svg`,
     isActive: true,
   },
   {
@@ -21,6 +23,7 @@ export const integrations: Integration[] = [
     name: 'Aven',
     description: 'Home equity-backed credit cards for affordable financing',
     logoUrl: `${IMAGE_PATH}aven-logo.svg`,
+    logoBigUrl: `${IMAGE_PATH}aven-logo-big.svg`,
     isActive: false,
   },
   {
@@ -28,6 +31,7 @@ export const integrations: Integration[] = [
     name: 'Acme',
     description: 'Delivers manufacturing solutions and high-quality products',
     logoUrl: `${IMAGE_PATH}acme-logo.svg`,
+    logoBigUrl: `${IMAGE_PATH}acme-logo-big.svg`,
     isActive: false,
   },
   {
@@ -35,6 +39,7 @@ export const integrations: Integration[] = [
     name: 'Kanba',
     description: 'Enhances team productivity and project management',
     logoUrl: `${IMAGE_PATH}kanba-logo.svg`,
+    logoBigUrl: `${IMAGE_PATH}kanba-logo-big.svg`,
     isActive: false,
   },
   {
@@ -42,6 +47,7 @@ export const integrations: Integration[] = [
     name: 'Earth2.0',
     description: 'Develops sustainable technologies for a greener planet',
     logoUrl: `${IMAGE_PATH}earth2.0-logo.svg`,
+    logoBigUrl: `${IMAGE_PATH}earth2.0-logo-big.svg`,
     isActive: false,
   },
 ]
