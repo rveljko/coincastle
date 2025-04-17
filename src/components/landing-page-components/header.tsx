@@ -56,7 +56,7 @@ export default function Header() {
                 >
                   <Link
                     to={path}
-                    className="text-heading-3-font-size leading-heading-3-line-height md:text-paragraph-font-size md:leading-paragraph-line-height block w-full cursor-pointer p-2 font-medium md:p-0.5 md:font-normal"
+                    className="text-heading-3-font-size leading-heading-3-line-height md:text-paragraph-font-size md:leading-paragraph-line-height block w-full cursor-pointer p-2 font-medium md:px-1 md:py-0.5 md:font-normal"
                     onClick={() =>
                       !isBigScreen &&
                       isHamburgerMenuOpened &&
@@ -69,12 +69,12 @@ export default function Header() {
               ))}
             </ul>
           </nav>
-          <div className="flex flex-col gap-2 sm:flex-row md:gap-1">
+          <div className="flex flex-col gap-2 sm:flex-row">
             <Button
               href="/dashboard"
               variant="secondary"
               size={isBigScreen ? 'small' : 'large'}
-              className="w-full md:w-max"
+              className="w-full md:hidden lg:flex lg:w-max"
             >
               Learn More
             </Button>
