@@ -10,12 +10,12 @@ import GuidePage from '@pages/dashboard-pages/guide-page'
 import GuidesPage from '@pages/dashboard-pages/guides-page'
 import HelpCenterPage from '@pages/dashboard-pages/help-center-page'
 import IntegrationsPage from '@pages/dashboard-pages/integrations-page'
-import NftPage from '@pages/dashboard-pages/nft-page'
 import NftWalletPage from '@pages/dashboard-pages/nft-wallet-page'
 import PasswordPage from '@pages/dashboard-pages/password-page'
 import PreferencesPage from '@pages/dashboard-pages/preferences-page'
 import StockPage from '@pages/dashboard-pages/stock-page'
 import StocksPage from '@pages/dashboard-pages/stocks-page'
+import NftPageSkeleton from '@sections/dashboard-sections/nft-page-skeleton'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 const CryptoCurrenciesPage = lazy(
@@ -27,6 +27,7 @@ const NftsPage = lazy(() => import('@pages/dashboard-pages/nfts-page'))
 const NftCollectionPage = lazy(
   () => import('@pages/dashboard-pages/nft-collection-page')
 )
+const NftPage = lazy(() => import('@pages/dashboard-pages/nft-page'))
 
 export default function DashboardRoutes() {
   return (
@@ -74,7 +75,11 @@ export default function DashboardRoutes() {
         />
         <Route
           path="collection/:contractAddress/:tokenId"
-          element={<NftPage />}
+          element={
+            <Suspense fallback={<NftPageSkeleton />}>
+              <NftPage />
+            </Suspense>
+          }
         />
         <Route path="wallet/:walletAddress" element={<NftWalletPage />} />
         <Route path="stocks" element={<StocksPage />} />
