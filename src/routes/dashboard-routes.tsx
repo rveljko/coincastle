@@ -2,6 +2,7 @@ import CoinPageSkeleton from '@components/dashboard-components/coin-page-skeleto
 import CryptoCurrenciesPageSkeleton from '@components/dashboard-components/crypto-currencies-page-skeleton'
 import GuidePageSkeleton from '@components/dashboard-components/guide-page-skeleton'
 import GuidesPageSkeleton from '@components/dashboard-components/guides-page-skeleton'
+import HelpCenterPageSkeleton from '@components/dashboard-components/help-center-page-skeleton'
 import NftCollectionPageSkeleton from '@components/dashboard-components/nft-collection-page-skeleton'
 import NftWalletPageSkeleton from '@components/dashboard-components/nft-wallet-page-skeleton'
 import NftsPageSkeleton from '@components/dashboard-components/nfts-page-skeleton'
@@ -11,7 +12,6 @@ import WalletPageSkeleton from '@components/dashboard-components/wallet-page-ske
 import DashboardLayout from '@layouts/dashboard-layout'
 import SettingsLayout from '@layouts/settings-layout'
 import AccountPage from '@pages/dashboard-pages/account-page'
-import HelpCenterPage from '@pages/dashboard-pages/help-center-page'
 import IntegrationsPage from '@pages/dashboard-pages/integrations-page'
 import PasswordPage from '@pages/dashboard-pages/password-page'
 import PreferencesPage from '@pages/dashboard-pages/preferences-page'
@@ -35,6 +35,9 @@ const StocksPage = lazy(() => import('@pages/dashboard-pages/stocks-page'))
 const StockPage = lazy(() => import('@pages/dashboard-pages/stock-page'))
 const GuidesPage = lazy(() => import('@pages/dashboard-pages/guides-page'))
 const GuidePage = lazy(() => import('@pages/dashboard-pages/guide-page'))
+const HelpCenterPage = lazy(
+  () => import('@pages/dashboard-pages/help-center-page')
+)
 
 export default function DashboardRoutes() {
   return (
@@ -128,7 +131,14 @@ export default function DashboardRoutes() {
             </Suspense>
           }
         />
-        <Route path="help-center" element={<HelpCenterPage />} />
+        <Route
+          path="help-center"
+          element={
+            <Suspense fallback={<HelpCenterPageSkeleton />}>
+              <HelpCenterPage />
+            </Suspense>
+          }
+        />
         <Route path="settings" element={<SettingsLayout />}>
           <Route index element={<AccountPage />} />
           <Route path="password" element={<PasswordPage />} />
