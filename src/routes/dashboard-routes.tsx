@@ -1,5 +1,6 @@
 import CoinPageSkeleton from '@components/dashboard-components/coin-page-skeleton'
 import CryptoCurrenciesPageSkeleton from '@components/dashboard-components/crypto-currencies-page-skeleton'
+import NftCollectionPageSkeleton from '@components/dashboard-components/nft-collection-page-skeleton'
 import NftsPageSkeleton from '@components/dashboard-components/nfts-page-skeleton'
 import WalletPageSkeleton from '@components/dashboard-components/wallet-page-skeleton'
 import DashboardLayout from '@layouts/dashboard-layout'
@@ -9,7 +10,6 @@ import GuidePage from '@pages/dashboard-pages/guide-page'
 import GuidesPage from '@pages/dashboard-pages/guides-page'
 import HelpCenterPage from '@pages/dashboard-pages/help-center-page'
 import IntegrationsPage from '@pages/dashboard-pages/integrations-page'
-import NftCollectionPage from '@pages/dashboard-pages/nft-collection-page'
 import NftPage from '@pages/dashboard-pages/nft-page'
 import NftWalletPage from '@pages/dashboard-pages/nft-wallet-page'
 import PasswordPage from '@pages/dashboard-pages/password-page'
@@ -24,6 +24,9 @@ const CryptoCurrenciesPage = lazy(
 const WalletPage = lazy(() => import('@pages/dashboard-pages/wallet-page'))
 const CoinPage = lazy(() => import('@pages/dashboard-pages/coin-page'))
 const NftsPage = lazy(() => import('@pages/dashboard-pages/nfts-page'))
+const NftCollectionPage = lazy(
+  () => import('@pages/dashboard-pages/nft-collection-page')
+)
 
 export default function DashboardRoutes() {
   return (
@@ -63,7 +66,11 @@ export default function DashboardRoutes() {
         />
         <Route
           path="collection/:contractAddress"
-          element={<NftCollectionPage />}
+          element={
+            <Suspense fallback={<NftCollectionPageSkeleton />}>
+              <NftCollectionPage />
+            </Suspense>
+          }
         />
         <Route
           path="collection/:contractAddress/:tokenId"
