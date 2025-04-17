@@ -2,14 +2,22 @@ import ChartSkeleton from '@components/dashboard-components/chart-skeleton'
 import SwitcherSkeleton from '@components/dashboard-components/switcher-skeleton'
 import Section from '@sections/dashboard-sections/section'
 
-export default function HeroSectionSkeleton() {
+type HeroSectionSkeletonProps = {
+  className?: string
+}
+
+export default function HeroSectionSkeleton({
+  className,
+}: HeroSectionSkeletonProps) {
   return (
-    <Section>
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <HeroAssetInformationSkeleton />
-        <HeroButtonsSkeleton />
+    <Section className={className}>
+      <div className="flex h-full flex-col justify-between gap-8">
+        <header className="flex flex-wrap items-end justify-between gap-4">
+          <HeroAssetInformationSkeleton />
+          <HeroButtonsSkeleton />
+        </header>
+        <HeroChartSkeleton />
       </div>
-      <HeroChartSkeleton />
     </Section>
   )
 }
