@@ -2,35 +2,37 @@ import Table from '@components/dashboard-components/ui/table'
 
 type CryptoCoinsTableSkeletonProps = {
   numberOfCoins: number
+  className?: string
 }
 
 export default function CryptoCoinsTableSkeleton({
   numberOfCoins,
+  className,
 }: CryptoCoinsTableSkeletonProps) {
   return (
-    <Table>
+    <Table className={className}>
       <Table.Header>
         <Table.HeaderRow>
           <Table.HeaderCell>
-            <div className="bg-clickable/10 size-5.5 animate-pulse rounded-sm"></div>
+            <div className="bg-clickable/10 size-5 animate-pulse rounded-sm"></div>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <div className="bg-clickable/10 h-5.5 w-20 animate-pulse rounded-sm"></div>
+            <div className="bg-clickable/10 h-5 w-20 animate-pulse rounded-sm"></div>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <div className="bg-clickable/10 h-5.5 w-20 animate-pulse rounded-sm"></div>
+            <div className="bg-clickable/10 h-5 w-20 animate-pulse rounded-sm"></div>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <div className="bg-clickable/10 h-5.5 w-20 animate-pulse rounded-sm"></div>
+            <div className="bg-clickable/10 h-5 w-20 animate-pulse rounded-sm"></div>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <div className="bg-clickable/10 h-5.5 w-20 animate-pulse rounded-sm"></div>
+            <div className="bg-clickable/10 h-5 w-20 animate-pulse rounded-sm"></div>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <div className="bg-clickable/10 h-5.5 w-20 animate-pulse rounded-sm"></div>
+            <div className="bg-clickable/10 h-5 w-20 animate-pulse rounded-sm"></div>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <div className="bg-clickable/10 ml-auto h-5.5 w-20 animate-pulse rounded-sm"></div>
+            <div className="bg-clickable/10 ml-auto h-5 w-20 animate-pulse rounded-sm"></div>
           </Table.HeaderCell>
         </Table.HeaderRow>
       </Table.Header>
