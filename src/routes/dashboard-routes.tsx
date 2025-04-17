@@ -3,6 +3,7 @@ import CryptoCurrenciesPageSkeleton from '@components/dashboard-components/crypt
 import NftCollectionPageSkeleton from '@components/dashboard-components/nft-collection-page-skeleton'
 import NftWalletPageSkeleton from '@components/dashboard-components/nft-wallet-page-skeleton'
 import NftsPageSkeleton from '@components/dashboard-components/nfts-page-skeleton'
+import StockPageSkeleton from '@components/dashboard-components/stock-page-skeleton'
 import StocksPageSkeleton from '@components/dashboard-components/stocks-page-skeleton'
 import WalletPageSkeleton from '@components/dashboard-components/wallet-page-skeleton'
 import DashboardLayout from '@layouts/dashboard-layout'
@@ -14,7 +15,6 @@ import HelpCenterPage from '@pages/dashboard-pages/help-center-page'
 import IntegrationsPage from '@pages/dashboard-pages/integrations-page'
 import PasswordPage from '@pages/dashboard-pages/password-page'
 import PreferencesPage from '@pages/dashboard-pages/preferences-page'
-import StockPage from '@pages/dashboard-pages/stock-page'
 import NftPageSkeleton from '@sections/dashboard-sections/nft-page-skeleton'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -32,6 +32,7 @@ const NftWalletPage = lazy(
   () => import('@pages/dashboard-pages/nft-wallet-page')
 )
 const StocksPage = lazy(() => import('@pages/dashboard-pages/stocks-page'))
+const StockPage = lazy(() => import('@pages/dashboard-pages/stock-page'))
 
 export default function DashboardRoutes() {
   return (
@@ -101,7 +102,14 @@ export default function DashboardRoutes() {
             </Suspense>
           }
         />
-        <Route path="stock/:stockSymbol" element={<StockPage />} />
+        <Route
+          path="stock/:stockSymbol"
+          element={
+            <Suspense fallback={<StockPageSkeleton />}>
+              <StockPage />
+            </Suspense>
+          }
+        />
         <Route path="guides" element={<GuidesPage />} />
         <Route path="guide/:guide" element={<GuidePage />} />
         <Route path="help-center" element={<HelpCenterPage />} />
