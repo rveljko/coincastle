@@ -9,13 +9,13 @@ import IntegrationsPageSkeleton from '@components/dashboard-components/integrati
 import NftCollectionPageSkeleton from '@components/dashboard-components/nft-collection-page-skeleton'
 import NftWalletPageSkeleton from '@components/dashboard-components/nft-wallet-page-skeleton'
 import NftsPageSkeleton from '@components/dashboard-components/nfts-page-skeleton'
+import NotFoundPageSkeleton from '@components/dashboard-components/not-found-page-skeleton'
 import PasswordPageSkeleton from '@components/dashboard-components/password-page-skeleton'
 import PreferencesPageSkeleton from '@components/dashboard-components/preferences-page-skeleton'
 import SettingsLayoutSkeleton from '@components/dashboard-components/settings-layout-skeleton'
 import StockPageSkeleton from '@components/dashboard-components/stock-page-skeleton'
 import StocksPageSkeleton from '@components/dashboard-components/stocks-page-skeleton'
 import WalletPageSkeleton from '@components/dashboard-components/wallet-page-skeleton'
-import NotFoundPage from '@pages/dashboard-pages/not-found-page'
 import NftPageSkeleton from '@sections/dashboard-sections/nft-page-skeleton'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -49,6 +49,7 @@ const PreferencesPage = lazy(
 const IntegrationsPage = lazy(
   () => import('@pages/dashboard-pages/integrations-page')
 )
+const NotFoundPage = lazy(() => import('@pages/dashboard-pages/not-found-page'))
 
 export default function DashboardRoutes() {
   return (
@@ -198,7 +199,14 @@ export default function DashboardRoutes() {
             }
           />
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<NotFoundPageSkeleton />}>
+              <NotFoundPage />
+            </Suspense>
+          }
+        />
       </Route>
     </Routes>
   )
