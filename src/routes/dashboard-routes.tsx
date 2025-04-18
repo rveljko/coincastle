@@ -1,6 +1,7 @@
 import AccountPageSkeleton from '@components/dashboard-components/account-page-skeleton'
 import CoinPageSkeleton from '@components/dashboard-components/coin-page-skeleton'
 import CryptoCurrenciesPageSkeleton from '@components/dashboard-components/crypto-currencies-page-skeleton'
+import DashboardLayoutSkeleton from '@components/dashboard-components/dashboard-layout-skeleton'
 import GuidePageSkeleton from '@components/dashboard-components/guide-page-skeleton'
 import GuidesPageSkeleton from '@components/dashboard-components/guides-page-skeleton'
 import HelpCenterPageSkeleton from '@components/dashboard-components/help-center-page-skeleton'
@@ -13,11 +14,11 @@ import PreferencesPageSkeleton from '@components/dashboard-components/preference
 import StockPageSkeleton from '@components/dashboard-components/stock-page-skeleton'
 import StocksPageSkeleton from '@components/dashboard-components/stocks-page-skeleton'
 import WalletPageSkeleton from '@components/dashboard-components/wallet-page-skeleton'
-import DashboardLayout from '@layouts/dashboard-layout'
 import SettingsLayout from '@layouts/settings-layout'
 import NftPageSkeleton from '@sections/dashboard-sections/nft-page-skeleton'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
+const DashboardLayout = lazy(() => import('@layouts/dashboard-layout'))
 const CryptoCurrenciesPage = lazy(
   () => import('@pages/dashboard-pages/crypto-currencies-page')
 )
@@ -50,7 +51,14 @@ const IntegrationsPage = lazy(
 export default function DashboardRoutes() {
   return (
     <Routes>
-      <Route path="/dashboard" element={<DashboardLayout />}>
+      <Route
+        path="/dashboard"
+        element={
+          <Suspense fallback={<DashboardLayoutSkeleton />}>
+            <DashboardLayout />
+          </Suspense>
+        }
+      >
         <Route
           index
           element={
