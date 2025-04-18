@@ -15,6 +15,7 @@ import SettingsLayoutSkeleton from '@components/dashboard-components/settings-la
 import StockPageSkeleton from '@components/dashboard-components/stock-page-skeleton'
 import StocksPageSkeleton from '@components/dashboard-components/stocks-page-skeleton'
 import WalletPageSkeleton from '@components/dashboard-components/wallet-page-skeleton'
+import NotFoundPage from '@pages/dashboard-pages/not-found-page'
 import NftPageSkeleton from '@sections/dashboard-sections/nft-page-skeleton'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -197,6 +198,7 @@ export default function DashboardRoutes() {
             }
           />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   )
