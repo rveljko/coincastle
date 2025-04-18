@@ -2,6 +2,7 @@ import AdjustmentIcon from '@icons/adjustment-icon'
 import BellIcon from '@icons/bell-icon'
 import BookIcon from '@icons/book-icon'
 import BrandSpeedtestTcon from '@icons/brand-speedtest-icon'
+import CertificateIcon from '@icons/certificate-icon'
 import ChartBarIcon from '@icons/chart-bar-icon'
 import ChartPieIcon from '@icons/chart-pie-icon'
 import CheckIcon from '@icons/check-icon'
@@ -12,9 +13,14 @@ import EyeIcon from '@icons/eye-icon'
 import FileIcon from '@icons/file-icon'
 import FilterIcon from '@icons/filter-icon'
 import FingerprintIcon from '@icons/fingerprint-icon'
+import KeyIcon from '@icons/key-icon'
 import LayoutListIcon from '@icons/layout-list-icon'
+import LineScanIcon from '@icons/line-scan-icon'
 import LinkIcon from '@icons/link-icon'
+import ServerIcon from '@icons/server-icon'
 import ShareIcon from '@icons/share-icon'
+import ShieldCheckIcon from '@icons/shield-check-icon'
+import ShieldIcon from '@icons/shield-icon'
 import UserCircleIcon from '@icons/user-circle-icon'
 import { Benefit } from '@utils/types'
 
@@ -148,5 +154,50 @@ export const filteringBenefits: Benefit[] = [
     description:
       'Enjoy a seamless experience with filtering options designed for your convenience',
     icon: UserCircleIcon,
+  },
+]
+
+export const securityBenefits: Benefit[] = [
+  {
+    id: 1,
+    title: 'End-to-End Encryption',
+    description:
+      'Encrypts all data and transactions to ensure complete privacy and security',
+    icon: ShieldIcon,
+  },
+  {
+    id: 2,
+    title: 'Multi-Factor Authentication',
+    description:
+      'Adds an extra verification step to prevent unauthorized account access',
+    icon: KeyIcon,
+  },
+  {
+    id: 3,
+    title: 'Cold Storage Solutions',
+    description:
+      'Stores most assets offline to protect them from online hacking threats',
+    icon: ServerIcon,
+  },
+  {
+    id: 4,
+    title: 'Real-Time Monitoring',
+    description:
+      'Constantly scans for suspicious activity and alerts you instantly',
+    icon: LineScanIcon,
+  },
+  {
+    id: 5,
+    title: 'Regular Security Audits',
+    description:
+      'Third-party audits ensure vulnerabilities are identified and fixed promptly',
+    icon: CertificateIcon,
+  },
+  {
+    id: 6,
+    title: 'Regulatory Compliance',
+    description:
+      'Follows strict regulations to keep your investments safe and transparent',
+    icon: ShieldCheckIcon,
   },
 ]
