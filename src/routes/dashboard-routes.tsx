@@ -11,10 +11,10 @@ import NftWalletPageSkeleton from '@components/dashboard-components/nft-wallet-p
 import NftsPageSkeleton from '@components/dashboard-components/nfts-page-skeleton'
 import PasswordPageSkeleton from '@components/dashboard-components/password-page-skeleton'
 import PreferencesPageSkeleton from '@components/dashboard-components/preferences-page-skeleton'
+import SettingsLayoutSkeleton from '@components/dashboard-components/settings-layout-skeleton'
 import StockPageSkeleton from '@components/dashboard-components/stock-page-skeleton'
 import StocksPageSkeleton from '@components/dashboard-components/stocks-page-skeleton'
 import WalletPageSkeleton from '@components/dashboard-components/wallet-page-skeleton'
-import SettingsLayout from '@layouts/settings-layout'
 import NftPageSkeleton from '@sections/dashboard-sections/nft-page-skeleton'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -39,6 +39,7 @@ const GuidePage = lazy(() => import('@pages/dashboard-pages/guide-page'))
 const HelpCenterPage = lazy(
   () => import('@pages/dashboard-pages/help-center-page')
 )
+const SettingsLayout = lazy(() => import('@layouts/settings-layout'))
 const AccountPage = lazy(() => import('@pages/dashboard-pages/account-page'))
 const PasswordPage = lazy(() => import('@pages/dashboard-pages/password-page'))
 const PreferencesPage = lazy(
@@ -155,7 +156,14 @@ export default function DashboardRoutes() {
             </Suspense>
           }
         />
-        <Route path="settings" element={<SettingsLayout />}>
+        <Route
+          path="settings"
+          element={
+            <Suspense fallback={<SettingsLayoutSkeleton />}>
+              <SettingsLayout />
+            </Suspense>
+          }
+        >
           <Route
             index
             element={
