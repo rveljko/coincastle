@@ -3,11 +3,21 @@ import Logo from '@components/logo'
 import { guides } from '@data/guides'
 import BrandLinkedinIcon from '@icons/brand-linkedin-icon'
 import BrandXIcon from '@icons/brand-x-icon'
+import { cn } from '@utils/utils'
 import { Link } from 'react-router-dom'
 
-export default function Footer() {
+type FooterProps = {
+  className?: string
+}
+
+export default function Footer({ className }: FooterProps) {
   return (
-    <footer className="border-section-outline bg-background-starting-color/40 border-t py-16">
+    <footer
+      className={cn(
+        'border-section-outline bg-background-starting-color/40 border-t py-16',
+        className
+      )}
+    >
       <Container className="flex flex-col gap-16">
         <div className="flex flex-wrap justify-between gap-8">
           <Link to="/" className="h-max">
