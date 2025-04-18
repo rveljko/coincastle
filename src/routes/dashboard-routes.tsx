@@ -1,3 +1,4 @@
+import AccountPageSkeleton from '@components/dashboard-components/account-page-skeleton'
 import CoinPageSkeleton from '@components/dashboard-components/coin-page-skeleton'
 import CryptoCurrenciesPageSkeleton from '@components/dashboard-components/crypto-currencies-page-skeleton'
 import GuidePageSkeleton from '@components/dashboard-components/guide-page-skeleton'
@@ -11,7 +12,6 @@ import StocksPageSkeleton from '@components/dashboard-components/stocks-page-ske
 import WalletPageSkeleton from '@components/dashboard-components/wallet-page-skeleton'
 import DashboardLayout from '@layouts/dashboard-layout'
 import SettingsLayout from '@layouts/settings-layout'
-import AccountPage from '@pages/dashboard-pages/account-page'
 import IntegrationsPage from '@pages/dashboard-pages/integrations-page'
 import PasswordPage from '@pages/dashboard-pages/password-page'
 import PreferencesPage from '@pages/dashboard-pages/preferences-page'
@@ -38,6 +38,7 @@ const GuidePage = lazy(() => import('@pages/dashboard-pages/guide-page'))
 const HelpCenterPage = lazy(
   () => import('@pages/dashboard-pages/help-center-page')
 )
+const AccountPage = lazy(() => import('@pages/dashboard-pages/account-page'))
 
 export default function DashboardRoutes() {
   return (
@@ -140,7 +141,14 @@ export default function DashboardRoutes() {
           }
         />
         <Route path="settings" element={<SettingsLayout />}>
-          <Route index element={<AccountPage />} />
+          <Route
+            index
+            element={
+              <Suspense fallback={<AccountPageSkeleton />}>
+                <AccountPage />
+              </Suspense>
+            }
+          />
           <Route path="password" element={<PasswordPage />} />
           <Route path="preferences" element={<PreferencesPage />} />
           <Route path="integrations" element={<IntegrationsPage />} />
