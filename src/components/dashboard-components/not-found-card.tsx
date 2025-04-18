@@ -1,15 +1,7 @@
 import Button from '@components/ui/button'
 import CoinCastleLogoIcon from '@icons/coin-castle-logo-icon'
 
-type NotFoundCardProps = {
-  linkLabel: string
-  linkHref: string
-}
-
-export default function NotFoundCard({
-  linkHref,
-  linkLabel,
-}: NotFoundCardProps) {
+export default function NotFoundCard() {
   return (
     <div className="flex h-full w-full items-center justify-center">
       <article className="max-w-max p-2">
@@ -19,12 +11,12 @@ export default function NotFoundCard({
           Sorry, the page you're looking for doesn't exist or has been moved
         </p>
         <Button
-          href={linkHref}
+          href="/dashboard"
           variant="primary"
           size="large"
           className="mx-auto"
         >
-          {linkLabel}
+          Back to Wallet Page
         </Button>
       </article>
     </div>
