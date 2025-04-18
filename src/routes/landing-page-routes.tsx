@@ -1,4 +1,5 @@
 import LandingPageLayout from '@layouts/landing-page-layout'
+import AboutUsPage from '@pages/landing-pages/about-us-page'
 import CustomersPage from '@pages/landing-pages/customers-page'
 import FeaturesPage from '@pages/landing-pages/features-page'
 import IntegrationsPage from '@pages/landing-pages/integrations-page'
@@ -16,6 +17,7 @@ export default function LandingPageRoutes() {
         <Route path="features" element={<FeaturesPage />} />
         <Route path="customers" element={<CustomersPage />} />
         <Route path="integrations" element={<IntegrationsPage />} />
+        <Route path="about-us" element={<AboutUsPage />} />
         <Route path="terms-of-service" element={<TermsOfServicePage />} />
         <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="security" element={<SecurityPage />} />
