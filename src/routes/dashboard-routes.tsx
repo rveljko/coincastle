@@ -4,6 +4,7 @@ import CryptoCurrenciesPageSkeleton from '@components/dashboard-components/crypt
 import GuidePageSkeleton from '@components/dashboard-components/guide-page-skeleton'
 import GuidesPageSkeleton from '@components/dashboard-components/guides-page-skeleton'
 import HelpCenterPageSkeleton from '@components/dashboard-components/help-center-page-skeleton'
+import IntegrationsPageSkeleton from '@components/dashboard-components/integrations-page-skeleton'
 import NftCollectionPageSkeleton from '@components/dashboard-components/nft-collection-page-skeleton'
 import NftWalletPageSkeleton from '@components/dashboard-components/nft-wallet-page-skeleton'
 import NftsPageSkeleton from '@components/dashboard-components/nfts-page-skeleton'
@@ -14,7 +15,6 @@ import StocksPageSkeleton from '@components/dashboard-components/stocks-page-ske
 import WalletPageSkeleton from '@components/dashboard-components/wallet-page-skeleton'
 import DashboardLayout from '@layouts/dashboard-layout'
 import SettingsLayout from '@layouts/settings-layout'
-import IntegrationsPage from '@pages/dashboard-pages/integrations-page'
 import NftPageSkeleton from '@sections/dashboard-sections/nft-page-skeleton'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -42,6 +42,9 @@ const AccountPage = lazy(() => import('@pages/dashboard-pages/account-page'))
 const PasswordPage = lazy(() => import('@pages/dashboard-pages/password-page'))
 const PreferencesPage = lazy(
   () => import('@pages/dashboard-pages/preferences-page')
+)
+const IntegrationsPage = lazy(
+  () => import('@pages/dashboard-pages/integrations-page')
 )
 
 export default function DashboardRoutes() {
@@ -169,7 +172,14 @@ export default function DashboardRoutes() {
               </Suspense>
             }
           />
-          <Route path="integrations" element={<IntegrationsPage />} />
+          <Route
+            path="integrations"
+            element={
+              <Suspense fallback={<IntegrationsPageSkeleton />}>
+                <IntegrationsPage />
+              </Suspense>
+            }
+          />
         </Route>
       </Route>
     </Routes>
