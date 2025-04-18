@@ -1,4 +1,4 @@
-import NotFoundCard from '@components/ui/not-found-card'
+import NotFoundCard from '@components/dashboard-components/not-found-card'
 
 export default function NotFoundSection() {
   return (
