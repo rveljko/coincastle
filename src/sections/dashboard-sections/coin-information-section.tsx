@@ -57,7 +57,7 @@ export default function CoinInformationSection({
 
   return (
     <Section>
-      <title>{`${TITLE_PREFIX}${name}`}</title>
+      <title>{`${TITLE_PREFIX}${name} ${symbol.toUpperCase()}`}</title>
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="md:flex-4">
           <header>
