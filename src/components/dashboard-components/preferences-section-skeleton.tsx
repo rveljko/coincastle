@@ -1,0 +1,28 @@
+import { charts } from '@data/charts'
+import { themes } from '@data/themes'
+
+export default function PreferencesSectionSkeleton() {
+  return (
+    <section className="w-full">
+      <div className="bg-clickable/10 mb-2 h-6.5 w-30 animate-pulse rounded-sm"></div>
+      <div className="mb-4 space-y-2">
+        {themes.map((_, index) => (
+          <div key={index}>
+            <div className="bg-clickable/10 mb-1 aspect-[7/5] w-39.5 animate-pulse rounded-sm"></div>
+            <div className="bg-clickable/10 h-5 w-20 animate-pulse rounded-sm"></div>
+          </div>
+        ))}
+      </div>
+      <div className="bg-clickable/10 mb-2 h-6.5 w-30 animate-pulse rounded-sm"></div>
+      <div className="mb-4 space-y-2">
+        {charts.map((_, index) => (
+          <div key={index}>
+            <div className="bg-clickable/10 mb-1 aspect-[7/5] w-39.5 animate-pulse rounded-sm"></div>
+            <div className="bg-clickable/10 h-5 w-20 animate-pulse rounded-sm"></div>
+          </div>
+        ))}
+      </div>
+      <div className="bg-clickable/10 ml-auto h-9.5 w-35 animate-pulse rounded-sm"></div>
+    </section>
+  )
+}
