@@ -27,7 +27,7 @@ export default function IntegrationCard({
           }}
         />
       </div>
-      <h3 className="text-heading-5-font-size leading-heading-5-line-height">
+      <h3 className="text-heading-5-font-size leading-heading-5-line-height mb-0.5">
         {name}
       </h3>
       <p className="line-clamp-2 max-w-50 text-ellipsis">{description}</p>
