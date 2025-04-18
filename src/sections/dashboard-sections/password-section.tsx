@@ -59,7 +59,7 @@ export default function PasswordSection() {
         </FormField>
         <div className="mb-4 flex flex-wrap items-start justify-between gap-2">
           <div>
-            <h2 className="text-heading-4-font-size leading-heading-4-line-height">
+            <h2 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
               2 Step Verification
             </h2>
             <p className="max-w-52">
