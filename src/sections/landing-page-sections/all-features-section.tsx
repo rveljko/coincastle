@@ -19,7 +19,7 @@ export default function AllFeaturesSection() {
       <Container>
         <HeroText
           heading="Powerful Features to Maximize Efficiency and Workflow"
-          paragraph="Discover a suite of powerful features designed to enhance productivity, streamline workflows, and improve collaboration."
+          paragraph="Discover a suite of powerful features designed to enhance productivity, streamline workflows, and improve collaboration"
         />
         <div className="flex flex-col gap-5 pt-16">
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
