@@ -14,15 +14,14 @@ import PreferencesPageSkeleton from '@components/dashboard-components/preference
 import SettingsLayoutSkeleton from '@components/dashboard-components/settings-layout-skeleton'
 import StockPageSkeleton from '@components/dashboard-components/stock-page-skeleton'
 import StocksPageSkeleton from '@components/dashboard-components/stocks-page-skeleton'
-import WalletPageSkeleton from '@components/dashboard-components/wallet-page-skeleton'
 import DashboardLayout from '@layouts/dashboard-layout'
+import WalletPage from '@pages/dashboard-pages/wallet-page'
 import NftPageSkeleton from '@sections/dashboard-sections/nft-page-skeleton'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 const CryptoCurrenciesPage = lazy(
   () => import('@pages/dashboard-pages/crypto-currencies-page')
 )
-const WalletPage = lazy(() => import('@pages/dashboard-pages/wallet-page'))
 const CoinPage = lazy(() => import('@pages/dashboard-pages/coin-page'))
 const NftsPage = lazy(() => import('@pages/dashboard-pages/nfts-page'))
 const NftCollectionPage = lazy(
@@ -54,14 +53,7 @@ export default function DashboardRoutes() {
   return (
     <Routes>
       <Route path="/dashboard" element={<DashboardLayout />}>
-        <Route
-          index
-          element={
-            <Suspense fallback={<WalletPageSkeleton />}>
-              <WalletPage />
-            </Suspense>
-          }
-        />
+        <Route index element={<WalletPage />} />
         <Route
           path="crypto"
           element={
