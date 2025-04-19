@@ -1,6 +1,5 @@
 import AccountPageSkeleton from '@components/dashboard-components/account-page-skeleton'
 import CoinPageSkeleton from '@components/dashboard-components/coin-page-skeleton'
-import CryptoCurrenciesPageSkeleton from '@components/dashboard-components/crypto-currencies-page-skeleton'
 import GuidePageSkeleton from '@components/dashboard-components/guide-page-skeleton'
 import GuidesPageSkeleton from '@components/dashboard-components/guides-page-skeleton'
 import HelpCenterPageSkeleton from '@components/dashboard-components/help-center-page-skeleton'
@@ -15,13 +14,11 @@ import SettingsLayoutSkeleton from '@components/dashboard-components/settings-la
 import StockPageSkeleton from '@components/dashboard-components/stock-page-skeleton'
 import StocksPageSkeleton from '@components/dashboard-components/stocks-page-skeleton'
 import DashboardLayout from '@layouts/dashboard-layout'
+import CryptoCurrenciesPage from '@pages/dashboard-pages/crypto-currencies-page'
 import WalletPage from '@pages/dashboard-pages/wallet-page'
 import NftPageSkeleton from '@sections/dashboard-sections/nft-page-skeleton'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-const CryptoCurrenciesPage = lazy(
-  () => import('@pages/dashboard-pages/crypto-currencies-page')
-)
 const CoinPage = lazy(() => import('@pages/dashboard-pages/coin-page'))
 const NftsPage = lazy(() => import('@pages/dashboard-pages/nfts-page'))
 const NftCollectionPage = lazy(
@@ -54,14 +51,7 @@ export default function DashboardRoutes() {
     <Routes>
       <Route path="/dashboard" element={<DashboardLayout />}>
         <Route index element={<WalletPage />} />
-        <Route
-          path="crypto"
-          element={
-            <Suspense fallback={<CryptoCurrenciesPageSkeleton />}>
-              <CryptoCurrenciesPage />
-            </Suspense>
-          }
-        />
+        <Route path="crypto" element={<CryptoCurrenciesPage />} />
         <Route
           path="coin/:coinId"
           element={
