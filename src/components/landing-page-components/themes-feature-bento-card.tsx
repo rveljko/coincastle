@@ -9,7 +9,7 @@ export default function ThemesFeatureBentoCard() {
   return (
     <BentoCard>
       <BentoCard.Body className="relative">
-        <div className="relative aspect-[7/5] overflow-hidden rounded-lg">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-lg">
           <img
             className="absolute size-full"
             src={`${IMAGE_PATH}theme-dark.png`}
