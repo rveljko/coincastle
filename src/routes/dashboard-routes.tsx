@@ -3,7 +3,6 @@ import GuidePageSkeleton from '@components/dashboard-components/guide-page-skele
 import GuidesPageSkeleton from '@components/dashboard-components/guides-page-skeleton'
 import HelpCenterPageSkeleton from '@components/dashboard-components/help-center-page-skeleton'
 import IntegrationsPageSkeleton from '@components/dashboard-components/integrations-page-skeleton'
-import NftCollectionPageSkeleton from '@components/dashboard-components/nft-collection-page-skeleton'
 import NftWalletPageSkeleton from '@components/dashboard-components/nft-wallet-page-skeleton'
 import NotFoundPageSkeleton from '@components/dashboard-components/not-found-page-skeleton'
 import PasswordPageSkeleton from '@components/dashboard-components/password-page-skeleton'
@@ -14,14 +13,12 @@ import StocksPageSkeleton from '@components/dashboard-components/stocks-page-ske
 import DashboardLayout from '@layouts/dashboard-layout'
 import CoinPage from '@pages/dashboard-pages/coin-page'
 import CryptoCurrenciesPage from '@pages/dashboard-pages/crypto-currencies-page'
+import NftCollectionPage from '@pages/dashboard-pages/nft-collection-page'
 import NftsPage from '@pages/dashboard-pages/nfts-page'
 import WalletPage from '@pages/dashboard-pages/wallet-page'
 import NftPageSkeleton from '@sections/dashboard-sections/nft-page-skeleton'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-const NftCollectionPage = lazy(
-  () => import('@pages/dashboard-pages/nft-collection-page')
-)
 const NftPage = lazy(() => import('@pages/dashboard-pages/nft-page'))
 const NftWalletPage = lazy(
   () => import('@pages/dashboard-pages/nft-wallet-page')
@@ -54,11 +51,7 @@ export default function DashboardRoutes() {
         <Route path="nfts" element={<NftsPage />} />
         <Route
           path="collection/:contractAddress"
-          element={
-            <Suspense fallback={<NftCollectionPageSkeleton />}>
-              <NftCollectionPage />
-            </Suspense>
-          }
+          element={<NftCollectionPage />}
         />
         <Route
           path="collection/:contractAddress/:tokenId"
