@@ -1,6 +1,5 @@
 import IntegrationsPageSkeleton from '@components/dashboard-components/integrations-page-skeleton'
 import NotFoundPageSkeleton from '@components/dashboard-components/not-found-page-skeleton'
-import PreferencesPageSkeleton from '@components/dashboard-components/preferences-page-skeleton'
 import SettingsLayoutSkeleton from '@components/dashboard-components/settings-layout-skeleton'
 import DashboardLayout from '@layouts/dashboard-layout'
 import AccountPage from '@pages/dashboard-pages/account-page'
@@ -14,15 +13,13 @@ import NftPage from '@pages/dashboard-pages/nft-page'
 import NftWalletPage from '@pages/dashboard-pages/nft-wallet-page'
 import NftsPage from '@pages/dashboard-pages/nfts-page'
 import PasswordPage from '@pages/dashboard-pages/password-page'
+import PreferencesPage from '@pages/dashboard-pages/preferences-page'
 import StockPage from '@pages/dashboard-pages/stock-page'
 import StocksPage from '@pages/dashboard-pages/stocks-page'
 import WalletPage from '@pages/dashboard-pages/wallet-page'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 const SettingsLayout = lazy(() => import('@layouts/settings-layout'))
-const PreferencesPage = lazy(
-  () => import('@pages/dashboard-pages/preferences-page')
-)
 const IntegrationsPage = lazy(
   () => import('@pages/dashboard-pages/integrations-page')
 )
@@ -60,14 +57,7 @@ export default function DashboardRoutes() {
         >
           <Route index element={<AccountPage />} />
           <Route path="password" element={<PasswordPage />} />
-          <Route
-            path="preferences"
-            element={
-              <Suspense fallback={<PreferencesPageSkeleton />}>
-                <PreferencesPage />
-              </Suspense>
-            }
-          />
+          <Route path="preferences" element={<PreferencesPage />} />
           <Route
             path="integrations"
             element={
