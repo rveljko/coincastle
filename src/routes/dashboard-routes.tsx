@@ -5,7 +5,6 @@ import HelpCenterPageSkeleton from '@components/dashboard-components/help-center
 import IntegrationsPageSkeleton from '@components/dashboard-components/integrations-page-skeleton'
 import NftCollectionPageSkeleton from '@components/dashboard-components/nft-collection-page-skeleton'
 import NftWalletPageSkeleton from '@components/dashboard-components/nft-wallet-page-skeleton'
-import NftsPageSkeleton from '@components/dashboard-components/nfts-page-skeleton'
 import NotFoundPageSkeleton from '@components/dashboard-components/not-found-page-skeleton'
 import PasswordPageSkeleton from '@components/dashboard-components/password-page-skeleton'
 import PreferencesPageSkeleton from '@components/dashboard-components/preferences-page-skeleton'
@@ -15,11 +14,11 @@ import StocksPageSkeleton from '@components/dashboard-components/stocks-page-ske
 import DashboardLayout from '@layouts/dashboard-layout'
 import CoinPage from '@pages/dashboard-pages/coin-page'
 import CryptoCurrenciesPage from '@pages/dashboard-pages/crypto-currencies-page'
+import NftsPage from '@pages/dashboard-pages/nfts-page'
 import WalletPage from '@pages/dashboard-pages/wallet-page'
 import NftPageSkeleton from '@sections/dashboard-sections/nft-page-skeleton'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-const NftsPage = lazy(() => import('@pages/dashboard-pages/nfts-page'))
 const NftCollectionPage = lazy(
   () => import('@pages/dashboard-pages/nft-collection-page')
 )
@@ -52,14 +51,7 @@ export default function DashboardRoutes() {
         <Route index element={<WalletPage />} />
         <Route path="crypto" element={<CryptoCurrenciesPage />} />
         <Route path="coin/:coinId" element={<CoinPage />} />
-        <Route
-          path="nfts"
-          element={
-            <Suspense fallback={<NftsPageSkeleton />}>
-              <NftsPage />
-            </Suspense>
-          }
-        />
+        <Route path="nfts" element={<NftsPage />} />
         <Route
           path="collection/:contractAddress"
           element={
