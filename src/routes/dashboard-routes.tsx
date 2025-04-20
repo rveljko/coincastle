@@ -7,7 +7,6 @@ import NotFoundPageSkeleton from '@components/dashboard-components/not-found-pag
 import PasswordPageSkeleton from '@components/dashboard-components/password-page-skeleton'
 import PreferencesPageSkeleton from '@components/dashboard-components/preferences-page-skeleton'
 import SettingsLayoutSkeleton from '@components/dashboard-components/settings-layout-skeleton'
-import StockPageSkeleton from '@components/dashboard-components/stock-page-skeleton'
 import DashboardLayout from '@layouts/dashboard-layout'
 import CoinPage from '@pages/dashboard-pages/coin-page'
 import CryptoCurrenciesPage from '@pages/dashboard-pages/crypto-currencies-page'
@@ -15,11 +14,11 @@ import NftCollectionPage from '@pages/dashboard-pages/nft-collection-page'
 import NftPage from '@pages/dashboard-pages/nft-page'
 import NftWalletPage from '@pages/dashboard-pages/nft-wallet-page'
 import NftsPage from '@pages/dashboard-pages/nfts-page'
+import StockPage from '@pages/dashboard-pages/stock-page'
 import StocksPage from '@pages/dashboard-pages/stocks-page'
 import WalletPage from '@pages/dashboard-pages/wallet-page'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-const StockPage = lazy(() => import('@pages/dashboard-pages/stock-page'))
 const GuidesPage = lazy(() => import('@pages/dashboard-pages/guides-page'))
 const GuidePage = lazy(() => import('@pages/dashboard-pages/guide-page'))
 const HelpCenterPage = lazy(
@@ -54,14 +53,7 @@ export default function DashboardRoutes() {
         />
         <Route path="wallet/:walletAddress" element={<NftWalletPage />} />
         <Route path="stocks" element={<StocksPage />} />
-        <Route
-          path="stock/:stockSymbol"
-          element={
-            <Suspense fallback={<StockPageSkeleton />}>
-              <StockPage />
-            </Suspense>
-          }
-        />
+        <Route path="stock/:stockSymbol" element={<StockPage />} />
         <Route
           path="guides"
           element={
