@@ -3,7 +3,6 @@ import GuidePageSkeleton from '@components/dashboard-components/guide-page-skele
 import GuidesPageSkeleton from '@components/dashboard-components/guides-page-skeleton'
 import HelpCenterPageSkeleton from '@components/dashboard-components/help-center-page-skeleton'
 import IntegrationsPageSkeleton from '@components/dashboard-components/integrations-page-skeleton'
-import NftWalletPageSkeleton from '@components/dashboard-components/nft-wallet-page-skeleton'
 import NotFoundPageSkeleton from '@components/dashboard-components/not-found-page-skeleton'
 import PasswordPageSkeleton from '@components/dashboard-components/password-page-skeleton'
 import PreferencesPageSkeleton from '@components/dashboard-components/preferences-page-skeleton'
@@ -15,13 +14,11 @@ import CoinPage from '@pages/dashboard-pages/coin-page'
 import CryptoCurrenciesPage from '@pages/dashboard-pages/crypto-currencies-page'
 import NftCollectionPage from '@pages/dashboard-pages/nft-collection-page'
 import NftPage from '@pages/dashboard-pages/nft-page'
+import NftWalletPage from '@pages/dashboard-pages/nft-wallet-page'
 import NftsPage from '@pages/dashboard-pages/nfts-page'
 import WalletPage from '@pages/dashboard-pages/wallet-page'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-const NftWalletPage = lazy(
-  () => import('@pages/dashboard-pages/nft-wallet-page')
-)
 const StocksPage = lazy(() => import('@pages/dashboard-pages/stocks-page'))
 const StockPage = lazy(() => import('@pages/dashboard-pages/stock-page'))
 const GuidesPage = lazy(() => import('@pages/dashboard-pages/guides-page'))
@@ -56,14 +53,7 @@ export default function DashboardRoutes() {
           path="collection/:contractAddress/:tokenId"
           element={<NftPage />}
         />
-        <Route
-          path="wallet/:walletAddress"
-          element={
-            <Suspense fallback={<NftWalletPageSkeleton />}>
-              <NftWalletPage />
-            </Suspense>
-          }
-        />
+        <Route path="wallet/:walletAddress" element={<NftWalletPage />} />
         <Route
           path="stocks"
           element={
