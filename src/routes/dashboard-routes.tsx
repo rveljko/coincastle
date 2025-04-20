@@ -1,5 +1,5 @@
-import SettingsLayoutSkeleton from '@components/dashboard-components/settings-layout-skeleton'
 import DashboardLayout from '@layouts/dashboard-layout'
+import SettingsLayout from '@layouts/settings-layout'
 import AccountPage from '@pages/dashboard-pages/account-page'
 import CoinPage from '@pages/dashboard-pages/coin-page'
 import CryptoCurrenciesPage from '@pages/dashboard-pages/crypto-currencies-page'
@@ -17,9 +17,7 @@ import PreferencesPage from '@pages/dashboard-pages/preferences-page'
 import StockPage from '@pages/dashboard-pages/stock-page'
 import StocksPage from '@pages/dashboard-pages/stocks-page'
 import WalletPage from '@pages/dashboard-pages/wallet-page'
-import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-const SettingsLayout = lazy(() => import('@layouts/settings-layout'))
 
 export default function DashboardRoutes() {
   return (
@@ -43,14 +41,7 @@ export default function DashboardRoutes() {
         <Route path="guides" element={<GuidesPage />} />
         <Route path="guide/:guide" element={<GuidePage />} />
         <Route path="help-center" element={<HelpCenterPage />} />
-        <Route
-          path="settings"
-          element={
-            <Suspense fallback={<SettingsLayoutSkeleton />}>
-              <SettingsLayout />
-            </Suspense>
-          }
-        >
+        <Route path="settings" element={<SettingsLayout />}>
           <Route index element={<AccountPage />} />
           <Route path="password" element={<PasswordPage />} />
           <Route path="preferences" element={<PreferencesPage />} />
