@@ -1,6 +1,5 @@
 import AccountPageSkeleton from '@components/dashboard-components/account-page-skeleton'
 import GuidePageSkeleton from '@components/dashboard-components/guide-page-skeleton'
-import GuidesPageSkeleton from '@components/dashboard-components/guides-page-skeleton'
 import HelpCenterPageSkeleton from '@components/dashboard-components/help-center-page-skeleton'
 import IntegrationsPageSkeleton from '@components/dashboard-components/integrations-page-skeleton'
 import NotFoundPageSkeleton from '@components/dashboard-components/not-found-page-skeleton'
@@ -10,6 +9,7 @@ import SettingsLayoutSkeleton from '@components/dashboard-components/settings-la
 import DashboardLayout from '@layouts/dashboard-layout'
 import CoinPage from '@pages/dashboard-pages/coin-page'
 import CryptoCurrenciesPage from '@pages/dashboard-pages/crypto-currencies-page'
+import GuidesPage from '@pages/dashboard-pages/guides-page'
 import NftCollectionPage from '@pages/dashboard-pages/nft-collection-page'
 import NftPage from '@pages/dashboard-pages/nft-page'
 import NftWalletPage from '@pages/dashboard-pages/nft-wallet-page'
@@ -19,7 +19,6 @@ import StocksPage from '@pages/dashboard-pages/stocks-page'
 import WalletPage from '@pages/dashboard-pages/wallet-page'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-const GuidesPage = lazy(() => import('@pages/dashboard-pages/guides-page'))
 const GuidePage = lazy(() => import('@pages/dashboard-pages/guide-page'))
 const HelpCenterPage = lazy(
   () => import('@pages/dashboard-pages/help-center-page')
@@ -54,14 +53,7 @@ export default function DashboardRoutes() {
         <Route path="wallet/:walletAddress" element={<NftWalletPage />} />
         <Route path="stocks" element={<StocksPage />} />
         <Route path="stock/:stockSymbol" element={<StockPage />} />
-        <Route
-          path="guides"
-          element={
-            <Suspense fallback={<GuidesPageSkeleton />}>
-              <GuidesPage />
-            </Suspense>
-          }
-        />
+        <Route path="guides" element={<GuidesPage />} />
         <Route
           path="guide/:guide"
           element={
