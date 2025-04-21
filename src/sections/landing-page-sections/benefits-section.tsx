@@ -9,8 +9,8 @@ export default function BenefitsSection() {
       <Container>
         <Section.Heading>Essential Benefits for Investors</Section.Heading>
         <Section.Paragraph>
-          We provide essential benefits to simplify your investment journey,
-          offering real-time insights for confident decision-making
+          We deliver essential benefits and real-time insights to simplify your
+          investment journey confidently
         </Section.Paragraph>
         <BenefitCellsList benefits={marketAwarenessBenefits} />
       </Container>
