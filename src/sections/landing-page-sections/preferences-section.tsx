@@ -11,8 +11,8 @@ export default function PreferencesSection() {
       <Container>
         <Section.Heading>Customize to Your Experience</Section.Heading>
         <Section.Paragraph>
-          For a unique investment experience customize your dashboard with
-          themes and charts tailored to your preferences
+          Customize your dashboard with themes and charts for a unique,
+          personalized investment experience
         </Section.Paragraph>
         <div className="flex flex-col gap-5 md:flex-row">
           <motion.div
