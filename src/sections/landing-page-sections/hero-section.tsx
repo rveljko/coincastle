@@ -25,17 +25,16 @@ export default function HeroSection() {
         className="bg-(image:--section-gradient) py-16"
       >
         <Container>
-          <motion.div>
+          <div className="border-section-outline aspect-[16/10] overflow-hidden rounded-lg border">
             <picture>
               <source
                 srcSet={`${IMAGE_PATH}dashboard-${isLightTheme ? 'light' : 'dark'}.webp`}
               />
               <img
                 src={`${IMAGE_PATH}dashboard-${isLightTheme ? 'light' : 'dark'}.png`}
-                className="border-section-outline rounded-lg border"
               />
             </picture>
-          </motion.div>
+          </div>
         </Container>
       </motion.div>
     </section>
