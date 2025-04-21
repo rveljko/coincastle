@@ -1,7 +1,7 @@
 import Logo from '@components/logo'
 import Button from '@components/ui/button'
 import { landingPageNavigationLinks } from '@data/navigation-links'
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { Link } from 'react-router-dom'
 
@@ -9,8 +9,19 @@ export default function Header() {
   const isBigScreen = useMediaQuery({ minWidth: 768 })
   const [isHamburgerMenuOpened, setIsHamburgerMenuOpened] = useState(false)
 
-  useLayoutEffect(() => {
-    setIsHamburgerMenuOpened(isBigScreen)
+  useEffect(() => {
+    const html = document.documentElement
+
+    html.classList.toggle(
+      'overflow-hidden',
+      isHamburgerMenuOpened && !isBigScreen
+    )
+
+    return () => html.classList.remove('overflow-hidden')
+  }, [isHamburgerMenuOpened, isBigScreen])
+
+  useEffect(() => {
+    if (isBigScreen) setIsHamburgerMenuOpened(false)
   }, [isBigScreen])
 
   return (
@@ -45,7 +56,7 @@ export default function Header() {
           </button>
         </div>
         <div
-          className={`h-full flex-col justify-between gap-4 overflow-y-auto md:flex-row md:items-center md:gap-1 ${isHamburgerMenuOpened ? 'flex' : 'hidden'}`}
+          className={`h-full flex-col justify-between gap-4 overflow-y-auto md:flex md:flex-row md:items-center md:gap-1 ${isHamburgerMenuOpened ? 'flex' : 'hidden'}`}
         >
           <nav>
             <ul className="flex flex-col md:flex-row">
