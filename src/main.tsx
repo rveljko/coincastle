@@ -21,7 +21,7 @@ const queryClient = new QueryClient({
   },
 })
 
-posthog.init('phc_JorEdvB2qZ2uBL7vgjQdCxiDbsJq301VEEpNxW64qNx', {
+posthog.init('phc_e0pktfUJpOw363gFB0WCQfUx8KS6FNUzgGBqyvXEz7o', {
   api_host: 'https://eu.i.posthog.com',
   capture_pageview: false,
 })
