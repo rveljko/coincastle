@@ -22,6 +22,14 @@ export default function Sidebar() {
   } = useUserInformation()
 
   useEffect(() => {
+    const html = document.documentElement
+
+    html.classList.toggle('overflow-hidden', !isBigScreen && isOpened)
+
+    return () => html.classList.remove('overflow-hidden')
+  }, [isBigScreen, isOpened])
+
+  useEffect(() => {
     setIsOpened(isBigScreen)
   }, [isBigScreen])
 
