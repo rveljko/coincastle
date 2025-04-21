@@ -64,7 +64,7 @@ function StartSearch() {
       <SearchIcon className="mx-auto mb-2 size-8" />
       <h3 className="mx-auto mb-1 text-center">Let's Begin Your Search</h3>
       <p className="text-center">
-        Please enter something <br /> to find Crypto or Stocks.
+        Please enter something to find <br /> Crypto, NFT Collections or Stocks
       </p>
     </div>
   )
