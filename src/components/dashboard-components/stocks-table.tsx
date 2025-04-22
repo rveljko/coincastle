@@ -43,7 +43,7 @@ export default function StocksTable({
 
   if (isPending) return <StocksTableSkeleton numberOfStocks={numberOfStocks} />
 
-  if (error) return <ErrorMessage />
+  if (error) return <ErrorMessage className="h-auto" />
 
   return (
     <Table className={className}>
