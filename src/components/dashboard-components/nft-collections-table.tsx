@@ -33,7 +33,8 @@ export default function NftCollectionsTable() {
   if (isPending)
     return <NftCollectionsTableSkeleton numberOfNftCollections={100} />
 
-  if (error || isHttpError(data.code)) return <ErrorMessage />
+  if (error || isHttpError(data.code))
+    return <ErrorMessage className="h-auto" />
 
   return (
     <Table>
