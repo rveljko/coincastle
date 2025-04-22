@@ -155,8 +155,8 @@ export default function StockInformationSection({
             <InformationList.Item>
               <InformationList.Label>Price Change (1D)</InformationList.Label>
               <InformationList.Value className="flex items-center gap-1">
-                {currencyFormatter(change)}
                 <PercentageChangeIndicator percentage={changePercentage} />
+                {currencyFormatter(change)}
               </InformationList.Value>
             </InformationList.Item>
           </InformationList>
