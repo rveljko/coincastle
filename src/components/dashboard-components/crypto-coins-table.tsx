@@ -36,7 +36,7 @@ export default function CryptoCoinsTable({
   if (isPending)
     return <CryptoCoinsTableSkeleton numberOfCoins={numberOfCoins} />
 
-  if (error) return <ErrorMessage />
+  if (error) return <ErrorMessage className="h-auto" />
 
   return (
     <Table className={className}>

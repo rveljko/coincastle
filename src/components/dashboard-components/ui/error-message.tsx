@@ -1,8 +1,18 @@
 import ExclamationCircleIcon from '@icons/exclamation-circle-icon'
+import { cn } from '@utils/utils'
 
-export default function ErrorMessage() {
+type ErrorMessageProps = {
+  className?: string
+}
+
+export default function ErrorMessage({ className }: ErrorMessageProps) {
   return (
-    <div className="flex h-full w-full items-center justify-center">
+    <div
+      className={cn(
+        'flex h-full w-full items-center justify-center',
+        className
+      )}
+    >
       <article className="max-w-max p-2">
         <ExclamationCircleIcon className="text-danger-500 mx-auto mb-2 size-16" />
         <h3 className="mx-auto mb-1 max-w-66 text-center">
