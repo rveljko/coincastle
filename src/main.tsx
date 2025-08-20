@@ -6,6 +6,7 @@ import IntegrationsContextProvider from '@services/contexts/integrations-context
 import ThemeContextProvider from '@services/contexts/theme-context'
 import UserInformationContextProvider from '@services/contexts/user-information-context'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import HolyLoader from 'holy-loader'
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
 import { StrictMode } from 'react'
@@ -32,6 +33,11 @@ createRoot(document.getElementById('root')!).render(
       <PostHogProvider client={posthog}>
         <BrowserRouter>
           <ScrollToTop />
+          <HolyLoader
+            color="var(--color-brand-500)"
+            height={2}
+            ignoreSearchParams
+          />
           <UserInformationContextProvider>
             <IntegrationsContextProvider>
               <ThemeContextProvider>
