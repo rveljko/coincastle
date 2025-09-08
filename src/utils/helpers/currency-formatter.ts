@@ -18,19 +18,21 @@ export function compactCurrencyFormatter(value: number) {
   })
 }
 
-export function ethereumPriceFormatter(value: number) {
-  if (value === 0) return '0 ETH'
+export function ethereumPriceFormatter(value: string) {
+  const price = parseFloat(value)
 
-  if (value < 0.01) return '< 0.01 ETH'
+  if (price === 0) return '0 ETH'
 
-  if (numbersWithCommasAndDecimalsFormatter(value).endsWith('00'))
-    return `${numbersWithCommasFormatter(value)} ETH`
+  if (price < 0.01) return '< 0.01 ETH'
 
-  return `${numbersWithCommasAndDecimalsFormatter(value)} ETH`
+  if (numbersWithCommasAndDecimalsFormatter(price).endsWith('00'))
+    return `${numbersWithCommasFormatter(price)} ETH`
+
+  return `${numbersWithCommasAndDecimalsFormatter(price)} ETH`
 }
 
-export function ethereumCompactFormatter(value: number) {
-  return `${value.toLocaleString('en-US', {
+export function ethereumCompactFormatter(value: string) {
+  return `${parseFloat(value).toLocaleString('en-US', {
     notation: 'compact',
   })} ETH`
 }

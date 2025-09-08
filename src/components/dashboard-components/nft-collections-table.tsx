@@ -1,40 +1,22 @@
 import NftCollectionsTableSkeleton from '@components/dashboard-components/nft-collections-table-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Table from '@components/dashboard-components/ui/table'
-import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
 import { nftCollectionsTableHeaders } from '@data/table-headers'
 import useGetNftCollections from '@hooks/queries/use-get-nft-collections'
 import {
+  compactCurrencyFormatter,
   ethereumCompactFormatter,
   ethereumPriceFormatter,
 } from '@utils/helpers/currency-formatter'
-import isHttpError from '@utils/helpers/is-http-error'
-import { numbersWithCommasFormatter } from '@utils/helpers/numbers-formatter'
-import {
-  NftCollectionsSortDirection,
-  NftCollectionsSortField,
-} from '@utils/types'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function NftCollectionsTable() {
-  const [searchParams] = useSearchParams()
-
-  const sortField = (searchParams.get('sort-field') ||
-    'volume_total') as NftCollectionsSortField
-  const sortDirection = (searchParams.get('sort-direction') ||
-    'desc') as NftCollectionsSortDirection
-
-  const { data, isPending, error } = useGetNftCollections(
-    sortField,
-    sortDirection,
-    100
-  )
+  const { data, isPending, error } = useGetNftCollections()
 
   if (isPending)
     return <NftCollectionsTableSkeleton numberOfNftCollections={100} />
 
-  if (error || isHttpError(data.code))
-    return <ErrorMessage className="h-auto" />
+  if (error) return <ErrorMessage className="h-auto" />
 
   return (
     <Table>
@@ -46,36 +28,33 @@ export default function NftCollectionsTable() {
         </Table.HeaderRow>
       </Table.Header>
       <Table.Body>
-        {data.data.map(
-          (
-            {
-              contract_address,
-              name,
-              logo_url,
-              opensea_verified,
-              floor_price,
-              volume_total,
-              owners_total,
-              items_total,
-            },
-            index
-          ) => (
-            <Table.BodyRow key={contract_address} className="relative">
-              <Table.BodyCell>{index + 1}</Table.BodyCell>
+        {data.map(
+          ({
+            rank,
+            collection_address,
+            collection_image,
+            collection_title,
+            floor_price,
+            average_price,
+            volume_usd,
+          }) => (
+            <Table.BodyRow
+              key={`${collection_title}${collection_address}`}
+              className="relative"
+            >
+              <Table.BodyCell>{rank}</Table.BodyCell>
               <Table.BodyCell>
-                <Link to={`/dashboard/collection/${contract_address}`}>
+                <Link to={`/dashboard/collection/${collection_address}`}>
                   <span className="absolute inset-0"></span>
                   <div className="flex w-max items-center gap-1">
                     <img
                       className="size-5.5 rounded-full"
-                      src={logo_url}
-                      title={name}
-                      alt={name}
+                      src={collection_image}
+                      title={collection_title}
+                      alt={collection_title}
                       loading="lazy"
                     />
-                    <div className="flex items-center gap-0.5">
-                      {name} {opensea_verified && <VerifiedBadge isSmall />}
-                    </div>
+                    {collection_title}
                   </div>
                 </Link>
               </Table.BodyCell>
@@ -83,13 +62,10 @@ export default function NftCollectionsTable() {
                 {ethereumPriceFormatter(floor_price)}
               </Table.BodyCell>
               <Table.BodyCell>
-                {ethereumCompactFormatter(volume_total)}
+                {compactCurrencyFormatter(parseFloat(volume_usd))}
               </Table.BodyCell>
               <Table.BodyCell>
-                {numbersWithCommasFormatter(owners_total)}
-              </Table.BodyCell>
-              <Table.BodyCell>
-                {numbersWithCommasFormatter(items_total)}
+                {ethereumCompactFormatter(average_price)}
               </Table.BodyCell>
             </Table.BodyRow>
           )

@@ -114,17 +114,13 @@ export type CoinOverviewSortField = 'market_cap' | 'volume'
 export type CoinOverviewSortDirection = 'asc' | 'desc'
 
 export type NftCollectionsOverviewHttpResponse = {
-  code: number
-  data: {
-    contract_address: string
-    name: string
-    logo_url: string
-    opensea_verified: boolean
-    floor_price: number
-    volume_total: number
-    owners_total: number
-    items_total: number
-  }[]
+  rank: number
+  collection_address: string
+  collection_title: string
+  collection_image: string
+  floor_price: string
+  volume_usd: string
+  average_price: string
 }
 
 export type NftCollectionInformationHttpResponse = {
@@ -210,20 +206,6 @@ export type NftWalletStatistics = {
     collection_count: number
   }
 }
-
-export type NftCollectionsSortField =
-  | 'volume_total'
-  | 'sales_total'
-  | 'average_price'
-  | 'floor_price'
-  | 'volume_1d'
-  | 'volume_7d'
-  | 'volume_change_1d'
-  | 'volume_change_7d'
-  | 'average_price_change_1d'
-  | 'average_price_change_7d'
-
-export type NftCollectionsSortDirection = 'asc' | 'desc'
 
 export type NftCollectionNftsSortField =
   | 'latest_trade_price'

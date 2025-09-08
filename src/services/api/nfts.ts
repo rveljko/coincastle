@@ -5,8 +5,6 @@ import {
   NftCollectionNftsSortField,
   NftCollectionSearchHttpResponse,
   NftCollectionsOverviewHttpResponse,
-  NftCollectionsSortDirection,
-  NftCollectionsSortField,
   NftCollectionStatisticsHttpResponse,
   NftHttpResponse,
   NftWalletNfts,
@@ -17,16 +15,14 @@ import {
 
 const NFT_BASE_URL = 'https://deep-index.moralis.io/api/v2.2'
 
-export async function getNftCollections(
-  sortField: NftCollectionsSortField,
-  sortDirection: NftCollectionsSortDirection,
-  limit: number
-): Promise<NftCollectionsOverviewHttpResponse> {
+export async function getNftCollections(): Promise<
+  NftCollectionsOverviewHttpResponse[]
+> {
   const res = await fetch(
-    `${NFT_BASE_URL}/collections/rankings?sort_field=${sortField}&sort_direction=${sortDirection}&limit=${limit}`,
+    `${NFT_BASE_URL}/market-data/nfts/hottest-collections`,
     {
       headers: {
-        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
+        'X-API-Key': import.meta.env.VITE_MORALIS_API_KEY,
       },
     }
   )
