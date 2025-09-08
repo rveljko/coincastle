@@ -15,7 +15,7 @@ import {
   NftWalletStatistics,
 } from '@utils/types'
 
-const NFT_BASE_URL = 'https://restapi.nftscan.com/api/v2'
+const NFT_BASE_URL = 'https://deep-index.moralis.io/api/v2.2'
 
 export async function getNftCollections(
   sortField: NftCollectionsSortField,
