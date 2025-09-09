@@ -4,7 +4,6 @@ import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import Button from '@components/ui/button'
 import useGetNftCollectionNfts from '@hooks/queries/use-get-nft-collection-nfts'
 import Section from '@sections/dashboard-sections/section'
-import isHttpError from '@utils/helpers/is-http-error'
 
 type MoreNftsSectionProps = {
   contractAddress: string
@@ -30,19 +29,17 @@ type MoreNftsNftsProps = {
 function MoreNftsNfts({ contractAddress }: MoreNftsNftsProps) {
   const { data, isPending, error } = useGetNftCollectionNfts(
     contractAddress,
-    '',
-    '',
     10
   )
 
   if (isPending) return <MoreNftsNftsSkeleton />
 
-  if (error || isHttpError(data.pages[0].code)) return <ErrorMessage />
+  if (error) return <ErrorMessage />
 
   return (
     <>
       <NftCardsCarousel
-        nftCards={data.pages.map((page) => page.data.content).flat()}
+        nftCards={data.pages.map((page) => page.result).flat()}
         className="mb-1"
       />
       <Button
