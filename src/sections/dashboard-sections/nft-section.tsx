@@ -10,6 +10,7 @@ import Section from '@sections/dashboard-sections/section'
 import { TITLE_PREFIX } from '@utils/constants'
 import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
+import { ethereumAddressValidator } from '@utils/helpers/ethereum-address-validator'
 import { percentageFormatter } from '@utils/helpers/percentage-formatters'
 import { Link } from 'react-router-dom'
 
@@ -56,9 +57,13 @@ export default function NftSection({
             <InformationList.Item>
               <InformationList.Label>Minted By</InformationList.Label>
               <InformationList.Value>
-                <Link to={`/dashboard/wallet/${minter_address}`}>
-                  {ethereumAddressFormatter(minter_address)}
-                </Link>
+                {ethereumAddressValidator(minter_address) ? (
+                  <Link to={`/dashboard/wallet/${minter_address}`}>
+                    {ethereumAddressFormatter(minter_address)}
+                  </Link>
+                ) : (
+                  <span>Unknown</span>
+                )}
               </InformationList.Value>
             </InformationList.Item>
             <InformationList.Item>
@@ -70,9 +75,13 @@ export default function NftSection({
             <InformationList.Item>
               <InformationList.Label>Owned By</InformationList.Label>
               <InformationList.Value>
-                <Link to={`/dashboard/wallet/${owner_of}`}>
-                  {ethereumAddressFormatter(owner_of)}
-                </Link>
+                {ethereumAddressValidator(owner_of) ? (
+                  <Link to={`/dashboard/wallet/${owner_of}`}>
+                    {ethereumAddressFormatter(owner_of)}
+                  </Link>
+                ) : (
+                  <span>Unknown</span>
+                )}
               </InformationList.Value>
             </InformationList.Item>
             {listed && (
