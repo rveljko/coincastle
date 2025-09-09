@@ -2,6 +2,7 @@ import NoNftImagePlaceholder from '@components/dashboard-components/no-nft-image
 import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
 import { NftOverview } from '@utils/types'
 import { cn } from '@utils/utils'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 type NftCardProps = React.ComponentPropsWithoutRef<'article'> & {
@@ -20,8 +21,6 @@ export default function NftCard({
   className,
   ...props
 }: NftCardProps) {
-  const image = normalized_metadata?.image
-
   return (
     <article
       className={cn(
@@ -31,21 +30,11 @@ export default function NftCard({
       {...props}
     >
       <div className="aspect-1/1 w-full overflow-hidden rounded-b-xl bg-neutral-700">
-        {image ? (
-          <img
-            className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
-            src={
-              image.startsWith('http')
-                ? image
-                : `https://ipfs.io/ipfs/${image.split('//')[1]}`
-            }
-            alt={`${token_address} #${token_id}`}
-            title={`${token_address} #${token_id}`}
-            loading="lazy"
-          />
-        ) : (
-          <NoNftImagePlaceholder />
-        )}
+        <NftImage
+          name={name}
+          token_id={token_id}
+          normalized_metadata={normalized_metadata}
+        />
       </div>
       <div className="p-2">
         <div className="mb-2">
@@ -66,5 +55,33 @@ export default function NftCard({
         </p>
       </div>
     </article>
+  )
+}
+
+type NftImageProps = {
+  name: NftOverview['name']
+  token_id: NftOverview['token_id']
+  normalized_metadata: NftOverview['normalized_metadata']
+}
+
+function NftImage({ name, token_id, normalized_metadata }: NftImageProps) {
+  const [isImageBroken, setIsImageBroken] = useState(false)
+  const image = normalized_metadata?.image
+
+  if (isImageBroken || !image) return <NoNftImagePlaceholder />
+
+  return (
+    <img
+      className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
+      src={
+        image.startsWith('http')
+          ? image
+          : `https://ipfs.io/ipfs/${image.split('//')[1]}`
+      }
+      onError={() => setIsImageBroken(true)}
+      alt={`${name} #${token_id}`}
+      title={`${name} #${token_id}`}
+      loading="lazy"
+    />
   )
 }
