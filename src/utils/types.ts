@@ -175,33 +175,23 @@ export type NftHttpResponse = {
 }
 
 export type NftWalletNfts = {
-  code: number
-  data: {
-    content: NftOverview[]
-    next: string
-  }
+  cursor: string
+  result: NftOverview[]
 }
 
 export type NftWalletStatistics = {
-  code: number
-  data: {
-    holding_value: number
-    holding_value_usdt: number
-    sold_value: number
-    sold_value_usdt: number
-    gas_value: number
-    gas_value_usdt: number
-    holding_count: number
-    mint_count: number
-    collection_count: number
+  nfts: string
+  collections: string
+  nft_transfers: {
+    total: string
+  }
+  token_transfers: {
+    total: string
+  }
+  transactions: {
+    total: string
   }
 }
-
-export type NftWalletNftsSortField =
-  | 'mint_time'
-  | 'own_time'
-  | 'latest_trade_price'
-  | ''
 
 export type NftCollectionSearchHttpResponse = {
   code: number
@@ -212,8 +202,6 @@ export type NftCollectionSearchHttpResponse = {
     opensea_verified: boolean
   }[]
 }
-
-export type NftWalletNftsSortDirection = 'asc' | 'desc' | ''
 
 export type StockOverviewHttpResponse = {
   symbol: string

@@ -1,3 +1,4 @@
+import NoNftImagePlaceholder from '@components/dashboard-components/no-nft-image-placeholder'
 import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
 import { NftOverview } from '@utils/types'
 import { cn } from '@utils/utils'
@@ -28,17 +29,21 @@ export default function NftCard({
       {...props}
     >
       <div className="aspect-1/1 w-full overflow-hidden rounded-b-xl bg-neutral-700">
-        <img
-          className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
-          src={
-            image.startsWith('http')
-              ? image
-              : `https://ipfs.io/ipfs/${image.split('//')[1]}`
-          }
-          alt={`${token_address} #${token_id}`}
-          title={`${token_address} #${token_id}`}
-          loading="lazy"
-        />
+        {image ? (
+          <img
+            className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
+            src={
+              image.startsWith('http')
+                ? image
+                : `https://ipfs.io/ipfs/${image.split('//')[1]}`
+            }
+            alt={`${token_address} #${token_id}`}
+            title={`${token_address} #${token_id}`}
+            loading="lazy"
+          />
+        ) : (
+          <NoNftImagePlaceholder />
+        )}
       </div>
       <div className="p-2">
         <div className="mb-2">
@@ -52,9 +57,10 @@ export default function NftCard({
           </Link>
         </div>
         <p className="text-neutral-100">
-          {ethereumPriceFormatter(
-            listed ? price.toString() : floor_price.toString()
-          )}
+          {floor_price &&
+            ethereumPriceFormatter(
+              listed ? price.toString() : floor_price.toString()
+            )}
         </p>
       </div>
     </article>

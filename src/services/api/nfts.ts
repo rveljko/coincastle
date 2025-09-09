@@ -6,8 +6,6 @@ import {
   NftCollectionStatisticsHttpResponse,
   NftHttpResponse,
   NftWalletNfts,
-  NftWalletNftsSortDirection,
-  NftWalletNftsSortField,
   NftWalletStatistics,
 } from '@utils/types'
 
@@ -112,15 +110,14 @@ export async function getSingleNft(
 
 export async function getNftWalletNfts(
   walletAddress: string,
-  sortField: NftWalletNftsSortField,
-  sortDirection: NftWalletNftsSortDirection,
-  pageParam: string
+  cursor: string,
+  limit: number
 ): Promise<NftWalletNfts> {
   const res = await fetch(
-    `${NFT_BASE_URL}/account/own/${walletAddress}?erc_type=erc721&show_attribute=false&sort_field=${sortField}&sort_direction=${sortDirection}&cursor=${pageParam}`,
+    `${NFT_BASE_URL}/${walletAddress}/nft?chain=eth&format=decimal&cursor=${cursor}&limit=${limit}&normalizeMetadata=true&include_prices=true`,
     {
       headers: {
-        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
+        'X-API-Key': import.meta.env.VITE_MORALIS_API_KEY,
       },
     }
   )
@@ -137,10 +134,10 @@ export async function getNftWalletStatistics(
   walletAddress: string
 ): Promise<NftWalletStatistics> {
   const res = await fetch(
-    `${NFT_BASE_URL}/statistics/overview/${walletAddress}`,
+    `${NFT_BASE_URL}/wallets/${walletAddress}/stats?chain=eth`,
     {
       headers: {
-        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
+        'X-API-Key': import.meta.env.VITE_MORALIS_API_KEY,
       },
     }
   )
