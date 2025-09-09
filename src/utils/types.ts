@@ -161,24 +161,17 @@ export type NftOverview = {
 }
 
 export type NftHttpResponse = {
-  code: number
-  data: {
-    minter: string
-    mint_timestamp: number
-    owner: string
-    own_timestamp: number
-    content_type: string
-    content_uri: string
-    image_uri: string
-    nftscan_uri: string
-    latest_trade_price: number
-    mint_price: number
-    attributes: {
-      attribute_name: string
-      attribute_value: string
-      percentage: string
-    }[]
+  owner_of: string
+  minter_address: string
+  normalized_metadata: {
+    image: string
+    attributes: { trait_type: string; value: string; percentage: number }[]
   }
+  list_price: {
+    listed: boolean
+    price: number
+  }
+  floor_price: string
 }
 
 export type NftWalletNfts = {

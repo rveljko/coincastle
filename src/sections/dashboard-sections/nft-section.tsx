@@ -1,4 +1,3 @@
-import NoNftImagePlaceholder from '@components/dashboard-components/no-nft-image-placeholder'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
@@ -10,9 +9,8 @@ import NftSectionSkeleton, {
 import Section from '@sections/dashboard-sections/section'
 import { TITLE_PREFIX } from '@utils/constants'
 import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
-import { longDateFormatter } from '@utils/helpers/date-formatter'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
-import isHttpError from '@utils/helpers/is-http-error'
+import { percentageFormatter } from '@utils/helpers/percentage-formatters'
 import { Link } from 'react-router-dom'
 
 type NftSectionProps = {
@@ -28,7 +26,7 @@ export default function NftSection({
 
   if (isPending) return <NftSectionSkeleton />
 
-  if (error || isHttpError(data.code))
+  if (error)
     return (
       <Section>
         <ErrorMessage />
@@ -36,18 +34,12 @@ export default function NftSection({
     )
 
   const {
-    mint_timestamp,
-    minter,
-    own_timestamp,
-    owner,
-    latest_trade_price,
-    mint_price,
-    attributes,
-    content_type,
-    content_uri,
-    image_uri,
-    nftscan_uri,
-  } = data.data
+    owner_of,
+    minter_address,
+    normalized_metadata: { image, attributes },
+    list_price: { listed, price },
+    floor_price,
+  } = data
 
   return (
     <Section>
@@ -62,46 +54,32 @@ export default function NftSection({
           </h3>
           <InformationList className={attributes.length ? 'mb-4' : ''}>
             <InformationList.Item>
-              <InformationList.Label>Minted Date</InformationList.Label>
-              <InformationList.Value>
-                {longDateFormatter(mint_timestamp)}
-              </InformationList.Value>
-            </InformationList.Item>
-            <InformationList.Item>
               <InformationList.Label>Minted By</InformationList.Label>
               <InformationList.Value>
-                <Link to={`/dashboard/wallet/${minter}`}>
-                  {ethereumAddressFormatter(minter)}
+                <Link to={`/dashboard/wallet/${minter_address}`}>
+                  {ethereumAddressFormatter(minter_address)}
                 </Link>
               </InformationList.Value>
             </InformationList.Item>
-            {mint_price >= 0 ? (
-              <InformationList.Item>
-                <InformationList.Label>Mint Price</InformationList.Label>
-                <InformationList.Value>
-                  {ethereumPriceFormatter(mint_price)}
-                </InformationList.Value>
-              </InformationList.Item>
-            ) : null}
             <InformationList.Item>
-              <InformationList.Label>Оwned Since</InformationList.Label>
+              <InformationList.Label>Mint Price</InformationList.Label>
               <InformationList.Value>
-                {longDateFormatter(own_timestamp)}
+                {ethereumPriceFormatter(floor_price)}
               </InformationList.Value>
             </InformationList.Item>
             <InformationList.Item>
               <InformationList.Label>Owned By</InformationList.Label>
               <InformationList.Value>
-                <Link to={`/dashboard/wallet/${owner}`}>
-                  {ethereumAddressFormatter(owner)}
+                <Link to={`/dashboard/wallet/${owner_of}`}>
+                  {ethereumAddressFormatter(owner_of)}
                 </Link>
               </InformationList.Value>
             </InformationList.Item>
-            {latest_trade_price && (
+            {listed && (
               <InformationList.Item>
-                <InformationList.Label>Latest Sale Price</InformationList.Label>
+                <InformationList.Label>Listed Price</InformationList.Label>
                 <InformationList.Value>
-                  {ethereumPriceFormatter(latest_trade_price)}
+                  {ethereumPriceFormatter(price.toString())}
                 </InformationList.Value>
               </InformationList.Item>
             )}
@@ -112,28 +90,33 @@ export default function NftSection({
                 Attributes
               </h3>
               <InformationList>
-                {attributes.map(
-                  ({ attribute_name, attribute_value, percentage }, index) => (
-                    <InformationList.Item key={index}>
-                      <InformationList.Label className="capitalize">
-                        {attribute_name}
-                      </InformationList.Label>
-                      <InformationList.Value className="capitalize">
-                        {attribute_value} {percentage}
-                      </InformationList.Value>
-                    </InformationList.Item>
-                  )
-                )}
+                {attributes.map(({ trait_type, value, percentage }, index) => (
+                  <InformationList.Item key={index}>
+                    <InformationList.Label className="capitalize">
+                      {trait_type}
+                    </InformationList.Label>
+                    <InformationList.Value className="capitalize">
+                      {value}{' '}
+                      {percentage > 0 && percentageFormatter(percentage)}
+                    </InformationList.Value>
+                  </InformationList.Item>
+                ))}
               </InformationList>
             </>
           ) : null}
         </div>
         <div className="md:flex-1">
-          {content_type === 'text/html' ? (
-            <NftHtmlContent content_uri={content_uri} />
-          ) : (
-            <NftImage nftscan_uri={nftscan_uri} image_uri={image_uri} />
-          )}
+          <div className="group aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
+            <img
+              className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
+              src={
+                image.startsWith('http')
+                  ? image
+                  : `https://ipfs.io/ipfs/${image.split('//')[1]}`
+              }
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </Section>
@@ -154,9 +137,9 @@ function NftCollectionInformation({
 
   if (isPending) return <NftCollectionInformationSkeleton />
 
-  if (error || isHttpError(data.code)) return <ErrorMessage />
+  if (error) return <ErrorMessage />
 
-  const { logo_url, name, opensea_verified, description } = data.data
+  const { collection_logo, name, verified_collection, description } = data
 
   return (
     <header className="relative mb-4">
@@ -164,7 +147,7 @@ function NftCollectionInformation({
       <div className="mb-2 flex flex-wrap gap-2">
         <img
           className="size-16 rounded-md object-cover"
-          src={logo_url}
+          src={collection_logo}
           alt={name}
           title={name}
         />
@@ -175,7 +158,7 @@ function NftCollectionInformation({
           >
             <span className="absolute top-0 left-0 size-16 rounded-md"></span>
             <div className="flex flex-wrap items-center gap-0.5">
-              {name} {opensea_verified && <VerifiedBadge isSmall />}
+              {name} {verified_collection && <VerifiedBadge isSmall />}
             </div>
           </Link>
           <h1 className="break-all">#{tokenId}</h1>
@@ -188,41 +171,5 @@ function NftCollectionInformation({
         {description}
       </p>
     </header>
-  )
-}
-
-type NftHtmlContentProps = {
-  content_uri: string
-}
-
-function NftHtmlContent({ content_uri }: NftHtmlContentProps) {
-  return (
-    <div className="aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
-      <iframe src={content_uri} className="size-full" />
-    </div>
-  )
-}
-
-type NftImageProps = {
-  nftscan_uri: string
-  image_uri: string
-}
-
-function NftImage({ image_uri, nftscan_uri }: NftImageProps) {
-  if (!nftscan_uri && !image_uri?.startsWith('http'))
-    return (
-      <div className="aspect-1/1">
-        <NoNftImagePlaceholder />
-      </div>
-    )
-
-  return (
-    <div className="group aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
-      <img
-        className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
-        src={nftscan_uri || image_uri}
-        alt=""
-      />
-    </div>
   )
 }

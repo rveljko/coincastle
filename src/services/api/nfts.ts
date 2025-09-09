@@ -96,14 +96,11 @@ export async function getSingleNft(
   contractAddress: string,
   tokenId: string
 ): Promise<NftHttpResponse> {
-  const res = await fetch(
-    `${NFT_BASE_URL}/assets/${contractAddress}/${tokenId}?show_attribute=true`,
-    {
-      headers: {
-        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
-      },
-    }
-  )
+  const res = await fetch(`${NFT_BASE_URL}/nft/${contractAddress}/${tokenId}`, {
+    headers: {
+      'X-API-Key': import.meta.env.VITE_MORALIS_API_KEY,
+    },
+  })
 
   if (!res.ok)
     throw new Error(
