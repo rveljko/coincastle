@@ -15,7 +15,7 @@ export default function NftCardsCarousel({
     <div className={cn('w-0 min-w-full overflow-x-auto', className)}>
       <ul className="mb-2 flex gap-4" {...props}>
         {nftCards.map((nftCard) => (
-          <li key={`${nftCard.contract_address}/${nftCard.token_id}`}>
+          <li key={`${nftCard.token_address}/${nftCard.token_id}`}>
             <NftCard nft={nftCard} className="w-(--nft-card-width)" />
           </li>
         ))}
