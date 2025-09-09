@@ -37,7 +37,6 @@ export default function NftWalletSectionSkeleton() {
           </div>
         </div>
       </div>
-      <div className="bg-clickable/10 mb-2 h-9.5 w-20 animate-pulse rounded-sm"></div>
       <NftWalletNftsSkeleton />
     </Section>
   )
