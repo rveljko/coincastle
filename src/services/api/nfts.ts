@@ -51,14 +51,11 @@ export async function getNftCollectionInformation(
 export async function getNftCollectionStatistics(
   contractAddress: string
 ): Promise<NftCollectionStatisticsHttpResponse> {
-  const res = await fetch(
-    `${NFT_BASE_URL}/statistics/collection/${contractAddress}?show_hourly_statistics=false`,
-    {
-      headers: {
-        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
-      },
-    }
-  )
+  const res = await fetch(`${NFT_BASE_URL}/nft/${contractAddress}/price`, {
+    headers: {
+      'X-API-Key': import.meta.env.VITE_MORALIS_API_KEY,
+    },
+  })
 
   if (!res.ok)
     throw new Error(

@@ -1,13 +1,17 @@
 import NftCardsList from '@components/dashboard-components/nft-cards-list'
 import NftCollectionSectionSkeleton, {
   NftCollectionNftsSkeleton,
+  NftCollectionStatisticsSkeleton,
 } from '@components/dashboard-components/nft-collection-section-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
+import InformationList from '@components/dashboard-components/ui/information-list'
 import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
 import useGetNftCollectionInformation from '@hooks/queries/use-get-nft-collection-information'
 import useGetNftCollectionNfts from '@hooks/queries/use-get-nft-collection-nfts'
+import useGetNftCollectionStatistics from '@hooks/queries/use-get-nft-collection-statistics'
 import Section from '@sections/dashboard-sections/section'
 import { TITLE_PREFIX } from '@utils/constants'
+import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
@@ -64,9 +68,61 @@ export default function NftCollectionSection({
             {description}
           </p>
         </header>
+        <NftCollectionStatistics contractAddress={contractAddress} />
       </div>
       <NftCollectionNfts contractAddress={token_address} />
     </Section>
+  )
+}
+
+type NftCollectionStatisticsProps = {
+  contractAddress: string
+}
+
+function NftCollectionStatistics({
+  contractAddress,
+}: NftCollectionStatisticsProps) {
+  const { data, isPending, error } =
+    useGetNftCollectionStatistics(contractAddress)
+
+  if (isPending) return <NftCollectionStatisticsSkeleton />
+
+  if (error) return <ErrorMessage />
+
+  const { last_sale, lowest_sale, highest_sale, average_sale } = data
+
+  return (
+    <>
+      <h3 className="text-heading-4-font-size leading-heading-4-line-height mb-2">
+        Collection Statistics
+      </h3>
+      <InformationList>
+        <InformationList.Item>
+          <InformationList.Label>Floor Price</InformationList.Label>
+          <InformationList.Value>
+            {ethereumPriceFormatter(lowest_sale.price_formatted)}
+          </InformationList.Value>
+        </InformationList.Item>
+        <InformationList.Item>
+          <InformationList.Label>Last Price</InformationList.Label>
+          <InformationList.Value>
+            {ethereumPriceFormatter(last_sale.price_formatted)}
+          </InformationList.Value>
+        </InformationList.Item>
+        <InformationList.Item>
+          <InformationList.Label>Average Price</InformationList.Label>
+          <InformationList.Value>
+            {ethereumPriceFormatter(average_sale.price_formatted)}
+          </InformationList.Value>
+        </InformationList.Item>
+        <InformationList.Item>
+          <InformationList.Label>Highest Price</InformationList.Label>
+          <InformationList.Value>
+            {ethereumPriceFormatter(highest_sale.price_formatted)}
+          </InformationList.Value>
+        </InformationList.Item>
+      </InformationList>
+    </>
   )
 }
 

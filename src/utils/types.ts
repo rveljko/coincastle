@@ -132,12 +132,17 @@ export type NftCollectionInformationHttpResponse = {
 }
 
 export type NftCollectionStatisticsHttpResponse = {
-  code: number
-  data: {
-    floor_price: number
-    total_volume: number
-    owners_total: number
-    items_total: number
+  last_sale: {
+    price_formatted: string
+  }
+  lowest_sale: {
+    price_formatted: string
+  }
+  highest_sale: {
+    price_formatted: string
+  }
+  average_sale: {
+    price_formatted: string
   }
 }
 
