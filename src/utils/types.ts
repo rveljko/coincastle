@@ -124,15 +124,11 @@ export type NftCollectionsOverviewHttpResponse = {
 }
 
 export type NftCollectionInformationHttpResponse = {
-  code: number
-  data: {
-    contract_address: string
-    name: string
-    opensea_verified: boolean
-    description: string
-    logo_url: string
-    owner: string
-  }
+  token_address: string
+  name: string
+  collection_logo: string
+  description: string
+  verified_collection: boolean
 }
 
 export type NftCollectionStatisticsHttpResponse = {
@@ -146,21 +142,22 @@ export type NftCollectionStatisticsHttpResponse = {
 }
 
 export type NftCollectionNftsHttpResponse = {
-  code: number
-  data: {
-    content: NftOverview[]
-    next: string
-  }
+  cursor: string
+  result: NftOverview[]
 }
 
 export type NftOverview = {
-  contract_address: string
-  contract_name: string
+  token_address: string
   token_id: string
-  image_uri: string
-  nftscan_uri: string
-  latest_trade_price: number
-  mint_price: number
+  name: string
+  list_price: {
+    listed: boolean
+    price: number
+  }
+  normalized_metadata: {
+    image: string
+  }
+  floor_price: number
 }
 
 export type NftHttpResponse = {
@@ -206,14 +203,6 @@ export type NftWalletStatistics = {
     collection_count: number
   }
 }
-
-export type NftCollectionNftsSortField =
-  | 'latest_trade_price'
-  | 'latest_trade_time'
-  | 'rarity_rank'
-  | ''
-
-export type NftCollectionNftsSortDirection = 'asc' | 'desc' | ''
 
 export type NftWalletNftsSortField =
   | 'mint_time'

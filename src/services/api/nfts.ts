@@ -1,8 +1,6 @@
 import {
   NftCollectionInformationHttpResponse,
   NftCollectionNftsHttpResponse,
-  NftCollectionNftsSortDirection,
-  NftCollectionNftsSortField,
   NftCollectionSearchHttpResponse,
   NftCollectionsOverviewHttpResponse,
   NftCollectionStatisticsHttpResponse,
@@ -38,14 +36,11 @@ export async function getNftCollections(): Promise<
 export async function getNftCollectionInformation(
   contractAddress: string
 ): Promise<NftCollectionInformationHttpResponse> {
-  const res = await fetch(
-    `${NFT_BASE_URL}/collections/${contractAddress}?show_attribute=true`,
-    {
-      headers: {
-        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
-      },
-    }
-  )
+  const res = await fetch(`${NFT_BASE_URL}/nft/${contractAddress}/metadata`, {
+    headers: {
+      'X-API-Key': import.meta.env.VITE_MORALIS_API_KEY,
+    },
+  })
 
   if (!res.ok)
     throw new Error(
@@ -77,16 +72,14 @@ export async function getNftCollectionStatistics(
 
 export async function getNftCollectionNfts(
   contractAddress: string,
-  pageParam: string,
-  sortField: NftCollectionNftsSortField,
-  sortDirection: NftCollectionNftsSortDirection,
+  cursor: string,
   limit: number
 ): Promise<NftCollectionNftsHttpResponse> {
   const res = await fetch(
-    `${NFT_BASE_URL}/assets/${contractAddress}?cursor=${pageParam}&sort_field=${sortField}&sort_direction=${sortDirection}&limit=${limit}`,
+    `${NFT_BASE_URL}/nft/${contractAddress}?cursor=${cursor}&limit=${limit}&normalizeMetadata=true&include_prices=true`,
     {
       headers: {
-        'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
+        'X-API-Key': import.meta.env.VITE_MORALIS_API_KEY,
       },
     }
   )

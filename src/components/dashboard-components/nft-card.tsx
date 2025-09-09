@@ -1,4 +1,3 @@
-import NoNftImagePlaceholder from '@components/dashboard-components/no-nft-image-placeholder'
 import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
 import { NftOverview } from '@utils/types'
 import { cn } from '@utils/utils'
@@ -10,13 +9,12 @@ type NftCardProps = React.ComponentPropsWithoutRef<'article'> & {
 
 export default function NftCard({
   nft: {
-    nftscan_uri,
-    image_uri,
-    contract_name,
+    token_address,
     token_id,
-    contract_address,
-    latest_trade_price,
-    mint_price,
+    name,
+    list_price: { listed, price },
+    normalized_metadata: { image },
+    floor_price,
   },
   className,
   ...props
@@ -29,34 +27,34 @@ export default function NftCard({
       )}
       {...props}
     >
-      {nftscan_uri || image_uri?.startsWith('http') ? (
-        <div className="aspect-1/1 w-full overflow-hidden rounded-b-xl bg-neutral-700">
-          <img
-            className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
-            src={nftscan_uri || image_uri}
-            alt={`${contract_name} #${token_id}`}
-            title={`${contract_name} #${token_id}`}
-            loading="lazy"
-          />
-        </div>
-      ) : (
-        <div className="aspect-1/1">
-          <NoNftImagePlaceholder />
-        </div>
-      )}
+      <div className="aspect-1/1 w-full overflow-hidden rounded-b-xl bg-neutral-700">
+        <img
+          className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
+          src={
+            image.startsWith('http')
+              ? image
+              : `https://ipfs.io/ipfs/${image.split('//')[1]}`
+          }
+          alt={`${token_address} #${token_id}`}
+          title={`${token_address} #${token_id}`}
+          loading="lazy"
+        />
+      </div>
       <div className="p-2">
         <div className="mb-2">
-          <Link to={`/dashboard/collection/${contract_address}/${token_id}`}>
+          <Link to={`/dashboard/collection/${token_address}/${token_id}`}>
             <span className="absolute inset-0"></span>
             <h3 className="text-paragraph-font-size leading-paragraph-line-height break-all">
-              {contract_name}
+              {name}
               <br />
               <span className="text-clickable font-semibold">#{token_id}</span>
             </h3>
           </Link>
         </div>
         <p className="text-neutral-100">
-          {ethereumPriceFormatter(latest_trade_price ?? mint_price)}
+          {ethereumPriceFormatter(
+            listed ? price.toString() : floor_price.toString()
+          )}
         </p>
       </div>
     </article>

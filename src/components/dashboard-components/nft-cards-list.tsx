@@ -25,7 +25,7 @@ export default function NftCardsList({
           {...props}
         >
           {nftCards.map((nftCard) => (
-            <li key={`${nftCard.contract_address}/${nftCard.token_id}`}>
+            <li key={`${nftCard.token_address}/${nftCard.token_id}`}>
               <NftCard nft={nftCard} />
             </li>
           ))}
