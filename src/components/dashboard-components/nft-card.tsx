@@ -14,12 +14,14 @@ export default function NftCard({
     token_id,
     name,
     list_price: { listed, price },
-    normalized_metadata: { image },
+    normalized_metadata,
     floor_price,
   },
   className,
   ...props
 }: NftCardProps) {
+  const image = normalized_metadata?.image
+
   return (
     <article
       className={cn(
