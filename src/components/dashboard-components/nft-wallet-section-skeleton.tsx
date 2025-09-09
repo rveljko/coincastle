@@ -31,10 +31,6 @@ export default function NftWalletSectionSkeleton() {
             <div className="bg-clickable/10 h-5 w-full max-w-30 animate-pulse rounded-sm"></div>
             <div className="bg-clickable/10 h-5 w-full max-w-30 animate-pulse rounded-sm"></div>
           </div>
-          <div className="flex justify-between gap-2">
-            <div className="bg-clickable/10 h-5 w-full max-w-30 animate-pulse rounded-sm"></div>
-            <div className="bg-clickable/10 h-5 w-full max-w-30 animate-pulse rounded-sm"></div>
-          </div>
         </div>
       </div>
       <NftWalletNftsSkeleton />
