@@ -11,25 +11,25 @@ export const primaryNavigationLinks: NavigationLink[] = [
   {
     id: 1,
     name: 'Wallet',
-    path: '',
+    path: '/dashboard/',
     icon: WalletIcon,
   },
   {
     id: 2,
     name: 'Crypto',
-    path: 'crypto',
+    path: '/dashboard/crypto',
     icon: CoinIcon,
   },
   {
     id: 3,
     name: 'NFTs',
-    path: 'nfts',
+    path: '/dashboard/nfts',
     icon: PhotoIcon,
   },
   {
     id: 4,
     name: 'Stocks',
-    path: 'stocks',
+    path: '/dashboard/stocks',
     icon: ChartLineIcon,
   },
 ]
@@ -38,19 +38,19 @@ export const secondaryNavigationLinks: NavigationLink[] = [
   {
     id: 1,
     name: 'Guides',
-    path: 'guides',
+    path: '/dashboard/guides',
     icon: FileIcon,
   },
   {
     id: 2,
     name: 'Help Center',
-    path: 'help-center',
+    path: '/dashboard/help-center',
     icon: LifebuoyIcon,
   },
   {
     id: 3,
     name: 'Settings',
-    path: 'settings',
+    path: '/dashboard/settings',
     icon: SettingsIcon,
   },
 ]
