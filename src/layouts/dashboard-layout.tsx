@@ -7,7 +7,10 @@ export default function DashboardLayout() {
   const { key } = useLocation()
 
   return (
-    <div className="relative flex h-screen overflow-hidden">
+    <div
+      id="dashboard-layout"
+      className="relative flex h-screen overflow-hidden"
+    >
       <Sidebar />
       <main className="w-full overflow-y-auto py-4">
         <Container className="flex flex-col gap-4">

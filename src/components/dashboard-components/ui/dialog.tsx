@@ -29,7 +29,7 @@ export default function Dialog({
   return createPortal(
     <div
       role="dialog"
-      className="fixed inset-0 z-[999] flex items-center justify-center bg-(--modal-backdrop-background) p-4"
+      className="absolute inset-0 z-[999] flex items-center justify-center bg-(--modal-backdrop-background) p-4"
       onClick={closeModal}
     >
       <motion.div
@@ -50,6 +50,6 @@ export default function Dialog({
         </ReactFocusLock>
       </motion.div>
     </div>,
-    document.getElementById('root')!
+    document.getElementById('dashboard-layout')!
   )
 }
