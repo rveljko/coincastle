@@ -1,10 +1,10 @@
 import NftCardsList from '@components/dashboard-components/nft-cards-list'
 import NftWalletSectionSkeleton, {
-  NftWalletNftsSkeleton,
+  NftWalletNftsHttpResponseSkeleton,
 } from '@components/dashboard-components/nft-wallet-section-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
-import useGetNftWalletNfts from '@hooks/queries/use-get-nft-wallet-nfts'
+import useGetNftWalletNftsHttpResponse from '@hooks/queries/use-get-nft-wallet-nfts'
 import useGetNftWalletStatisticsHttpResponse from '@hooks/queries/use-get-nft-wallet-statistics'
 import WalletIcon from '@icons/wallet-icon'
 import Section from '@sections/dashboard-sections/section'
@@ -82,25 +82,27 @@ export default function NftWalletSection({
           </InformationList.Item>
         </InformationList>
       </div>
-      <NftWalletNfts walletAddress={walletAddress} />
+      <NftWalletNftsHttpResponse walletAddress={walletAddress} />
     </Section>
   )
 }
 
-type NftWalletNftsProps = {
+type NftWalletNftsHttpResponseProps = {
   walletAddress: string
 }
 
-function NftWalletNfts({ walletAddress }: NftWalletNftsProps) {
+function NftWalletNftsHttpResponse({
+  walletAddress,
+}: NftWalletNftsHttpResponseProps) {
   const { data, isPending, error, fetchNextPage, isFetchingNextPage } =
-    useGetNftWalletNfts(walletAddress, 20)
+    useGetNftWalletNftsHttpResponse(walletAddress, 20)
   const { ref, inView } = useInView()
 
   useEffect(() => {
     if (inView) fetchNextPage()
   }, [inView, fetchNextPage])
 
-  if (isPending) return <NftWalletNftsSkeleton />
+  if (isPending) return <NftWalletNftsHttpResponseSkeleton />
 
   if (error) return <ErrorMessage />
 

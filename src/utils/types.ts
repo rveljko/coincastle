@@ -179,7 +179,7 @@ export type NftHttpResponse = {
   floor_price: string
 }
 
-export type NftWalletNfts = {
+export type NftWalletNftsHttpResponse = {
   cursor: string
   result: NftOverviewHttpResponse[]
 }

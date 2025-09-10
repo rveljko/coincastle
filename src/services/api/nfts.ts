@@ -4,7 +4,7 @@ import {
   NftCollectionsOverviewHttpResponse,
   NftCollectionStatisticsHttpResponse,
   NftHttpResponse,
-  NftWalletNfts,
+  NftWalletNftsHttpResponse,
   NftWalletStatisticsHttpResponse,
 } from '@utils/types'
 
@@ -104,11 +104,11 @@ export async function getSingleNft(
   return res.json()
 }
 
-export async function getNftWalletNfts(
+export async function getNftWalletNftsHttpResponse(
   walletAddress: string,
   cursor: string,
   limit: number
-): Promise<NftWalletNfts> {
+): Promise<NftWalletNftsHttpResponse> {
   const res = await fetch(
     `${NFT_BASE_URL}/${walletAddress}/nft?chain=eth&format=decimal&cursor=${cursor}&limit=${limit}&normalizeMetadata=true&include_prices=true`,
     {
