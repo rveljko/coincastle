@@ -86,7 +86,7 @@ export default function CryptoCoinsTable({
                 </Link>
               </Table.BodyCell>
               <Table.BodyCell>
-                {current_price ? currencyFormatter(current_price) : '-'}
+                {currencyFormatter(current_price)}
               </Table.BodyCell>
               <Table.BodyCell>
                 <PercentageChangeIndicator
@@ -94,15 +94,13 @@ export default function CryptoCoinsTable({
                 />
               </Table.BodyCell>
               <Table.BodyCell>
-                {market_cap ? compactCurrencyFormatter(market_cap) : '-'}
+                {compactCurrencyFormatter(market_cap)}
               </Table.BodyCell>
               <Table.BodyCell>
-                {total_volume ? compactCurrencyFormatter(total_volume) : '-'}
+                {compactCurrencyFormatter(total_volume)}
               </Table.BodyCell>
               <Table.BodyCell>
-                {circulating_supply
-                  ? compactCurrencyFormatter(circulating_supply)
-                  : '-'}
+                {compactCurrencyFormatter(circulating_supply)}
               </Table.BodyCell>
             </Table.BodyRow>
           )
