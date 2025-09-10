@@ -56,7 +56,7 @@ A web-based SaaS for Tracking Cryptocurrencies, NFTs, and Stocks
   VITE_PUBLIC_POSTHOG_HOST=
 
   VITE_COINGECKO_API_KEY=
-  VITE_NFTSCAN_API_KEY=
+  VITE_MORALIS_API_KEY=
   VITE_FMP_API_KEY=
   ```
 
@@ -64,7 +64,7 @@ A web-based SaaS for Tracking Cryptocurrencies, NFTs, and Stocks
 
   - **PostHog**: [https://us.posthog.com/signup](https://us.posthog.com/signup)
   - **CoinGecko API key**: [https://www.coingecko.com/account/sign_up](https://www.coingecko.com/account/sign_up)
-  - **NFTScan API key**: [https://developer.nftscan.com/user/signup](https://developer.nftscan.com/user/signup)
+  - **Moralis API key**: [https://admin.moralis.com/register](https://admin.moralis.com/register)
   - **Financial Modeling Prep API key**: [https://site.financialmodelingprep.com/register](https://site.financialmodelingprep.com/register)
 
 5. Start the development server:
@@ -183,192 +183,134 @@ If a request fails, the API returns an error status and a message such as:
 #### Base URL
 
 ```
-https://restapi.nftscan.com/api/v2
+https://deep-index.moralis.io/api/v2.2
 ```
 
 #### Authentication
 
-All NFT API requests require the `X-API-Key` header containing your NFTScan API key.
+All NFT API requests require the `X-API-Key` header containing your Moralis API key.
 
-#### Get NFT Collections Ranking
+#### Get NFT Collections
 
-**GET** `/collections/rankings`
+**GET** `/market-data/nfts/hottest-collections`
 
-Fetches a ranked list of NFT collections.
-
-**Query Parameters:**
-
-- `sort_field` (string) — Field to sort by (e.g., `floor_price`, `volume`, etc.)
-- `sort_direction` (string) — Sorting direction: `asc` or `desc`
-- `limit` (number) — Number of collections to return
+Fetches a list of the hottest NFT collections.
 
 **Example Request:**
 
 ```http
-GET /collections/rankings?sort_field=floor_price&sort_direction=desc&limit=10
+GET /market-data/nfts/hottest-collections
 X-API-Key: YOUR_API_KEY
 ```
 
-**Response:**  
-Returns an overview of NFT collections sorted and limited as specified.
+**Response:**  
+Returns an overview list of NFT collections.
 
 #### Get NFT Collection Information
 
-**GET** `/collections/{contractAddress}`
+**GET** `/nft/{contractAddress}/metadata`
 
 Fetch detailed info about a specific NFT collection by contract address.
-
-**Query Parameters:**
-
-- `show_attribute` (boolean, optional) — Whether to include collection attributes (default: true)
 
 **Example Request:**
 
 ```http
-GET /collections/0xabc123...def?show_attribute=true
+GET /nft/0xabc123...def/metadata
 X-API-Key: YOUR_API_KEY
 ```
 
-**Response:**  
+**Response:**  
 Detailed metadata and attributes of the NFT collection.
 
 #### Get NFT Collection Statistics
 
-**GET** `/statistics/collection/{contractAddress}`
+**GET** `/nft/{contractAddress}/price`
 
 Get statistical data for an NFT collection.
-
-**Query Parameters:**
-
-- `show_hourly_statistics` (boolean, optional) — Include hourly stats (default: false)
 
 **Example Request:**
 
 ```http
-GET /statistics/collection/0xabc123...def?show_hourly_statistics=false
+GET /nft/0xabc123...def/price
 X-API-Key: YOUR_API_KEY
 ```
 
-**Response:**  
-Includes metrics like volume, transactions, floor price, etc.
+**Response:**  
+Includes metrics like price trends, volume, and other statistics.
 
 #### Get NFTs in a Collection
 
-**GET** `/assets/{contractAddress}`
+**GET** `/nft/{contractAddress}?cursor={cursor}&limit={limit}&normalizeMetadata=true&include_prices=true`
 
-Fetch NFTs belonging to a specific collection.
+Fetch NFTs belonging to a specific collection with pagination and metadata normalization.
 
 **Query Parameters:**
 
 - `cursor` (string) — Pagination cursor for next page
-- `sort_field` (string) — Field to sort NFTs by (e.g., `token_id`, `floor_price`, etc.)
-- `sort_direction` (string) — Sorting direction: `asc` or `desc`
-- `limit` (number) — Results per page
+- `limit` (number) — Number of NFTs to return
 
 **Example Request:**
 
 ```http
-GET /assets/0xabc123...def?cursor=xyz123&sort_field=token_id&sort_direction=asc&limit=20
+GET /nft/0xabc123...def?cursor=xyz123&limit=20&normalizeMetadata=true&include_prices=true
 X-API-Key: YOUR_API_KEY
 ```
 
-**Response:**  
-List of NFTs with pagination support.
+**Response:**  
+List of NFTs with pagination support and price info.
 
 #### Get Single NFT Details
 
-**GET** `/assets/{contractAddress}/{tokenId}`
+**GET** `/nft/{contractAddress}/{tokenId}`
 
 Fetch detailed information for a single NFT by contract address and token ID.
-
-**Query Parameters:**
-
-- `show_attribute` (boolean, optional) — Whether to include NFT attributes (default: true)
 
 **Example Request:**
 
 ```http
-GET /assets/0xabc123...def/1?show_attribute=true
+GET /nft/0xabc123...def/1
 X-API-Key: YOUR_API_KEY
 ```
 
-**Response:**  
+**Response:**  
 Metadata and detail of the specific NFT.
 
 #### Get NFTs Owned by Wallet
 
-**GET** `/account/own/{walletAddress}`
+**GET** `/{walletAddress}/nft?chain=eth&format=decimal&cursor={cursor}&limit={limit}&normalizeMetadata=true&include_prices=true`
 
-Retrieve NFTs owned by a wallet address.
+Retrieve NFTs owned by a wallet address with pagination and metadata normalization.
 
 **Query Parameters:**
 
-- `erc_type` (string) — Filter by ERC type (e.g., `erc721`)
-- `show_attribute` (boolean) — Whether to include NFT attributes (default: false)
-- `sort_field` (string) — Field to sort by (e.g., `token_id`)
-- `sort_direction` (string) — `asc` or `desc`
 - `cursor` (string) — Pagination cursor
+- `limit` (number) — Number of NFTs to return
 
 **Example Request:**
 
 ```http
-GET /account/own/0xwallet123?erc_type=erc721&show_attribute=false&sort_field=token_id&sort_direction=asc&cursor=abc123
+GET /0xwallet123/nft?chain=eth&format=decimal&cursor=abc123&limit=20&normalizeMetadata=true&include_prices=true
 X-API-Key: YOUR_API_KEY
 ```
 
-**Response:**  
+**Response:**  
 Paginated list of NFTs owned by the wallet.
 
 #### Get Wallet NFT Statistics
 
-**GET** `/statistics/overview/{walletAddress}`
+**GET** `/wallets/{walletAddress}/stats?chain=eth`
 
 Get overall NFT statistics for a wallet address.
 
 **Example Request:**
 
 ```http
-GET /statistics/overview/0xwallet123
+GET /wallets/0xwallet123/stats?chain=eth
 X-API-Key: YOUR_API_KEY
 ```
 
-**Response:**  
+**Response:**  
 General statistics about the wallet's NFT portfolio.
-
-#### Search NFT Collections
-
-**POST** `/collections/filters`
-
-Search for NFT collections by name using fuzzy search.
-
-**Request Body:**
-
-```json
-{
-  "name": "collectionName",
-  "name_fuzzy_search": true,
-  "sort_direction": "asc",
-  "sort_field": "create_block_number"
-}
-```
-
-**Example Request:**
-
-```http
-POST /collections/filters
-X-API-Key: YOUR_API_KEY
-Content-Type: application/json
-
-{
-  "name": "cryptopunks",
-  "name_fuzzy_search": true,
-  "sort_direction": "asc",
-  "sort_field": "create_block_number"
-}
-```
-
-**Response:**  
-List of NFT collections matching the search criteria.
 
 #### Error Handling
 
