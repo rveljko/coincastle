@@ -272,23 +272,10 @@
     overflow: hidden;
   }
 
-  ::-webkit-scrollbar {
-    width: var(--scrollbar-size);
-  }
-
-  ::-webkit-scrollbar:horizontal {
-    height: var(--scrollbar-size);
-  }
-
-  ::-webkit-scrollbar-thumb,
-  ::-webkit-scrollbar-thumb:horizontal {
-    background-color: var(--color-neutral-100);
-    border-radius: var(--scrollbar-size);
-    cursor: auto;
-  }
-
-  ::-webkit-scrollbar-corner {
-    background-color: transparent;
+  html,
+  body * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(from var(--color-clickable) h s l / 20%) transparent;
   }
 
   body {
