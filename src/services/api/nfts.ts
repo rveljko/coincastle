@@ -1,7 +1,6 @@
 import {
   NftCollectionInformationHttpResponse,
   NftCollectionNftsHttpResponse,
-  NftCollectionSearchHttpResponse,
   NftCollectionsOverviewHttpResponse,
   NftCollectionStatisticsHttpResponse,
   NftHttpResponse,
@@ -142,31 +141,6 @@ export async function getNftWalletStatistics(
   if (!res.ok)
     throw new Error(
       'Failed to fetch wallet NFT statistics. Please check wallet address and try again.'
-    )
-
-  return res.json()
-}
-
-export async function getNftCollectionBySearch(
-  collectionName: string
-): Promise<NftCollectionSearchHttpResponse> {
-  const res = await fetch(`${NFT_BASE_URL}/collections/filters`, {
-    method: 'POST',
-    headers: {
-      'X-API-Key': import.meta.env.VITE_NFTSCAN_API_KEY,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      name: collectionName,
-      name_fuzzy_search: true,
-      sort_direction: 'asc',
-      sort_field: 'create_block_number',
-    }),
-  })
-
-  if (!res.ok)
-    throw new Error(
-      'Failed to fetch NFT Collections by search. Please check your query and connection, then try again.'
     )
 
   return res.json()

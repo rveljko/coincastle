@@ -198,16 +198,6 @@ export type NftWalletStatistics = {
   }
 }
 
-export type NftCollectionSearchHttpResponse = {
-  code: number
-  data: {
-    contract_address: string
-    name: string
-    logo_url: string
-    opensea_verified: boolean
-  }[]
-}
-
 export type StockOverviewHttpResponse = {
   symbol: string
   companyName: string

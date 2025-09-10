@@ -1,17 +1,13 @@
 import {
   CryptoResultsSkeleton,
-  NftCollectionResultsSkeleton,
   StockResultsSkeleton,
 } from '@components/dashboard-components/search-modal-skeleton'
 import FirstLetterImageGenerator from '@components/dashboard-components/ui/first-letter-image-generator'
 import InformationList from '@components/dashboard-components/ui/information-list'
-import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
 import useGetCryptoCurrenciesBySearch from '@hooks/queries/use-get-crypto-currencies-by-search'
-import useGetNftCollectionsBySearch from '@hooks/queries/use-get-nft-collections-by-search'
 import useGetStocksBySearch from '@hooks/queries/use-get-stocks-by-search'
 import useDebounce from '@hooks/use-debounce'
 import SearchIcon from '@icons/search-icon'
-import isHttpError from '@utils/helpers/is-http-error'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -46,10 +42,6 @@ export default function SearchModal({ closeModal }: SearchModalProps) {
         ) : (
           <>
             <CryptoResults search={debouncedSearch} closeModal={closeModal} />
-            <NftCollectionResults
-              search={debouncedSearch}
-              closeModal={closeModal}
-            />
             <StockResults search={debouncedSearch} closeModal={closeModal} />
           </>
         )}
@@ -64,7 +56,7 @@ function StartSearch() {
       <SearchIcon className="mx-auto mb-2 size-8" />
       <h3 className="mx-auto mb-1 text-center">Let's Begin Your Search</h3>
       <p className="text-center">
-        Please enter something to find <br /> Crypto, NFT Collections or Stocks
+        Please enter something to find <br /> Cryptocurrencies or Stocks
       </p>
     </div>
   )
@@ -111,60 +103,6 @@ function CryptoResults({ search, closeModal }: CryptoResultsProps) {
             </Link>
           </InformationList.Item>
         ))}
-      </InformationList>
-    </div>
-  )
-}
-
-type NftCollectionResultsProps = {
-  search: string
-  closeModal: () => void
-}
-
-function NftCollectionResults({
-  search,
-  closeModal,
-}: NftCollectionResultsProps) {
-  const { data, isPending, error } = useGetNftCollectionsBySearch(search)
-
-  if (isPending) return <NftCollectionResultsSkeleton />
-
-  if (error || isHttpError(data.code)) return null
-
-  if (data.data.length === 0) return null
-
-  return (
-    <div>
-      <p className="mb-2">NFT Collections</p>
-      <InformationList className="space-y-0 overflow-x-auto">
-        {data.data.map(
-          ({ contract_address, name, logo_url, opensea_verified }) => (
-            <InformationList.Item
-              key={contract_address}
-              className="relative p-2 hover:bg-neutral-800"
-            >
-              <Link
-                to={`/dashboard/collection/${contract_address}`}
-                onClick={closeModal}
-              >
-                <span className="absolute inset-0"></span>
-                <div className="flex w-max items-center gap-1">
-                  <img
-                    className="size-5.5 rounded-full"
-                    src={logo_url}
-                    title={name}
-                    alt={name}
-                    loading="lazy"
-                  />
-                  <div className="flex items-center gap-0.5">
-                    {name}
-                    {opensea_verified && <VerifiedBadge isSmall />}
-                  </div>
-                </div>
-              </Link>
-            </InformationList.Item>
-          )
-        )}
       </InformationList>
     </div>
   )
