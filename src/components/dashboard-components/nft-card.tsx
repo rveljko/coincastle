@@ -1,12 +1,12 @@
 import NoNftImagePlaceholder from '@components/dashboard-components/no-nft-image-placeholder'
 import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
-import { NftOverview } from '@utils/types'
+import { NftOverviewHttpResponse } from '@utils/types'
 import { cn } from '@utils/utils'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 type NftCardProps = React.ComponentPropsWithoutRef<'article'> & {
-  nft: NftOverview
+  nft: NftOverviewHttpResponse
 }
 
 export default function NftCard({
@@ -59,9 +59,9 @@ export default function NftCard({
 }
 
 type NftImageProps = {
-  name: NftOverview['name']
-  token_id: NftOverview['token_id']
-  normalized_metadata: NftOverview['normalized_metadata']
+  name: NftOverviewHttpResponse['name']
+  token_id: NftOverviewHttpResponse['token_id']
+  normalized_metadata: NftOverviewHttpResponse['normalized_metadata']
 }
 
 function NftImage({ name, token_id, normalized_metadata }: NftImageProps) {

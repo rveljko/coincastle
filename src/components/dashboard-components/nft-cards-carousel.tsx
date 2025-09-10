@@ -1,9 +1,9 @@
 import NftCard from '@components/dashboard-components/nft-card'
-import { NftOverview } from '@utils/types'
+import { NftOverviewHttpResponse } from '@utils/types'
 import { cn } from '@utils/utils'
 
 type NftCardsCarouselProps = React.ComponentPropsWithoutRef<'ul'> & {
-  nftCards: NftOverview[]
+  nftCards: NftOverviewHttpResponse[]
 }
 
 export default function NftCardsCarousel({

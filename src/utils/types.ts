@@ -148,10 +148,10 @@ export type NftCollectionStatisticsHttpResponse = {
 
 export type NftCollectionNftsHttpResponse = {
   cursor: string
-  result: NftOverview[]
+  result: NftOverviewHttpResponse[]
 }
 
-export type NftOverview = {
+export type NftOverviewHttpResponse = {
   token_address: string
   token_id: string
   name: string
@@ -181,10 +181,10 @@ export type NftHttpResponse = {
 
 export type NftWalletNfts = {
   cursor: string
-  result: NftOverview[]
+  result: NftOverviewHttpResponse[]
 }
 
-export type NftWalletStatistics = {
+export type NftWalletStatisticsHttpResponse = {
   nfts: string
   collections: string
   nft_transfers: {

@@ -5,7 +5,7 @@ import NftWalletSectionSkeleton, {
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import useGetNftWalletNfts from '@hooks/queries/use-get-nft-wallet-nfts'
-import useGetNftWalletStatistics from '@hooks/queries/use-get-nft-wallet-statistics'
+import useGetNftWalletStatisticsHttpResponse from '@hooks/queries/use-get-nft-wallet-statistics'
 import WalletIcon from '@icons/wallet-icon'
 import Section from '@sections/dashboard-sections/section'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
@@ -20,7 +20,8 @@ type NftWalletSectionProps = {
 export default function NftWalletSection({
   walletAddress,
 }: NftWalletSectionProps) {
-  const { data, isPending, error } = useGetNftWalletStatistics(walletAddress)
+  const { data, isPending, error } =
+    useGetNftWalletStatisticsHttpResponse(walletAddress)
 
   if (isPending) return <NftWalletSectionSkeleton />
 

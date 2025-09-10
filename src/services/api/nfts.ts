@@ -5,7 +5,7 @@ import {
   NftCollectionStatisticsHttpResponse,
   NftHttpResponse,
   NftWalletNfts,
-  NftWalletStatistics,
+  NftWalletStatisticsHttpResponse,
 } from '@utils/types'
 
 const NFT_BASE_URL = 'https://deep-index.moralis.io/api/v2.2'
@@ -126,9 +126,9 @@ export async function getNftWalletNfts(
   return res.json()
 }
 
-export async function getNftWalletStatistics(
+export async function getNftWalletStatisticsHttpResponse(
   walletAddress: string
-): Promise<NftWalletStatistics> {
+): Promise<NftWalletStatisticsHttpResponse> {
   const res = await fetch(
     `${NFT_BASE_URL}/wallets/${walletAddress}/stats?chain=eth`,
     {

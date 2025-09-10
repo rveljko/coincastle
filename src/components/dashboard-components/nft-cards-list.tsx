@@ -1,10 +1,10 @@
 import NftCard from '@components/dashboard-components/nft-card'
 import NftCardSkeleton from '@components/dashboard-components/nft-card-skeleton'
-import { NftOverview } from '@utils/types'
+import { NftOverviewHttpResponse } from '@utils/types'
 import { cn } from '@utils/utils'
 
 type NftCardsListProps = React.ComponentPropsWithoutRef<'ul'> & {
-  nftCards: NftOverview[]
+  nftCards: NftOverviewHttpResponse[]
   isLoadingSkeletons?: boolean
 }
 
