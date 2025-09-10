@@ -1,3 +1,4 @@
+import NoNftImagePlaceholder from '@components/dashboard-components/no-nft-image-placeholder'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
 import VerifiedBadge from '@components/dashboard-components/ui/verified-badge'
@@ -12,6 +13,8 @@ import { ethereumPriceFormatter } from '@utils/helpers/currency-formatter'
 import { ethereumAddressFormatter } from '@utils/helpers/ethereum-address-formatter'
 import { ethereumAddressValidator } from '@utils/helpers/ethereum-address-validator'
 import { percentageFormatter } from '@utils/helpers/percentage-formatters'
+import { NftHttpResponse } from '@utils/types'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 type NftSectionProps = {
@@ -116,15 +119,7 @@ export default function NftSection({
         </div>
         <div className="md:flex-1">
           <div className="group aspect-1/1 w-full overflow-hidden rounded-3xl bg-neutral-700">
-            <img
-              className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
-              src={
-                image.startsWith('http')
-                  ? image
-                  : `https://ipfs.io/ipfs/${image.split('//')[1]}`
-              }
-              alt=""
-            />
+            <NftImage image={image} />
           </div>
         </div>
       </div>
@@ -180,5 +175,28 @@ function NftCollectionInformation({
         {description}
       </p>
     </header>
+  )
+}
+
+type NftImageProps = {
+  image: NftHttpResponse['normalized_metadata']['image']
+}
+
+function NftImage({ image }: NftImageProps) {
+  const [isImageBroken, setIsImageBroken] = useState(false)
+
+  if (isImageBroken || !image) return <NoNftImagePlaceholder />
+
+  return (
+    <img
+      className="size-full object-cover transition ease-in group-hover:transform-[scale(1.2)]"
+      src={
+        image.startsWith('http')
+          ? image
+          : `https://ipfs.io/ipfs/${image.split('//')[1]}`
+      }
+      onError={() => setIsImageBroken(true)}
+      alt=""
+    />
   )
 }
