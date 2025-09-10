@@ -1,6 +1,6 @@
 import NftCardsList from '@components/dashboard-components/nft-cards-list'
 import NftWalletSectionSkeleton, {
-  NftWalletNftsHttpResponseSkeleton,
+  NftWalletNftsSkeleton,
 } from '@components/dashboard-components/nft-wallet-section-skeleton'
 import ErrorMessage from '@components/dashboard-components/ui/error-message'
 import InformationList from '@components/dashboard-components/ui/information-list'
@@ -81,18 +81,16 @@ export default function NftWalletSection({
           </InformationList.Item>
         </InformationList>
       </div>
-      <NftWalletNftsHttpResponse walletAddress={walletAddress} />
+      <NftWalletNfts walletAddress={walletAddress} />
     </Section>
   )
 }
 
-type NftWalletNftsHttpResponseProps = {
+type NftWalletNftsProps = {
   walletAddress: string
 }
 
-function NftWalletNftsHttpResponse({
-  walletAddress,
-}: NftWalletNftsHttpResponseProps) {
+function NftWalletNfts({ walletAddress }: NftWalletNftsProps) {
   const { data, isPending, error, fetchNextPage, isFetchingNextPage } =
     useGetNftWalletNfts(walletAddress, 20)
   const { ref, inView } = useInView()
@@ -101,7 +99,7 @@ function NftWalletNftsHttpResponse({
     if (inView) fetchNextPage()
   }, [inView, fetchNextPage])
 
-  if (isPending) return <NftWalletNftsHttpResponseSkeleton />
+  if (isPending) return <NftWalletNftsSkeleton />
 
   if (error) return <ErrorMessage />
 

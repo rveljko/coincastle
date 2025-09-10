@@ -33,11 +33,11 @@ export default function NftWalletSectionSkeleton() {
           </div>
         </div>
       </div>
-      <NftWalletNftsHttpResponseSkeleton />
+      <NftWalletNftsSkeleton />
     </Section>
   )
 }
 
-export function NftWalletNftsHttpResponseSkeleton() {
+export function NftWalletNftsSkeleton() {
   return <NftCardsListSkeleton />
 }
