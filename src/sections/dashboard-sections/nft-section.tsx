@@ -30,7 +30,7 @@ export default function NftSection({
 
   if (isPending) return <NftSectionSkeleton />
 
-  if (error)
+  if (error || !data.normalized_metadata)
     return (
       <Section>
         <ErrorMessage />
