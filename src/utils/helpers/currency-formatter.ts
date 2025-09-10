@@ -4,6 +4,8 @@ import {
 } from '@utils/helpers/numbers-formatter'
 
 export function currencyFormatter(value: number) {
+  if (!value) return '-'
+
   return value.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -11,6 +13,8 @@ export function currencyFormatter(value: number) {
 }
 
 export function compactCurrencyFormatter(value: number) {
+  if (!value) return '-'
+
   return value.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -19,6 +23,8 @@ export function compactCurrencyFormatter(value: number) {
 }
 
 export function ethereumPriceFormatter(value: string) {
+  if (!value) return '-'
+
   const price = parseFloat(value)
 
   if (price === 0) return '0 ETH'
