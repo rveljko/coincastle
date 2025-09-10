@@ -1,13 +1,13 @@
-import { getNftWalletNftsHttpResponse } from '@services/api/nfts'
+import { getNftWalletNfts } from '@services/api/nfts'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-export default function useGetNftWalletNftsHttpResponse(
+export default function useGetNftWalletNfts(
   walletAddress: string,
   limit: number
 ) {
   return useInfiniteQuery({
     queryFn: ({ pageParam }) =>
-      getNftWalletNftsHttpResponse(walletAddress, pageParam, limit),
+      getNftWalletNfts(walletAddress, pageParam, limit),
     queryKey: ['nft-wallet-nfts', walletAddress, limit],
     initialPageParam: '',
     getNextPageParam: (lastPage) => lastPage.cursor,

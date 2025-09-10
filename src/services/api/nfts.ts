@@ -104,7 +104,7 @@ export async function getSingleNft(
   return res.json()
 }
 
-export async function getNftWalletNftsHttpResponse(
+export async function getNftWalletNfts(
   walletAddress: string,
   cursor: string,
   limit: number
@@ -126,7 +126,7 @@ export async function getNftWalletNftsHttpResponse(
   return res.json()
 }
 
-export async function getNftWalletStatisticsHttpResponse(
+export async function getNftWalletStatistics(
   walletAddress: string
 ): Promise<NftWalletStatisticsHttpResponse> {
   const res = await fetch(
